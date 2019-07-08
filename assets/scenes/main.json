@@ -1,0 +1,3899 @@
+{
+  "metadata": {
+    "type": "Object"
+  },
+  "geometries": [
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          0,
+          695
+        ],
+        "position": [
+          696,
+          1991
+        ],
+        "normal": [
+          1992,
+          3287
+        ],
+        "tangent": [
+          3288,
+          5015
+        ],
+        "uv": [
+          5016,
+          5879
+        ]
+      },
+      "uuid": "56871FB1-0C9B-4C26-8899-011A24D3A45D",
+      "name": "Road_Lane_01"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          5880,
+          7247
+        ],
+        "position": [
+          7248,
+          9371
+        ],
+        "normal": [
+          9372,
+          11495
+        ],
+        "tangent": [
+          11496,
+          14327
+        ],
+        "uv": [
+          14328,
+          15743
+        ]
+      },
+      "uuid": "B838CF3D-FD2E-419E-B222-F80BB50E1419",
+      "name": "Road_Lane_03"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          15744,
+          45239
+        ],
+        "position": [
+          45240,
+          100859
+        ],
+        "normal": [
+          100860,
+          156479
+        ],
+        "tangent": [
+          156480,
+          230639
+        ],
+        "uv": [
+          230640,
+          267719
+        ],
+        "uv2": [
+          267720,
+          304799
+        ]
+      },
+      "uuid": "E2A6F346-41E3-47F8-9637-F04A220DFE30",
+      "name": "Road_Intersection_03_merged"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          304800,
+          305615
+        ],
+        "position": [
+          305616,
+          307367
+        ],
+        "normal": [
+          307368,
+          309119
+        ],
+        "tangent": [
+          309120,
+          311455
+        ],
+        "uv": [
+          311456,
+          312623
+        ],
+        "uv2": [
+          312624,
+          313791
+        ]
+      },
+      "uuid": "A2BB19E8-F807-4204-9415-FAB204D582BD",
+      "name": "Road_Intersection_05"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          313792,
+          316527
+        ],
+        "position": [
+          316528,
+          321327
+        ],
+        "normal": [
+          321328,
+          326127
+        ],
+        "tangent": [
+          326128,
+          332527
+        ],
+        "uv": [
+          332528,
+          335727
+        ]
+      },
+      "uuid": "4D5A39BD-8B10-4F23-ADB2-3A8683EF8C8B",
+      "name": "Props_Hydrant"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          335728,
+          383319
+        ],
+        "position": [
+          383320,
+          476175
+        ],
+        "normal": [
+          476176,
+          569031
+        ],
+        "tangent": [
+          569032,
+          692839
+        ],
+        "uv": [
+          692840,
+          754743
+        ],
+        "uv2": [
+          754744,
+          816647
+        ]
+      },
+      "uuid": "1BF9798F-5ED2-4220-B5C6-8D8CC66F1235",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          816648,
+          877127
+        ],
+        "position": [
+          877128,
+          997211
+        ],
+        "normal": [
+          997212,
+          1117295
+        ],
+        "tangent": [
+          1117296,
+          1277407
+        ],
+        "uv": [
+          1277408,
+          1357463
+        ],
+        "uv2": [
+          1357464,
+          1437519
+        ]
+      },
+      "uuid": "5BFDA526-2507-4AD1-BFF4-4DCB77DD4BEC",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          1437520,
+          1496751
+        ],
+        "position": [
+          1496752,
+          1607991
+        ],
+        "normal": [
+          1607992,
+          1719231
+        ],
+        "tangent": [
+          1719232,
+          1867551
+        ],
+        "uv": [
+          1867552,
+          1941711
+        ],
+        "uv2": [
+          1941712,
+          2015871
+        ]
+      },
+      "uuid": "F0CBD04F-EE47-4083-96A5-2DF13E00BC0F",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          2015872,
+          2094015
+        ],
+        "position": [
+          2094016,
+          2241627
+        ],
+        "normal": [
+          2241628,
+          2389239
+        ],
+        "tangent": [
+          2389240,
+          2586055
+        ],
+        "uv": [
+          2586056,
+          2684463
+        ],
+        "uv2": [
+          2684464,
+          2782871
+        ]
+      },
+      "uuid": "B34C0F5D-3FC6-4B40-93F9-03A624D22915",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          2782872,
+          2866655
+        ],
+        "position": [
+          2866656,
+          3061967
+        ],
+        "normal": [
+          3061968,
+          3257279
+        ],
+        "tangent": [
+          3257280,
+          3517695
+        ],
+        "uv": [
+          3517696,
+          3647903
+        ],
+        "uv2": [
+          3647904,
+          3778111
+        ]
+      },
+      "uuid": "6046089D-1F5E-4FA4-9C8B-CEB2424BD0AA",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          3778112,
+          3838951
+        ],
+        "position": [
+          3838952,
+          3956287
+        ],
+        "normal": [
+          3956288,
+          4073623
+        ],
+        "tangent": [
+          4073624,
+          4230071
+        ],
+        "uv": [
+          4230072,
+          4308295
+        ],
+        "uv2": [
+          4308296,
+          4386519
+        ]
+      },
+      "uuid": "1DA39AB9-001C-4179-9B9B-83EC9D404FDF",
+      "name": "block_6_merged"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          4386520,
+          4430835
+        ],
+        "position": [
+          4430836,
+          4518327
+        ],
+        "normal": [
+          4518328,
+          4605819
+        ],
+        "tangent": [
+          4605820,
+          4722475
+        ],
+        "uv": [
+          4722476,
+          4780803
+        ],
+        "uv2": [
+          4780804,
+          4839131
+        ]
+      },
+      "uuid": "76B43F28-250D-4929-A24E-A47E0A59056B",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          4839132,
+          4924595
+        ],
+        "position": [
+          4924596,
+          5089211
+        ],
+        "normal": [
+          5089212,
+          5253827
+        ],
+        "tangent": [
+          5253828,
+          5473315
+        ],
+        "uv": [
+          5473316,
+          5583059
+        ],
+        "uv2": [
+          5583060,
+          5692803
+        ]
+      },
+      "uuid": "99CD313F-B924-4613-A06A-7876BF15DAB3",
+      "name": "block_8_merged"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          5692804,
+          5748675
+        ],
+        "position": [
+          5748676,
+          5857575
+        ],
+        "normal": [
+          5857576,
+          5966475
+        ],
+        "tangent": [
+          5966476,
+          6111675
+        ],
+        "uv": [
+          6111676,
+          6184275
+        ],
+        "uv2": [
+          6184276,
+          6256875
+        ]
+      },
+      "uuid": "EA4597B3-EF15-474A-887A-0333E15160B7",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          6256876,
+          6308571
+        ],
+        "position": [
+          6308572,
+          6411495
+        ],
+        "normal": [
+          6411496,
+          6514419
+        ],
+        "tangent": [
+          6514420,
+          6651651
+        ],
+        "uv": [
+          6651652,
+          6720267
+        ],
+        "uv2": [
+          6720268,
+          6788883
+        ]
+      },
+      "uuid": "00C2FB58-80EF-499D-95B2-CC3EC2CB7B9F",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          6788884,
+          6840027
+        ],
+        "position": [
+          6840028,
+          6956631
+        ],
+        "normal": [
+          6956632,
+          7073235
+        ],
+        "tangent": [
+          7073236,
+          7228707
+        ],
+        "uv": [
+          7228708,
+          7306443
+        ],
+        "uv2": [
+          7306444,
+          7384179
+        ]
+      },
+      "uuid": "BEC2FC6D-E691-4E46-BEEB-8CE81A2F3A79",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          7384180,
+          7437483
+        ],
+        "position": [
+          7437484,
+          7582611
+        ],
+        "normal": [
+          7582612,
+          7727739
+        ],
+        "tangent": [
+          7727740,
+          7921243
+        ],
+        "uv": [
+          7921244,
+          8017995
+        ],
+        "uv2": [
+          8017996,
+          8114747
+        ]
+      },
+      "uuid": "E2E912D4-BFD0-4638-853B-8E40C0A0688F",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          8114748,
+          8172515
+        ],
+        "position": [
+          8172516,
+          8326211
+        ],
+        "normal": [
+          8326212,
+          8479907
+        ],
+        "tangent": [
+          8479908,
+          8684835
+        ],
+        "uv": [
+          8684836,
+          8787299
+        ],
+        "uv2": [
+          8787300,
+          8889763
+        ]
+      },
+      "uuid": "0C85E2E1-ED28-4C29-AE96-C77D0E234E80",
+      "name": ""
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          8889764,
+          8897287
+        ],
+        "position": [
+          8897288,
+          8909407
+        ],
+        "normal": [
+          8909408,
+          8921527
+        ],
+        "tangent": [
+          8921528,
+          8937687
+        ],
+        "uv": [
+          8937688,
+          8945767
+        ]
+      },
+      "uuid": "AF5CB5E4-8548-47E7-8B9B-A9D6BC0D89B7",
+      "name": "Vehicle_Ambulance"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          8945768,
+          8955319
+        ],
+        "position": [
+          8955320,
+          8970559
+        ],
+        "normal": [
+          8970560,
+          8985799
+        ],
+        "tangent": [
+          8985800,
+          9006119
+        ],
+        "uv": [
+          9006120,
+          9016279
+        ]
+      },
+      "uuid": "C9A4CB2C-4515-42FF-BF0E-E6868896927F",
+      "name": "Vehicle_Bus"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          9016280,
+          9025255
+        ],
+        "position": [
+          9025256,
+          9040699
+        ],
+        "normal": [
+          9040700,
+          9056143
+        ],
+        "tangent": [
+          9056144,
+          9076735
+        ],
+        "uv": [
+          9076736,
+          9087031
+        ],
+        "color": [
+          9087032,
+          9102475
+        ]
+      },
+      "uuid": "A2BFBEBC-B9BB-4E5D-8FC1-8B48CEFB231A",
+      "name": "Vehicle_Car"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          9102476,
+          9110083
+        ],
+        "position": [
+          9110084,
+          9123367
+        ],
+        "normal": [
+          9123368,
+          9136651
+        ],
+        "tangent": [
+          9136652,
+          9154363
+        ],
+        "uv": [
+          9154364,
+          9163219
+        ]
+      },
+      "uuid": "FAA750A7-DCF5-4D07-9C47-63F0D0ED63E0",
+      "name": "Vehicle_Container"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          9163220,
+          9171547
+        ],
+        "position": [
+          9171548,
+          9186775
+        ],
+        "normal": [
+          9186776,
+          9202003
+        ],
+        "tangent": [
+          9202004,
+          9222307
+        ],
+        "uv": [
+          9222308,
+          9232459
+        ]
+      },
+      "uuid": "D48CDE26-D192-4F30-9B86-C8C3500577AA",
+      "name": "Vehicle_Pick up Truck"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          9232460,
+          9241579
+        ],
+        "position": [
+          9241580,
+          9257287
+        ],
+        "normal": [
+          9257288,
+          9272995
+        ],
+        "tangent": [
+          9272996,
+          9293939
+        ],
+        "uv": [
+          9293940,
+          9304411
+        ],
+        "color": [
+          9304412,
+          9320119
+        ]
+      },
+      "uuid": "4BEC766B-2FAB-4ED9-9DE2-659BF715CAAC",
+      "name": "Vehicle_Police Car"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          9320120,
+          9327607
+        ],
+        "position": [
+          9327608,
+          9341467
+        ],
+        "normal": [
+          9341468,
+          9355327
+        ],
+        "tangent": [
+          9355328,
+          9373807
+        ],
+        "uv": [
+          9373808,
+          9383047
+        ]
+      },
+      "uuid": "0FA3780E-CAB0-4956-824D-698FB54DF644",
+      "name": "Vehicle_SUV"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          9383048,
+          9392167
+        ],
+        "position": [
+          9392168,
+          9407767
+        ],
+        "normal": [
+          9407768,
+          9423367
+        ],
+        "tangent": [
+          9423368,
+          9444167
+        ],
+        "uv": [
+          9444168,
+          9454567
+        ],
+        "color": [
+          9454568,
+          9470167
+        ]
+      },
+      "uuid": "7BD43F6B-FBD0-4E8D-803E-348E876881AA",
+      "name": "Vehicle_Taxi"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          9470168,
+          9478039
+        ],
+        "position": [
+          9478040,
+          9491635
+        ],
+        "normal": [
+          9491636,
+          9505231
+        ],
+        "tangent": [
+          9505232,
+          9523359
+        ],
+        "uv": [
+          9523360,
+          9532423
+        ]
+      },
+      "uuid": "E6D0A27C-8273-4CB5-8205-7B0E818FC3A0",
+      "name": "Vehicle_Truck"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          9532424,
+          9536671
+        ],
+        "position": [
+          9536672,
+          9548443
+        ],
+        "normal": [
+          9548444,
+          9560215
+        ],
+        "tangent": [
+          9560216,
+          9575911
+        ]
+      },
+      "uuid": "89C04C2C-3562-4497-A80D-87B7C47B2FC0",
+      "name": "Cloud_cumulus_Mid"
+    },
+    {
+      "groups": [],
+      "offsets": {
+        "index": [
+          9575912,
+          9579895
+        ],
+        "position": [
+          9579896,
+          9591187
+        ],
+        "normal": [
+          9591188,
+          9602479
+        ],
+        "tangent": [
+          9602480,
+          9617535
+        ]
+      },
+      "uuid": "F56A261D-23FE-4A75-BC23-FEE3A9F7DF76",
+      "name": "Cloud_cumulus"
+    }
+  ],
+  "materials": [
+    {
+      "color": 16777215,
+      "map": "48774E36-991E-4073-A05C-B9A092DB26FA",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "4D918125-D594-4525-B7EA-1EC873CE78B3",
+      "type": "ShaderMaterial",
+      "name": "Road"
+    },
+    {
+      "color": 16777215,
+      "map": "2BB47B23-F4E0-420B-872F-2FA0F50176A1",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "6FE397BA-5AE8-4161-A473-52BB7069D0AF",
+      "type": "ShaderMaterial",
+      "name": "intersection_03_merged-mat-_MainTex-atlas0"
+    },
+    {
+      "color": 16777215,
+      "map": "AC39CD3D-19E9-439F-BFA5-07506FDB90D5",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "7BC81A50-1F2E-434B-8B85-16EDB08A3C7A",
+      "type": "ShaderMaterial",
+      "name": "Props_Props_01"
+    },
+    {
+      "color": 16777215,
+      "map": "66927D08-8D92-4C37-9CE8-EB3E00BC5B4C",
+      "aoMap": "5C153AE9-50C6-4917-B406-3107744AF4AA",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "5E6C697D-1927-4EBD-B7E9-8EE131B5F1EC",
+      "type": "ShaderMaterial",
+      "name": "block1_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "08119566-A641-4EFB-AB04-FCD15944BA64",
+      "aoMap": "F802060A-AD8C-4A10-ABF3-5B66D5CCD687",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "1E97CEF4-2CB6-4C6F-AAE8-2A1380883A3F",
+      "type": "ShaderMaterial",
+      "name": "block2_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "03071279-6624-4491-A44A-0C596C816005",
+      "aoMap": "5811EC29-5093-4D1C-A2DC-7B36E0E5796E",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "B15BAE15-CF77-4CCC-868B-C9B7F03D9091",
+      "type": "ShaderMaterial",
+      "name": "block3_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "91C489DB-F42E-449B-A54F-BFF6C2E75FC9",
+      "aoMap": "F2756FD2-048D-44B7-B8D3-26EE42AF8ACD",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "66D2AD9A-5C1F-443A-9DE4-448790544A2F",
+      "type": "ShaderMaterial",
+      "name": "block4_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "A77389BE-F626-4D45-B5D2-E423794E696D",
+      "aoMap": "E3AE309D-5C21-49F1-9921-439A1C4897EC",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "6E97BE9A-EB70-40BA-8451-EA4A6A68647E",
+      "type": "ShaderMaterial",
+      "name": "block5_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "98FC5833-39A8-4EF1-AE46-F741842FB7AB",
+      "aoMap": "D7150DCA-8FAB-48F8-8993-E49E1062A06D",
+      "metalFactor": 0.0,
+      "glossFactor": 0.0,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "C5FB94D6-CDAB-4D75-8F0C-4B022040D727",
+      "type": "ShaderMaterial",
+      "name": "block6_merged-mat-_MainTex-atlas0"
+    },
+    {
+      "color": 16777215,
+      "map": "58133A97-87F1-43A6-8F00-D1622FD51F18",
+      "aoMap": "B263E5A8-87C0-40CC-848A-1D04821C9F11",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "16870CFA-77BA-4A3A-9CE4-31EBD3F7ADD6",
+      "type": "ShaderMaterial",
+      "name": "block7_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "EDC55F09-9140-407B-9C8B-E97BC7F909EA",
+      "aoMap": "B2EA3576-036E-46E1-8470-0738C88A7D5B",
+      "metalFactor": 0.0,
+      "glossFactor": 0.0,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "3E1DE1D9-30EA-4E65-A415-8EDB831E211E",
+      "type": "ShaderMaterial",
+      "name": "block8_merged-mat-_MainTex-atlas0"
+    },
+    {
+      "color": 16777215,
+      "map": "6F4354A3-8347-402D-93D2-F5602338D848",
+      "aoMap": "85A51E5D-1224-4EF4-8FD3-0531E5A2F5A6",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "6D456064-AB40-4E29-A854-80E0842DB0BA",
+      "type": "ShaderMaterial",
+      "name": "block9_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "506DFFCD-B260-440A-B8CB-01A5D3AD8956",
+      "aoMap": "5D58F8B9-9E7D-452B-BD12-EAA5CBF764F4",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "CC4DBC3B-BD3F-4063-8A67-CE3A0887A5FF",
+      "type": "ShaderMaterial",
+      "name": "block10_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "3C6C33FA-CBC2-4D87-B650-359951A96316",
+      "aoMap": "B16B9AA5-5ECE-418A-8EBD-9E22E4D30D67",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "346B281E-5959-4925-9D25-E27801ED4125",
+      "type": "ShaderMaterial",
+      "name": "block11_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "8B3B1341-C14F-4623-BB02-E0BB5CFA75D5",
+      "aoMap": "77553783-8468-4FB8-8503-D764B4980DB2",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "539AE174-CE24-4CC0-A19B-70C852B30514",
+      "type": "ShaderMaterial",
+      "name": "park_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "98C8B0CC-DDBC-49B4-A3B1-7E9E1F17895D",
+      "aoMap": "96F60AA5-782D-40C6-9870-41387674E88F",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "4A866DA1-4759-42F1-AC45-21779F7B763C",
+      "type": "ShaderMaterial",
+      "name": "park2_merged-mat"
+    },
+    {
+      "color": 16777215,
+      "map": "7873D61C-DFF8-4D00-8F78-307401BB092D",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "1FB55024-8412-461A-9E26-A3D3BCB053D2",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Ambulance"
+    },
+    {
+      "color": 16777215,
+      "map": "DDC9439A-9EC4-4391-8521-D2816D5610CC",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "831338D8-7CB8-4F0F-B916-92BE292B2448",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Bus_color01"
+    },
+    {
+      "color": 16777215,
+      "map": "88BC4202-118E-40D8-B59E-9BDE612CB1AD",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "1B8FA055-FE77-428C-95F3-44040221C4B1",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Bus_color02"
+    },
+    {
+      "color": 16777215,
+      "map": "00858BD8-7478-4AF8-A80E-C3E48305143D",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "5E5FFAC0-FDAB-45F1-A8D2-6B6E6089FE57",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Bus_color03"
+    },
+    {
+      "color": 16777215,
+      "map": "670EE655-D092-42CD-BFBD-472F35C5AE90",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "1CED1618-C4B1-4288-8D17-03748C817C9D",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Car_color01"
+    },
+    {
+      "color": 16777215,
+      "map": "FEF4897D-9C1E-466F-A6F8-85DBC68D205A",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "CF5FA969-D87D-402F-B9C4-D52426010344",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Car_color02"
+    },
+    {
+      "color": 16777215,
+      "map": "DA555BA1-1E78-49A2-9D71-72BC67FB42C8",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "55EFC636-90ED-4E7F-B9F7-4D1910E500E5",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Car_color03"
+    },
+    {
+      "color": 16777215,
+      "map": "0806200B-7707-4130-B27B-77CA0F90DFBE",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "639873CE-D4C8-4626-A7D0-D8C685A96E20",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Container_color01"
+    },
+    {
+      "color": 16777215,
+      "map": "329677C9-70D0-4551-AA90-D7F936D65296",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "84C3A7BC-A79A-4B7A-88DE-AC29272C8601",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Container_color02"
+    },
+    {
+      "color": 16777215,
+      "map": "94C6720E-555F-47E9-9257-56C3C77144E8",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "2C14A7E6-38CB-4455-B76F-350CEB519696",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Container_color03"
+    },
+    {
+      "color": 16777215,
+      "map": "3FD3F9E5-D545-481D-AF6B-774028FE3099",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "CDD1E658-951C-42AE-A036-1FF35A40F206",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Pick up Truck_color01"
+    },
+    {
+      "color": 16777215,
+      "map": "59E0C3D2-137C-46AB-9F48-A4060BFABDBD",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "DF8C77A2-3A26-4A2A-835D-56D48CC10AB7",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Pick up Truck_color02"
+    },
+    {
+      "color": 16777215,
+      "map": "26ED3E96-EB32-449C-A4DC-B64FA92D89F8",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "D0F6D44D-3AF2-4F47-9912-7BF8EF5EF00D",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Pick up Truck_color03"
+    },
+    {
+      "color": 16777215,
+      "map": "7A52B38D-EFB8-4BE3-A75A-13EF75D70F62",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "A52E26B8-25EC-42B1-870B-16F5E142A45E",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Police Car"
+    },
+    {
+      "color": 16777215,
+      "map": "3CF2238E-CAF5-4DE5-A058-49BC6CF45F17",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "29AEEB2D-62EE-4060-9166-DD1109C4D5F8",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_SUV_color01"
+    },
+    {
+      "color": 16777215,
+      "map": "69909A08-6DA9-491E-A2EC-73C04C42685B",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "0C7FB86F-DAAF-4194-9F10-7F16894123FD",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_SUV_color02"
+    },
+    {
+      "color": 16777215,
+      "map": "CD755D8C-7686-4E80-B01B-1B8B97CC21B9",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "65594B11-FB03-4638-B49B-6E2C5D6CBEC7",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_SUV_color03"
+    },
+    {
+      "color": 16777215,
+      "map": "0E12E1AB-1D22-4642-BFB5-BC955808BB55",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "EAD8E59B-6A97-4530-9B3C-0137C7222E93",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Taxi"
+    },
+    {
+      "color": 16777215,
+      "map": "64145A2F-0D5C-473F-B566-2F0FC9C07A5E",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "42599B1A-8B8F-4459-A1E2-CDCBBF8E656F",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Truck_color01"
+    },
+    {
+      "color": 16777215,
+      "map": "084C229D-9A43-47DF-8074-6011CADD655C",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "9077DCBB-D6A0-4BB4-9975-915D3CEB5FB8",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Truck_color02"
+    },
+    {
+      "color": 16777215,
+      "map": "EC3370D4-E832-4233-9690-5927C5B571CC",
+      "metalFactor": 0.0,
+      "glossFactor": 0.5,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "512103BA-A0F4-4797-8F5A-EBBC764AB0BD",
+      "type": "ShaderMaterial",
+      "name": "Vehicle_Truck_color03"
+    },
+    {
+      "color": 14803425,
+      "metalFactor": 0.0,
+      "glossFactor": 0.0,
+      "aoFactor": 1.0,
+      "environment": "envProbe",
+      "exposure": 1.0,
+      "occludeSpecular": true,
+      "customType": "PBRMaterial",
+      "uuid": "1C9DBD43-C223-408F-885C-30B5F5F562AA",
+      "type": "ShaderMaterial",
+      "name": "Cloud_cumulus",
+      "transparent": true,
+      "opacity": 0.980392158
+    }
+  ],
+  "cameras": [
+    "2D6B717F-2080-45B4-8B14-4973788411C2"
+  ],
+  "images": [
+    {
+      "uuid": "A69C0EE2-336D-47ED-9B24-19B70D694FF6",
+      "url": "Maps/Textures/Road.jpg"
+    },
+    {
+      "uuid": "0E64D100-D3E6-4DBD-BEE5-B31883CD3A6A",
+      "url": "Materials/merged/intersection_03_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "7AF3EF36-77EE-45E5-9BFA-D1F0CE0A3F3C",
+      "url": "Maps/Textures/Props_Props_01.jpg"
+    },
+    {
+      "uuid": "61CEE303-65E0-4A9A-9C74-91B6B41D7776",
+      "url": "Materials/merged/block1_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "D37F5AD1-90AD-4AE0-812C-B6C4868FF2CF",
+      "url": "Maps/AO/block1_ao.jpg"
+    },
+    {
+      "uuid": "7AEFA869-722C-482D-8001-26B8FF258990",
+      "url": "Materials/merged/block2_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "3F18DB95-0307-4C74-8873-B1B129309159",
+      "url": "Maps/AO/block2_ao.jpg"
+    },
+    {
+      "uuid": "C5502223-371E-464A-AD1F-84FC5B12F6A4",
+      "url": "Materials/merged/block3_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "FDF400EB-632A-405D-98C1-B4BA8A802B9D",
+      "url": "Maps/AO/block3_merged_mat_ao.jpg"
+    },
+    {
+      "uuid": "21C1C316-FFF7-44B1-8014-DBC401BDDFBC",
+      "url": "Materials/merged/block4_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "FE293CA1-1CD4-4665-AD6E-F58326974419",
+      "url": "Maps/AO/block4_merged_mat_ao.jpg"
+    },
+    {
+      "uuid": "40D193D9-6F56-4BF0-B2DC-707A863CED8A",
+      "url": "Materials/merged/block5_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "C2D19C1B-30FB-441F-B16B-650B8925F3C9",
+      "url": "Maps/AO/block5_merged_mat_ao.jpg"
+    },
+    {
+      "uuid": "65DCD57F-9F62-4BFC-B299-269E2DD0BDDE",
+      "url": "Materials/merged/block6_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "E8793D00-BC93-4275-BF7E-5101CDDEB9ED",
+      "url": "Maps/AO/block6_merged_mat_ao.jpg"
+    },
+    {
+      "uuid": "428E4E8B-5C1F-4C5C-8529-91B45E112A72",
+      "url": "Materials/merged/block7_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "2FE7D73F-F54C-4659-9E31-E492B8BC9E7D",
+      "url": "Maps/AO/block7_merged_mat_ao.jpg"
+    },
+    {
+      "uuid": "DDF9469D-F322-4D72-8111-20B8FE4C7DE0",
+      "url": "Materials/merged/block8_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "BA40611D-642C-4D50-AF66-28523960A5CE",
+      "url": "Maps/AO/block8_merged_mat_ao.jpg"
+    },
+    {
+      "uuid": "0DFB7F5B-6994-4C73-8286-2791B683662B",
+      "url": "Materials/merged/block9_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "6E7FDB37-7D99-4BC7-913E-0D48CC94C771",
+      "url": "Maps/AO/block9_merged_mat_ao.jpg"
+    },
+    {
+      "uuid": "E86D85DB-2A87-44A0-8214-72C91F473C1C",
+      "url": "Materials/merged/block10_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "4CC304F0-C726-4246-A358-261F7DECFB4A",
+      "url": "Maps/AO/block10_merged_mat_ao.jpg"
+    },
+    {
+      "uuid": "58D4C529-AF70-42C7-89A1-8CD2DBCE28AD",
+      "url": "Materials/merged/block11_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "B446F307-D09E-4407-ABD0-D86E9956E345",
+      "url": "Maps/AO/block11_merged_mat_ao.jpg"
+    },
+    {
+      "uuid": "B8CB615F-DBAD-4181-AA2A-5830AD472370",
+      "url": "Materials/merged/park_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "D71B7E81-1398-4907-B1D5-F95FE8650754",
+      "url": "Maps/AO/park_3_ao.jpg"
+    },
+    {
+      "uuid": "8BAE1804-D9E3-425C-A689-E37D92DF4371",
+      "url": "Materials/merged/park2_merged-mat-_MainTex-atlas0.jpg"
+    },
+    {
+      "uuid": "C92CA36C-8E11-4941-AD51-D802B754B3F4",
+      "url": "Maps/AO/park2_merged_mat_ao.jpg"
+    },
+    {
+      "uuid": "8C176C22-E1F4-4308-BFDA-14937B432760",
+      "url": "Maps/Textures/Vehicle_Ambulance.jpg"
+    },
+    {
+      "uuid": "4E8E3E28-C1AA-415D-8C11-9672317619C1",
+      "url": "Maps/Textures/Vehicle_Bus_1.jpg"
+    },
+    {
+      "uuid": "4E018665-11F3-451E-AE39-CEDB8FC4F360",
+      "url": "Maps/Textures/Vehicle_Bus_2.jpg"
+    },
+    {
+      "uuid": "9DAB1D3B-C5E3-427F-99D7-A0A9C26AC850",
+      "url": "Maps/Textures/Vehicle_Bus_3.jpg"
+    },
+    {
+      "uuid": "D0CFEFDA-5615-4191-9DF9-6C13E074CF08",
+      "url": "Maps/Textures/Vehicle_Car_1.jpg"
+    },
+    {
+      "uuid": "ECBC99BE-D931-419A-AF64-615700BD63AC",
+      "url": "Maps/Textures/Vehicle_Car_2.jpg"
+    },
+    {
+      "uuid": "BB5BD364-A87D-440E-97B4-9E293DFD5BAA",
+      "url": "Maps/Textures/Vehicle_Car_3.jpg"
+    },
+    {
+      "uuid": "AD78C39F-D219-470D-A0F5-E74CA6739821",
+      "url": "Maps/Textures/Vehicle_Container_1.jpg"
+    },
+    {
+      "uuid": "672FA11D-E133-4F99-9548-6D5259D94E4E",
+      "url": "Maps/Textures/Vehicle_Container_2.jpg"
+    },
+    {
+      "uuid": "CEC94ABD-6348-4540-9A1B-E267CF8001EC",
+      "url": "Maps/Textures/Vehicle_Container_3.jpg"
+    },
+    {
+      "uuid": "8713F202-5D43-4933-97A0-91937F7ED0E6",
+      "url": "Maps/Textures/Vehicle_Pick up Truck_1.jpg"
+    },
+    {
+      "uuid": "3AF65FA7-2F9B-46EA-9D87-317E89BFA30F",
+      "url": "Maps/Textures/Vehicle_Pick up Truck_2.jpg"
+    },
+    {
+      "uuid": "EA874886-F049-49BE-99B1-284F45EAAA6A",
+      "url": "Maps/Textures/Vehicle_Pick up Truck_3.jpg"
+    },
+    {
+      "uuid": "A3A381D7-A342-4CD3-BC03-08DE1B9559F1",
+      "url": "Maps/Textures/Vehicle_Police Car.jpg"
+    },
+    {
+      "uuid": "F458DDFD-854F-40A0-8FFF-D315E78C059D",
+      "url": "Maps/Textures/Vehicle_SUV_1.jpg"
+    },
+    {
+      "uuid": "40C0030F-B7FA-4EEA-8752-22C1AD91BC3D",
+      "url": "Maps/Textures/Vehicle_SUV_2.jpg"
+    },
+    {
+      "uuid": "C7CC04AA-7874-4E85-B75A-5ECDEEB7F09B",
+      "url": "Maps/Textures/Vehicle_SUV_3.jpg"
+    },
+    {
+      "uuid": "70F08641-E82B-4383-AB0D-555B4518C997",
+      "url": "Maps/Textures/Vehicle_Taxi.jpg"
+    },
+    {
+      "uuid": "AF1FD298-DC5F-48DD-ACD2-ABF0E8743469",
+      "url": "Maps/Textures/Vehicle_Truck_1.jpg"
+    },
+    {
+      "uuid": "AED4B866-376B-4CD6-B0FD-D78A6D509B39",
+      "url": "Maps/Textures/Vehicle_Truck_2.jpg"
+    },
+    {
+      "uuid": "46206864-A53A-4AC5-A6A5-FADDB0ECE361",
+      "url": "Maps/Textures/Vehicle_Truck_3.jpg"
+    }
+  ],
+  "textures": [
+    {
+      "uuid": "48774E36-991E-4073-A05C-B9A092DB26FA",
+      "name": "Road",
+      "image": "A69C0EE2-336D-47ED-9B24-19B70D694FF6",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "2BB47B23-F4E0-420B-872F-2FA0F50176A1",
+      "name": "intersection_03_merged-mat-_MainTex-atlas0",
+      "image": "0E64D100-D3E6-4DBD-BEE5-B31883CD3A6A",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "AC39CD3D-19E9-439F-BFA5-07506FDB90D5",
+      "name": "Props_Props_01",
+      "image": "7AF3EF36-77EE-45E5-9BFA-D1F0CE0A3F3C",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "66927D08-8D92-4C37-9CE8-EB3E00BC5B4C",
+      "name": "block1_merged-mat-_MainTex-atlas0",
+      "image": "61CEE303-65E0-4A9A-9C74-91B6B41D7776",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "5C153AE9-50C6-4917-B406-3107744AF4AA",
+      "name": "block1_ao",
+      "image": "D37F5AD1-90AD-4AE0-812C-B6C4868FF2CF",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "08119566-A641-4EFB-AB04-FCD15944BA64",
+      "name": "block2_merged-mat-_MainTex-atlas0",
+      "image": "7AEFA869-722C-482D-8001-26B8FF258990",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "F802060A-AD8C-4A10-ABF3-5B66D5CCD687",
+      "name": "block2_ao",
+      "image": "3F18DB95-0307-4C74-8873-B1B129309159",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "03071279-6624-4491-A44A-0C596C816005",
+      "name": "block3_merged-mat-_MainTex-atlas0",
+      "image": "C5502223-371E-464A-AD1F-84FC5B12F6A4",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "5811EC29-5093-4D1C-A2DC-7B36E0E5796E",
+      "name": "block3_merged_mat_ao",
+      "image": "FDF400EB-632A-405D-98C1-B4BA8A802B9D",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "91C489DB-F42E-449B-A54F-BFF6C2E75FC9",
+      "name": "block4_merged-mat-_MainTex-atlas0",
+      "image": "21C1C316-FFF7-44B1-8014-DBC401BDDFBC",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "F2756FD2-048D-44B7-B8D3-26EE42AF8ACD",
+      "name": "block4_merged_mat_ao",
+      "image": "FE293CA1-1CD4-4665-AD6E-F58326974419",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "A77389BE-F626-4D45-B5D2-E423794E696D",
+      "name": "block5_merged-mat-_MainTex-atlas0",
+      "image": "40D193D9-6F56-4BF0-B2DC-707A863CED8A",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "E3AE309D-5C21-49F1-9921-439A1C4897EC",
+      "name": "block5_merged_mat_ao",
+      "image": "C2D19C1B-30FB-441F-B16B-650B8925F3C9",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "98FC5833-39A8-4EF1-AE46-F741842FB7AB",
+      "name": "block6_merged-mat-_MainTex-atlas0",
+      "image": "65DCD57F-9F62-4BFC-B299-269E2DD0BDDE",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "D7150DCA-8FAB-48F8-8993-E49E1062A06D",
+      "name": "block6_merged_mat_ao",
+      "image": "E8793D00-BC93-4275-BF7E-5101CDDEB9ED",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "58133A97-87F1-43A6-8F00-D1622FD51F18",
+      "name": "block7_merged-mat-_MainTex-atlas0",
+      "image": "428E4E8B-5C1F-4C5C-8529-91B45E112A72",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "B263E5A8-87C0-40CC-848A-1D04821C9F11",
+      "name": "block7_merged_mat_ao",
+      "image": "2FE7D73F-F54C-4659-9E31-E492B8BC9E7D",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "EDC55F09-9140-407B-9C8B-E97BC7F909EA",
+      "name": "block8_merged-mat-_MainTex-atlas0",
+      "image": "DDF9469D-F322-4D72-8111-20B8FE4C7DE0",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "B2EA3576-036E-46E1-8470-0738C88A7D5B",
+      "name": "block8_merged_mat_ao",
+      "image": "BA40611D-642C-4D50-AF66-28523960A5CE",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "6F4354A3-8347-402D-93D2-F5602338D848",
+      "name": "block9_merged-mat-_MainTex-atlas0",
+      "image": "0DFB7F5B-6994-4C73-8286-2791B683662B",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "85A51E5D-1224-4EF4-8FD3-0531E5A2F5A6",
+      "name": "block9_merged_mat_ao",
+      "image": "6E7FDB37-7D99-4BC7-913E-0D48CC94C771",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "506DFFCD-B260-440A-B8CB-01A5D3AD8956",
+      "name": "block10_merged-mat-_MainTex-atlas0",
+      "image": "E86D85DB-2A87-44A0-8214-72C91F473C1C",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "5D58F8B9-9E7D-452B-BD12-EAA5CBF764F4",
+      "name": "block10_merged_mat_ao",
+      "image": "4CC304F0-C726-4246-A358-261F7DECFB4A",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "3C6C33FA-CBC2-4D87-B650-359951A96316",
+      "name": "block11_merged-mat-_MainTex-atlas0",
+      "image": "58D4C529-AF70-42C7-89A1-8CD2DBCE28AD",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "B16B9AA5-5ECE-418A-8EBD-9E22E4D30D67",
+      "name": "block11_merged_mat_ao",
+      "image": "B446F307-D09E-4407-ABD0-D86E9956E345",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "8B3B1341-C14F-4623-BB02-E0BB5CFA75D5",
+      "name": "park_merged-mat-_MainTex-atlas0",
+      "image": "B8CB615F-DBAD-4181-AA2A-5830AD472370",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "77553783-8468-4FB8-8503-D764B4980DB2",
+      "name": "park_3_ao",
+      "image": "D71B7E81-1398-4907-B1D5-F95FE8650754",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "98C8B0CC-DDBC-49B4-A3B1-7E9E1F17895D",
+      "name": "park2_merged-mat-_MainTex-atlas0",
+      "image": "8BAE1804-D9E3-425C-A689-E37D92DF4371",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "96F60AA5-782D-40C6-9870-41387674E88F",
+      "name": "park2_merged_mat_ao",
+      "image": "C92CA36C-8E11-4941-AD51-D802B754B3F4",
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "7873D61C-DFF8-4D00-8F78-307401BB092D",
+      "name": "Vehicle_Ambulance",
+      "image": "8C176C22-E1F4-4308-BFDA-14937B432760",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "DDC9439A-9EC4-4391-8521-D2816D5610CC",
+      "name": "Vehicle_Bus_1",
+      "image": "4E8E3E28-C1AA-415D-8C11-9672317619C1",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "88BC4202-118E-40D8-B59E-9BDE612CB1AD",
+      "name": "Vehicle_Bus_2",
+      "image": "4E018665-11F3-451E-AE39-CEDB8FC4F360",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "00858BD8-7478-4AF8-A80E-C3E48305143D",
+      "name": "Vehicle_Bus_3",
+      "image": "9DAB1D3B-C5E3-427F-99D7-A0A9C26AC850",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "670EE655-D092-42CD-BFBD-472F35C5AE90",
+      "name": "Vehicle_Car_1",
+      "image": "D0CFEFDA-5615-4191-9DF9-6C13E074CF08",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "FEF4897D-9C1E-466F-A6F8-85DBC68D205A",
+      "name": "Vehicle_Car_2",
+      "image": "ECBC99BE-D931-419A-AF64-615700BD63AC",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "DA555BA1-1E78-49A2-9D71-72BC67FB42C8",
+      "name": "Vehicle_Car_3",
+      "image": "BB5BD364-A87D-440E-97B4-9E293DFD5BAA",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "0806200B-7707-4130-B27B-77CA0F90DFBE",
+      "name": "Vehicle_Container_1",
+      "image": "AD78C39F-D219-470D-A0F5-E74CA6739821",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "329677C9-70D0-4551-AA90-D7F936D65296",
+      "name": "Vehicle_Container_2",
+      "image": "672FA11D-E133-4F99-9548-6D5259D94E4E",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "94C6720E-555F-47E9-9257-56C3C77144E8",
+      "name": "Vehicle_Container_3",
+      "image": "CEC94ABD-6348-4540-9A1B-E267CF8001EC",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "3FD3F9E5-D545-481D-AF6B-774028FE3099",
+      "name": "Vehicle_Pick up Truck_1",
+      "image": "8713F202-5D43-4933-97A0-91937F7ED0E6",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "59E0C3D2-137C-46AB-9F48-A4060BFABDBD",
+      "name": "Vehicle_Pick up Truck_2",
+      "image": "3AF65FA7-2F9B-46EA-9D87-317E89BFA30F",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "26ED3E96-EB32-449C-A4DC-B64FA92D89F8",
+      "name": "Vehicle_Pick up Truck_3",
+      "image": "EA874886-F049-49BE-99B1-284F45EAAA6A",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "7A52B38D-EFB8-4BE3-A75A-13EF75D70F62",
+      "name": "Vehicle_Police Car",
+      "image": "A3A381D7-A342-4CD3-BC03-08DE1B9559F1",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "3CF2238E-CAF5-4DE5-A058-49BC6CF45F17",
+      "name": "Vehicle_SUV_1",
+      "image": "F458DDFD-854F-40A0-8FFF-D315E78C059D",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "69909A08-6DA9-491E-A2EC-73C04C42685B",
+      "name": "Vehicle_SUV_2",
+      "image": "40C0030F-B7FA-4EEA-8752-22C1AD91BC3D",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "CD755D8C-7686-4E80-B01B-1B8B97CC21B9",
+      "name": "Vehicle_SUV_3",
+      "image": "C7CC04AA-7874-4E85-B75A-5ECDEEB7F09B",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "0E12E1AB-1D22-4642-BFB5-BC955808BB55",
+      "name": "Vehicle_Taxi",
+      "image": "70F08641-E82B-4383-AB0D-555B4518C997",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "64145A2F-0D5C-473F-B566-2F0FC9C07A5E",
+      "name": "Vehicle_Truck_1",
+      "image": "AF1FD298-DC5F-48DD-ACD2-ABF0E8743469",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "084C229D-9A43-47DF-8074-6011CADD655C",
+      "name": "Vehicle_Truck_2",
+      "image": "AED4B866-376B-4CD6-B0FD-D78A6D509B39",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    },
+    {
+      "uuid": "EC3370D4-E832-4233-9690-5927C5B571CC",
+      "name": "Vehicle_Truck_3",
+      "image": "46206864-A53A-4AC5-A6A5-FADDB0ECE361",
+      "offset": [
+        0.0,
+        0.0
+      ],
+      "repeat": [
+        1.0,
+        1.0
+      ],
+      "wrap": [
+        1000,
+        1000
+      ]
+    }
+  ],
+  "animations": [],
+  "object": {
+    "uuid": "D78F7395-10E1-40C4-BA03-5F548D20DE1E",
+    "name": "main",
+    "type": "Scene",
+    "children": [
+      {
+        "fov": 60,
+        "aspect": 2.17429566,
+        "near": 0.3,
+        "far": 1000.0,
+        "uuid": "2D6B717F-2080-45B4-8B14-4973788411C2",
+        "name": "Main Camera",
+        "type": "PerspectiveCamera",
+        "matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          10.0,
+          1.0
+        ],
+        "layers": -1
+      },
+      {
+        "color": 16774361,
+        "intensity": 1.0,
+        "uuid": "C1FF040A-A554-467C-99BF-900AA3721BD7",
+        "name": "Directional Light",
+        "type": "DirectionalLight",
+        "castShadow": true,
+        "matrix": [
+          -0.46002984,
+          -5.96046448E-08,
+          0.887903631,
+          0.0,
+          0.680173635,
+          0.6427876,
+          0.352403224,
+          0.0,
+          -0.5707335,
+          0.766044557,
+          -0.2957015,
+          0.0,
+          0.0,
+          3.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "uuid": "9E587521-DE2C-453E-8D40-C80299564660",
+        "name": "lanes",
+        "children": [
+          {
+            "geometry": "56871FB1-0C9B-4C26-8899-011A24D3A45D",
+            "material": "4D918125-D594-4525-B7EA-1EC873CE78B3",
+            "uuid": "666F0DEE-BBCA-45D8-A603-E1B4B6B13EEC",
+            "name": "Road_Lane_01_fixed",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -1.62920671E-07,
+              0.0,
+              0.0,
+              1.62920671E-07,
+              1.0,
+              0.0,
+              -8.02,
+              0.0,
+              -9.45,
+              1.0
+            ]
+          },
+          {
+            "geometry": "B838CF3D-FD2E-419E-B222-F80BB50E1419",
+            "material": "4D918125-D594-4525-B7EA-1EC873CE78B3",
+            "uuid": "C5C07F66-49DF-4077-ACC7-4951BAFBFC7F",
+            "name": "Road_Lane_03_fixed",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -1.62920671E-07,
+              0.0,
+              0.0,
+              1.62920671E-07,
+              1.0,
+              0.0,
+              -8.17,
+              0.0,
+              -30.41,
+              1.0
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "884EB482-8B97-4BBD-9175-B881CC7E411F",
+        "name": "intersections",
+        "children": [
+          {
+            "geometry": "E2A6F346-41E3-47F8-9637-F04A220DFE30",
+            "material": "6FE397BA-5AE8-4161-A473-52BB7069D0AF",
+            "uuid": "CDAC6A94-EF25-4EFD-AA79-44F2C252F663",
+            "name": "Road_Intersection_03_merged_fixed",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -1.62920671E-07,
+              0.0,
+              0.0,
+              1.62920671E-07,
+              1.0,
+              0.0,
+              -58.73,
+              0.0,
+              14.8,
+              1.0
+            ]
+          },
+          {
+            "geometry": "A2BB19E8-F807-4204-9415-FAB204D582BD",
+            "material": "4D918125-D594-4525-B7EA-1EC873CE78B3",
+            "uuid": "82BF567B-49AF-4EDB-AD4D-5BCB85095C63",
+            "name": "Road_Intersection_05",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -1.62920671E-07,
+              0.0,
+              0.0,
+              1.62920671E-07,
+              1.0,
+              0.0,
+              -40.15,
+              0.0,
+              -7.55,
+              1.0
+            ]
+          },
+          {
+            "geometry": "E2A6F346-41E3-47F8-9637-F04A220DFE30",
+            "material": "6FE397BA-5AE8-4161-A473-52BB7069D0AF",
+            "uuid": "0F6C8FAF-D714-43EF-90AE-6A38C063555B",
+            "name": "Road_Intersection_04_fixed",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              -60.0,
+              0.0,
+              -50.0,
+              1.0
+            ],
+            "children": [
+              {
+                "geometry": "4D5A39BD-8B10-4F23-ADB2-3A8683EF8C8B",
+                "material": "7BC81A50-1F2E-434B-8B85-16EDB08A3C7A",
+                "uuid": "E2807520-9D12-4843-9C62-8FEC2F93FCD3",
+                "name": "Props_Hydrant (28)",
+                "type": "Mesh",
+                "castShadow": true,
+                "receiveShadow": true,
+                "matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  -7.51999664,
+                  0.20000039,
+                  -8.75,
+                  1.0
+                ]
+              },
+              {
+                "geometry": "4D5A39BD-8B10-4F23-ADB2-3A8683EF8C8B",
+                "material": "7BC81A50-1F2E-434B-8B85-16EDB08A3C7A",
+                "uuid": "E5F61538-222A-4108-8B6B-21B682ACB8F1",
+                "name": "Props_Hydrant (29)",
+                "type": "Mesh",
+                "castShadow": true,
+                "receiveShadow": true,
+                "matrix": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  7.880001,
+                  0.199999616,
+                  8.849998,
+                  1.0
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "E2062700-2D79-4A84-9391-C4E479F2DFEB",
+        "name": "blocks",
+        "children": [
+          {
+            "geometry": "1BF9798F-5ED2-4220-B5C6-8D8CC66F1235",
+            "material": "5E6C697D-1927-4EBD-B7E9-8EE131B5F1EC",
+            "uuid": "BBA87617-6AF2-4DB6-81FE-0F9AE3FB4F31",
+            "name": "block_1_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -120.7,
+              0.0,
+              -25.1,
+              1.0
+            ]
+          },
+          {
+            "geometry": "5BFDA526-2507-4AD1-BFF4-4DCB77DD4BEC",
+            "material": "1E97CEF4-2CB6-4C6F-AAE8-2A1380883A3F",
+            "uuid": "715C8311-0645-498D-83E2-5681070E2DC7",
+            "name": "block_2_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -120.5,
+              0.0,
+              -72.1,
+              1.0
+            ]
+          },
+          {
+            "geometry": "F0CBD04F-EE47-4083-96A5-2DF13E00BC0F",
+            "material": "B15BAE15-CF77-4CCC-868B-C9B7F03D9091",
+            "uuid": "64ACBE08-9694-4213-9ED6-EBCA929A6385",
+            "name": "block_3_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -120.7,
+              0.0,
+              -120.4,
+              1.0
+            ]
+          },
+          {
+            "geometry": "B34C0F5D-3FC6-4B40-93F9-03A624D22915",
+            "material": "66D2AD9A-5C1F-443A-9DE4-448790544A2F",
+            "uuid": "063EE681-E319-4D4C-938C-EC7F3008F91C",
+            "name": "block_4_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -167.4,
+              0.0,
+              -121.7,
+              1.0
+            ]
+          },
+          {
+            "geometry": "6046089D-1F5E-4FA4-9C8B-CEB2424BD0AA",
+            "material": "6E97BE9A-EB70-40BA-8451-EA4A6A68647E",
+            "uuid": "BD0C8173-00B4-4E22-BA76-7E869EB57A10",
+            "name": "block_5_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -169.0,
+              0.0,
+              -75.7,
+              1.0
+            ]
+          },
+          {
+            "geometry": "1DA39AB9-001C-4179-9B9B-83EC9D404FDF",
+            "material": "C5FB94D6-CDAB-4D75-8F0C-4B022040D727",
+            "uuid": "3BBB7BAA-E80D-4721-863E-FDEF84D3F2E6",
+            "name": "block_6_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -1.62920671E-07,
+              0.0,
+              0.0,
+              1.62920671E-07,
+              1.0,
+              0.0,
+              -213.8,
+              0.0,
+              -24.5,
+              1.0
+            ]
+          },
+          {
+            "geometry": "76B43F28-250D-4929-A24E-A47E0A59056B",
+            "material": "16870CFA-77BA-4A3A-9CE4-31EBD3F7ADD6",
+            "uuid": "8B5B2016-4458-4B0A-8A3C-6374AED017A0",
+            "name": "block_7_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -168.2,
+              0.0,
+              21.5,
+              1.0
+            ]
+          },
+          {
+            "geometry": "99CD313F-B924-4613-A06A-7876BF15DAB3",
+            "material": "3E1DE1D9-30EA-4E65-A415-8EDB831E211E",
+            "uuid": "E3BE3C8D-05AD-4CDC-8375-2A0EA1C074DB",
+            "name": "block_8_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -1.62920671E-07,
+              0.0,
+              0.0,
+              1.62920671E-07,
+              1.0,
+              0.0,
+              -259.7,
+              0.0,
+              -122.3,
+              1.0
+            ]
+          },
+          {
+            "geometry": "EA4597B3-EF15-474A-887A-0333E15160B7",
+            "material": "6D456064-AB40-4E29-A854-80E0842DB0BA",
+            "uuid": "4F51661A-3AC9-4570-BE97-159C6245BA5E",
+            "name": "block_9_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -217.0,
+              0.0,
+              -74.8,
+              1.0
+            ]
+          },
+          {
+            "geometry": "00C2FB58-80EF-499D-95B2-CC3EC2CB7B9F",
+            "material": "CC4DBC3B-BD3F-4063-8A67-CE3A0887A5FF",
+            "uuid": "6F5DF507-04F1-4824-B21B-829F34431FD8",
+            "name": "block_10_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -122.7,
+              0.0,
+              -167.7,
+              1.0
+            ]
+          },
+          {
+            "geometry": "BEC2FC6D-E691-4E46-BEEB-8CE81A2F3A79",
+            "material": "346B281E-5959-4925-9D25-E27801ED4125",
+            "uuid": "FA76A5E2-0896-4915-A54C-408833A623A4",
+            "name": "block_11_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -213.8,
+              0.0,
+              -169.9,
+              1.0
+            ]
+          },
+          {
+            "geometry": "E2E912D4-BFD0-4638-853B-8E40C0A0688F",
+            "material": "539AE174-CE24-4CC0-A19B-70C852B30514",
+            "uuid": "8C6C7557-CAAA-4F8E-B93C-B484D85C38C1",
+            "name": "park_3_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -167.9,
+              0.0,
+              -167.2,
+              1.0
+            ]
+          },
+          {
+            "geometry": "0C85E2E1-ED28-4C29-AE96-C77D0E234E80",
+            "material": "4A866DA1-4759-42F1-AC45-21779F7B763C",
+            "uuid": "356432FB-E5BF-49E6-B5D0-D5BD43FA6E8C",
+            "name": "park_2_merged",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -76.6,
+              0.0,
+              -166.8,
+              1.0
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "3175B25F-AFFE-43B4-9D77-296AFAA1B539",
+        "name": "cars",
+        "matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          -25.4,
+          0.0,
+          59.9,
+          1.0
+        ],
+        "children": [
+          {
+            "geometry": "AF5CB5E4-8548-47E7-8B9B-A9D6BC0D89B7",
+            "material": "1FB55024-8412-461A-9E26-A3D3BCB053D2",
+            "uuid": "5EF89CE7-EC98-4A0B-8636-6D4EF453C2CB",
+            "name": "Vehicle_Ambulance",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "C9A4CB2C-4515-42FF-BF0E-E6868896927F",
+            "material": "831338D8-7CB8-4F0F-B916-92BE292B2448",
+            "uuid": "48AEA7BC-87D7-4195-BD1C-3C6BC1869E50",
+            "name": "Vehicle_Bus_color01",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "C9A4CB2C-4515-42FF-BF0E-E6868896927F",
+            "material": "1B8FA055-FE77-428C-95F3-44040221C4B1",
+            "uuid": "47F5FAEF-BEB5-4F57-BC67-CF1C6A1AAC9B",
+            "name": "Vehicle_Bus_color02",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "C9A4CB2C-4515-42FF-BF0E-E6868896927F",
+            "material": "5E5FFAC0-FDAB-45F1-A8D2-6B6E6089FE57",
+            "uuid": "164EBC4C-9080-444C-ACD5-97D5477F7FC2",
+            "name": "Vehicle_Bus_color03",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "A2BFBEBC-B9BB-4E5D-8FC1-8B48CEFB231A",
+            "material": "1CED1618-C4B1-4288-8D17-03748C817C9D",
+            "uuid": "50E2AB17-7CD2-4F7D-B05F-DD7F25843A47",
+            "name": "Vehicle_Car_color01",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "A2BFBEBC-B9BB-4E5D-8FC1-8B48CEFB231A",
+            "material": "CF5FA969-D87D-402F-B9C4-D52426010344",
+            "uuid": "4ADB3525-6127-46D0-81FA-3F96F932DF56",
+            "name": "Vehicle_Car_color02",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "A2BFBEBC-B9BB-4E5D-8FC1-8B48CEFB231A",
+            "material": "55EFC636-90ED-4E7F-B9F7-4D1910E500E5",
+            "uuid": "5F85E57F-9F54-42E8-8571-5B7334C57F72",
+            "name": "Vehicle_Car_color03",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "FAA750A7-DCF5-4D07-9C47-63F0D0ED63E0",
+            "material": "639873CE-D4C8-4626-A7D0-D8C685A96E20",
+            "uuid": "1DBCB2DB-C4EE-47CF-8C64-F11F0ACA898E",
+            "name": "Vehicle_Container_color01",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "FAA750A7-DCF5-4D07-9C47-63F0D0ED63E0",
+            "material": "84C3A7BC-A79A-4B7A-88DE-AC29272C8601",
+            "uuid": "4319A23B-EA58-456A-83A4-2C2556F36FC2",
+            "name": "Vehicle_Container_color02",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "FAA750A7-DCF5-4D07-9C47-63F0D0ED63E0",
+            "material": "2C14A7E6-38CB-4455-B76F-350CEB519696",
+            "uuid": "AD719DA9-782E-4F5C-9F43-D57C5C4BA211",
+            "name": "Vehicle_Container_color03",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "D48CDE26-D192-4F30-9B86-C8C3500577AA",
+            "material": "CDD1E658-951C-42AE-A036-1FF35A40F206",
+            "uuid": "E750AC75-0D4E-4837-8914-39F346BF17C5",
+            "name": "Vehicle_Pick up Truck_color01",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "D48CDE26-D192-4F30-9B86-C8C3500577AA",
+            "material": "DF8C77A2-3A26-4A2A-835D-56D48CC10AB7",
+            "uuid": "9B64B88C-47CD-43DA-96E1-25E122DDA38C",
+            "name": "Vehicle_Pick up Truck_color02",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "D48CDE26-D192-4F30-9B86-C8C3500577AA",
+            "material": "D0F6D44D-3AF2-4F47-9912-7BF8EF5EF00D",
+            "uuid": "10CF2EB2-2C6F-4D66-8A67-32EA78D3C530",
+            "name": "Vehicle_Pick up Truck_color03",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "4BEC766B-2FAB-4ED9-9DE2-659BF715CAAC",
+            "material": "A52E26B8-25EC-42B1-870B-16F5E142A45E",
+            "uuid": "E6E0F7D3-3006-47C7-8981-FBB9044DE694",
+            "name": "Vehicle_Police Car",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "0FA3780E-CAB0-4956-824D-698FB54DF644",
+            "material": "29AEEB2D-62EE-4060-9166-DD1109C4D5F8",
+            "uuid": "54642A1A-9A38-460B-BA69-9CCB59D427F9",
+            "name": "Vehicle_SUV_color01",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "0FA3780E-CAB0-4956-824D-698FB54DF644",
+            "material": "0C7FB86F-DAAF-4194-9F10-7F16894123FD",
+            "uuid": "34AF85F6-2C69-47D1-B649-4F28AB768E46",
+            "name": "Vehicle_SUV_color02",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "0FA3780E-CAB0-4956-824D-698FB54DF644",
+            "material": "65594B11-FB03-4638-B49B-6E2C5D6CBEC7",
+            "uuid": "E6B8BDB1-D752-447E-ADFB-ED65EF58A9BB",
+            "name": "Vehicle_SUV_color03",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "7BD43F6B-FBD0-4E8D-803E-348E876881AA",
+            "material": "EAD8E59B-6A97-4530-9B3C-0137C7222E93",
+            "uuid": "5F0A4CE9-17D6-40F4-82A0-CE585BB8C01A",
+            "name": "Vehicle_Taxi",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "E6D0A27C-8273-4CB5-8205-7B0E818FC3A0",
+            "material": "42599B1A-8B8F-4459-A1E2-CDCBBF8E656F",
+            "uuid": "D9F8B9E9-24FB-4806-AC24-8D6C4FAC3293",
+            "name": "Vehicle_Truck_color01",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "E6D0A27C-8273-4CB5-8205-7B0E818FC3A0",
+            "material": "9077DCBB-D6A0-4BB4-9975-915D3CEB5FB8",
+            "uuid": "B6C14125-9CEC-40EE-B1B1-49E729331D6C",
+            "name": "Vehicle_Truck_color02",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "geometry": "E6D0A27C-8273-4CB5-8205-7B0E818FC3A0",
+            "material": "512103BA-A0F4-4797-8F5A-EBBC764AB0BD",
+            "uuid": "CC275394-EED1-489B-8D35-C039029B472B",
+            "name": "Vehicle_Truck_color03",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              -4.371139E-08,
+              0.0,
+              0.0,
+              4.371139E-08,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "627F9133-191A-4402-86DB-DD2589051E05",
+        "name": "clouds",
+        "matrix": [
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          -88.7,
+          0.0,
+          57.7,
+          1.0
+        ],
+        "children": [
+          {
+            "geometry": "89C04C2C-3562-4497-A80D-87B7C47B2FC0",
+            "material": "1C9DBD43-C223-408F-885C-30B5F5F562AA",
+            "uuid": "2CCCC7E1-D653-410C-979D-98A80942CFBF",
+            "name": "Cloud_Cumulus_Med",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              0.3412436,
+              0.0,
+              -0.110130407,
+              0.0,
+              0.0,
+              0.1750702,
+              0.0,
+              0.0,
+              0.138259754,
+              0.0,
+              0.428403527,
+              0.0,
+              -14.06,
+              0.0,
+              -17.88,
+              1.0
+            ]
+          },
+          {
+            "geometry": "F56A261D-23FE-4A75-BC23-FEE3A9F7DF76",
+            "material": "1C9DBD43-C223-408F-885C-30B5F5F562AA",
+            "uuid": "FA96379F-4451-4F6F-9ED4-84F7EE3C06EB",
+            "name": "Cloud_Cumulus (1)",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              0.3560403,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.137414545,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.303065568,
+              0.0,
+              10.19,
+              0.0,
+              11.22,
+              1.0
+            ]
+          },
+          {
+            "geometry": "F56A261D-23FE-4A75-BC23-FEE3A9F7DF76",
+            "material": "1C9DBD43-C223-408F-885C-30B5F5F562AA",
+            "uuid": "412ECB3A-7AA5-4E7A-B104-954A442EC21D",
+            "name": "Cloud_Cumulus (2)",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              0.234117717,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.150860742,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.196841285,
+              0.0,
+              -7.85,
+              0.0,
+              7.41,
+              1.0
+            ]
+          },
+          {
+            "geometry": "F56A261D-23FE-4A75-BC23-FEE3A9F7DF76",
+            "material": "1C9DBD43-C223-408F-885C-30B5F5F562AA",
+            "uuid": "46952966-4E40-4588-A6DE-2639A2574EBE",
+            "name": "Cloud_Cumulus",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              0.21085687,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.107119933,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.228348672,
+              0.0,
+              5.31,
+              0.0,
+              -6.87,
+              1.0
+            ]
+          },
+          {
+            "geometry": "89C04C2C-3562-4497-A80D-87B7C47B2FC0",
+            "material": "1C9DBD43-C223-408F-885C-30B5F5F562AA",
+            "uuid": "5DD86152-3A55-435A-8C8D-3F46AEDC4153",
+            "name": "Cloud_Cumulus_Med (1)",
+            "type": "Mesh",
+            "castShadow": true,
+            "receiveShadow": true,
+            "matrix": [
+              0.3412436,
+              0.0,
+              -0.110130407,
+              0.0,
+              0.0,
+              0.1750702,
+              0.0,
+              0.0,
+              0.138259754,
+              0.0,
+              0.428403527,
+              0.0,
+              -22.21,
+              0.0,
+              -1.93,
+              1.0
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "64460FD5-59C5-47AD-A8FF-FFD246533657",
+        "name": "bakers",
+        "children": [
+          {
+            "uuid": "D4FA60BB-2BD2-4F65-95C4-2B733EA86BA6",
+            "name": "block_1_baker",
+            "children": [
+              {
+                "uuid": "D4EBC44E-FE82-48A2-82AB-CB3733F21A14",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "53C16198-0D08-4A8B-A116-EE6603DDE086",
+            "name": "block_2_baker",
+            "children": [
+              {
+                "uuid": "E8AE9594-0ABB-447B-9000-7845E4DF3CBD",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "ED994547-7305-47B2-9E60-055E517D44BF",
+            "name": "block_3_baker",
+            "children": [
+              {
+                "uuid": "18D4FA26-12E4-4F56-80F6-FD18E5DBB10D",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "F171545B-C274-4AC4-A192-A7651F3ED9B3",
+            "name": "block_4_baker",
+            "children": [
+              {
+                "uuid": "13D3517F-2FE5-44FB-9FC6-35AD29A208AB",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "12327F9A-7DC0-46E0-9FBC-5B7AEC638067",
+            "name": "block_5_baker",
+            "children": [
+              {
+                "uuid": "60F06179-5766-45E7-87E1-B80E5C9BEB1A",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "6AA2C812-85A7-4968-A181-C2B215F3D843",
+            "name": "block_6_baker",
+            "children": [
+              {
+                "uuid": "11F53D0F-A411-4F5A-9868-0EED606DAF27",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "2F2D5F92-4373-4E32-91CC-56D380113C25",
+            "name": "block_7_baker",
+            "children": [
+              {
+                "uuid": "C07ACAF5-9DDC-4914-8EA1-874B70A37588",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "B6834C34-224D-49D8-8BF2-5549FB5BD9B2",
+            "name": "block_8_baker",
+            "children": [
+              {
+                "uuid": "51F505F9-1BCF-4854-A662-3504279B30D5",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "3443EF3A-0BE4-484A-AA29-D89441165F6D",
+            "name": "block_9_baker",
+            "children": [
+              {
+                "uuid": "B2245BE3-C876-4DCC-8A6E-4A2D7893FB9C",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "79052C96-18E4-430F-BB7D-2925C0C3BFC3",
+            "name": "block_10_baker",
+            "children": [
+              {
+                "uuid": "877CAA84-4550-425B-AE4E-D3E7AFF21E9A",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "85E57DAA-0F94-41A8-9634-1EB9EC68B4D2",
+            "name": "block_11_baker",
+            "children": [
+              {
+                "uuid": "EB2A8E60-50FF-40E5-9555-EE9730EBCCF6",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "D0CBDC2F-89D1-4739-8B18-9B4806B65334",
+            "name": "park_3_baker",
+            "matrix": [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              0.0,
+              -50.0,
+              0.0,
+              -110.0,
+              1.0
+            ],
+            "children": [
+              {
+                "uuid": "144EC2CF-01E1-45C5-825C-CDCE592CF1BE",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "7A61F56C-3911-4F88-A652-73F3DD86A28A",
+            "name": "park_2_baker",
+            "children": [
+              {
+                "uuid": "CFA356DF-CCFD-4A1B-9F0C-27F9D94DA555",
+                "name": "MeshBaker"
+              }
+            ]
+          },
+          {
+            "uuid": "3664AC75-047C-400D-81A5-4FAA055CA585",
+            "name": "Intersection_03_baker",
+            "children": [
+              {
+                "uuid": "B7A41EDA-53D3-4A99-A590-9DDC441BF531",
+                "name": "MeshBaker"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "uuid": "4E532FB9-6297-4D78-8E85-27DC537ED209",
+        "name": "CombinedMesh-MeshBaker-mesh"
+      }
+    ]
+  },
+  "renderer": {
+    "shadowMapEnabled": false
+  },
+  "binary": true
+}
