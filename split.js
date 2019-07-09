@@ -1,38 +1,4 @@
-// 'use strict';
-/**
- * 入口函数 自动运行，默认三个参数
- * @param modules
- * @param n
- * @param r
- */
-!function boot(modules, config, bootModule) {
-    debugger
-    // 加载函数和导出模块的函数
-    function mainExport(moduleName, s) {
-        // 判断配置文件中是否有，没有则可以执行
-        if (!config[moduleName]) {
-            // 判断加载模块列表中是否有，没有提示无法找到模块
-            if (!modules[moduleName]) {
-                var innerFunctionName = "function" == typeof require && require;
-                if (!s && innerFunctionName) return innerFunctionName(moduleName, !0);
-                if (functionName) return functionName(moduleName, !0);
-                var moduleException = new Error("Cannot find module '" + moduleName + "'");
-                throw moduleException.code = "MODULE_NOT_FOUND", moduleException
-            }
-            // 如果配置中有，则重置
-            var configExport = config[moduleName] = {exports: {}};
-            // 调用，模块中的函数，第一个为函数，后面的为参数，
-            modules[moduleName][0].call(configExport.exports, function (itemName) {
-                var innerModuleName = modules[moduleName][1][itemName];
-                return mainExport(innerModuleName ? innerModuleName : itemName)
-            }, configExport, configExport.exports, boot, modules, config, bootModule)
-        }
-        return config[moduleName].exports
-    }
-
-    for (var functionName = "function" == typeof require && require, index = 0; index < bootModule.length; index++) mainExport(bootModule[index]);
-    return mainExport
-}({
+var s = {
     1 : [function(context, def, n) {
         /**
          * @param {?} allOrId
@@ -19424,4 +19390,16 @@
     }, {
         15 : 15
     }]
-}, {}, [53]);
+}
+
+var fs = require('fs')
+
+for (var b in s){
+    fs.writeFile("module/" + b + ".js", "var town" + b+ "="+ s[b][0],function (err) {
+        if(err){
+            console.log("失败")
+        }else {
+            console.log("成功")
+        }
+    })
+}
