@@ -18998,6 +18998,7 @@
     }],
     53 : [function(require, canCreateDiscussions, n) {
         /**
+         * 初始化
          * @param {string} name
          * @param {!Object} options
          * @param {string} time
