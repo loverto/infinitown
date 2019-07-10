@@ -4,7 +4,7 @@ var shape = require("threejsInitional");
 var instance = (require("module/init"), require("TextureMTLLoader"), {});
 /**
  * @param {string} name
- * @param {string} data
+ * @param {string} data 数据或资源路径
  * @param {!Object} options
  * @param {string} callback
  * @return {?}
@@ -12,9 +12,11 @@ var instance = (require("module/init"), require("TextureMTLLoader"), {});
 instance.loadScene = function(name, data, options, callback) {
     return new _getServer(function(_emscripten_bind_Vector___destroy___0, a) {
         var addedRenderer = (options.renderer, shape.getGeometry(name));
+        // 设置二进制几何Buffer
         if (addedRenderer) {
             shape.sceneLoader.setBinaryGeometryBuffer(addedRenderer);
         }
+        // 加载场景
         shape.loadScene(data + name + (callback || ".json")).spread(function(self, canCreateDiscussions) {
             var camera;
             self.materials = {};

@@ -8,16 +8,18 @@ var TextureMTLLoader = function(data) {
     this.texturePath = "";
 };
 Object.assign(TextureMTLLoader.prototype, {
-    load : function(f, e, data, options) {
+    load : function(url, callback, data, options) {
+        // 如果纹理路径为空，则从参数中获取纹理路径
         if ("" === this.texturePath) {
-            this.texturePath = f.substring(0, f.lastIndexOf("/") + 1);
+            this.texturePath = url.substring(0, url.lastIndexOf("/") + 1);
         }
-        var scope = this;
-        var helpers = new THREE.XHRLoader(scope.manager);
-        helpers.load(f, function(response) {
+        var self = this;
+        var helpers = new THREE.XHRLoader(self.manager);
+        // threejs异步加载 资源
+        helpers.load(url, function(response) {
             /** @type {*} */
             var value = JSON.parse(response);
-            scope.parse(value, e);
+            self.parse(value, callback);
         }, data, options);
     },
     setTexturePath : function(path) {
@@ -29,15 +31,21 @@ Object.assign(TextureMTLLoader.prototype, {
         this.crossOrigin = value;
     },
     parse : function(json, fn) {
+        // 获取几何图形
         var geometries;
+        // 判断文件是否为二进制，如果时二进制，则设置二进制，否则转换为几何图形
         geometries = json.binary ? this.parseBinaryGeometries(json.geometries) : this.parseGeometries(json.geometries);
+        // 转换图片
         var images = this.parseImages(json.images, function() {
             if (void 0 !== fn) {
                 fn(object, json);
             }
         });
+        // 处理纹理信息
         var textures = this.parseTextures(json.textures, images);
+        // 处理材料信息
         var materials = this.parseMaterials(json.materials, textures);
+        // 转换对象
         var object = this.parseObject(json.object, geometries, materials);
         return json.animations && (object.animations = this.parseAnimations(json.animations)), json.cameras && (object.cameras = this.parseCameras(object, json.cameras)), void 0 !== json.images && 0 !== json.images.length || void 0 !== fn && fn(object, json), object;
     },
@@ -55,13 +63,18 @@ Object.assign(TextureMTLLoader.prototype, {
         return onSelectionCalls;
     },
     parseGeometries : function(json) {
+        // 转换几何图形
         var geometries = {};
+        // void 0 等价于undefined 压缩器为了提升性能做的改进
         if (void 0 !== json) {
+            // 实例化json 几何形状的加载器
             var geometryLoader = new THREE.JSONLoader;
+            // 实例化Buffer几何形状的加载器
             var primParser = new THREE.BufferGeometryLoader;
             /** @type {number} */
             var i = 0;
             var jsonLength = json.length;
+            // 遍历各种类型的threejs的几何模型
             for (; i < jsonLength; i++) {
                 var geometry;
                 var data = json[i];
@@ -216,26 +229,29 @@ Object.assign(TextureMTLLoader.prototype, {
     },
     parseImages : function(json, onLoad) {
         /**
+         * 加载图片
          * @param {string} url
          * @return {?}
          */
         function loadImage(url) {
-            return scope.manager.itemStart(url), loader.load(url, function() {
-                scope.manager.itemEnd(url);
+            return self.manager.itemStart(url), loader.load(url, function() {
+                self.manager.itemEnd(url);
             });
         }
-        var scope = this;
+        var self = this;
         var images = {};
         if (void 0 !== json && json.length > 0) {
+            // 设置回调函数
             var manager = new THREE.LoadingManager(onLoad);
             var loader = new THREE.ImageLoader(manager);
+            // 设置跨域加载图片
             loader.setCrossOrigin(this.crossOrigin);
             /** @type {number} */
             var i = 0;
             var jsonLength = json.length;
             for (; i < jsonLength; i++) {
                 var image = json[i];
-                var url = /^(\/\/)|([a-z]+:(\/\/)?)/i.test(image.url) ? image.url : scope.texturePath + image.url;
+                var url = /^(\/\/)|([a-z]+:(\/\/)?)/i.test(image.url) ? image.url : self.texturePath + image.url;
                 images[image.uuid] = loadImage(url);
             }
         }

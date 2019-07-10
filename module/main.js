@@ -15,15 +15,15 @@ debugger
 /**
  * @param {string} name
  * @param {!Object} options
- * @param {string} time
+ * @param {string} env
  * @param {!Function} callback
  * @return {undefined}
  */
-function initialize(name, options, time, callback) {
+function initialize(name, options, env, callback) {
     var _infoMemory = {
         geometries : [name],
         textures : texturesResources,
-        sh : [time]
+        sh : [env]
     };
     // 加载资源
     var downloader = new Renderer(_infoMemory);
@@ -31,6 +31,7 @@ function initialize(name, options, time, callback) {
         /** @type {string} */
         threejsInitional.texturePath = "assets/" + name + "/";
         THREE.MaterialLoader.setShaders(shadersResource);
+        // 加载场景
         instance.loadScene(name, "assets/scenes/", options).then(callback);
     });
 }
@@ -42,7 +43,7 @@ function load() {
     /** @type {string} */
     var container = "main";
     /** @type {string} */
-    var step = "envProbe";
+    var env = "envProbe";
     sceneCanvas = new Scene({
         canvas : document.querySelector("canvas"),
         autoClear : false,
@@ -50,7 +51,7 @@ function load() {
         logCalls : Config.LOG_CALLS || false,
         maxPixelRatio : Config.MAX_PIXEL_RATIO || 2
     });
-    initialize(container, sceneCanvas, step, function(t) {
+    initialize(container, sceneCanvas, env, function(t) {
         window.api.trigger("loaded");
         setTimeout(function() {
             sceneCanvas.start(t);

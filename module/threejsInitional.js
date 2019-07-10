@@ -79,13 +79,13 @@ function load(url, name, type) {
     });
 }
 /**
- * @param {!Array} c
- * @param {?} b
+ * @param {!Array} arrays
+ * @param {?} options
  * @param {?} a
  * @return {?}
  */
-function fn(c, b, a) {
-    return c = c || [], exec(c, b, a, load);
+function fn(arrays, options, a) {
+    return arrays = arrays || [], exec(arrays, options, a, load);
 }
 
 /** @type {string} */
@@ -116,12 +116,12 @@ self.loadOBJs = function(t, i) {
     return fn(t, i, objLoader);
 };
 /**
- * @param {!Array} selected
+ * @param {!Array} arrays
  * @param {!Object} options
  * @return {?}
  */
-self.loadTextures = function(selected, options) {
-    return fn(selected, options || self.texturePath, target);
+self.loadTextures = function(arrays, options) {
+    return fn(arrays, options || self.texturePath, target);
 };
 /**
  * @param {!Array} t
@@ -148,13 +148,14 @@ self.loadSpecularCubemaps = function(args, options) {
     return fn(args, options || self.environmentPath, y);
 };
 /**
- * @param {!Function} fn
+ * @param {!Function} env
  * @return {?}
  */
-self.loadSH = function(fn) {
-    return scheduler.all(_.map(fn, function(id) {
+self.loadSH = function(env) {
+    return scheduler.all(_.map(env, function(id) {
         return new scheduler(function(e, stepCallback) {
             var r = parseUrl(self.environmentPath, id + "/irradiance.json");
+            // 加载json文件
             scope.load(r, function(n) {
                 nsListById[id] = n;
                 e(n);
@@ -166,14 +167,14 @@ self.loadSH = function(fn) {
     }));
 };
 /**
- * @param {?} e
+ * @param {?} arrays
  * @param {string} options
  * @return {?}
  */
-self.loadGeometries = function(e, options) {
-    return e = _.map(e, function(canCreateDiscussions) {
-        return canCreateDiscussions + ".bin";
-    }), fn(e, options || self.geometryPath, c);
+self.loadGeometries = function(arrays, options) {
+    return arrays = _.map(arrays, function(item) {
+        return item + ".bin";
+    }), fn(arrays, options || self.geometryPath, c);
 };
 /**
  * @param {string} key
