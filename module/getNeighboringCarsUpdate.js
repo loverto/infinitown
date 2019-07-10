@@ -57,14 +57,18 @@ getNeighboringCarsUpdate.inherit(Object, {
         return i = i % state.TABLE_SIZE, x = x % state.TABLE_SIZE, i < 0 && (i = state.TABLE_SIZE + i), x < 0 && (x = state.TABLE_SIZE + x), void 0 !== this.chunks[i] && (void 0 !== this.chunks[i][x] && this.chunks[i][x]);
     },
     getNeighboringCars : function() {
+        // 获取相邻的车
         /** @type {!Array} */
         var exports = [];
+
         return function(s) {
             return exports.length = 0, s.parent.traverse(function(sub) {
+                // 把周围的车获取到，并存储在数组中
                 if ("car" === sub.name && sub !== s) {
                     exports.push(sub);
                 }
             }), this._forEachNeighboringChunk(s.parent.tableX, s.parent.tableY, function(spUtils) {
+                // 遍历相邻的块
                 spUtils.traverse(function(e) {
                     if ("car" === e.name) {
                         exports.push(e);

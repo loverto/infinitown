@@ -151,7 +151,9 @@ initCollisionPointsUpdate.inherit(render, {
             this.position.add(value);
             types.roundVector(this.position, 2);
             this._updateTablePosition();
+            // 获取相邻的车辆
             var fakeMutation = this.table.getNeighboringCars(this);
+            // 检测车
             this.detectCars(fakeMutation);
         };
     }(),

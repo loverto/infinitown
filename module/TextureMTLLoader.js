@@ -30,15 +30,16 @@ Object.assign(TextureMTLLoader.prototype, {
         /** @type {!Object} */
         this.crossOrigin = value;
     },
-    parse : function(json, fn) {
+    parse : function(json, callback) {
         // 获取几何图形
         var geometries;
         // 判断文件是否为二进制，如果时二进制，则设置二进制，否则转换为几何图形
         geometries = json.binary ? this.parseBinaryGeometries(json.geometries) : this.parseGeometries(json.geometries);
         // 转换图片
         var images = this.parseImages(json.images, function() {
-            if (void 0 !== fn) {
-                fn(object, json);
+            if (void 0 !== callback) {
+                // 图片加载完毕后，把转换的object对象和json数据返回给调用处
+                callback(object, json);
             }
         });
         // 处理纹理信息
@@ -47,7 +48,7 @@ Object.assign(TextureMTLLoader.prototype, {
         var materials = this.parseMaterials(json.materials, textures);
         // 转换对象
         var object = this.parseObject(json.object, geometries, materials);
-        return json.animations && (object.animations = this.parseAnimations(json.animations)), json.cameras && (object.cameras = this.parseCameras(object, json.cameras)), void 0 !== json.images && 0 !== json.images.length || void 0 !== fn && fn(object, json), object;
+        return json.animations && (object.animations = this.parseAnimations(json.animations)), json.cameras && (object.cameras = this.parseCameras(object, json.cameras)), void 0 !== json.images && 0 !== json.images.length || void 0 !== callback && callback(object, json), object;
     },
     parseCameras : function(object, options) {
         /** @type {!Array} */
@@ -202,7 +203,9 @@ Object.assign(TextureMTLLoader.prototype, {
         return geometries;
     },
     parseMaterials : function(json, textures) {
+        // 设置材料
         var materials = {};
+
         if (void 0 !== json) {
             var loader = new THREE.MaterialLoader;
             loader.setTextures(textures);
@@ -273,6 +276,7 @@ Object.assign(TextureMTLLoader.prototype, {
             for (; i < jsonLength; i++) {
                 var texture;
                 var data = json[i];
+                // 判断是否时多个图片，如果时多个图片，则创建cubeTexture纹理
                 if (data.images) {
                     /** @type {!Array} */
                     var c = [];
@@ -296,11 +300,15 @@ Object.assign(TextureMTLLoader.prototype, {
                     texture = new THREE.Texture(images[data.image]);
                 }
                 /** @type {boolean} */
+                // 设置纹理自动更新
                 texture.needsUpdate = true;
+                // 设置纹理的唯一id
                 texture.uuid = data.uuid;
+                // 如果有名称则设置名称
                 if (void 0 !== data.name) {
                     texture.name = data.name;
                 }
+
                 if (void 0 !== data.mapping) {
                     texture.mapping = parseConstant(data.mapping);
                 }
@@ -314,6 +322,7 @@ Object.assign(TextureMTLLoader.prototype, {
                     texture.wrapS = parseConstant(data.wrap[0]);
                     texture.wrapT = parseConstant(data.wrap[1]);
                 }
+                // 如果有最小
                 if (void 0 !== data.minFilter) {
                     texture.minFilter = parseConstant(data.minFilter);
                 }
@@ -332,6 +341,7 @@ Object.assign(TextureMTLLoader.prototype, {
         return textures;
     },
     parseObject : function() {
+        // 声明矩阵
         var matrix = new THREE.Matrix4;
         return function(data, geometries, materials) {
             /**
