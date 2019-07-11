@@ -1,4 +1,4 @@
-var town34=function(canCreateDiscussions, module, exports) {
+var town34=function(require, module, exports) {
         (function(value) {
             (function() {
                 /**

@@ -1,4 +1,4 @@
-var _getServer = require("scheduler");
+var _getServer = require("module/bluebird");
 require("13");
 var shape = require("threejsInitional");
 var instance = (require("module/init"), require("TextureMTLLoader"), {});

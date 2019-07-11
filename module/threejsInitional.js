@@ -1,4 +1,4 @@
-var scheduler = require("scheduler");
+var scheduler = require("module/bluebird");
 var parseUrl = require("parseUrl");
 var TextureMTLLoader = require("module/TextureMTLLoader");
 var MTLLoader = require("module/MTLLoader");

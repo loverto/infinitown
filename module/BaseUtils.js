@@ -1,5 +1,5 @@
 require("module/TWEEN");
-window._ = require("module/GlobalCommon");
+window._ = require("module/lodash");
 /**
  * @param {number} minIn
  * @param {number} maxIn
@@ -9,6 +9,7 @@ window._ = require("module/GlobalCommon");
 Number.prototype.lerp = function(minIn, maxIn) {
     return this + (minIn - this) * maxIn;
 };
+// 给String 扩展endsWith方法
 if (!String.prototype.endsWith) {
     /**
      * @param {string} value
@@ -68,7 +69,7 @@ window.iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
 var town18=function(require, canCreateDiscussions, n) {
         require("19");
-        window._ = require("module/GlobalCommon");
+        window._ = require("module/lodash");
         /**
          * @param {number} minIn
          * @param {number} maxIn

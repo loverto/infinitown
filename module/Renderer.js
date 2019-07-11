@@ -1,4 +1,4 @@
-var scheduler = require("module/scheduler");
+var scheduler = require("module/bluebird");
 var threejsInitional = require("module/threejsInitional");
 /**
  * @param {!Object} obj
@@ -34,7 +34,7 @@ Renderer.prototype.load = function () {
 /** @type {function(!Object): undefined} */
 module.exports = Renderer;
 var town14 = function (require, module, n) {
-    var scheduler = require("module/scheduler");
+    var scheduler = require("module/bluebird");
     var threejsInitional = require("module/threejsInitional");
     /**
      * @param {!Object} obj

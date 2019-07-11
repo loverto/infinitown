@@ -25,6 +25,7 @@ function update(allOrId) {
 function attachVisibilityEvent(t) {
     var propertyName;
     var visibilityChange;
+    // 获取不同浏览器上的隐藏和展示的属性和事件
     if ("undefined" != typeof document.hidden) {
         /** @type {string} */
         propertyName = "hidden";
@@ -52,11 +53,14 @@ function attachVisibilityEvent(t) {
             }
         }
     }
+    // 如果支持事件注册，就注册
     if ("undefined" != typeof document.addEventListener) {
         document.addEventListener(visibilityChange, function() {
+            // 如果有属性，则掉用方法
             if (document[propertyName]) {
                 t.onLeaveTab();
             } else {
+                // 没有该属性，50毫秒后自动解绑
                 setTimeout(t.onFocusTab.bind(t), 50);
             }
         }, false);
@@ -118,7 +122,7 @@ var init = function(options) {
     this.scenes = [];
     /** @type {null} */
     this.scene = null;
-    // 重置窗口绑定事件
+    // 重置窗口绑定事件，update 是啥
     window.onresize = update.bind(this);
     // 绑定键盘按下事件
     window.addEventListener("keyup", Slatebox.bind(this));
@@ -137,7 +141,9 @@ var init = function(options) {
         document.querySelectorAll("body")[0].appendChild(this.counter);
         this.counter.setAttribute("style", "position:absolute;top:20px;left:100px;color:#ff00ff;display:block !important;z-index:999999;");
     }
+    // 附加可见的事件
     attachVisibilityEvent(this);
+    // 处理日志
     if (this.config.logCalls) {
         this.initDrawCallsCounter();
     }
