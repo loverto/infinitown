@@ -1,5 +1,5 @@
 require("module/BaseUtils");
-require("module/es6-promise").polyfill();
+require("es6-promise").polyfill();
 var Events = require("module/Events");
 var Renderer = require("module/Renderer");
 var threejsInitional = require("module/threejsInitional");

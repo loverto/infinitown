@@ -1,4 +1,4 @@
-var bluebird = require("module/bluebird");
+var bluebird = require("bluebird");
 var threejsInitional = require("module/threejsInitional");
 /**
  * @param {!Object} obj

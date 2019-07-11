@@ -1,5 +1,5 @@
 require("module/TWEEN");
-window._ = require("module/lodash");
+window._ = require("lodash");
 /**
  * @param {number} minIn
  * @param {number} maxIn

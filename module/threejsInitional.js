@@ -1,5 +1,5 @@
 // promise 工具类
-var bluebird = require("module/bluebird");
+var bluebird = require("bluebird");
 
 var parseUrl = require("parseUrl");
 var TextureMTLLoader = require("module/TextureMTLLoader");

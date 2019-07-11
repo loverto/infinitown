@@ -1,4 +1,4 @@
-var bluebird = require("module/bluebird");
+var bluebird = require("bluebird");
 require("module/MaterialLoaderExtern");
 var shape = require("threejsInitional");
 var instance = (require("module/init"), require("TextureMTLLoader"), {});

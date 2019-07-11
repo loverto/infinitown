@@ -1,5 +1,5 @@
 var canvas = require("module/Events");
-require("module/jquery-mousewheel")($);
+require("jquery-mousewheel")($);
 /**
  * @param {!Object} touches
  * @return {?}

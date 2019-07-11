@@ -1,5 +1,5 @@
 var ctor = THREE.PerspectiveCamera;
-var TubularModel = require("module/three-orbit-controls");
+var TubularModel = require("three-orbit-controls");
 /**
  * @param {!Object} data
  * @return {undefined}

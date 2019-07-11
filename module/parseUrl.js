@@ -1,7 +1,7 @@
 var uriUtils = require("module/uriUtils");
 var normalize = require("module/normalize");
 var convertArray = require("module/convertArray");
-var self = require("module/valid-url");
+var self = require("valid-url");
 /** @type {function(): ?} */
 utils = mixin.exports = function() {
     var array = convertArray(arguments).map(s);
