@@ -1,5 +1,5 @@
 require("module/BaseUtils");
-require("module/polyfill").polyfill();
+require("module/es6-promise").polyfill();
 var Events = require("module/Events");
 var Renderer = require("module/Renderer");
 var threejsInitional = require("module/threejsInitional");
@@ -146,7 +146,7 @@ var town53=function(require, canCreateDiscussions, n) {
             });
         }
         require("module/BaseUtils");
-        require("module/polyfill").polyfill();
+        require("module/es6-promise").polyfill();
         var o = require("module/Events");
         var EventEmitter = require("module/Renderer");
         var scope = require("module/threejsInitional");

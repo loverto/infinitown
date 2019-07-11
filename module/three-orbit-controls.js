@@ -109,7 +109,7 @@ var town7=function(canCreateDiscussions, mixin, n) {
                             scope.panLeft(deltaX * (scope.object.right - scope.object.left) / screenWidth);
                             scope.panUp(deltaY * (scope.object.top - scope.object.bottom) / screenHeight);
                         } else {
-                            console.warn("WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.");
+                            console.warn("WARNING: three-orbit-controls.js encountered an unknown camera type - pan disabled.");
                         }
                     }
                 };
@@ -129,7 +129,7 @@ var town7=function(canCreateDiscussions, mixin, n) {
                             /** @type {boolean} */
                             zoomChanged = true;
                         } else {
-                            console.warn("WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.");
+                            console.warn("WARNING: three-orbit-controls.js encountered an unknown camera type - dolly/zoom disabled.");
                         }
                     }
                 };
@@ -149,7 +149,7 @@ var town7=function(canCreateDiscussions, mixin, n) {
                             /** @type {boolean} */
                             zoomChanged = true;
                         } else {
-                            console.warn("WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.");
+                            console.warn("WARNING: three-orbit-controls.js encountered an unknown camera type - dolly/zoom disabled.");
                         }
                     }
                 };

@@ -28,7 +28,7 @@ function findErrorByList(t, data, array) {
  * @param {string} manager
  * @return {undefined}
  */
-var MTLLoader = function(options, value, manager) {
+var CompressedTextureLoaderExtern = function(options, value, manager) {
     this.manager = void 0 !== manager ? manager : THREE.DefaultLoadingManager;
     /** @type {number} */
     this._size = options;
@@ -36,12 +36,12 @@ var MTLLoader = function(options, value, manager) {
     this._interleaved = value;
 };
 /** @type {!Object} */
-MTLLoader.prototype = Object.create(THREE.CompressedTextureLoader.prototype);
+CompressedTextureLoaderExtern.prototype = Object.create(THREE.CompressedTextureLoader.prototype);
 /**
  * @param {!ArrayBuffer} buffer
  * @return {?}
  */
-MTLLoader.prototype._parser = function(buffer) {
+CompressedTextureLoaderExtern.prototype._parser = function(buffer) {
     /** @type {!Array} */
     var e = [];
     /** @type {number} */
@@ -99,7 +99,7 @@ Math.log2 = Math.log2 || function(score) {
     return Math.log(score) * Math.LOG2E;
 };
 /** @type {function(number, boolean, string): undefined} */
-module.exports = MTLLoader;
+module.exports = CompressedTextureLoaderExtern;
 var town9=function(canCreateDiscussions, module, n) {
         /**
          * @param {number} t

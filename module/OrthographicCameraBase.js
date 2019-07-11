@@ -1,6 +1,6 @@
 var Base = THREE.OrthographicCamera;
 /** @type {function(number): undefined} */
-var OrthographicCameraBase = (require("OrbitControls"), function(hValue) {
+var OrthographicCameraBase = (require("module/three-orbit-controls"), function(hValue) {
     Base.call(this);
     /** @type {number} */
     var r = window.innerWidth / window.innerHeight;
@@ -27,7 +27,7 @@ module.exports = OrthographicCameraBase;
 var town56=function(require, module, n) {
         var Base = THREE.OrthographicCamera;
         /** @type {function(number): undefined} */
-        var OrthographicCameraBase = (require("OrbitControls"), function(hValue) {
+        var OrthographicCameraBase = (require("module/three-orbit-controls"), function(hValue) {
             Base.call(this);
             /** @type {number} */
             var r = window.innerWidth / window.innerHeight;

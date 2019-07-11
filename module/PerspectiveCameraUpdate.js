@@ -1,5 +1,5 @@
 var ctor = THREE.PerspectiveCamera;
-var TubularModel = require("module/OrbitControls");
+var TubularModel = require("module/three-orbit-controls");
 /**
  * @param {!Object} data
  * @return {undefined}
@@ -26,7 +26,7 @@ PerspectiveCameraUpdate.inherit(ctor, {
 module.exports = PerspectiveCameraUpdate;
 var town45=function(require, module, n) {
         var ctor = THREE.PerspectiveCamera;
-        var TubularModel = require("module/OrbitControls");
+        var TubularModel = require("module/three-orbit-controls");
         /**
          * @param {!Object} data
          * @return {undefined}

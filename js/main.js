@@ -289,11 +289,11 @@
                     if (r.object instanceof THREE.PerspectiveCamera) {
                         var o = r.object.position, a = o.clone().sub(r.target), s = a.length();
                         s *= Math.tan(r.object.fov / 2 * Math.PI / 180), r.panLeft(2 * t * s / i), r.panUp(2 * e * s / i)
-                    } else r.object instanceof THREE.OrthographicCamera ? (r.panLeft(t * (r.object.right - r.object.left) / n), r.panUp(e * (r.object.top - r.object.bottom) / i)) : console.warn("WARNING: OrbitControls.js encountered an unknown camera type - pan disabled.")
+                    } else r.object instanceof THREE.OrthographicCamera ? (r.panLeft(t * (r.object.right - r.object.left) / n), r.panUp(e * (r.object.top - r.object.bottom) / i)) : console.warn("WARNING: three-orbit-controls.js encountered an unknown camera type - pan disabled.")
                 }, this.dollyIn = function (t) {
-                    r.object instanceof THREE.PerspectiveCamera ? s /= t : r.object instanceof THREE.OrthographicCamera ? (r.object.zoom = Math.max(this.minZoom, Math.min(this.maxZoom, this.object.zoom * t)), r.object.updateProjectionMatrix(), u = !0) : console.warn("WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.")
+                    r.object instanceof THREE.PerspectiveCamera ? s /= t : r.object instanceof THREE.OrthographicCamera ? (r.object.zoom = Math.max(this.minZoom, Math.min(this.maxZoom, this.object.zoom * t)), r.object.updateProjectionMatrix(), u = !0) : console.warn("WARNING: three-orbit-controls.js encountered an unknown camera type - dolly/zoom disabled.")
                 }, this.dollyOut = function (t) {
-                    r.object instanceof THREE.PerspectiveCamera ? s *= t : r.object instanceof THREE.OrthographicCamera ? (r.object.zoom = Math.max(this.minZoom, Math.min(this.maxZoom, this.object.zoom / t)), r.object.updateProjectionMatrix(), u = !0) : console.warn("WARNING: OrbitControls.js encountered an unknown camera type - dolly/zoom disabled.")
+                    r.object instanceof THREE.PerspectiveCamera ? s *= t : r.object instanceof THREE.OrthographicCamera ? (r.object.zoom = Math.max(this.minZoom, Math.min(this.maxZoom, this.object.zoom / t)), r.object.updateProjectionMatrix(), u = !0) : console.warn("WARNING: three-orbit-controls.js encountered an unknown camera type - dolly/zoom disabled.")
                 }, this.update = function () {
                     var r = new THREE.Vector3,
                         l = (new THREE.Quaternion).setFromUnitVectors(t.up, new THREE.Vector3(0, 1, 0)),

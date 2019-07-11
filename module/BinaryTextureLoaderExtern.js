@@ -28,7 +28,7 @@ function normalize(t, data, obj) {
  * @param {string} manager
  * @return {undefined}
  */
-var MTLLoader = function(value, options, manager) {
+var BinaryTextureLoaderExtern = function(value, options, manager) {
     this.manager = void 0 !== manager ? manager : THREE.DefaultLoadingManager;
     /** @type {number} */
     this._size = value;
@@ -36,12 +36,12 @@ var MTLLoader = function(value, options, manager) {
     this._interleaving = options;
 };
 /** @type {!Object} */
-MTLLoader.prototype = Object.create(THREE.BinaryTextureLoader.prototype);
+BinaryTextureLoaderExtern.prototype = Object.create(THREE.BinaryTextureLoader.prototype);
 /**
  * @param {?} size
  * @return {?}
  */
-MTLLoader.prototype._parser = function(size) {
+BinaryTextureLoaderExtern.prototype._parser = function(size) {
     var result;
     var r = this._size;
     if (this._interleaving) {
@@ -69,7 +69,7 @@ MTLLoader.prototype._parser = function(size) {
     };
 };
 /** @type {function(number, !Object, string): undefined} */
-module.exports = MTLLoader;
+module.exports = BinaryTextureLoaderExtern;
 var town11=function(canCreateDiscussions, module, n) {
         /**
          * @param {number} t

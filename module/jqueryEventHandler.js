@@ -1,5 +1,5 @@
 var canvas = require("module/Events");
-require("module/jquerytown")($);
+require("module/jquery-mousewheel")($);
 /**
  * @param {!Object} touches
  * @return {?}
@@ -112,7 +112,7 @@ var town52=function(require, context, n) {
             return Math.sqrt((touches[0].clientX - touches[1].clientX) * (touches[0].clientX - touches[1].clientX) + (touches[0].clientY - touches[1].clientY) * (touches[0].clientY - touches[1].clientY));
         }
         var canvas = require("module/Events");
-        require("module/jquerytown")($);
+        require("module/jquery-mousewheel")($);
         /**
          * @param {!Object} obj
          * @return {undefined}

@@ -1,7 +1,7 @@
 var uriUtils = require("module/uriUtils");
 var normalize = require("module/normalize");
 var convertArray = require("module/convertArray");
-var self = require("module/uri");
+var self = require("module/valid-url");
 /** @type {function(): ?} */
 utils = mixin.exports = function() {
     var array = convertArray(arguments).map(s);
@@ -18,7 +18,7 @@ var town29=function(require, mixin, utils) {
         var ref = require("module/uriUtils");
         var select = require("module/normalize");
         var _slic = require("module/convertArray");
-        var self = require("module/uri");
+        var self = require("module/valid-url");
         /** @type {function(): ?} */
         utils = mixin.exports = function() {
             var q = _slic(arguments).map(s);
