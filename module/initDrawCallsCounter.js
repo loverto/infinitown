@@ -74,6 +74,7 @@ function Slatebox(_options) {
  * @return {undefined}
  */
 var init = function(options) {
+    // 设置WebGL渲染引擎，（，，，）类似这样的写法的作用，是按顺序执行，并返回最后一个，如果不是返回的地方，那就是继续执行。
     if (options = void 0 !== options ? options : {}, this.renderer = new THREE.WebGLRenderer({
         alpha : true,
         antialias : true,
@@ -84,6 +85,7 @@ var init = function(options) {
         profiling : void 0 !== options.profiling && options.profiling,
         logCalls : void 0 !== options.logCalls && options.logCalls
     }, options && options.maxPixelRatio) {
+        // 物理像素分辨率与CSS像素分辨率的比值
         var ratio = window.devicePixelRatio > options.maxPixelRatio ? options.maxPixelRatio : window.devicePixelRatio;
     } else {
         /** @type {number} */
@@ -92,9 +94,14 @@ var init = function(options) {
     if (window.isMobile) {
         ratio = ratio > 1.5 ? 1.5 : ratio;
     }
+    // 设置像素比例
     this.renderer.setPixelRatio(ratio);
+    // 浏览器视口（viewport）宽度（单位：像素），如果存在垂直滚动条则包括它。
+    // 浏览器视口（viewport）高度（单位：像素），如果存在垂直滚动条则包括它。
     this.setSize(options.width || window.innerWidth, options.height || window.innerHeight);
+    // 是否自动清理
     if (void 0 !== options.autoClear) {
+        // 定义渲染器是否应在渲染帧之前自动清除其输出。
         this.renderer.autoClear = options.autoClear;
     }
     if (void 0 !== options.clearColor) {
@@ -103,6 +110,7 @@ var init = function(options) {
     if (!(void 0 !== options.supportsTextureLod && options.supportsTextureLod !== true)) {
         THREE.Extensions.get("EXT_shader_texture_lod");
     }
+    // 创建时钟用来记录时间,传递参数true,设置自动开始记录.默认值为true
     this.clock = new THREE.Clock;
     /** @type {boolean} */
     this.paused = false;
@@ -110,14 +118,18 @@ var init = function(options) {
     this.scenes = [];
     /** @type {null} */
     this.scene = null;
+    // 重置窗口绑定事件
     window.onresize = update.bind(this);
+    // 绑定键盘按下事件
     window.addEventListener("keyup", Slatebox.bind(this));
+    // 绑定鼠标悬浮事件
     this.renderer.domElement.addEventListener("mousemove", function(event) {
         /** @type {number} */
         window.mouseX = event.pageX / WIDTH * 2 - 1;
         /** @type {number} */
         window.mouseY = 1 - event.pageY / HEIGHT * 2;
     });
+    // 如果配置fps 则创建状态信息，并显示fps信息在界面上
     if (this.config.fps) {
         this.fpsCounter = new Stats;
         /** @type {!Element} */

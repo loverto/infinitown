@@ -1,4 +1,4 @@
-var ref = require("module/initDrawCallsCounter");
+var initDrawCallsCounter = require("module/initDrawCallsCounter");
 var p = (require("module/LineSegmentsInit"), require("module/state"));
 var PerspectiveCamera = (require("module/PerspectiveCameraUpdate"), require("module/OrthographicCameraBase"), require("module/PerspectiveCameraCtor"));
 var SVGTable = (require("module/Class"), require("module/getNeighboringCarsUpdate"));
@@ -10,14 +10,14 @@ var TagHourlyStat = require("module/vignettingRender");
  * @param {!Function} data
  * @return {undefined}
  */
-var initCamera = function(data) {
-    ref.call(this, data);
+var InitCamera = function(data) {
+    initDrawCallsCounter.call(this, data);
     this.initCamera();
     this.gridCoords = new THREE.Vector2;
     this.cameraOffset = new THREE.Vector2;
     this.scene = new THREE.Scene;
 };
-initCamera.inherit(ref, {
+InitCamera.inherit(initDrawCallsCounter, {
     start : function(_) {
         var root_width = _.getObjectByName("blocks").children;
         var root_height = _.getObjectByName("lanes").children;
@@ -66,7 +66,7 @@ initCamera.inherit(ref, {
             /** @type {number} */
             this._lastPinchScale = uv3v;
         }, this);
-        ref.prototype.start.call(this);
+        initDrawCallsCounter.prototype.start.call(this);
     },
     initDirLight : function() {
         var light = new THREE.DirectionalLight(16774618, 1.25);
@@ -95,7 +95,7 @@ initCamera.inherit(ref, {
         this.vignetting = new TagHourlyStat;
     },
     setSize : function(size, val) {
-        ref.prototype.setSize.call(this, size, val);
+        initDrawCallsCounter.prototype.setSize.call(this, size, val);
         if (this.dirLight) {
             this._resizeShadowMapFrustum(size, val);
         }
@@ -123,7 +123,7 @@ initCamera.inherit(ref, {
         this.controls.update();
         this.table.update(val);
         this.camera.update();
-        ref.prototype.update.call(this, val);
+        initDrawCallsCounter.prototype.update.call(this, val);
     },
     render : function(text) {
         /** @type {number} */
@@ -163,7 +163,7 @@ initCamera.inherit(ref, {
     }
 });
 /** @type {function(!Function): undefined} */
-module.exports = initCamera;
+module.exports = InitCamera;
 var town43=function(require, module, n) {
         var ref = require("module/initDrawCallsCounter");
         var p = (require("module/LineSegmentsInit"), require("module/state"));
