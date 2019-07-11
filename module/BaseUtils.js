@@ -1,4 +1,4 @@
-require("module/TWEEN");
+require("@tweenjs/tween.js");
 window._ = require("lodash");
 /**
  * @param {number} minIn
