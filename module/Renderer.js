@@ -1,4 +1,4 @@
-var scheduler = require("module/bluebird");
+var bluebird = require("module/bluebird");
 var threejsInitional = require("module/threejsInitional");
 /**
  * @param {!Object} obj
@@ -29,7 +29,7 @@ var Renderer = function (obj) {
  */
 Renderer.prototype.load = function () {
     var params = {};
-    return this.cubemaps && (params.cubemap = threejsInitional.loadSpecularCubemaps(this.cubemaps)), this.panoramas && (params.panorama = threejsInitional.loadPanoramas(this.panoramas)), this.sh && (params.sh = threejsInitional.loadSH(this.sh)), this.textures && (params.texture = threejsInitional.loadTextures(this.textures, "")), this.geometries && (params.geometry = threejsInitional.loadGeometries(this.geometries)), scheduler.props(params);
+    return this.cubemaps && (params.cubemap = threejsInitional.loadSpecularCubemaps(this.cubemaps)), this.panoramas && (params.panorama = threejsInitional.loadPanoramas(this.panoramas)), this.sh && (params.sh = threejsInitional.loadSH(this.sh)), this.textures && (params.texture = threejsInitional.loadTextures(this.textures, "")), this.geometries && (params.geometry = threejsInitional.loadGeometries(this.geometries)), bluebird.props(params);
 };
 /** @type {function(!Object): undefined} */
 module.exports = Renderer;

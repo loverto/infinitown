@@ -1,8 +1,10 @@
-var scheduler = require("module/bluebird");
+// promise 工具类
+var bluebird = require("module/bluebird");
+
 var parseUrl = require("parseUrl");
 var TextureMTLLoader = require("module/TextureMTLLoader");
 var MTLLoader = require("module/MTLLoader");
-var List = require("9");
+var List = require("module/MTLLoaderExtern");
 var DataFrameReader = require("module/DataFrameReader");
 var load = require("module/load");
 var manager = new THREE.LoadingManager;
@@ -54,7 +56,7 @@ function normalize(tree, event) {
  * @return {?}
  */
 function exec(selector, name, close, callback) {
-    return _.isArray(selector) || (selector = [selector]), scheduler.all(_.map(selector, function(ext) {
+    return _.isArray(selector) || (selector = [selector]), bluebird.all(_.map(selector, function(ext) {
         if (callback) {
             return callback(parseUrl(name, ext), ext, close);
         }
@@ -67,7 +69,7 @@ function exec(selector, name, close, callback) {
  * @return {?}
  */
 function load(url, name, type) {
-    return new scheduler(function(i, stepCallback) {
+    return new bluebird(function(i, stepCallback) {
         type.load(url, function(t) {
             /** @type {string} */
             t.filename = name;
@@ -152,8 +154,8 @@ self.loadSpecularCubemaps = function(args, options) {
  * @return {?}
  */
 self.loadSH = function(env) {
-    return scheduler.all(_.map(env, function(id) {
-        return new scheduler(function(e, stepCallback) {
+    return bluebird.all(_.map(env, function(id) {
+        return new bluebird(function(e, stepCallback) {
             var r = parseUrl(self.environmentPath, id + "/irradiance.json");
             // 加载json文件
             scope.load(r, function(n) {
@@ -289,7 +291,7 @@ var town15=function(require, module, n) {
         var parseUrl = require("29");
         var ImageLoader = require("module/TextureMTLLoader");
         var Big = require("module/MTLLoader");
-        var List = require("9");
+        var List = require("module/MTLLoaderExtern");
         var Type = require("module/DataFrameReader");
         var Connection = require("module/load");
         var manager = new THREE.LoadingManager;

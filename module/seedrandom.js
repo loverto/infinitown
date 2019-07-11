@@ -178,7 +178,7 @@ if (math["seed" + rngname] = seedrandom, mixkey(math.random(), pool), "object" =
     /** @type {function(!Function, !Object, !Function): ?} */
     module.exports = seedrandom;
     try {
-        nodecrypto = require("25");
+        nodecrypto = require("module/NullObject");
     } catch (w) {
     }
 } else {
@@ -370,7 +370,7 @@ var town42=function(require, module, n) {
                 /** @type {function(!Function, !Object, !Function): ?} */
                 module.exports = seedrandom;
                 try {
-                    nodecrypto = require("25");
+                    nodecrypto = require("module/NullObject");
                 } catch (w) {
                 }
             } else {

@@ -1,5 +1,5 @@
-var _getServer = require("module/bluebird");
-require("13");
+var bluebird = require("module/bluebird");
+require("module/MaterialLoaderExtern");
 var shape = require("threejsInitional");
 var instance = (require("module/init"), require("TextureMTLLoader"), {});
 /**
@@ -10,7 +10,7 @@ var instance = (require("module/init"), require("TextureMTLLoader"), {});
  * @return {?}
  */
 instance.loadScene = function(name, data, options, callback) {
-    return new _getServer(function(_emscripten_bind_Vector___destroy___0, a) {
+    return new bluebird(function(_emscripten_bind_Vector___destroy___0, a) {
         var addedRenderer = (options.renderer, shape.getGeometry(name));
         // 设置二进制几何Buffer
         if (addedRenderer) {
@@ -104,7 +104,7 @@ instance.loadScene = function(name, data, options, callback) {
 module.exports = instance;
 var town17=function(require, module, n) {
         var _getServer = require("24");
-        require("13");
+        require("module/MaterialLoaderExtern");
         var shape = require("15");
         var instance = (require("module/init"), require("16"), {});
         /**
