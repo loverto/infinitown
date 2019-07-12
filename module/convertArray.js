@@ -26,7 +26,7 @@ function objectToArray(cache) {
  * @param {!Object} result
  * @return {?}
  */
-mixin.exports = function(value, result) {
+module.exports = function(value, result) {
     return value || (value = []), isArgumentsArrays(value) && (value = [].splice.call(value, 0)), isObject(value) && result && (value = objectToArray(value)), Array.isArray(value) ? value : [value];
 };
 var town30=function(canCreateDiscussions, mixin, n) {
@@ -58,7 +58,7 @@ var town30=function(canCreateDiscussions, mixin, n) {
          * @param {!Object} result
          * @return {?}
          */
-        mixin.exports = function(value, result) {
+        module.exports = function(value, result) {
             return value || (value = []), getStringTag(value) && (value = [].splice.call(value, 0)), eq(value) && result && (value = makeStyleLoaders(value)), Array.isArray(value) ? value : [value];
         };
     }

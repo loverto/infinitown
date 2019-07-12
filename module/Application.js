@@ -1,4 +1,4 @@
-var properties = require("state");
+var properties = require("module/state");
 /**
  * @return {undefined}
  */
@@ -58,7 +58,7 @@ Application.inherit(THREE.Scene, {
 /** @type {function(): undefined} */
 module.exports = Application;
 var town47=function(require, module, n) {
-        var properties = require("50");
+        var properties = require("module/50");
         /**
          * @return {undefined}
          */

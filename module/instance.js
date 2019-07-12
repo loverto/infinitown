@@ -1,7 +1,7 @@
 var bluebird = require("bluebird");
 require("module/MaterialLoaderExtern");
-var shape = require("threejsInitional");
-var instance = (require("module/init"), require("TextureMTLLoader"), {});
+var shape = require("module/threejsInitional");
+var instance = (require("module/init"), require("module/TextureMTLLoader"), {});
 /**
  * @param {string} name
  * @param {string} data 数据或资源路径
@@ -103,10 +103,10 @@ instance.loadScene = function(name, data, options, callback) {
 };
 module.exports = instance;
 var town17=function(require, module, n) {
-        var _getServer = require("24");
+        var _getServer = require("module/24");
         require("module/MaterialLoaderExtern");
-        var shape = require("15");
-        var instance = (require("module/init"), require("16"), {});
+        var shape = require("module/15");
+        var instance = (require("module/init"), require("module/16"), {});
         /**
          * @param {string} name
          * @param {string} data

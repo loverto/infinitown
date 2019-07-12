@@ -1,6 +1,6 @@
-var state = require("state");
-var render = require("render");
-var types = require("types");
+var state = require("module/state");
+var render = require("module/render");
+var types = require("module/types");
 /** @type {number} */
 var ratio = .05;
 /** @type {number} */
@@ -42,9 +42,9 @@ updateTablePositionRender.inherit(render, {
 /** @type {function(!Function, !Object): undefined} */
 module.exports = updateTablePositionRender;
 var town49=function(require, module, n) {
-        var startYNew = require("50");
-        var a = require("55");
-        var w = require("59");
+        var startYNew = require("module/50");
+        var a = require("module/55");
+        var w = require("module/59");
         /** @type {number} */
         var ratio = .05;
         /** @type {number} */

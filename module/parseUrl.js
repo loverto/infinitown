@@ -3,7 +3,7 @@ var normalize = require("module/normalize");
 var convertArray = require("module/convertArray");
 var self = require("valid-url");
 /** @type {function(): ?} */
-utils = mixin.exports = function() {
+utils = module.exports = function() {
     var array = convertArray(arguments).map(s);
     return self.isUri(array[0]) ? normalize.apply(normalize, array) : uriUtils.join.apply(uriUtils, array);
 };
@@ -20,7 +20,7 @@ var town29=function(require, mixin, utils) {
         var _slic = require("module/convertArray");
         var self = require("module/valid-url");
         /** @type {function(): ?} */
-        utils = mixin.exports = function() {
+        utils = module.exports = function() {
             var q = _slic(arguments).map(s);
             return self.isUri(q[0]) ? select.apply(select, q) : ref.join.apply(ref, q);
         };

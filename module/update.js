@@ -1,5 +1,5 @@
-var t = require("Set");
-var value = require("threejsInitional");
+var t = require("module/Set");
+var value = require("module/threejsInitional");
 var a = {
     normalMapFactor : "uNormalMapFactor",
     normalMap : "sTextureNormalMap",
@@ -102,8 +102,8 @@ var town20=function(require, module, n) {
         function optionalParameter(value, defaultValue) {
             return void 0 !== value ? value : defaultValue;
         }
-        var t = require("21");
-        var value = require("15");
+        var t = require("module/21");
+        var value = require("module/15");
         var a = {
             normalMapFactor : "uNormalMapFactor",
             normalMap : "sTextureNormalMap",

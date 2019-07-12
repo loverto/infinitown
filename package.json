@@ -1,6 +1,11 @@
 {
   "name": "infinitown",
   "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --open  --config webpack/webpack.config.js",
+    "build": "webpack"
+  },
   "dependencies": {
     "@tweenjs/tween.js": "^17.4.0",
     "bluebird": "^3.5.5",
@@ -13,6 +18,13 @@
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
-    "webpack": "^4.35.3"
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.0.0",
+    "file-loader": "^4.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
   }
 }

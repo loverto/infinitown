@@ -1,4 +1,4 @@
-var parent = require("Set");
+var parent = require("module/Set");
 var shaders = require("module/shaders");
 /**
  * @param {!Function} obj
@@ -48,7 +48,7 @@ Class.inherit(parent, {
 /** @type {function(!Function): undefined} */
 globalContext.exports = Class;
 var town54=function(require, globalContext, n) {
-        var parent = require("21");
+        var parent = require("module/21");
         var shaders = require("module/shaders");
         /**
          * @param {!Function} obj

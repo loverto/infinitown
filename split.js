@@ -619,7 +619,7 @@ var s = {
         module.exports = $;
     }, {}],
     6 : [function(require, module, n) {
-        var TimeoutError = require("5");
+        var TimeoutError = require("module/5");
         var self = {
             _timers : {}
         };
@@ -1509,7 +1509,7 @@ var s = {
                 }
             });
             /** @type {function(!Function, !Object): undefined} */
-            mixin.exports = OrbitControls;
+            module.exports = OrbitControls;
         }();
     }, {}],
     8 : [function(canCreateDiscussions, context, n) {
@@ -1882,8 +1882,8 @@ var s = {
         22 : 22
     }],
     14 : [function(require, module, n) {
-        var r = require("24");
-        var $ = require("15");
+        var r = require("module/24");
+        var $ = require("module/15");
         /**
          * @param {!Object} obj
          * @return {undefined}
@@ -3870,7 +3870,7 @@ var s = {
                          * @param {!Object} Promise
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise) {
+                        module.exports = function(Promise) {
                             /**
                              * @param {?} promises
                              * @return {?}
@@ -3954,9 +3954,9 @@ var s = {
                         } catch (e) {
                             firstLineError = e;
                         }
-                        var fn = require("./schedule");
-                        var Queue = require("./queue");
-                        var util = require("./util");
+                        var fn = require("module/./schedule");
+                        var Queue = require("module/./queue");
+                        var util = require("module/./util");
                         /**
                          * @param {string} fn
                          * @return {?}
@@ -4141,7 +4141,7 @@ var s = {
                          * @param {?} debug
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, INTERNAL, tryConvertToPromise, debug) {
+                        module.exports = function(Promise, INTERNAL, tryConvertToPromise, debug) {
                             /** @type {boolean} */
                             var i = false;
                             /**
@@ -4283,7 +4283,7 @@ var s = {
                          * @param {!Function} Promise
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise) {
+                        module.exports = function(Promise) {
                             /**
                              * @param {?} obj
                              * @param {boolean} key
@@ -4324,7 +4324,7 @@ var s = {
                                 return i < 0 && (i = Math.max(0, i + array.length)), array[i];
                             }
                             var checkAndAddDescendantIfModel;
-                            var util = require("./util");
+                            var util = require("module/./util");
                             var canEvaluate = util.canEvaluate;
                             util.isIdentifier;
                             /**
@@ -4370,8 +4370,8 @@ var s = {
                          * @param {?} config
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, obj, prop, config) {
-                            var util = require("./util");
+                        module.exports = function(Promise, obj, prop, config) {
+                            var util = require("module/./util");
                             var tryCatch = util.tryCatch;
                             var errorObj = util.errorObj;
                             var async = Promise._async;
@@ -4530,7 +4530,7 @@ var s = {
                          * @param {!Function} obj
                          * @return {?}
                          */
-                        mixin.exports = function(obj) {
+                        module.exports = function(obj) {
                             /**
                              * @param {!NodeList} instances
                              * @param {!Function} cb
@@ -4591,7 +4591,7 @@ var s = {
                          * @param {!Function} Promise
                          * @return {?}
                          */
-                        mixin.exports = function(Promise) {
+                        module.exports = function(Promise) {
                             /**
                              * @return {undefined}
                              */
@@ -4685,7 +4685,7 @@ var s = {
                          * @param {!Object} Context
                          * @return {?}
                          */
-                        mixin.exports = function(Promise, Context) {
+                        module.exports = function(Promise, Context) {
                             /**
                              * @param {?} name
                              * @param {!Object} promise
@@ -5821,7 +5821,7 @@ var s = {
                          * @param {!Function} Promise
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise) {
+                        module.exports = function(Promise) {
                             /**
                              * @return {?}
                              */
@@ -5895,7 +5895,7 @@ var s = {
                          * @param {!Array} INTERNAL
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, INTERNAL) {
+                        module.exports = function(Promise, INTERNAL) {
                             /**
                              * @return {?}
                              */
@@ -5963,9 +5963,9 @@ var s = {
                         }
                         var _TypeError;
                         var _RangeError;
-                        var es5 = require("./es5");
+                        var es5 = require("module/./es5");
                         var Objectfreeze = es5.freeze;
-                        var util = require("./util");
+                        var util = require("module/./util");
                         var inherits = util.inherits;
                         var notEnumerableProp = util.notEnumerableProp;
                         var Warning = subError("Warning", "warning");
@@ -6168,7 +6168,7 @@ var s = {
                          * @param {!Object} a
                          * @return {undefined}
                          */
-                        mixin.exports = function(obj, a) {
+                        module.exports = function(obj, a) {
                             var callback = obj.map;
                             /**
                              * @param {!Function} target
@@ -6196,7 +6196,7 @@ var s = {
                          * @param {!Object} NEXT_FILTER
                          * @return {?}
                          */
-                        mixin.exports = function(Promise, tryConvertToPromise, NEXT_FILTER) {
+                        module.exports = function(Promise, tryConvertToPromise, NEXT_FILTER) {
                             /**
                              * @param {!Object} promise
                              * @param {string} type
@@ -6278,10 +6278,10 @@ var s = {
                                 }
                                 return promise.isRejected() ? (checkCancel(this), errorObj.e = reasonOrValue, errorObj) : (checkCancel(this), reasonOrValue);
                             }
-                            var util = require("./util");
+                            var util = require("module/./util");
                             var CancellationError = Promise.CancellationError;
                             var errorObj = util.errorObj;
-                            var catchFilter = require("./catch_filter")(NEXT_FILTER);
+                            var catchFilter = require("module/./catch_filter")(NEXT_FILTER);
                             return PassThroughHandlerContext.prototype.isFinallyHandler = function() {
                                 return 0 === this.type;
                             }, FinallyHandlerCancelReaction.prototype._resultCancelled = function() {
@@ -6332,7 +6332,7 @@ var s = {
                          * @param {!Object} debug
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, fn, INTERNAL, tryConvertToPromise, Proxyable, debug) {
+                        module.exports = function(Promise, fn, INTERNAL, tryConvertToPromise, Proxyable, debug) {
                             /**
                              * @param {?} value
                              * @param {!NodeList} yieldHandlers
@@ -6391,9 +6391,9 @@ var s = {
                                 /** @type {boolean} */
                                 this._cancellationPhase = false;
                             }
-                            var errors = require("./errors");
+                            var errors = require("module/./errors");
                             var TypeError = errors.TypeError;
-                            var util = require("./util");
+                            var util = require("module/./util");
                             var errorObj = util.errorObj;
                             var tryCatch = util.tryCatch;
                             /** @type {!Array} */
@@ -6586,8 +6586,8 @@ var s = {
                          * @param {?} NEXT_FILTER
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, PromiseArray, INTERNAL, apiRejection, tryConvertToPromise, NEXT_FILTER) {
-                            var util = require("./util");
+                        module.exports = function(Promise, PromiseArray, INTERNAL, apiRejection, tryConvertToPromise, NEXT_FILTER) {
+                            var util = require("module/./util");
                             util.canEvaluate;
                             util.tryCatch;
                             util.errorObj;
@@ -6624,7 +6624,7 @@ var s = {
                          * @param {?} debug
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug) {
+                        module.exports = function(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug) {
                             /**
                              * @param {?} promises
                              * @param {!Function} fn
@@ -6673,7 +6673,7 @@ var s = {
                                 return limit = "number" == typeof limit && isFinite(limit) && limit >= 1 ? limit : 0, (new MappingPromiseArray(promises, fn, limit, _filter)).promise();
                             }
                             var getDomain = Promise._getDomain;
-                            var util = require("./util");
+                            var util = require("module/./util");
                             var tryCatch = util.tryCatch;
                             var errorObj = util.errorObj;
                             var async = Promise._async;
@@ -6812,8 +6812,8 @@ var s = {
                          * @param {!Object} debug
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, url, media, done, debug) {
-                            var util = require("./util");
+                        module.exports = function(Promise, url, media, done, debug) {
+                            var util = require("module/./util");
                             var tryCatch = util.tryCatch;
                             /**
                              * @param {?} fn
@@ -6925,11 +6925,11 @@ var s = {
                                 }
                             };
                         }
-                        var util = require("./util");
+                        var util = require("module/./util");
                         var maybeWrapAsError = util.maybeWrapAsError;
-                        var errors = require("./errors");
+                        var errors = require("module/./errors");
                         var OperationalError = errors.OperationalError;
-                        var es5 = require("./es5");
+                        var es5 = require("module/./es5");
                         /** @type {!RegExp} */
                         var rxIsInt = /^(?:name|message|stack|cause)$/;
                         /** @type {function(!Function, !Object): ?} */
@@ -6944,7 +6944,7 @@ var s = {
                          * @param {!Function} Promise
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise) {
+                        module.exports = function(Promise) {
                             /**
                              * @param {!Array} val
                              * @param {!Function} nodeback
@@ -6993,7 +6993,7 @@ var s = {
                                     async.throwLater(ret.e);
                                 }
                             }
-                            var util = require("./util");
+                            var util = require("module/./util");
                             var async = Promise._async;
                             var tryCatch = util.tryCatch;
                             var errorObj = util.errorObj;
@@ -7105,7 +7105,7 @@ var s = {
                                 return Promise.reject(new TypeError(msg));
                             };
                             var undefined = {};
-                            var util = require("./util");
+                            var util = require("module/./util");
                             /** @type {function(): ?} */
                             getDomain = util.isNode ? function() {
                                 var domain = options.domain;
@@ -7114,13 +7114,13 @@ var s = {
                                 return null;
                             };
                             util.notEnumerableProp(Promise, "_getDomain", getDomain);
-                            var es5 = require("./es5");
-                            var Async = require("./async");
+                            var es5 = require("module/./es5");
+                            var Async = require("module/./async");
                             var async = new Async;
                             es5.defineProperty(Promise, "_async", {
                                 value : async
                             });
-                            var errors = require("./errors");
+                            var errors = require("module/./errors");
                             var TypeError = Promise.TypeError = errors.TypeError;
                             Promise.RangeError = errors.RangeError;
                             var CancellationError = Promise.CancellationError = errors.CancellationError;
@@ -7135,14 +7135,14 @@ var s = {
                             };
                             var APPLY = {};
                             var NEXT_FILTER = {};
-                            var tryConvertToPromise = require("./thenables")(Promise, INTERNAL);
-                            var PromiseArray = require("./promise_array")(Promise, INTERNAL, tryConvertToPromise, apiRejection, Proxyable);
-                            var Context = require("./context")(Promise);
+                            var tryConvertToPromise = require("module/./thenables")(Promise, INTERNAL);
+                            var PromiseArray = require("module/./promise_array")(Promise, INTERNAL, tryConvertToPromise, apiRejection, Proxyable);
+                            var Context = require("module/./context")(Promise);
                             var createContext = Context.create;
-                            var debug = require("./debuggability")(Promise, Context);
-                            var RpcProxy = (debug.CapturedTrace, require("./finally")(Promise, tryConvertToPromise, NEXT_FILTER));
-                            var catchFilter = require("./catch_filter")(NEXT_FILTER);
-                            var nodebackForPromise = require("./nodeback");
+                            var debug = require("module/./debuggability")(Promise, Context);
+                            var RpcProxy = (debug.CapturedTrace, require("module/./finally")(Promise, tryConvertToPromise, NEXT_FILTER));
+                            var catchFilter = require("module/./catch_filter")(NEXT_FILTER);
+                            var nodebackForPromise = require("module/./nodeback");
                             var errorObj = util.errorObj;
                             var tryCatch = util.tryCatch;
                             return Promise.prototype.toString = function() {
@@ -7643,9 +7643,9 @@ var s = {
                                     resolve : resolve,
                                     reject : reject
                                 };
-                            }, util.notEnumerableProp(Promise, "_makeSelfResolutionError", makeSelfResolutionError), require("./method")(Promise, INTERNAL, tryConvertToPromise, apiRejection, debug), require("./bind")(Promise, INTERNAL, tryConvertToPromise, debug), require("./cancel")(Promise, PromiseArray, apiRejection, debug), require("./direct_resolve")(Promise), require("./synchronous_inspection")(Promise), require("./join")(Promise, PromiseArray, tryConvertToPromise, INTERNAL, async, getDomain), Promise.Promise =
-                                Promise, Promise.version = "3.5.1", require("./map.js")(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug), require("./call_get.js")(Promise), require("./using.js")(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug), require("./timers.js")(Promise, INTERNAL, debug), require("./generators.js")(Promise, apiRejection, INTERNAL, tryConvertToPromise, Proxyable, debug), require("./nodeify.js")(Promise), require("./promisify.js")(Promise, INTERNAL),
-                                require("./props.js")(Promise, PromiseArray, tryConvertToPromise, apiRejection), require("./race.js")(Promise, INTERNAL, tryConvertToPromise, apiRejection), require("./reduce.js")(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug), require("./settle.js")(Promise, PromiseArray, debug), require("./some.js")(Promise, PromiseArray, apiRejection), require("./filter.js")(Promise, INTERNAL), require("./each.js")(Promise, INTERNAL), require("./any.js")(Promise), util.toFastProperties(Promise),
+                            }, util.notEnumerableProp(Promise, "_makeSelfResolutionError", makeSelfResolutionError), require("module/./method")(Promise, INTERNAL, tryConvertToPromise, apiRejection, debug), require("module/./bind")(Promise, INTERNAL, tryConvertToPromise, debug), require("module/./cancel")(Promise, PromiseArray, apiRejection, debug), require("module/./direct_resolve")(Promise), require("module/./synchronous_inspection")(Promise), require("module/./join")(Promise, PromiseArray, tryConvertToPromise, INTERNAL, async, getDomain), Promise.Promise =
+                                Promise, Promise.version = "3.5.1", require("module/./map.js")(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug), require("module/./call_get.js")(Promise), require("module/./using.js")(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug), require("module/./timers.js")(Promise, INTERNAL, debug), require("module/./generators.js")(Promise, apiRejection, INTERNAL, tryConvertToPromise, Proxyable, debug), require("module/./nodeify.js")(Promise), require("module/./promisify.js")(Promise, INTERNAL),
+                                require("module/./props.js")(Promise, PromiseArray, tryConvertToPromise, apiRejection), require("module/./race.js")(Promise, INTERNAL, tryConvertToPromise, apiRejection), require("module/./reduce.js")(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug), require("module/./settle.js")(Promise, PromiseArray, debug), require("module/./some.js")(Promise, PromiseArray, apiRejection), require("module/./filter.js")(Promise, INTERNAL), require("module/./each.js")(Promise, INTERNAL), require("module/./any.js")(Promise), util.toFastProperties(Promise),
                                 util.toFastProperties(Promise.prototype), fillTypes({
                                 a : 1
                             }), fillTypes({
@@ -7698,7 +7698,7 @@ var s = {
                          * @param {!Function} Proxyable
                          * @return {?}
                          */
-                        mixin.exports = function(Promise, INTERNAL, tryConvertToPromise, apiRejection, Proxyable) {
+                        module.exports = function(Promise, INTERNAL, tryConvertToPromise, apiRejection, Proxyable) {
                             /**
                              * @param {?} val
                              * @return {?}
@@ -7731,7 +7731,7 @@ var s = {
                                 this._totalResolved = 0;
                                 this._init(void 0, -2);
                             }
-                            var util = require("./util");
+                            var util = require("module/./util");
                             util.isArray;
                             return util.inherits(PromiseArray, Proxyable), PromiseArray.prototype.length = function() {
                                 return this._length;
@@ -7851,7 +7851,7 @@ var s = {
                          * @param {!Object} handler
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, handler) {
+                        module.exports = function(Promise, handler) {
                             /**
                              * @param {?} key
                              * @return {?}
@@ -8108,7 +8108,7 @@ var s = {
                          * @param {?} apiRejection
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, PromiseArray, tryConvertToPromise, apiRejection) {
+                        module.exports = function(Promise, PromiseArray, tryConvertToPromise, apiRejection) {
                             /**
                              * @param {?} obj
                              * @return {undefined}
@@ -8149,9 +8149,9 @@ var s = {
                                 return isObject(castValue) ? (promise = castValue instanceof Promise ? castValue._then(Promise.props, void 0, void 0, void 0, void 0) : (new PropertiesPromiseArray(castValue)).promise(), castValue instanceof Promise && promise._propagateFrom(castValue, 2), promise) : apiRejection("cannot await properties of a non-object\n\n    See http://goo.gl/MqrFmX\n");
                             }
                             var Es6Map;
-                            var util = require("./util");
+                            var util = require("module/./util");
                             var isObject = util.isObject;
-                            var objct = require("./es5");
+                            var objct = require("module/./es5");
                             if ("function" == typeof Map) {
                                 /** @type {function(new:Map, (Array<Array<(KEY|VALUE)>>|Iterable<Array<(KEY|VALUE)>>|null)=): ?} */
                                 Es6Map = Map;
@@ -8383,7 +8383,7 @@ var s = {
                          * @param {?} apiRejection
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, INTERNAL, tryConvertToPromise, apiRejection) {
+                        module.exports = function(Promise, INTERNAL, tryConvertToPromise, apiRejection) {
                             /**
                              * @param {!Array} promises
                              * @param {?} parent
@@ -8414,7 +8414,7 @@ var s = {
                                 }
                                 return ret;
                             }
-                            var util = require("./util");
+                            var util = require("module/./util");
                             /**
                              * @param {?} promise
                              * @return {?}
@@ -8451,7 +8451,7 @@ var s = {
                          * @param {?} debug
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug) {
+                        module.exports = function(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL, debug) {
                             /**
                              * @param {?} promises
                              * @param {!Function} fn
@@ -8540,7 +8540,7 @@ var s = {
                                 return debug.checkForgottenReturns(value, promiseCreated, void 0 !== array._eachValues ? "Promise.each" : "Promise.reduce", promise), value;
                             }
                             var getDomain = Promise._getDomain;
-                            var util = require("./util");
+                            var util = require("module/./util");
                             var tryCatch = util.tryCatch;
                             util.inherits(ReductionPromiseArray, PromiseArray);
                             /**
@@ -8643,7 +8643,7 @@ var s = {
                     }],
                     29 : [function(require, module, i) {
                         var sightglass;
-                        var util = require("./util");
+                        var util = require("module/./util");
                         /**
                          * @return {?}
                          */
@@ -8725,7 +8725,7 @@ var s = {
                          * @param {!Object} provider
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, name, provider) {
+                        module.exports = function(Promise, name, provider) {
                             /**
                              * @param {?} values
                              * @return {undefined}
@@ -8734,7 +8734,7 @@ var s = {
                                 this.constructor$(values);
                             }
                             var PromiseInspection = Promise.PromiseInspection;
-                            var util = require("./util");
+                            var util = require("module/./util");
                             util.inherits(SettledPromiseArray, name);
                             /**
                              * @param {!Function} index
@@ -8790,7 +8790,7 @@ var s = {
                          * @param {!Object} func
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, name, func) {
+                        module.exports = function(Promise, name, func) {
                             /**
                              * @param {?} values
                              * @return {undefined}
@@ -8817,9 +8817,9 @@ var s = {
                                 var o = ret.promise();
                                 return ret.setHowMany(howMany), ret.init(), o;
                             }
-                            var util = require("./util");
-                            var RangeError = require("./errors").RangeError;
-                            var AggregateError = require("./errors").AggregateError;
+                            var util = require("module/./util");
+                            var RangeError = require("module/./errors").RangeError;
+                            var AggregateError = require("module/./errors").AggregateError;
                             var isArray = util.isArray;
                             var CANCELLATION = {};
                             util.inherits(SomePromiseArray, name);
@@ -8978,7 +8978,7 @@ var s = {
                          * @param {!Function} Promise
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise) {
+                        module.exports = function(Promise) {
                             /**
                              * @param {number} promise
                              * @return {undefined}
@@ -9113,7 +9113,7 @@ var s = {
                          * @param {!Object} fn
                          * @return {?}
                          */
-                        mixin.exports = function(Promise, fn) {
+                        module.exports = function(Promise, fn) {
                             /**
                              * @param {!Object} obj
                              * @param {?} context
@@ -9214,7 +9214,7 @@ var s = {
                                 var result = util.tryCatch(then).call(x, resolve, reject);
                                 return synchronous = false, promise && result === errorObj && (promise._rejectCallback(result.e, true, true), promise = null), p;
                             }
-                            var util = require("./util");
+                            var util = require("module/./util");
                             var errorObj = util.errorObj;
                             var isObject = util.isObject;
                             /** @type {function(this:Object, *): boolean} */
@@ -9231,7 +9231,7 @@ var s = {
                          * @param {!Object} opts
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, val, opts) {
+                        module.exports = function(Promise, val, opts) {
                             /**
                              * @param {!Function} handle
                              * @return {undefined}
@@ -9254,7 +9254,7 @@ var s = {
                             function fail(errtype) {
                                 throw clearTimeout(this.handle), errtype;
                             }
-                            var util = require("./util");
+                            var util = require("module/./util");
                             var TimeoutError = Promise.TimeoutError;
                             /**
                              * @return {undefined}
@@ -9331,7 +9331,7 @@ var s = {
                          * @param {?} debug
                          * @return {undefined}
                          */
-                        mixin.exports = function(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug) {
+                        module.exports = function(Promise, apiRejection, tryConvertToPromise, createContext, INTERNAL, debug) {
                             /**
                              * @param {?} name
                              * @return {undefined}
@@ -9874,7 +9874,7 @@ var s = {
                         function debuggerDecorator(types, name) {
                             return types.bind(name);
                         }
-                        var es5 = require("./es5");
+                        var es5 = require("module/./es5");
                         /** @type {boolean} */
                         var canEvaluate = "undefined" == typeof navigator;
                         var errorObj = {
@@ -10433,7 +10433,7 @@ var s = {
         }
         var cachedSetTimeout;
         var cachedClearTimeout;
-        var process = mixin.exports = {};
+        var process = module.exports = {};
         !function() {
             try {
                 /** @type {!Function} */
@@ -11284,7 +11284,7 @@ var s = {
         var _slic = $("30");
         var self = $("32");
         /** @type {function(): ?} */
-        utils = mixin.exports = function() {
+        utils = module.exports = function() {
             var q = _slic(arguments).map(s);
             return self.isUri(q[0]) ? select.apply(select, q) : ref.join.apply(ref, q);
         };
@@ -11329,7 +11329,7 @@ var s = {
          * @param {!Object} result
          * @return {?}
          */
-        mixin.exports = function(value, result) {
+        module.exports = function(value, result) {
             return value || (value = []), getStringTag(value) && (value = [].splice.call(value, 0)), eq(value) && result && (value = makeStyleLoaders(value)), Array.isArray(value) ? value : [value];
         };
     }, {}],
@@ -11344,7 +11344,7 @@ var s = {
         /**
          * @return {?}
          */
-        mixin.exports = function() {
+        module.exports = function() {
             /** @type {string} */
             var joined = [].slice.call(arguments, 0).join("/");
             return normalize(joined);
@@ -18043,7 +18043,7 @@ var s = {
                 /** @type {function(!Function, !Object, !Function): ?} */
                 module.exports = seedrandom;
                 try {
-                    nodecrypto = require("25");
+                    nodecrypto = require("module/25");
                 } catch (w) {
                 }
             } else {
@@ -18058,14 +18058,14 @@ var s = {
         25 : 25
     }],
     43 : [function(require, module, n) {
-        var ref = require("1");
-        var p = (require("8"), require("50"));
-        var PerspectiveCamera = (require("45"), require("56"), require("58"));
-        var SVGTable = (require("54"), require("48"));
-        var GlitchTextLetter = require("47");
-        var PoloLender = require("52");
-        var Zk = require("57");
-        var TagHourlyStat = require("60");
+        var ref = require("module/1");
+        var p = (require("module/8"), require("module/50"));
+        var PerspectiveCamera = (require("module/45"), require("module/56"), require("module/58"));
+        var SVGTable = (require("module/54"), require("module/48"));
+        var GlitchTextLetter = require("module/47");
+        var PoloLender = require("module/52");
+        var Zk = require("module/57");
+        var TagHourlyStat = require("module/60");
         /**
          * @param {!Function} data
          * @return {undefined}
@@ -18239,7 +18239,7 @@ var s = {
         8 : 8
     }],
     44 : [function(canCreateDiscussions, mixin, n) {
-        mixin.exports = {
+        module.exports = {
             "basic.fs" : "#ifdef USE_MAP\n  varying vec2 vUv;\n\n  uniform sampler2D map;\n#endif\n\nuniform vec3 diffuse;\nuniform float opacity;\n\nvoid main() {\n  gl_FragColor = vec4(diffuse, opacity);\n\n  #ifdef USE_MAP\n    vec4 mapTexel = texture2D(map, vUv, -2.0);\n\n    gl_FragColor *= mapTexel;\n  #endif\n}",
             "basic.vs" : "#ifdef USE_MAP\n  varying vec2 vUv;\n  uniform vec4 offsetRepeat;\n#endif\n\nvoid main() {\n  #ifdef USE_MAP\n    vUv = uv * offsetRepeat.zw + offsetRepeat.xy;\n  #endif\n\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\n}",
             "pbr.fs" : "#define MOBILE\n#define LUV\n\nuniform float uAOPBRFactor;\nuniform float uAlbedoPBRFactor;\nuniform float uEnvironmentExposure;\nuniform float uGlossinessPBRFactor;\nuniform float uMetalnessPBRFactor;\nuniform float uNormalMapFactor;\nuniform float uOpacityFactor;\nuniform float uSpecularF0Factor;\n\nuniform int uMode;\nuniform vec3 uColor;\nuniform float uAlphaTest;\n\nuniform int uFlipY;\nuniform int uOccludeSpecular;\nuniform int uOutputLinear;\n\nuniform sampler2D sTextureAlbedoMap;\nuniform sampler2D sTextureAlbedoMap2;\nuniform sampler2D sTextureNormalMap;\nuniform sampler2D sTextureNormalMap2;\nuniform sampler2D sTextureAOMap;\nuniform sampler2D sTextureAOMap2;\nuniform sampler2D sTextureEmissiveMap;\nuniform sampler2D sTexturePBRMaps;\n\nuniform vec2 uTextureEnvironmentSpecularPBRLodRange;\nuniform vec2 uTextureEnvironmentSpecularPBRTextureSize;\nuniform vec3 uDiffuseSPH[9];\nuniform mat4 uEnvironmentTransform;\n\n// varying vec3 FragPosition;\nvarying vec3 FragNormal;\nvarying vec4 FragTangent;\nvarying vec4 FragEyeVector;\nvarying vec2 vUv;\n\n#if defined(USE_ALBEDO2) || defined(USE_NORMALMAP2) || defined(USE_AOMAP2)\nvarying vec2 vUvDetail;\n#endif\n\n#ifdef USE_LIGHTMAP\n  uniform sampler2D sTextureLightMap;\n  uniform sampler2D sTextureLightMapAlpha;\n#endif\n\nvarying vec2 vUv2;\n\n#ifdef USE_FOG\n\n  uniform vec3 fogColor;\n  varying float fogDepth;\n  uniform float fogNear;\n  uniform float fogFar;\n\n#endif\n\n\n// THREE.js common.glsl\n#define PI 3.14159265359\n#define PI2 6.28318530718\n#define PI_HALF 1.5707963267949\n#define RECIPROCAL_PI 0.31830988618\n#define RECIPROCAL_PI2 0.15915494\n#define LOG2 1.442695\n#define EPSILON 1e-6\n\n#define saturate(a) clamp( a, 0.0, 1.0 )\n#define whiteCompliment(a) ( 1.0 - saturate( a ) )\n\nfloat pow2( const in float x ) { return x*x; }\nfloat pow3( const in float x ) { return x*x*x; }\nfloat pow4( const in float x ) { float x2 = x*x; return x2*x2; }\nfloat average( const in vec3 color ) { return dot( color, vec3( 0.3333 ) ); }\n// expects values in the range of [0,1]x[0,1], returns values in the [0,1] range.\n// do not collapse into a single function per: http://byteblacksmith.com/improvements-to-the-canonical-one-liner-glsl-rand-for-opengl-es-2-0/\nhighp float rand( const in vec2 uv ) {\n  const highp float a = 12.9898, b = 78.233, c = 43758.5453;\n  highp float dt = dot( uv.xy, vec2( a,b ) ), sn = mod( dt, PI );\n  return fract(sin(sn) * c);\n}\n\nstruct IncidentLight {\n  vec3 color;\n  vec3 direction;\n  bool visible;\n};\n\nstruct ReflectedLight {\n  vec3 directDiffuse;\n  vec3 directSpecular;\n  vec3 indirectDiffuse;\n  vec3 indirectSpecular;\n};\n\nstruct GeometricContext {\n  vec3 position;\n  vec3 normal;\n  vec3 viewDir;\n};\n\nvec3 transformDirection( in vec3 dir, in mat4 matrix ) {\n\n  return normalize( ( matrix * vec4( dir, 0.0 ) ).xyz );\n\n}\n\n// http://en.wikibooks.org/wiki/GLSL_Programming/Applying_Matrix_Transformations\nvec3 inverseTransformDirection( in vec3 dir, in mat4 matrix ) {\n\n  return normalize( ( vec4( dir, 0.0 ) * matrix ).xyz );\n\n}\n\nvec3 projectOnPlane(in vec3 point, in vec3 pointOnPlane, in vec3 planeNormal ) {\n\n  float distance = dot( planeNormal, point - pointOnPlane );\n\n  return - distance * planeNormal + point;\n\n}\n\nfloat sideOfPlane( in vec3 point, in vec3 pointOnPlane, in vec3 planeNormal ) {\n\n  return sign( dot( point - pointOnPlane, planeNormal ) );\n\n}\n\nvec3 linePlaneIntersect( in vec3 pointOnLine, in vec3 lineDirection, in vec3 pointOnPlane, in vec3 planeNormal ) {\n\n  return lineDirection * ( dot( planeNormal, pointOnPlane - pointOnLine ) / dot( planeNormal, lineDirection ) ) + pointOnLine;\n\n}\n\nmat3 transposeMat3( const in mat3 m ) {\n\n  mat3 tmp;\n\n  tmp[ 0 ] = vec3( m[ 0 ].x, m[ 1 ].x, m[ 2 ].x );\n  tmp[ 1 ] = vec3( m[ 0 ].y, m[ 1 ].y, m[ 2 ].y );\n  tmp[ 2 ] = vec3( m[ 0 ].z, m[ 1 ].z, m[ 2 ].z );\n\n  return tmp;\n\n}\n\n// https://en.wikipedia.org/wiki/Relative_luminance\nfloat linearToRelativeLuminance( const in vec3 color ) {\n\n  vec3 weights = vec3( 0.2126, 0.7152, 0.0722 );\n\n  return dot( weights, color.rgb );\n\n}\n\n// end common.glsl\n\n// THREE.js packing\n\nvec3 packNormalToRGB( const in vec3 normal ) {\n  return normalize( normal ) * 0.5 + 0.5;\n}\n\nvec3 unpackRGBToNormal( const in vec3 rgb ) {\n  return 2.0 * rgb.xyz - 1.0;\n}\n\nconst float PackUpscale = 256. / 255.; // fraction -> 0..1 (including 1)\nconst float UnpackDownscale = 255. / 256.; // 0..1 -> fraction (excluding 1)\n\nconst vec3 PackFactors = vec3( 256. * 256. * 256., 256. * 256.,  256. );\nconst vec4 UnpackFactors = UnpackDownscale / vec4( PackFactors, 1. );\n\nconst float ShiftRight8 = 1. / 256.;\n\nvec4 packDepthToRGBA( const in float v ) {\n  vec4 r = vec4( fract( v * PackFactors ), v );\n  r.yzw -= r.xyz * ShiftRight8; // tidy overflow\n  return r * PackUpscale;\n}\n\nfloat unpackRGBAToDepth( const in vec4 v ) {\n  return dot( v, UnpackFactors );\n}\n\n// NOTE: viewZ/eyeZ is < 0 when in front of the camera per OpenGL conventions\n\nfloat viewZToOrthographicDepth( const in float viewZ, const in float near, const in float far ) {\n  return ( viewZ + near ) / ( near - far );\n}\nfloat orthographicDepthToViewZ( const in float linearClipZ, const in float near, const in float far ) {\n  return linearClipZ * ( near - far ) - near;\n}\n\nfloat viewZToPerspectiveDepth( const in float viewZ, const in float near, const in float far ) {\n  return (( near + viewZ ) * far ) / (( far - near ) * viewZ );\n}\nfloat perspectiveDepthToViewZ( const in float invClipZ, const in float near, const in float far ) {\n  return ( near * far ) / ( ( far - near ) * invClipZ - far );\n}\n\n// end packing\n\nfloat blendOverlay(float base, float blend) {\n  return base<0.5?(2.0*base*blend):(1.0-2.0*(1.0-base)*(1.0-blend));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend) {\n  return vec3(blendOverlay(base.r,blend.r),blendOverlay(base.g,blend.g),blendOverlay(base.b,blend.b));\n}\n\nvec3 blendOverlay(vec3 base, vec3 blend, float opacity) {\n  return (blendOverlay(base, blend) * opacity + base * (1.0 - opacity));\n}\n\n// references\n// https://www.khronos.org/registry/gles/extensions/EXT/EXT_sRGB.txt\n\n// approximation\n// http://chilliant.blogspot.fr/2012/08/srgb-approximations-for-hlsl.html\nfloat linearTosRGB(const in float c) {\n  if (c >= 1.0) return 1.0;\n  float S1 = sqrt(c);\n  float S2 = sqrt(S1);\n  float S3 = sqrt(S2);\n  return 0.662002687 * S1 + 0.684122060 * S2 - 0.323583601 * S3 - 0.0225411470 * c;\n}\n\nvec3 linearTosRGB(const in vec3 c) {\n  // vec3 cm = min(c, 1.0);\n  vec3 cm = c;\n  vec3 S1 = sqrt(cm);\n  vec3 S2 = sqrt(S1);\n  vec3 S3 = sqrt(S2);\n  return 0.662002687 * S1 + 0.684122060 * S2 - 0.323583601 * S3 - 0.0225411470 * cm;\n}\n\nvec4 linearTosRGB(const in vec4 c) {\n  vec3 cm = min(c.rgb, 1.0);\n  vec3 S1 = sqrt(cm);\n  vec3 S2 = sqrt(S1);\n  vec3 S3 = sqrt(S2);\n  return vec4(0.662002687 * S1 + 0.684122060 * S2 - 0.323583601 * S3 - 0.0225411470 * cm, c.a);\n}\n\nfloat sRGBToLinear(const in float c) {\n  return c * (c * (c * 0.305306011 + 0.682171111) + 0.012522878);\n}\n\nvec3 sRGBToLinear(const in vec3 c) {\n  return c * (c * (c * 0.305306011 + 0.682171111) + 0.012522878);\n}\n\nvec4 sRGBToLinear(const in vec4 c) {\n  return vec4(c.rgb * (c.rgb * (c.rgb * 0.305306011 + 0.682171111) + 0.012522878), c.a);\n}\n\n//http://graphicrants.blogspot.fr/2009/04/rgbm-color-encoding.html\nvec3 RGBMToRGB(const in vec4 rgba) {\n  const float maxRange = 8.0;\n  return rgba.rgb * maxRange * rgba.a;\n}\n\nconst mat3 LUVInverse = mat3(6.0013,    -2.700,   -1.7995,\n                -1.332,    3.1029,   -5.7720,\n                0.3007,    -1.088,    5.6268);\n\nvec3 LUVToRGB(const in vec4 vLogLuv) {\n  float Le = vLogLuv.z * 255.0 + vLogLuv.w;\n  vec3 Xp_Y_XYZp;\n  Xp_Y_XYZp.y = exp2((Le - 127.0) / 2.0);\n  Xp_Y_XYZp.z = Xp_Y_XYZp.y / vLogLuv.y;\n  Xp_Y_XYZp.x = vLogLuv.x * Xp_Y_XYZp.z;\n  vec3 vRGB = LUVInverse * Xp_Y_XYZp;\n  return max(vRGB, 0.0);\n}\n\n// http://graphicrants.blogspot.fr/2009/04/rgbm-color-encoding.html\nvec4 encodeRGBM(const in vec3 col, const in float range) {\n  if(range <= 0.0)\n    return vec4(col, 1.0);\n  vec4 rgbm;\n  vec3 color = col / range;\n  rgbm.a = clamp(max(max(color.r, color.g), max(color.b, 1e-6)), 0.0, 1.0);\n  rgbm.a = ceil(rgbm.a * 255.0) / 255.0;\n  rgbm.rgb = color / rgbm.a;\n  return rgbm;\n}\n\nvec3 decodeRGBM(const in vec4 col, const in float range) {\n  if(range <= 0.0)\n    return col.rgb;\n  return range * col.rgb * col.a;\n}\n\nvec3 textureRGB(const in sampler2D texture, const in vec2 uv) {\n  return texture2D(texture, uv.xy).rgb;\n}\n\nvec4 textureRGBA(const in sampler2D texture, const in vec2 uv) {\n  return texture2D(texture, uv.xy).rgba;\n}\n\nfloat textureIntensity(const in sampler2D texture, const in vec2 uv) {\n  return texture2D(texture, uv).r;\n}\n\nfloat textureAlpha(const in sampler2D texture, const in vec2 uv) {\n  return texture2D(texture, uv.xy).a;\n}\n\nfloat adjustSpecular(const in float specular, const in vec3 normal) {\n  // Based on The Order : 1886 SIGGRAPH course notes implementation (page 21 notes)\n  float normalLen = length(normal);\n  if (normalLen < 1.0) {\n    float normalLen2 = normalLen * normalLen;\n    float kappa = (3.0 * normalLen -  normalLen2 * normalLen)/(1.0 - normalLen2);\n    // http://www.frostbite.com/2014/11/moving-frostbite-to-pbr/\n    // page 91 : they use 0.5/kappa instead\n    return 1.0-min(1.0, sqrt((1.0-specular) * (1.0-specular) + 1.0/kappa));\n  }\n  return specular;\n}\n\nvec3 mtexNspaceTangent(const in vec4 tangent, const in vec3 normal, const in vec3 texnormal) {\n  vec3 tang = vec3(0.0,1.0,0.0);\n  float l = length(tangent.xyz);\n  if (l != 0.0) {\n    //normalize reusing length computations\n    // tang =  normalize(tangent.xyz);\n    tang =  tangent.xyz / l;\n  }\n  vec3 B = tangent.w * normalize(cross(normal, tang));\n  return normalize(texnormal.x*tang + texnormal.y*B + texnormal.z*normal);\n}\n\nvec2 normalMatcap(const in vec3 normal, const in vec3 nm_z) {\n  vec3 nm_x = vec3(-nm_z.z, 0.0, nm_z.x);\n  vec3 nm_y = cross(nm_x, nm_z);\n  return vec2(dot(normal.xz, nm_x.xz), dot(normal, nm_y)) * vec2(0.5)  + vec2(0.5) ; //MADD vector form\n}\n\nvec3 rgbToNormal(const in vec3 texel, const in int flipNormalY) {\n  vec3 rgb = texel * vec3(2.0) + vec3(-1.0); // MADD vec form\n  rgb[1] = flipNormalY == 1 ? -rgb[1] : rgb[1];\n  return rgb;\n}\n\nvec3 bumpMap(const in vec4 tangent, const in vec3 normal, const in vec2 gradient) {\n  vec3 outnormal;\n  float l = length(tangent.xyz);\n  if (l != 0.0) {\n    //normalize reusing length computations\n    // vec3 tang =  normalize(tangent.xyz);\n    vec3 tang =  tangent.xyz / l;\n    vec3 binormal = tangent.w * normalize(cross(normal, tang));\n    outnormal = normal + gradient.x * tang + gradient.y * binormal;\n  }\n  else {\n     outnormal = vec3(normal.x + gradient.x, normal.y + gradient.y, normal.z);\n  }\n  return normalize(outnormal);\n}\n\nfloat specularOcclusion(const in int occlude, const in float ao, const in vec3 N, const in vec3 V) {\n  if(occlude == 0)\n    return 1.0;\n  // Yoshiharu Gotanda's specular occlusion approximation:\n  // cf http://research.tri-ace.com/Data/cedec2011_RealtimePBR_Implementation_e.pptx pg59\n  float d = dot(N, V) + ao;\n  return clamp((d * d) - 1.0 + ao, 0.0, 1.0);\n}\n\nfloat adjustRoughnessNormalMap(const in float roughness, const in vec3 normal) {\n  // Based on The Order : 1886 SIGGRAPH course notes implementation (page 21 notes)\n  float normalLen = length(normal);\n  if (normalLen < 1.0) {\n    float normalLen2 = normalLen * normalLen;\n    float kappa = (3.0 * normalLen -  normalLen2 * normalLen)/(1.0 - normalLen2);\n    // http://www.frostbite.com/2014/11/moving-frostbite-to-pbr/\n    // page 91 : they use 0.5/kappa instead\n    return min(1.0, sqrt(roughness * roughness + 1.0/kappa));\n  }\n  return roughness;\n}\n\nfloat adjustRoughnessGeometry(const in float roughness, const in vec3 normal) {\n  // Geometric Specular Aliasing (slide 43)\n  // http://alex.vlachos.com/graphics/Alex_Vlachos_Advanced_VR_Rendering_GDC2015.pdf\n// #ifdef GL_OES_standard_derivatives\n//     vec3 vDx = dFdx(normal.xyz);\n//     vec3 vDy = dFdy(normal.xyz);\n//     return max(roughness, pow(clamp(max(dot(vDx, vDx), dot(vDy, vDy)), 0.0, 1.0), 0.333));\n// #else\n  return roughness;\n// #endif\n}\n\nmat3 environmentTransformPBR(const in mat4 tr) {\n  // TODO trick from animation matrix transpose?\n  vec3 x = vec3(tr[0][0], tr[1][0], tr[2][0]);\n  vec3 y = vec3(tr[0][1], tr[1][1], tr[2][1]);\n  vec3 z = vec3(tr[0][2], tr[1][2], tr[2][2]);\n  mat3 m = mat3(x, y, z);\n  return m;\n}\n\nvec3 evaluateDiffuseSphericalHarmonics(const in vec3 s[9], const in mat3 envTrans, const in vec3 N) {\n  vec3 n = envTrans * N;\n  // https://github.com/cedricpinson/envtools/blob/master/Cubemap.cpp#L523\n  vec3 result = (s[0]+s[1]*n.y+s[2]*n.z+s[3]*n.x+s[4]*n.y*n.x+s[5]*n.y*n.z+s[6]*(3.0*n.z*n.z-1.0)+s[7]*(n.z*n.x)+s[8]*(n.x*n.x-n.y*n.y));\n  return max(result, vec3(0.0));\n}\n\n// Frostbite, Lagarde paper p67\n// http://www.frostbite.com/wp-content/uploads/2014/11/course_notes_moving_frostbite_to_pbr.pdf\nfloat linRoughnessToMipmap(const in float roughnessLinear) {\n  return sqrt(roughnessLinear);\n}\n\nvec3 integrateBRDF(const in vec3 specular, const in float r, const in float NoV, const in sampler2D tex) {\n  vec4 rgba = texture2D(tex, vec2(NoV, r));\n  float b = (rgba[3] * 65280.0 + rgba[2] * 255.0);\n  float a = (rgba[1] * 65280.0 + rgba[0] * 255.0);\n  const float div = 1.0/65535.0;\n  return (specular * a + b) * div;\n}\n\n// https://www.unrealengine.com/blog/physically-based-shading-on-mobile\n// TODO should we use somehow specular f0 ?\nvec3 integrateBRDFApprox(const in vec3 specular, const in float roughness, const in float NoV) {\n  const vec4 c0 = vec4(-1, -0.0275, -0.572, 0.022);\n  const vec4 c1 = vec4(1, 0.0425, 1.04, -0.04);\n  vec4 r = roughness * c0 + c1;\n  float a004 = min(r.x * r.x, exp2(-9.28 * NoV)) * r.x + r.y;\n  vec2 AB = vec2(-1.04, 1.04) * a004 + r.zw;\n  return specular * AB.x + AB.y;\n}\n\nvec3 computeIBLDiffuseUE4(const in vec3 normal, const in vec3 albedo, const in mat3 envTrans, const in vec3 sphHarm[9]) {\n  return albedo * evaluateDiffuseSphericalHarmonics(sphHarm, envTrans, normal);\n}\n\n\n#ifdef CUBEMAP\nvec3 textureCubemapLod(const in samplerCube texture, const in vec3 dir, const in float lod) {\n  vec4 rgba = textureCubeLodEXT(texture, dir, lod);\n#ifdef FLOAT\n  return rgba.rgb;\n#endif\n#ifdef RGBM\n  return RGBMToRGB(rgba);\n#endif\n#ifdef LUV\n  return LUVToRGB(rgba);\n#endif\n}\n\nvec3 textureCubeLodEXTFixed(const in samplerCube texture, const in vec2 size, const in vec3 direction, const in float lodInput, const in float maxLod) {\n  vec3 dir = direction;\n  float lod = min(maxLod, lodInput);\n\n  // http://seblagarde.wordpress.com/2012/06/10/amd-cubemapgen-for-physically-based-rendering/\n  float scale = 1.0 - exp2(lod) / size.x;\n  vec3 absDir = abs(dir);\n  float M = max(max(absDir.x, absDir.y), absDir.z);\n\n  if (absDir.x != M) dir.x *= scale;\n  if (absDir.y != M) dir.y *= scale;\n  if (absDir.z != M) dir.z *= scale;\n\n  return textureCubemapLod(texture, dir, lod);\n}\n\nvec3 prefilterEnvMapCube(const in float rLinear, const in vec3 R, const in samplerCube tex, const in vec2 lodRange, const in vec2 size){\n  float lod = linRoughnessToMipmap(rLinear) * lodRange[1];\n  return textureCubeLodEXTFixed(tex, size, R, lod, lodRange[0]);\n}\n\n#define samplerEnv samplerCube\n#define prefilterEnvMap prefilterEnvMapCube\n\n#else\n#ifdef PANORAMA\nvec2 computeUVForMipmap(const in float level, const in vec2 uvBase, const in float size, const in float maxLOD) {\n  vec2 uv = uvBase;\n  float widthForLevel = exp2(maxLOD - level);\n  float heightForLevel = widthForLevel * 0.5;\n  float widthFactor = pow(0.5, level);\n  float heightFactor = widthFactor * 0.5;\n  float texelSize = 1.0 / size;\n\n  uv.y = 1.0 - uv.y;\n\n  float resizeX = (widthForLevel - 2.0) * texelSize;\n  float resizeY = (heightForLevel - 2.0) * texelSize;\n\n  float uvSpaceLocalX = texelSize + uv.x * resizeX;\n  float uvSpaceLocalY = texelSize + uv.y * resizeY;\n\n  uvSpaceLocalY += heightFactor;\n\n  return vec2(uvSpaceLocalX, uvSpaceLocalY);\n}\n\nvec2 normalToPanoramaUVY(const in vec3 dir) {\n  float n = length(dir.xz);\n\n  // to avoid bleeding the max(-1.0,dir.x / n) is needed\n  vec2 pos = vec2((n > 0.0000001) ? max(-1.0, dir.x / n) : 0.0, dir.y);\n\n  // fix edge bleeding\n  if (pos.x > 0.0) pos.x = min(0.999999, pos.x);\n\n  pos = acos(pos) * 0.3183098861837907; // inv_pi\n\n  pos.x = (dir.z > 0.0) ? pos.x * 0.5 : 1.0 - (pos.x * 0.5);\n\n  // shift u to center the panorama to -z\n  pos.x = mod(pos.x - 0.25 + 1.0, 1.0);\n  pos.y = 1.0 - pos.y;\n  return pos;\n}\n\nvec3 texturePanorama(const in sampler2D texture, const in vec2 uv) {\n  vec4 rgba = texture2D(texture, uv);\n#ifdef FLOAT\n  return rgba.rgb;\n#endif\n#ifdef RGBM\n  return RGBMToRGB(rgba);\n#endif\n#ifdef LUV\n  return LUVToRGB(rgba);\n#endif\n}\n\nvec3 texturePanoramaLod(const in sampler2D texture, const in vec2 size, const in vec3 direction, const in float lodInput, const in float maxLOD) {\n  float lod = min(maxLOD, lodInput);\n  vec2 uvBase = normalToPanoramaUVY(direction);\n\n  float lod0 = floor(lod);\n  vec2 uv0 = computeUVForMipmap(lod0, uvBase, size.x, maxLOD);\n  vec3 texel0 = texturePanorama(texture, uv0.xy);\n\n  float lod1 = ceil(lod);\n  vec2 uv1 = computeUVForMipmap(lod1, uvBase, size.x, maxLOD);\n  vec3 texel1 = texturePanorama(texture, uv1.xy);\n\n  return mix(texel0, texel1, fract(lod));\n}\n\nvec3 prefilterEnvMapPanorama(const in float rLinear, const in vec3 R, const in sampler2D tex, const in vec2 lodRange, const in vec2 size) {\n  float lod = linRoughnessToMipmap(rLinear) * lodRange[1]; //(uEnvironmentMaxLod - 1.0);\n  return texturePanoramaLod(tex, size, R, lod, lodRange[0]);\n}\n\n#define samplerEnv sampler2D\n#define prefilterEnvMap prefilterEnvMapPanorama\n\n#else\n// in case there is no environment node ?\nvec3 prefilterEnvMap(const in float rLinear, const in vec3 R, const in sampler2D tex, const in vec2 lodRange, const in vec2 size) {\n  return vec3(0.0);\n}\n#define samplerEnv sampler2D\n#endif // PANORAMA\n\n#endif // CUBEMAP\n\nvec3 getSpecularDominantDir(const in vec3 N, const in vec3 R, const in float realRoughness) {\n  float smoothness = 1.0 - realRoughness;\n  float lerpFactor = smoothness * (sqrt(smoothness) + realRoughness);\n  // The result is not normalized as we fetch in a cubemap\n  return mix(N, R, lerpFactor);\n}\n\n// samplerEnv and prefilterEnvMap are both defined above (cubemap or panorama)\nvec3 computeIBLSpecularUE4(\n  const in vec3 N,\n  const in vec3 V,\n  const in float rLinear,\n  const in vec3 specular,\n  const in mat3 envTrans,\n  const in samplerEnv texEnv,\n  const in vec2 lodRange,\n  const in vec2 size,\n  const in vec3 frontNormal\n  #ifdef MOBILE\n){\n  #else\n  ,const in sampler2D texBRDF) {\n  #endif\n\n  float rough = max(rLinear, 0.0);\n\n  float NoV = clamp(dot(N, V), 0.0, 1.0);\n  vec3 R = normalize(NoV * 2.0 * N - V);\n\n  R = getSpecularDominantDir(N, R, rLinear);\n  // could use that, especially if NoV comes from shared preCompSpec\n  // vec3 R = reflect(-V, N);\n\n  vec3 dir = envTrans * R;\n\n  vec3 prefilteredColor = prefilterEnvMap(rough, dir, texEnv, lodRange, size);\n  // http://marmosetco.tumblr.com/post/81245981087\n  // TODO we set a min value (10%) to avoid pure blackness (in case of pure metal)\n  float factor = clamp(1.0 + 1.3 * dot(R, frontNormal), 0.1, 1.0);\n  prefilteredColor *= factor * factor;\n  #ifdef MOBILE\n  return prefilteredColor * integrateBRDFApprox(specular, rough, NoV);\n  #else\n  return prefilteredColor * integrateBRDF(specular, rough, NoV, texBRDF);\n  #endif\n}\n\nvec4 linearToGamma(vec4 value, float gammaFactor) {\n  return vec4(pow(value.xyz, vec3(1.0 / gammaFactor)), value.w);\n}\n\nfloat luma(vec3 color) {\n  return dot(color, vec3(0.299, 0.587, 0.114));\n}\n\n// Lights \n\n#if NUM_DIR_LIGHTS > 0\n\n  varying vec3 vEyeLightDir;\n  varying float vDotNL;\n  varying vec3 vComputeGGXResult;\n\n  #define G1V(dotNV, k) (1.0/(dotNV*(1.0-k)+k))\n\n  void precomputeSun(\n          const in vec3 normal,\n          const in vec3 lightViewDirection,\n    \n          out float attenuation,\n          out vec3 eyeLightDir,\n          out float dotNL) {\n\n      attenuation = 1.0;\n      eyeLightDir = lightViewDirection;\n      dotNL = dot(eyeLightDir, normal);\n  }\n\n  vec4 precomputeGGX(const in vec3 normal, const in vec3 eyeVector, const in float roughness) {\n      float dotNV = saturate(dot(normal, eyeVector));\n      float alpha = roughness * roughness;\n      float k = alpha * 0.5;\n      float visNV = G1V(dotNV, k);\n\n      return vec4(alpha, alpha * alpha, k, visNV);\n  }\n\n  vec3 computeGGX(const vec4 precomputeGGX, const vec3 normal, const vec3 eyeVector, const vec3 eyeLightDir, const vec3 F0, const float dotNL) {\n\n      vec3 H = normalize(eyeVector + eyeLightDir);\n      float dotNH = saturate(dot(normal, H));\n      // D\n      float alphaSqr = precomputeGGX.y;\n      float denom = dotNH * dotNH * (alphaSqr - 1.0) + 1.0;\n      float D = alphaSqr / (PI * denom * denom);\n\n      // F\n      float dotLH = saturate(dot(eyeLightDir, H));\n      float dotLH5 = pow(1.0 - dotLH, 5.0);\n      vec3 F = vec3(F0) + (vec3(1.0) - F0) * (dotLH5);\n\n      // V\n      float visNL = G1V(dotNL, precomputeGGX.z);\n      return D * F * visNL * precomputeGGX.w;\n  }\n\n  void computeLightLambertGGX(\n      const in vec3 normal,\n      const in vec3 eyeVector,\n      const in float dotNL,\n      const in vec4 precomputeGGX,\n      \n      const in vec3 diffuse,\n      const in vec3 specular,\n      \n      const in float attenuation,\n      const in vec3 lightColor,\n      const in vec3 eyeLightDir,\n      const in float lightIntensity,\n      \n      out vec3 diffuseOut,\n      out vec3 specularOut,\n      out bool lighted) {\n\n      lighted = dotNL > 0.0;\n      if (lighted == false) {\n          specularOut = diffuseOut = vec3(0.0);\n          return;\n      }\n\n      vec3 colorAttenuate = attenuation * dotNL * lightColor * lightIntensity;\n      specularOut = colorAttenuate * vComputeGGXResult;\n      diffuseOut = colorAttenuate * diffuse;\n  }\n#endif\n\n// THREE.js lights_pars\nuniform vec3 ambientLightColor;\n\nvec3 getAmbientLightIrradiance( const in vec3 ambientLightColor ) {\n\n  vec3 irradiance = ambientLightColor;\n\n  #ifndef PHYSICALLY_CORRECT_LIGHTS\n\n    irradiance *= PI;\n\n  #endif\n\n  return irradiance;\n\n}\n\n#if NUM_DIR_LIGHTS > 0\n\n  struct DirectionalLight {\n    vec3 direction;\n    vec3 color;\n\n    int shadow;\n    float shadowBias;\n    float shadowRadius;\n    vec2 shadowMapSize;\n    float intensity;\n  };\n\n  uniform DirectionalLight directionalLights[ NUM_DIR_LIGHTS ];\n\n  void getDirectionalDirectLightIrradiance( const in DirectionalLight directionalLight, const in GeometricContext geometry, out IncidentLight directLight ) {\n\n    directLight.color = directionalLight.color;\n    directLight.direction = directionalLight.direction;\n    directLight.visible = true;\n\n  }\n\n#endif\n\n\n// Shadowmaps\n// THREE.js shadowmap_pars_fragment.fs\n\n#ifdef USE_SHADOWMAP\n\n  #if NUM_DIR_LIGHTS > 0\n\n    uniform sampler2D directionalShadowMap[ NUM_DIR_LIGHTS ];\n    varying vec4 vDirectionalShadowCoord[ NUM_DIR_LIGHTS ];\n\n  #endif\n\n  #if NUM_SPOT_LIGHTS > 0\n\n    uniform sampler2D spotShadowMap[ NUM_SPOT_LIGHTS ];\n    varying vec4 vSpotShadowCoord[ NUM_SPOT_LIGHTS ];\n\n  #endif\n\n  #if NUM_POINT_LIGHTS > 0\n\n    uniform sampler2D pointShadowMap[ NUM_POINT_LIGHTS ];\n    varying vec4 vPointShadowCoord[ NUM_POINT_LIGHTS ];\n\n  #endif\n\n  /*\n  #if NUM_RECT_AREA_LIGHTS > 0\n\n    // TODO (abelnation): create uniforms for area light shadows\n\n  #endif\n  */\n\n  float texture2DCompare( sampler2D depths, vec2 uv, float compare ) {\n\n    return step( compare, unpackRGBAToDepth( texture2D( depths, uv ) ) );\n\n  }\n\n  float texture2DShadowLerp( sampler2D depths, vec2 size, vec2 uv, float compare ) {\n\n    const vec2 offset = vec2( 0.0, 1.0 );\n\n    vec2 texelSize = vec2( 1.0 ) / size;\n    vec2 centroidUV = floor( uv * size + 0.5 ) / size;\n\n    float lb = texture2DCompare( depths, centroidUV + texelSize * offset.xx, compare );\n    float lt = texture2DCompare( depths, centroidUV + texelSize * offset.xy, compare );\n    float rb = texture2DCompare( depths, centroidUV + texelSize * offset.yx, compare );\n    float rt = texture2DCompare( depths, centroidUV + texelSize * offset.yy, compare );\n\n    vec2 f = fract( uv * size + 0.5 );\n\n    float a = mix( lb, lt, f.y );\n    float b = mix( rb, rt, f.y );\n    float c = mix( a, b, f.x );\n\n    return c;\n\n  }\n\n  float getShadow( sampler2D shadowMap, vec2 shadowMapSize, float shadowBias, float shadowRadius, vec4 shadowCoord ) {\n\n    shadowCoord.xyz /= shadowCoord.w;\n    shadowCoord.z += shadowBias;\n\n    // if ( something && something ) breaks ATI OpenGL shader compiler\n    // if ( all( something, something ) ) using this instead\n\n    bvec4 inFrustumVec = bvec4 ( shadowCoord.x >= 0.0, shadowCoord.x <= 1.0, shadowCoord.y >= 0.0, shadowCoord.y <= 1.0 );\n    bool inFrustum = all( inFrustumVec );\n\n    bvec2 frustumTestVec = bvec2( inFrustum, shadowCoord.z <= 1.0 );\n\n    bool frustumTest = all( frustumTestVec );\n\n    if ( frustumTest ) {\n\n    #if defined( SHADOWMAP_TYPE_PCF )\n\n      vec2 texelSize = vec2( 1.0 ) / shadowMapSize;\n\n      float dx0 = - texelSize.x * shadowRadius;\n      float dy0 = - texelSize.y * shadowRadius;\n      float dx1 = + texelSize.x * shadowRadius;\n      float dy1 = + texelSize.y * shadowRadius;\n\n      return (\n        texture2DCompare( shadowMap, shadowCoord.xy + vec2( dx0, dy0 ), shadowCoord.z ) +\n        texture2DCompare( shadowMap, shadowCoord.xy + vec2( 0.0, dy0 ), shadowCoord.z ) +\n        texture2DCompare( shadowMap, shadowCoord.xy + vec2( dx1, dy0 ), shadowCoord.z ) +\n        texture2DCompare( shadowMap, shadowCoord.xy + vec2( dx0, 0.0 ), shadowCoord.z ) +\n        texture2DCompare( shadowMap, shadowCoord.xy, shadowCoord.z ) +\n        texture2DCompare( shadowMap, shadowCoord.xy + vec2( dx1, 0.0 ), shadowCoord.z ) +\n        texture2DCompare( shadowMap, shadowCoord.xy + vec2( dx0, dy1 ), shadowCoord.z ) +\n        texture2DCompare( shadowMap, shadowCoord.xy + vec2( 0.0, dy1 ), shadowCoord.z ) +\n        texture2DCompare( shadowMap, shadowCoord.xy + vec2( dx1, dy1 ), shadowCoord.z )\n      ) * ( 1.0 / 9.0 );\n\n    #elif defined( SHADOWMAP_TYPE_PCF_SOFT )\n\n      vec2 texelSize = vec2( 1.0 ) / shadowMapSize;\n\n      float dx0 = - texelSize.x * shadowRadius;\n      float dy0 = - texelSize.y * shadowRadius;\n      float dx1 = + texelSize.x * shadowRadius;\n      float dy1 = + texelSize.y * shadowRadius;\n\n      return (\n        texture2DShadowLerp( shadowMap, shadowMapSize, shadowCoord.xy + vec2( dx0, dy0 ), shadowCoord.z ) +\n        texture2DShadowLerp( shadowMap, shadowMapSize, shadowCoord.xy + vec2( 0.0, dy0 ), shadowCoord.z ) +\n        texture2DShadowLerp( shadowMap, shadowMapSize, shadowCoord.xy + vec2( dx1, dy0 ), shadowCoord.z ) +\n        texture2DShadowLerp( shadowMap, shadowMapSize, shadowCoord.xy + vec2( dx0, 0.0 ), shadowCoord.z ) +\n        texture2DShadowLerp( shadowMap, shadowMapSize, shadowCoord.xy, shadowCoord.z ) +\n        texture2DShadowLerp( shadowMap, shadowMapSize, shadowCoord.xy + vec2( dx1, 0.0 ), shadowCoord.z ) +\n        texture2DShadowLerp( shadowMap, shadowMapSize, shadowCoord.xy + vec2( dx0, dy1 ), shadowCoord.z ) +\n        texture2DShadowLerp( shadowMap, shadowMapSize, shadowCoord.xy + vec2( 0.0, dy1 ), shadowCoord.z ) +\n        texture2DShadowLerp( shadowMap, shadowMapSize, shadowCoord.xy + vec2( dx1, dy1 ), shadowCoord.z )\n      ) * ( 1.0 / 9.0 );\n\n    #else // no percentage-closer filtering:\n\n      return texture2DCompare( shadowMap, shadowCoord.xy, shadowCoord.z );\n\n    #endif\n\n    }\n\n    return 1.0;\n\n  }\n\n  // cubeToUV() maps a 3D direction vector suitable for cube texture mapping to a 2D\n  // vector suitable for 2D texture mapping. This code uses the following layout for the\n  // 2D texture:\n  //\n  // xzXZ\n  //  y Y\n  //\n  // Y - Positive y direction\n  // y - Negative y direction\n  // X - Positive x direction\n  // x - Negative x direction\n  // Z - Positive z direction\n  // z - Negative z direction\n  //\n  // Source and test bed:\n  // https://gist.github.com/tschw/da10c43c467ce8afd0c4\n\n  vec2 cubeToUV( vec3 v, float texelSizeY ) {\n\n    // Number of texels to avoid at the edge of each square\n\n    vec3 absV = abs( v );\n\n    // Intersect unit cube\n\n    float scaleToCube = 1.0 / max( absV.x, max( absV.y, absV.z ) );\n    absV *= scaleToCube;\n\n    // Apply scale to avoid seams\n\n    // two texels less per square (one texel will do for NEAREST)\n    v *= scaleToCube * ( 1.0 - 2.0 * texelSizeY );\n\n    // Unwrap\n\n    // space: -1 ... 1 range for each square\n    //\n    // #X##   dim    := ( 4 , 2 )\n    //  # #   center := ( 1 , 1 )\n\n    vec2 planar = v.xy;\n\n    float almostATexel = 1.5 * texelSizeY;\n    float almostOne = 1.0 - almostATexel;\n\n    if ( absV.z >= almostOne ) {\n\n      if ( v.z > 0.0 )\n        planar.x = 4.0 - v.x;\n\n    } else if ( absV.x >= almostOne ) {\n\n      float signX = sign( v.x );\n      planar.x = v.z * signX + 2.0 * signX;\n\n    } else if ( absV.y >= almostOne ) {\n\n      float signY = sign( v.y );\n      planar.x = v.x + 2.0 * signY + 2.0;\n      planar.y = v.z * signY - 2.0;\n\n    }\n\n    // Transform to UV space\n\n    // scale := 0.5 / dim\n    // translate := ( center + 0.5 ) / dim\n    return vec2( 0.125, 0.25 ) * planar + vec2( 0.375, 0.75 );\n\n  }\n\n  float getPointShadow( sampler2D shadowMap, vec2 shadowMapSize, float shadowBias, float shadowRadius, vec4 shadowCoord ) {\n\n    vec2 texelSize = vec2( 1.0 ) / ( shadowMapSize * vec2( 4.0, 2.0 ) );\n\n    // for point lights, the uniform @vShadowCoord is re-purposed to hold\n    // the distance from the light to the world-space position of the fragment.\n    vec3 lightToPosition = shadowCoord.xyz;\n\n    // bd3D = base direction 3D\n    vec3 bd3D = normalize( lightToPosition );\n    // dp = distance from light to fragment position\n    float dp = ( length( lightToPosition ) - shadowBias ) / 1000.0;\n\n    #if defined( SHADOWMAP_TYPE_PCF ) || defined( SHADOWMAP_TYPE_PCF_SOFT )\n\n      vec2 offset = vec2( - 1, 1 ) * shadowRadius * texelSize.y;\n\n      return (\n        texture2DCompare( shadowMap, cubeToUV( bd3D + offset.xyy, texelSize.y ), dp ) +\n        texture2DCompare( shadowMap, cubeToUV( bd3D + offset.yyy, texelSize.y ), dp ) +\n        texture2DCompare( shadowMap, cubeToUV( bd3D + offset.xyx, texelSize.y ), dp ) +\n        texture2DCompare( shadowMap, cubeToUV( bd3D + offset.yyx, texelSize.y ), dp ) +\n        texture2DCompare( shadowMap, cubeToUV( bd3D, texelSize.y ), dp ) +\n        texture2DCompare( shadowMap, cubeToUV( bd3D + offset.xxy, texelSize.y ), dp ) +\n        texture2DCompare( shadowMap, cubeToUV( bd3D + offset.yxy, texelSize.y ), dp ) +\n        texture2DCompare( shadowMap, cubeToUV( bd3D + offset.xxx, texelSize.y ), dp ) +\n        texture2DCompare( shadowMap, cubeToUV( bd3D + offset.yxx, texelSize.y ), dp )\n      ) * ( 1.0 / 9.0 );\n\n    #else // no percentage-closer filtering\n\n      return texture2DCompare( shadowMap, cubeToUV( bd3D, texelSize.y ), dp );\n\n    #endif\n\n  }\n\n#endif\n\n\n\nvoid main() {\n  vec3 eyeVector = normalize(-FragEyeVector.rgb);\n  mat3 transform = environmentTransformPBR(uEnvironmentTransform);\n\n  vec4 frontTangent = gl_FrontFacing ? FragTangent : -FragTangent;\n  vec3 frontNormal = gl_FrontFacing ? FragNormal : -FragNormal;\n\n  vec3 normal = normalize(frontNormal);\n\n  // Normal map\n  #ifdef USE_NORMALMAP\n    vec3 nmTexel = rgbToNormal(textureRGB(sTextureNormalMap, vUv.xy), uFlipY);\n    vec3 normalMap = vec3(uNormalMapFactor * nmTexel.xy, nmTexel.z);\n    vec3 geoNormal = mtexNspaceTangent(frontTangent, normal, normalMap);\n    if (uMode == -1) {\n      geoNormal = normal;\n    }\n  #else\n    vec3 geoNormal = normal;\n  #endif\n\n  // Metalness / Glossiness\n  vec3 combinedTexel = textureRGB(sTexturePBRMaps, vUv.xy);\n  float metalness = combinedTexel.r;\n  float glossiness = combinedTexel.b;\n  float channelMetalnessPBR = metalness * uMetalnessPBRFactor;\n  float channelGlossinessPBR = glossiness * uGlossinessPBRFactor;\n  float roughness = 1.0 - channelGlossinessPBR;\n  float tmp_51 = max(1.e-4, roughness);\n  #ifdef USE_NORMALMAP\n    float tmp_52 = adjustRoughnessNormalMap(tmp_51, normalMap);\n    float materialRoughness = adjustRoughnessGeometry(tmp_52, normal);\n  #else\n    float materialRoughness = tmp_51;\n  #endif\n\n  // Albedo\n  vec4 albedoMap = vec4(uColor, 1.0);\n  #ifdef USE_ALBEDOMAP\n    albedoMap *= textureRGBA(sTextureAlbedoMap, vUv.xy);\n  #endif\n\n  vec3 channelAlbedoPBR = sRGBToLinear(albedoMap.rgb) * uAlbedoPBRFactor;\n  vec3 materialDiffusePBR = channelAlbedoPBR * (1.0 - channelMetalnessPBR);\n\n  // Ambient occlusion\n  float ao = textureIntensity(sTextureAOMap, vUv2.xy);\n  float channelAOPBR = mix(1.0, ao, uAOPBRFactor);\n\n  // Diffuse \n  vec3 diffuse = computeIBLDiffuseUE4(geoNormal, materialDiffusePBR, transform, uDiffuseSPH);\n\n  // Specular\n  float materialSpecularf0 = mix(0.0, 0.08, uSpecularF0Factor);\n  vec3 materialSpecularPBR = mix(vec3(materialSpecularf0), channelAlbedoPBR, channelMetalnessPBR);\n\n  // Optimization because we don't have reflective surfaces and a very simple environment\n  vec3 specular = vec3(0.004, 0.004, 0.012);\n\n  vec3 color = diffuse + specular;\n\n  color *= uEnvironmentExposure;\n\n  float shadow = 1.0;\n\n  #if NUM_DIR_LIGHTS > 0\n    DirectionalLight directionalLight;\n\n    // vec4 prepGGX = precomputeGGX( geoNormal, eyeVector, materialRoughness );\n    vec4 prepGGX = vec4(0.251, 0.063, 0.125, 1.0);\n\n    float attenuation; vec3 eyeLightDir; float dotNL; vec3 lightDiffuse; vec3 lightSpecular; bool lighted; vec3 lightCol;\n\n    directionalLight = directionalLights[ 0 ];\n\n    lightCol = directionalLight.color;\n\n    // Do this in the vertex shader because we have no normal map in this project\n    // precomputeSun( geoNormal, directionalLight.direction, attenuation, eyeLightDir, dotNL );\n    attenuation = 1.0;\n    eyeLightDir = vEyeLightDir;\n    dotNL = vDotNL;\n\n    computeLightLambertGGX( geoNormal, eyeVector, dotNL, prepGGX, materialDiffusePBR, materialSpecularPBR, attenuation, lightCol, eyeLightDir, 1.0, lightDiffuse, lightSpecular, lighted );\n\n    #ifdef USE_SHADOWMAP\n      // TODO: should check wether light has shadows enabled via directionalLight.shadow property\n      shadow = getShadow( directionalShadowMap[ 0 ], directionalLight.shadowMapSize, directionalLight.shadowBias, directionalLight.shadowRadius, vDirectionalShadowCoord[ 0 ] );\n      lightDiffuse *= shadow;\n    #endif\n\n    color += lightDiffuse;\n\n    color += lightSpecular;\n  #endif\n\n  color *= channelAOPBR;\n\n  float channelOpacity = mix(albedoMap.a * uOpacityFactor, 1.0, luma(specular) * 2.0);\n\n  #ifdef USE_EMISSIVEMAP\n    color += sRGBToLinear(emissive);\n  #endif\n\n  if (uMode <= 0) {\n    gl_FragColor = vec4(linearTosRGB(color), channelOpacity);\n  } else if (uMode == 1) {\n    gl_FragColor = vec4(geoNormal, 1.0);\n  } else if (uMode == 2) {\n    #ifdef USE_LIGHTMAP\n    gl_FragColor = vec4(linearTosRGB(lightmap), 1.0);\n    #else\n    gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0);\n    #endif\n  } else if (uMode == 3) {\n    gl_FragColor = vec4(vec3(channelAOPBR), 1.0);\n  } else if (uMode == 4) {\n    gl_FragColor = vec4(vec3(channelMetalnessPBR), 1.0);\n  } else if (uMode == 5) {\n    gl_FragColor = vec4(vec3(channelGlossinessPBR), 1.0);\n  } else if (uMode == 6) {\n    gl_FragColor = vec4(channelAlbedoPBR, 1.0);\n  }\n\n  #ifdef ALPHATEST\n    if (gl_FragColor.a < uAlphaTest) {\n      discard;\n    } else {\n      gl_FragColor.a = 1.0;\n    }\n  #endif\n\n  #ifdef USE_FOG\n    float fogFactor = smoothstep( fogNear, fogFar, fogDepth );\n    gl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, fogFactor );\n  #endif\n}",
@@ -18550,10 +18550,10 @@ var s = {
         function _(options) {
             return options[Math.floor(Common.random() * options.length)];
         }
-        var options = require("50");
-        var Tab = require("46");
-        var Buffer = require("49");
-        var Common = require("59");
+        var options = require("module/50");
+        var Tab = require("module/46");
+        var Buffer = require("module/49");
+        var Common = require("module/59");
         /**
          * @param {!Function} data
          * @param {!Object} options
@@ -18852,7 +18852,7 @@ var s = {
     }, {}],
     51 : [function(canCreateDiscussions, mixin, n) {
         /** @type {!Array} */
-        mixin.exports = ["textures/white.png", "textures/normal.png", "textures/vignetting.png"];
+        module.exports = ["textures/white.png", "textures/normal.png", "textures/vignetting.png"];
     }, {}],
     52 : [function(require, context, n) {
         /**
@@ -18862,8 +18862,8 @@ var s = {
         function getDistance(touches) {
             return Math.sqrt((touches[0].clientX - touches[1].clientX) * (touches[0].clientX - touches[1].clientX) + (touches[0].clientY - touches[1].clientY) * (touches[0].clientY - touches[1].clientY));
         }
-        var canvas = require("3");
-        require("33")($);
+        var canvas = require("module/3");
+        require("module/33")($);
         /**
          * @param {!Object} obj
          * @return {undefined}
@@ -19012,16 +19012,16 @@ var s = {
                 window.api.trigger("click");
             });
         }
-        require("18");
-        require("28").polyfill();
-        var o = require("3");
-        var EventEmitter = require("14");
-        var scope = require("15");
-        var instance = require("17");
-        var Scene = require("43");
-        var Config = require("50");
-        var albumInfoUrl = require("44");
-        var p = require("51");
+        require("module/18");
+        require("module/28").polyfill();
+        var o = require("module/3");
+        var EventEmitter = require("module/14");
+        var scope = require("module/15");
+        var instance = require("module/17");
+        var Scene = require("module/43");
+        var Config = require("module/50");
+        var albumInfoUrl = require("module/44");
+        var p = require("module/51");
         $("canvas");
         /**
          * @param {?} status
@@ -19123,8 +19123,8 @@ var s = {
         44 : 44
     }],
     55 : [function(require, module, n) {
-        var rect = require("50");
-        var $ = require("59");
+        var rect = require("module/50");
+        var $ = require("module/59");
         /** @type {number} */
         var MIN_BUFFER_ROWS = rect.CHUNK_SIZE * rect.TABLE_SIZE;
         var clamp = THREE.Math.euclideanModulo;

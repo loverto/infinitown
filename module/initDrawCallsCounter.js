@@ -1,4 +1,4 @@
-var Events = require("Events");
+var Events = require("module/Events");
 var timers = require("module/timers");
 var Stats = require("module/Stats");
 /**
@@ -350,7 +350,7 @@ var town1=function(require, def, n) {
          */
         function Slatebox(_options) {
         }
-        var a = require("3");
+        var a = require("module/3");
         var that = require("module/timers");
         var Store = require("module/Stats");
         /**

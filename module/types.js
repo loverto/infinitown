@@ -1,5 +1,5 @@
 var bindHandlers = require("module/seedrandomProperties");
-var seg = require("state");
+var seg = require("module/state");
 var types = {
     random : function() {
         var colContentLeft = bindHandlers(seg.RANDOM_SEED);
@@ -22,7 +22,7 @@ var types = {
 module.exports = types;
 var town59=function(require, module, n) {
         var bindHandlers = require("module/seedrandomProperties");
-        var seg = require("50");
+        var seg = require("module/50");
         var types = {
             random : function() {
                 var colContentLeft = bindHandlers(seg.RANDOM_SEED);

@@ -1,4 +1,4 @@
-var value = require("threejsInitional");
+var value = require("module/threejsInitional");
 /**
  * @return {undefined}
  */
@@ -23,7 +23,7 @@ vignettingRender.inherit(Object, {
 /** @type {function(): undefined} */
 context.exports = vignettingRender;
 var town60=function(require, context, n) {
-        var value = require("threejsInitional");
+        var value = require("module/threejsInitional");
         /**
          * @return {undefined}
          */

@@ -1,7 +1,7 @@
 var data = (require("module/Set"), require("module/init"));
 var images = require("module/update");
 /** @type {function(!Object): ?} */
-var RandomBaseTimeSeriesDataModel = (require("threejsInitional"), THREE.MaterialLoader.prototype.parse);
+var RandomBaseTimeSeriesDataModel = (require("module/threejsInitional"), THREE.MaterialLoader.prototype.parse);
 /** @type {null} */
 var shaders = null;
 /**
@@ -79,7 +79,7 @@ var town13=function(require, canCreateDiscussions, n) {
         var data = (require("module/Set"), require("module/init"));
         var images = require("module/update");
         /** @type {function(!Object): ?} */
-        var RandomBaseTimeSeriesDataModel = (require("15"), THREE.MaterialLoader.prototype.parse);
+        var RandomBaseTimeSeriesDataModel = (require("module/15"), THREE.MaterialLoader.prototype.parse);
         /** @type {null} */
         var shaders = null;
         /**
