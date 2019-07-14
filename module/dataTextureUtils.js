@@ -1,15 +1,15 @@
-var consoleInfiniTown = {};
+var DataTextureUtils = {};
 /**
  * @param {undefined} message
  * @param {undefined} callback
  * @return {?}
  */
-consoleInfiniTown.CreateWhiteTexture = function(message, callback) {
-    var request = consoleInfiniTown.CreateDataTexture(message, callback);
+DataTextureUtils.CreateWhiteTexture = function(message, callback) {
+    var request = DataTextureUtils.CreateDataTexture(message, callback);
     /** @type {number} */
     var i = 0;
     for (; i < request.image.data.length; i++) {
-        /** @type {number} */
+    /** @type {number} */
         request.image.data[i] = 255;
     }
     return request;
@@ -19,12 +19,12 @@ consoleInfiniTown.CreateWhiteTexture = function(message, callback) {
  * @param {undefined} e
  * @return {?}
  */
-consoleInfiniTown.CreateBlackTexture = function(s, e) {
-    var div = consoleInfiniTown.CreateDataTexture(s, e);
+DataTextureUtils.CreateBlackTexture = function(s, e) {
+    var div = DataTextureUtils.CreateDataTexture(s, e);
     /** @type {number} */
     var i = 0;
     for (; i < div.image.data.length; i++) {
-        /** @type {number} */
+    /** @type {number} */
         div.image.data[i] = 0;
     }
     return div;
@@ -34,12 +34,12 @@ consoleInfiniTown.CreateBlackTexture = function(s, e) {
  * @param {undefined} e
  * @return {?}
  */
-consoleInfiniTown.CreateNormalTexture = function(s, e) {
-    var div = consoleInfiniTown.CreateDataTexture(s, e);
+DataTextureUtils.CreateNormalTexture = function(s, e) {
+    var div = DataTextureUtils.CreateDataTexture(s, e);
     /** @type {number} */
     var i = 0;
     for (; i < div.image.data.length; i = i + 3) {
-        /** @type {number} */
+    /** @type {number} */
         div.image.data[i] = 128;
         /** @type {number} */
         div.image.data[i + 1] = 128;
@@ -53,13 +53,13 @@ consoleInfiniTown.CreateNormalTexture = function(s, e) {
  * @param {number} width
  * @return {?}
  */
-consoleInfiniTown.CreateDataTexture = function(size, width) {
+DataTextureUtils.CreateDataTexture = function(size, width) {
     if (void 0 === size) {
-        /** @type {number} */
+    /** @type {number} */
         size = 4;
     }
     if (void 0 === width) {
-        /** @type {number} */
+    /** @type {number} */
         width = 4;
     }
     /** @type {number} */
@@ -69,4 +69,4 @@ consoleInfiniTown.CreateDataTexture = function(size, width) {
     var texture = new THREE.DataTexture(a, size, width, THREE.RGBFormat);
     return texture.needsUpdate = true, texture;
 };
-module.exports = consoleInfiniTown;
+export default DataTextureUtils;

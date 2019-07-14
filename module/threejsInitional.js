@@ -1,26 +1,27 @@
 import * as THREE from 'three';
-// promise 工具类
-var bluebird = require("bluebird");
 
-var parseUrl = require("module/parseUrl");
-import * as  TextureMTLLoader from "module/TextureMTLLoader";
-var MTLLoader = require("module/BinaryTextureLoaderExtern");
-var List = require("module/CompressedTextureLoaderExtern");
-var DataFrameReader = require("module/DataFrameReader");
-var moduleLoad = require("module/load");
+// promise 工具类
+import bluebird from 'bluebird';
+
+import {parseUrl} from 'module/parseUrl';
+import {TextureMTLLoader} from 'module/TextureMTLLoader';
+import {DataTextureLoaderExtern} from 'module/DataTextureLoaderExtern';
+import {CompressedTextureLoaderExtern} from 'module/CompressedTextureLoaderExtern';
+import {DataFrameReader} from 'module/DataFrameReader';
+import {FileLoaderExtern} from 'module/FileLoaderExtern';
 var manager = new THREE.LoadingManager;
 var loader = new TextureMTLLoader(manager);
 var name = {};
 var target = normalize(new THREE.TextureLoader(manager), name);
-var list = normalize(new MTLLoader(1024, false, manager), name);
-var y = normalize(new List(256, false, manager), name);
+var list = normalize(new DataTextureLoaderExtern(1024, false, manager), name);
+var y = normalize(new CompressedTextureLoaderExtern(256, false, manager), name);
 var nsListById = {};
 var scope = new DataFrameReader(manager);
 var schema = {};
-var c = normalize(new moduleLoad(manager), schema);
+var c = normalize(new FileLoaderExtern(manager), schema);
 var self = {
-    environmentPath : "assets/environments",
-    geometryPath : "assets/scenes/data/",
+    environmentPath : 'assets/environments',
+    geometryPath : 'assets/scenes/data/',
     manager : manager,
     sceneLoader : loader
 };
@@ -45,7 +46,7 @@ function normalize(tree, event) {
             }
         },
         get : function(path) {
-            return _.has(this._cache, path) || console.error("Resource not found: " + path), this._cache[path];
+            return _.has(this._cache, path) || console.error('Resource not found: ' + path), this._cache[path];
         }
     };
 }
@@ -77,7 +78,7 @@ function load(url, name, type) {
             i(arguments.length > 1 ? _.toArray(arguments) : t);
         }, function() {
         }, function() {
-            stepCallback(new Error("Resource was not found: " + url));
+            stepCallback(new Error('Resource was not found: ' + url));
         }, name);
     });
 }
@@ -92,8 +93,8 @@ function fn(arrays, options, a) {
 }
 
 /** @type {string} */
-var temp = "";
-Object.defineProperty(self, "texturePath", {
+var temp = '';
+Object.defineProperty(self, 'texturePath', {
     get : function() {
         return temp;
     },
@@ -157,14 +158,14 @@ self.loadSpecularCubemaps = function(args, options) {
 self.loadSH = function(env) {
     return bluebird.all(_.map(env, function(id) {
         return new bluebird(function(e, stepCallback) {
-            var r = parseUrl(self.environmentPath, id + "/irradiance.json");
+            var r = parseUrl(self.environmentPath, id + '/irradiance.json');
             // 加载json文件
             scope.load(r, function(n) {
                 nsListById[id] = n;
                 e(n);
             }, function() {
             }, function() {
-                stepCallback(new Error("Resource was not found: " + r));
+                stepCallback(new Error('Resource was not found: ' + r));
             });
         });
     }));
@@ -176,7 +177,7 @@ self.loadSH = function(env) {
  */
 self.loadGeometries = function(arrays, options) {
     return arrays = _.map(arrays, function(item) {
-        return item + ".bin";
+        return item + '.bin';
     }), fn(arrays, options || self.geometryPath, c);
 };
 /**
@@ -198,14 +199,14 @@ self.getBRDF = function(t) {
  * @return {?}
  */
 self.getPanorama = function(name) {
-    return list.get(name + "/panorama.bin");
+    return list.get(name + '/panorama.bin');
 };
 /**
  * @param {string} i
  * @return {?}
  */
 self.getCubemap = function(i) {
-    return y.get(i + "/cubemap.bin");
+    return y.get(i + '/cubemap.bin');
 };
 /**
  * @param {?} notebookID
@@ -219,6 +220,6 @@ self.getSH = function(notebookID) {
  * @return {?}
  */
 self.getGeometry = function(name) {
-    return c.get(name + ".bin");
+    return c.get(name + '.bin');
 };
-module.exports = self;
+export default self;

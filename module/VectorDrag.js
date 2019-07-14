@@ -1,5 +1,6 @@
-var et = require("module/state");
-var canvas = require("module/Events");
+import * as THREE  from 'three';
+import et from 'module/state';
+import canvas from 'module/Events';
 var ndc = new THREE.Vector2;
 /**
  * @param {!Function} obj
@@ -20,9 +21,9 @@ var VectorDrag = function(obj, scene, camera) {
     this.inputManager = obj;
     /** @type {!Object} */
     this._scene = scene;
-    this.inputManager.on("startdrag", this._onStartDrag, this);
-    this.inputManager.on("enddrag", this._onEndDrag, this);
-    this.inputManager.on("drag", this._onDrag, this);
+    this.inputManager.on('startdrag', this._onStartDrag, this);
+    this.inputManager.on('enddrag', this._onEndDrag, this);
+    this.inputManager.on('drag', this._onDrag, this);
     /** @type {!Object} */
     this._camera = camera;
     this._raycaster = new THREE.Raycaster;
@@ -61,7 +62,7 @@ VectorDrag.inherit(Object, {
             this._sceneOffset.x += settings.centeredX * et.CHUNK_SIZE;
             this._sceneOffset.z += settings.centeredY * et.CHUNK_SIZE;
             if (!(0 === settings.centeredX && 0 === settings.centeredY)) {
-                this.trigger("move", settings.centeredX, settings.centeredY);
+                this.trigger('move', settings.centeredX, settings.centeredY);
             }
         }
     },
@@ -80,6 +81,7 @@ VectorDrag.inherit(Object, {
     }()
 });
 VectorDrag.mixin(canvas);
+
 /** @type {function(!Function, !Object, !Object): undefined} */
-module.exports = VectorDrag;
+export default VectorDrag;
 

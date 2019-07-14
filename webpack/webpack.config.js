@@ -1,10 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ThreeWebpackPlugin = require('@wildpeaks/three-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-    entry:  './src/index.js',
+    entry: {
+        main: './src/index.js'
+    },
     resolve: {
         alias: {
             module: path.resolve(__dirname, '../module'),
@@ -20,12 +24,30 @@ module.exports = {
         hot: true
     },
     plugins: [
+        new ThreeWebpackPlugin(),
         // new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: 'Output Management'
+            inject: true,
+            template: 'index.html',
+            title: '管理输出'
         }),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new CopyWebpackPlugin([
+            { from: './assets', to: 'assets' },
+            { from: './img', to: 'img' },
+            { from: './textures', to: 'textures' },
+            { from: './css', to: 'css' }
+        ]),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+            _: 'lodash',
+            THREE: 'three',
+            TWEEN: '@tweenjs/tween.js',
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            'window.$': 'jquery'
+        })
     ],
     module: {
         rules: [
@@ -40,6 +62,13 @@ module.exports = {
                 use: [
                     'file-loader'
                 ]
+            }, {test: /jquery-mousewheel/, loader: "imports-loader?define=>false&this=>window"},
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loaders: ['eslint-loader', 'babel-loader'],
+                enforce: "pre",
+                include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'module')], // 指定检查的目录
             }
         ]
     },

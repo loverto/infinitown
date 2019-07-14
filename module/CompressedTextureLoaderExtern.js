@@ -29,7 +29,7 @@ function findErrorByList(t, data, array) {
  * @param {string} manager
  * @return {undefined}
  */
-var CompressedTextureLoaderExtern = function(options, value, manager) {
+export function CompressedTextureLoaderExtern (options, value, manager) {
     this.manager = void 0 !== manager ? manager : THREE.DefaultLoadingManager;
     /** @type {number} */
     this._size = options;
@@ -52,7 +52,7 @@ CompressedTextureLoaderExtern.prototype._parser = function(buffer) {
     /** @type {number} */
     var i = 0;
     for (; i <= order; i++) {
-        /** @type {number} */
+    /** @type {number} */
         var r = Math.pow(2, order - i);
         /** @type {number} */
         var dataLength = r * r * 4;
@@ -99,5 +99,3 @@ CompressedTextureLoaderExtern.prototype._parser = function(buffer) {
 Math.log2 = Math.log2 || function(score) {
     return Math.log(score) * Math.LOG2E;
 };
-/** @type {function(number, boolean, string): undefined} */
-module.export = CompressedTextureLoaderExtern;

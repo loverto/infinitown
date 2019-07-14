@@ -1,5 +1,5 @@
-require("@tweenjs/tween.js");
-window._ = require("lodash");
+import '@tweenjs/tween.js';
+window._ = require('lodash');
 /**
  * @param {number} minIn
  * @param {number} maxIn
@@ -18,9 +18,9 @@ if (!String.prototype.endsWith) {
      * @this {!String}
      */
     String.prototype.endsWith = function(value, offset) {
-        /** @type {string} */
+    /** @type {string} */
         var buffer = this.toString();
-        if ("number" != typeof offset || !isFinite(offset) || Math.floor(offset) !== offset || offset > buffer.length) {
+        if ('number' != typeof offset || !isFinite(offset) || Math.floor(offset) !== offset || offset > buffer.length) {
             /** @type {number} */
             offset = buffer.length;
         }
@@ -39,7 +39,7 @@ if (!String.prototype.endsWith) {
  */
 Function.prototype.inherit = function(target, obj) {
     if (!target || !_.isFunction(target)) {
-        throw "parent argument must be a function";
+        throw 'parent argument must be a function';
     }
     this.prototype = _.extend(Object.create(target.prototype), obj);
 };
@@ -49,12 +49,13 @@ Function.prototype.inherit = function(target, obj) {
  * @return {undefined}
  */
 Function.prototype.mixin = function(name) {
+    var self = this;
     _.each(name, function(fn, methodName) {
-        if (void 0 === this.prototype[methodName]) {
+        if (void 0 === self.prototype[methodName]) {
             /** @type {!Function} */
-            this.prototype[methodName] = fn;
+            self.prototype[methodName] = fn;
         }
-    }, this);
+    });
 };
 /** @type {number} */
 window.WIDTH = window.innerWidth;

@@ -1,6 +1,7 @@
+import * as THREE  from 'three';
 var Base = THREE.OrthographicCamera;
 /** @type {function(number): undefined} */
-var OrthographicCameraBase = (require("three-orbit-controls"), function(hValue) {
+var OrthographicCameraBase = (require('three-orbit-controls'), function(hValue) {
     Base.call(this);
     /** @type {number} */
     var r = window.innerWidth / window.innerHeight;
@@ -22,6 +23,7 @@ OrthographicCameraBase.inherit(Base, {
     update : function() {
     }
 });
+
 /** @type {function(number): undefined} */
-module.exports = OrthographicCameraBase;
+export default OrthographicCameraBase;
 

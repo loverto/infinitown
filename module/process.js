@@ -2,13 +2,13 @@
  * @return {?}
  */
 function defaultSetTimout() {
-    throw new Error("setTimeout has not been defined");
+    throw new Error('setTimeout has not been defined');
 }
 /**
  * @return {?}
  */
 function defaultClearTimeout() {
-    throw new Error("clearTimeout has not been defined");
+    throw new Error('clearTimeout has not been defined');
 }
 /**
  * @param {!Function} fun
@@ -57,7 +57,7 @@ function runClearTimeout(marker) {
  */
 function cleanUpNextTick() {
     if (m && currentQueue) {
-        /** @type {boolean} */
+    /** @type {boolean} */
         m = false;
         if (currentQueue.length) {
             queue = currentQueue.concat(queue);
@@ -118,20 +118,21 @@ function noop() {
 }
 var cachedSetTimeout;
 var cachedClearTimeout;
-var process = module.exports = {};
+var process = {};
+export default process;
 !function() {
     try {
-        /** @type {!Function} */
-        cachedSetTimeout = "function" == typeof setTimeout ? setTimeout : defaultSetTimout;
+    /** @type {!Function} */
+        cachedSetTimeout = 'function' == typeof setTimeout ? setTimeout : defaultSetTimout;
     } catch (t) {
-        /** @type {function(): ?} */
+    /** @type {function(): ?} */
         cachedSetTimeout = defaultSetTimout;
     }
     try {
-        /** @type {!Function} */
-        cachedClearTimeout = "function" == typeof clearTimeout ? clearTimeout : defaultClearTimeout;
+    /** @type {!Function} */
+        cachedClearTimeout = 'function' == typeof clearTimeout ? clearTimeout : defaultClearTimeout;
     } catch (t) {
-        /** @type {function(): ?} */
+    /** @type {function(): ?} */
         cachedClearTimeout = defaultClearTimeout;
     }
 }();
@@ -150,7 +151,7 @@ process.nextTick = function(task) {
     /** @type {!Array} */
     var args = new Array(arguments.length - 1);
     if (arguments.length > 1) {
-        /** @type {number} */
+    /** @type {number} */
         var i = 1;
         for (; i < arguments.length; i++) {
             args[i - 1] = arguments[i];
@@ -168,14 +169,14 @@ Item.prototype.run = function() {
     this.fun.apply(null, this.array);
 };
 /** @type {string} */
-process.title = "browser";
+process.title = 'browser';
 /** @type {boolean} */
 process.browser = true;
 process.env = {};
 /** @type {!Array} */
 process.argv = [];
 /** @type {string} */
-process.version = "";
+process.version = '';
 process.versions = {};
 /** @type {function(): undefined} */
 process.on = noop;
@@ -207,20 +208,20 @@ process.listeners = function(type) {
  * @return {?}
  */
 process.binding = function(name) {
-    throw new Error("process.binding is not supported");
+    throw new Error('process.binding is not supported');
 };
 /**
  * @return {?}
  */
 process.cwd = function() {
-    return "/";
+    return '/';
 };
 /**
  * @param {?} dir
  * @return {?}
  */
 process.chdir = function(dir) {
-    throw new Error("process.chdir is not supported");
+    throw new Error('process.chdir is not supported');
 };
 /**
  * @return {?}

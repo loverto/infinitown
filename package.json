@@ -4,25 +4,49 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open  --config webpack/webpack.config.js",
-    "build": "webpack"
+    "lint": "eslint --ext .js src module",
+    "lint:fix": "npm run lint -- --fix",
+    "build": "webpack --config webpack/webpack.config.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "@tweenjs/tween.js": "^17.4.0",
+    "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.5",
     "es6-promise": "^4.2.8",
     "jquery": "^3.4.1",
     "jquery-mousewheel": "^3.1.13",
     "lodash": "^4.17.14",
-    "three": "^0.106.2",
     "three-orbit-controls": "^82.1.0",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
+    "@wildpeaks/three-webpack-plugin": "^2.0.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^3.0.0",
+    "eslint": "^6.0.1",
+    "eslint-loader": "^2.2.1",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.0",
+    "imports-loader": "^0.8.0",
+    "lint-staged": "^9.2.0",
     "style-loader": "^0.23.1",
+    "three": "0.106.2",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.7.2"

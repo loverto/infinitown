@@ -29,7 +29,7 @@ function normalize(t, data, obj) {
  * @param {string} manager
  * @return {undefined}
  */
-var BinaryTextureLoaderExtern = function(value, options, manager) {
+export function DataTextureLoaderExtern(value, options, manager) {
     this.manager = void 0 !== manager ? manager : THREE.DefaultLoadingManager;
     /** @type {number} */
     this._size = value;
@@ -37,16 +37,16 @@ var BinaryTextureLoaderExtern = function(value, options, manager) {
     this._interleaving = options;
 };
 /** @type {!Object} */
-BinaryTextureLoaderExtern.prototype = Object.create(THREE.BinaryTextureLoader.prototype);
+DataTextureLoaderExtern.prototype = Object.create(THREE.DataTextureLoader.prototype);
 /**
  * @param {?} size
  * @return {?}
  */
-BinaryTextureLoaderExtern.prototype._parser = function(size) {
+DataTextureLoaderExtern.prototype._parser = function(size) {
     var result;
     var r = this._size;
     if (this._interleaving) {
-        /** @type {number} */
+    /** @type {number} */
         var outputByteCount = r * r * 4;
         /** @type {!Uint8Array} */
         var out = new Uint8Array(size);
@@ -54,7 +54,7 @@ BinaryTextureLoaderExtern.prototype._parser = function(size) {
         result = new Uint8Array(outputByteCount);
         normalize(r, out, result);
     } else {
-        /** @type {!Uint8Array} */
+    /** @type {!Uint8Array} */
         result = new Uint8Array(size);
     }
     return {
@@ -69,5 +69,3 @@ BinaryTextureLoaderExtern.prototype._parser = function(size) {
         type : THREE.UnsignedByteType
     };
 };
-/** @type {function(number, !Object, string): undefined} */
-module.export = BinaryTextureLoaderExtern;

@@ -1,6 +1,6 @@
 var Events = {
     on : function(type, callback, context) {
-        if (!eventsApi(this, "on", type, [callback, context]) || !callback) {
+        if (!eventsApi(this, 'on', type, [callback, context]) || !callback) {
             return this;
         }
         if (!this._events) {
@@ -14,7 +14,7 @@ var Events = {
         }), this;
     },
     once : function(type, callback, context) {
-        if (!eventsApi(this, "once", type, [callback, context]) || !callback) {
+        if (!eventsApi(this, 'once', type, [callback, context]) || !callback) {
             return this;
         }
         var self = this;
@@ -33,7 +33,7 @@ var Events = {
         var i;
         var _k;
         var _len2;
-        if (!this._events || !eventsApi(this, "off", name, [callback, context])) {
+        if (!this._events || !eventsApi(this, 'off', name, [callback, context])) {
             return this;
         }
         if (!name && !callback && !context) {
@@ -69,7 +69,7 @@ var Events = {
         }
         /** @type {!Array<?>} */
         var args = slice.call(arguments, 1);
-        if (!eventsApi(this, "trigger", type, args)) {
+        if (!eventsApi(this, 'trigger', type, args)) {
             return this;
         }
         var obj = this._events[type];
@@ -83,7 +83,7 @@ var Events = {
         }
         /** @type {boolean} */
         var i = !name && !callback;
-        if (!(callback || "object" != typeof name)) {
+        if (!(callback || 'object' != typeof name)) {
             callback = this;
         }
         if (obj) {
@@ -118,7 +118,7 @@ var eventsApi = function(obj, action, name, rest) {
     if (!name) {
         return true;
     }
-    if ("object" == typeof name) {
+    if ('object' == typeof name) {
         var template;
         for (template in name) {
             obj[action].apply(obj, [template, name[template]].concat(rest));
@@ -151,36 +151,36 @@ var check = function(f, a) {
     var ac = a[1];
     var c2 = a[2];
     switch(a.length) {
-        case 0:
-            for (; ++j < m;) {
-                (self = f[j]).callback.call(self.ctx);
-            }
-            return;
-        case 1:
-            for (; ++j < m;) {
-                (self = f[j]).callback.call(self.ctx, i);
-            }
-            return;
-        case 2:
-            for (; ++j < m;) {
-                (self = f[j]).callback.call(self.ctx, i, ac);
-            }
-            return;
-        case 3:
-            for (; ++j < m;) {
-                (self = f[j]).callback.call(self.ctx, i, ac, c2);
-            }
-            return;
-        default:
-            for (; ++j < m;) {
-                (self = f[j]).callback.apply(self.ctx, a);
-            }
-            return;
+    case 0:
+        for (; ++j < m;) {
+            (self = f[j]).callback.call(self.ctx);
+        }
+        return;
+    case 1:
+        for (; ++j < m;) {
+            (self = f[j]).callback.call(self.ctx, i);
+        }
+        return;
+    case 2:
+        for (; ++j < m;) {
+            (self = f[j]).callback.call(self.ctx, i, ac);
+        }
+        return;
+    case 3:
+        for (; ++j < m;) {
+            (self = f[j]).callback.call(self.ctx, i, ac, c2);
+        }
+        return;
+    default:
+        for (; ++j < m;) {
+            (self = f[j]).callback.apply(self.ctx, a);
+        }
+        return;
     }
 };
 var collection = {
-    listenTo : "on",
-    listenToOnce : "once"
+    listenTo : 'on',
+    listenToOnce : 'once'
 };
 _.each(collection, function(implementation, method) {
     /**
@@ -191,8 +191,8 @@ _.each(collection, function(implementation, method) {
      */
     Events[method] = function(obj, name, callback) {
         var listeningTo = this._listeningTo || (this._listeningTo = {});
-        var id = obj._listenId || (obj._listenId = _.uniqueId("l"));
-        return listeningTo[id] = obj, callback || "object" != typeof name || (callback = this), obj[implementation](name, callback, this), this;
+        var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
+        return listeningTo[id] = obj, callback || 'object' != typeof name || (callback = this), obj[implementation](name, callback, this), this;
     };
 });
-module.exports = Events;
+export default Events;

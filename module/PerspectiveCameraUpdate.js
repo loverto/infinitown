@@ -1,5 +1,6 @@
+import * as THREE  from 'three';
 var ctor = THREE.PerspectiveCamera;
-var TubularModel = require("three-orbit-controls");
+import TubularModel from 'three-orbit-controls';
 /**
  * @param {!Object} data
  * @return {undefined}
@@ -22,33 +23,6 @@ PerspectiveCameraUpdate.inherit(ctor, {
         this.controls.update();
     }
 });
+
 /** @type {function(!Object): undefined} */
-module.exports = PerspectiveCameraUpdate;
-var town45=function(require, module, n) {
-        var ctor = THREE.PerspectiveCamera;
-        var TubularModel = require("module/three-orbit-controls");
-        /**
-         * @param {!Object} data
-         * @return {undefined}
-         */
-        var PerspectiveCameraUpdate = function(data) {
-            ctor.call(this);
-            /** @type {number} */
-            this.aspect = window.innerWidth / window.innerHeight;
-            /** @type {number} */
-            this.fov = 50;
-            /** @type {number} */
-            this.near = 1;
-            /** @type {number} */
-            this.far = 1E3;
-            this.updateProjectionMatrix();
-            this.controls = new TubularModel(this, data || document.body);
-        };
-        PerspectiveCameraUpdate.inherit(ctor, {
-            update : function() {
-                this.controls.update();
-            }
-        });
-        /** @type {function(!Object): undefined} */
-        module.exports = PerspectiveCameraUpdate;
-    }
+export {PerspectiveCameraUpdate};
