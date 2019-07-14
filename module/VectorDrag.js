@@ -3,12 +3,12 @@ import et from 'module/state';
 import canvas from 'module/Events';
 var ndc = new THREE.Vector2;
 /**
- * @param {!Function} obj
+ * @param {!Function} inputManager
  * @param {!Object} scene
  * @param {!Object} camera
  * @return {undefined}
  */
-var VectorDrag = function(obj, scene, camera) {
+var VectorDrag = function(inputManager, scene, camera) {
     /** @type {boolean} */
     this._panning = false;
     this._startCoords = new THREE.Vector2;
@@ -18,7 +18,7 @@ var VectorDrag = function(obj, scene, camera) {
     this._sceneOffset = new THREE.Vector3;
     this._worldOffset = new THREE.Vector3;
     /** @type {!Function} */
-    this.inputManager = obj;
+    this.inputManager = inputManager;
     /** @type {!Object} */
     this._scene = scene;
     this.inputManager.on('startdrag', this._onStartDrag, this);

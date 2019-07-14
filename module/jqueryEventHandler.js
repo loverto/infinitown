@@ -1,6 +1,7 @@
 import canvas from 'module/Events';
 require('jquery-mousewheel')($);
 /**
+ * 获取移动距离
  * @param {!Object} touches
  * @return {?}
  */

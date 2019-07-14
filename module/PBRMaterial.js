@@ -43,6 +43,7 @@ var options = {
  * @return {undefined}
  */
 var PBRMaterial = function(obj) {
+    debugger
     var self = this;
     /** @type {!Object} */
     obj = Object.assign({
@@ -190,9 +191,6 @@ var PBRMaterial = function(obj) {
             ambientLightColor : {
                 value : []
             },
-            lightProbe : {
-                value : []
-            },
             directionalLights : {
                 value : [],
                 properties : {
@@ -288,12 +286,12 @@ var PBRMaterial = function(obj) {
     Object.keys(this.uniforms).forEach(function(name) {
         self.onPropertyChange(name, function(initSBC) {
             /** @type {!Object} */
-            this.uniforms[name].value = initSBC;
+            self.uniforms[name].value = initSBC;
         });
     }, this);
     _.each(options, function(javascriptName, prop) {
         self.onPropertyChange(prop, function(jsonName) {
-            this[javascriptName] = jsonName;
+            self[javascriptName] = jsonName;
         });
     }, this);
     this.extensions = {

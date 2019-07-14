@@ -19,10 +19,10 @@ THREE.MaterialLoader.setShaders = function(trackInfoUrl) {
  * @return {?}
  */
 THREE.MaterialLoader.prototype.parse = function(options) {
-    var col = options.color;
-    options.color = undefined;
+    //var col = options.color;
+    //options.color = undefined;
     var json = RandomBaseTimeSeriesDataModel.call(this, options);
-    options.color = col;
+    //options.color = col;
     if (options.customType && 'MatcapMaterial' === options.customType) {
         return images.create({
             uuid : options.uuid,

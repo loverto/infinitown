@@ -1,6 +1,6 @@
 var state = {
-    FPS : false,
-    LOG_CALLS : false,
+    FPS : true,
+    LOG_CALLS : true,
     RANDOM_SEED : 'infinitown',
     RANDOM_SEED_ENABLED : false,
     MAX_PIXEL_RATIO : 1.25,

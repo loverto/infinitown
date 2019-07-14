@@ -34,11 +34,11 @@ function r(tests) {
  * @return {undefined}
  */
 export function DataFrameReader(data) {
-    THREE.FileLoader.call(this);
+    THREE.XHRLoader.call(this);
     this.manager = void 0 !== data ? data : THREE.DefaultLoadingManager;
 };
 /** @type {!Object} */
-DataFrameReader.prototype = Object.create(THREE.FileLoader.prototype);
+DataFrameReader.prototype = Object.create(THREE.XHRLoader.prototype);
 /**
  * @param {string} f
  * @param {!Function} m
@@ -47,7 +47,7 @@ DataFrameReader.prototype = Object.create(THREE.FileLoader.prototype);
  * @return {undefined}
  */
 DataFrameReader.prototype.load = function(f, m, data, xhr) {
-    THREE.FileLoader.prototype.load.call(this, f, function(dir) {
+    THREE.XHRLoader.prototype.load.call(this, f, function(dir) {
     /** @type {*} */
         var n = JSON.parse(dir);
         var x = r(n);

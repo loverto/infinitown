@@ -1,5 +1,5 @@
 import * as THREE  from 'three';
-import * as BufferGeometryUtils from 'three/examples/js/utils/BufferGeometryUtils'
+// import * as BufferGeometryUtils from 'three/examples/js/utils/BufferGeometryUtils'
 import state from 'module/state';
 import initCollisionPointsUpdate from 'module/initCollisionPointsUpdate';
 import Buffer from 'module/updateTablePositionRender';
@@ -15,30 +15,31 @@ function getElementByRandom(options) {
 }
 
 /**
- * @param {!Function} data
- * @param {!Object} options
- * @param {number} prop
- * @param {?} index
- * @param {?} vertices
+ * @param {!Function} blocksObjects
+ * @param {!Object} lanesObjects
+ * @param {number} intersectionsObjects
+ * @param {?} carsObjects
+ * @param {?} cloudsObjects
  * @return {undefined}
  */
-var getNeighboringCarsUpdate = function(data, options, prop, index, vertices) {
+var getNeighboringCarsUpdate = function(blocksObjects, lanesObjects, intersectionsObjects, carsObjects, cloudsObjects) {
     /** @type {boolean} */
     this._containsStadium = false;
     /** @type {!Function} */
-    this.blocks = data;
+    this.blocks = blocksObjects;
     /** @type {!Array} */
     this.lanes = [];
     /** @type {number} */
-    this.intersections = prop;
-    this.carObjects = index;
+    this.intersections = intersectionsObjects;
+    this.carObjects = carsObjects;
     /** @type {!Array} */
     this.mobs = [];
     /** @type {!Array} */
     this.chunks = [];
-    this.cloudObjects = vertices;
-    options.forEach(function(t) {
+    this.cloudObjects = cloudsObjects;
+    lanesObjects.forEach(function(t) {
         switch(t.name) {
+            // 类型为1的路加十个
         case 'Road_Lane_01_fixed':
             /** @type {number} */
             var e = 0;
@@ -46,6 +47,7 @@ var getNeighboringCarsUpdate = function(data, options, prop, index, vertices) {
                 this.lanes.push(t);
             }
             break;
+            //类型为3的加5个
         case 'Road_Lane_03_fixed':
             /** @type {number} */
             e = 0;
@@ -57,8 +59,8 @@ var getNeighboringCarsUpdate = function(data, options, prop, index, vertices) {
     this._generate();
 };
 getNeighboringCarsUpdate.inherit(Object, {
-    getChunkData : function(i, x) {
-        return i = i % state.TABLE_SIZE, x = x % state.TABLE_SIZE, i < 0 && (i = state.TABLE_SIZE + i), x < 0 && (x = state.TABLE_SIZE + x), void 0 !== this.chunks[i] && (void 0 !== this.chunks[i][x] && this.chunks[i][x]);
+    getChunkData : function(x, y) {
+        return x = x % state.TABLE_SIZE, y = y % state.TABLE_SIZE, x < 0 && (x = state.TABLE_SIZE + x), y < 0 && (y = state.TABLE_SIZE + y), void 0 !== this.chunks[x] && (void 0 !== this.chunks[x][y] && this.chunks[x][y]);
     },
     getNeighboringCars : function() {
     // 获取相邻的车
@@ -87,16 +89,18 @@ getNeighboringCarsUpdate.inherit(Object, {
         });
     },
     _forEachNeighboringChunk : function() {
+        // 遍历相邻的分块
         var menu = new THREE.Vector2;
         /** @type {!Array} */
         var pipelets = [new THREE.Vector2(-1, -1), new THREE.Vector2(1, 0), new THREE.Vector2(1, 0), new THREE.Vector2(0, 1), new THREE.Vector2(0, 1), new THREE.Vector2(-1, 0), new THREE.Vector2(-1, 0), new THREE.Vector2(0, -1)];
-        return function(n, r, expect) {
-            menu.set(n, r);
+        return function(x, y , callback) {
+            menu.set(x, y);
             pipelets.forEach(function(e) {
                 menu.add(e);
+                // 获取分块中的数据
                 var each1 = this.getChunkData(menu.x, menu.y);
                 if (each1) {
-                    expect(each1.node);
+                    callback(each1.node);
                 }
             }, this);
         };
@@ -104,37 +108,39 @@ getNeighboringCarsUpdate.inherit(Object, {
     _getNeighboringBlocks : function() {
     /** @type {!Array} */
         var parkNames = [];
-        return function(e, n) {
-            return parkNames.length = 0, this._forEachNeighboringChunk(e, n, function(dep) {
+        // 根据坐标遍历四周的相邻分块
+        return function(x, y) {
+            return parkNames.length = 0, this._forEachNeighboringChunk(x, y, function(dep) {
                 parkNames.push(dep.block.name);
             }), parkNames;
         };
     }(),
     _getRandomBlockAt : function(pieceX, pieceY) {
-        var fileTooLarge;
+        var block;
         /** @type {number} */
         var i = 0;
+        // 获取相邻的块
         var piece = this._getNeighboringBlocks(pieceX, pieceY);
         for (; i < 100;) {
-            var file = getElementByRandom(this.blocks).clone();
-            var type = file.name;
-            if ('block_8_merged' === type) {
+            var randomBlock = getElementByRandom(this.blocks).clone();
+            var name = randomBlock.name;
+            if ('block_8_merged' === name) {
                 if (this._containsStadium) {
                     i++;
                     continue;
                 }
                 /** @type {boolean} */
                 this._containsStadium = true;
-                fileTooLarge = file;
+                block = randomBlock;
                 break;
             }
-            if (piece.indexOf(type) === -1) {
-                fileTooLarge = file;
+            if (piece.indexOf(name) === -1) {
+                block = randomBlock;
                 break;
             }
             i++;
         }
-        return fileTooLarge;
+        return block;
     },
     _getRandomChunk : function(x, y) {
         var matrix = new THREE.Matrix4;
@@ -142,6 +148,7 @@ getNeighboringCarsUpdate.inherit(Object, {
         var self = new THREE.Object3D;
         /** @type {string} */
         self.name = 'chunk';
+        // 获取随机的块
         var block = this._getRandomBlockAt(x, y);
         /** @type {number} */
         var defaultYPos = Math.round(4 * Common.random()) * (Math.PI / 2);
@@ -181,7 +188,8 @@ getNeighboringCarsUpdate.inherit(Object, {
         o.geometry.applyMatrix(matrixWorldInverse);
         o.geometry.applyMatrix(matrix);
         d.push(o);
-        var g = THREE.BufferGeometryUtils.mergeBufferGeometries([result.geometry,object.geometry, mesh.geometry, o.geometry])
+        //var g = THREE.BufferGeometryUtils.mergeBufferGeometries([result.geometry,object.geometry, mesh.geometry, o.geometry])
+        var g = result.geometry.join([object.geometry, mesh.geometry, o.geometry])
         result.geometry = g;
         var r = getElementByRandom(this.intersections).clone();
         if (r.position.set(-30, 0, 30), self.add(r), d.forEach(function(index) {
@@ -217,6 +225,7 @@ getNeighboringCarsUpdate.inherit(Object, {
     _generate : function() {
     /** @type {number} */
         var i = 0;
+        // 生成一个9x9的格子
         for (; i < state.TABLE_SIZE; i++) {
             /** @type {number} */
             var x = 0;
@@ -225,13 +234,14 @@ getNeighboringCarsUpdate.inherit(Object, {
                     /** @type {!Array} */
                     this.chunks[x] = [];
                 }
-                var n = this._getRandomChunk(x, i);
+                // 获取随机的分块，根据当前的坐标
+                var node = this._getRandomChunk(x, i);
                 /** @type {number} */
-                n.tableX = x;
+                node.tableX = x;
                 /** @type {number} */
-                n.tableY = i;
+                node.tableY = i;
                 this.chunks[x][i] = {
-                    node : n
+                    node : node
                 };
             }
         }

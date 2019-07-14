@@ -1,46 +1,60 @@
 import * as THREE  from 'three';
 import initDrawCallsCounter from 'module/initDrawCallsCounter';
-var p = (require('module/LineSegmentsInit'), require('module/state'));
+var constants = (require('module/LineSegmentsInit'), require('module/state'));
 require('module/PerspectiveCameraUpdate')
 require('module/OrthographicCameraBase')
 import {PerspectiveCameraCtor} from  'module/PerspectiveCameraCtor';
 require('module/Class')
 import {getNeighboringCarsUpdate} from 'module/getNeighboringCarsUpdate';
-import GlitchTextLetter from 'module/Application';
-import PoloLender from 'module/jqueryEventHandler';
-import Zk from 'module/VectorDrag';
-import TagHourlyStat from 'module/vignettingRender';
+import ChunksScene from 'module/ChunksScene';
+import EventHandler from 'module/jqueryEventHandler';
+import VectorDrag from 'module/VectorDrag';
+import vignettingRender from 'module/vignettingRender';
 /**
  * @param {!Function} data
  * @return {undefined}
  */
 var InitCamera = function(data) {
     initDrawCallsCounter.call(this, data);
+    // 初始化相机
     this.initCamera();
+    // 绘制坐标系
     this.gridCoords = new THREE.Vector2;
+    // 相机偏差
     this.cameraOffset = new THREE.Vector2;
+    // 场景
     this.scene = new THREE.Scene;
 };
 InitCamera.inherit(initDrawCallsCounter, {
-    start : function(_) {
-        var root_width = _.getObjectByName('blocks').children;
-        var root_height = _.getObjectByName('lanes').children;
-        var table_options = _.getObjectByName('intersections').children;
-        var contentTableRows = _.getObjectByName('cars').children;
-        var childrenOfLast = _.getObjectByName('clouds').children;
-        this.table = new getNeighboringCarsUpdate(root_width, root_height, table_options, contentTableRows, childrenOfLast);
-        this.chunkScene = new GlitchTextLetter;
+    start : function(objects) {
+        debugger
+        // 开始处理加载的数据
+        var blocksChildren = objects.getObjectByName('blocks').children;
+        var lanesChildren = objects.getObjectByName('lanes').children;
+        var intersectionsChildren = objects.getObjectByName('intersections').children;
+        var carsChildren = objects.getObjectByName('cars').children;
+        var cloudsChildren = objects.getObjectByName('clouds').children;
+        this.table = new getNeighboringCarsUpdate(blocksChildren, lanesChildren, intersectionsChildren, carsChildren, cloudsChildren);
+        this.chunkScene = new ChunksScene;
+        //添加场景
         this.scene.add(this.chunkScene);
-        this.inputManager = new PoloLender(document.querySelector('canvas'));
-        this.controls = new Zk(this.inputManager, this.chunkScene, this.camera);
-        this.renderer.setClearColor(p.FOG_COLOR);
+        // 给canvas 注册操作事件
+        this.inputManager = new EventHandler(document.querySelector('canvas'));
+        // 场景控制
+        this.controls = new VectorDrag(this.inputManager, this.chunkScene, this.camera);
+        // 渲染器清空颜色
+        this.renderer.setClearColor(constants.FOG_COLOR);
+        // 初始化 定向光
         this.initDirLight();
+        // 设置光晕
         this.initVignetting();
+        // 交互控制操作添加移动操作
         this.controls.on('move', function(eastPx, vertSpeed) {
             this.gridCoords.x += eastPx;
             this.gridCoords.y += vertSpeed;
             this.refreshChunkScene();
         }, this);
+        // 刷新分块场景
         this.refreshChunkScene();
         this.inputManager.on('startdrag', function() {
             $('body').addClass('grabbing');
@@ -84,8 +98,8 @@ InitCamera.inherit(initDrawCallsCounter, {
         light.shadow.radius = 1;
         /** @type {number} */
         light.shadow.bias = -.001;
-        light.shadow.mapSize.width = p.SHADOWMAP_RESOLUTION;
-        light.shadow.mapSize.height = p.SHADOWMAP_RESOLUTION;
+        light.shadow.mapSize.width = constants.SHADOWMAP_RESOLUTION;
+        light.shadow.mapSize.height = constants.SHADOWMAP_RESOLUTION;
         /** @type {number} */
         light.shadow.camera.near = 50;
         /** @type {number} */
@@ -96,7 +110,7 @@ InitCamera.inherit(initDrawCallsCounter, {
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     },
     initVignetting : function() {
-        this.vignetting = new TagHourlyStat;
+        this.vignetting = new vignettingRender;
     },
     setSize : function(size, val) {
         initDrawCallsCounter.prototype.setSize.call(this, size, val);
@@ -107,7 +121,7 @@ InitCamera.inherit(initDrawCallsCounter, {
     initCamera : function() {
     /** @type {number} */
         var psisq = 120;
-        Math.tan(p.CAMERA_ANGLE) * Math.sqrt(2 * Math.pow(psisq, 2));
+        Math.tan(constants.CAMERA_ANGLE) * Math.sqrt(2 * Math.pow(psisq, 2));
         this.camera = new PerspectiveCameraCtor(30, window.innerWidth / window.innerHeight, 10, 400);
         this.camera.position.set(80, 140, 80);
         this.camera.lookAt(new THREE.Vector3);

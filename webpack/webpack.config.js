@@ -12,6 +12,7 @@ module.exports = {
     resolve: {
         alias: {
             module: path.resolve(__dirname, '../module'),
+            three: path.resolve(__dirname, '../js/lib/three'),
         },
     },
 

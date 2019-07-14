@@ -8,6 +8,7 @@ var keys = ['side', 'alphaTest', 'transparent', 'depthWrite', 'shading', 'wirefr
 var RawShaderMaterialExtern = function(obj) {
     obj = obj || {};
     THREE.RawShaderMaterial.call(this, obj);
+    debugger
     _.each(keys, function(property) {
         var method = obj[property];
         if (void 0 !== method) {

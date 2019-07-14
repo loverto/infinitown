@@ -10,7 +10,7 @@ var instance = (require('module/PBRMaterial'), require('module/TextureMTLLoader'
  * @return {?}
  */
 instance.loadScene = function(name, data, options, callback) {
-    return new bluebird(function(_emscripten_bind_Vector___destroy___0, a) {
+    return new bluebird(function(resolve, reject) {
         var addedRenderer = (options.renderer, shape.getGeometry(name));
         // 设置二进制几何Buffer
         if (addedRenderer) {
@@ -97,7 +97,7 @@ instance.loadScene = function(name, data, options, callback) {
                     }
                 }
             });
-            _emscripten_bind_Vector___destroy___0(objects);
+            resolve(objects);
         });
     });
 };

@@ -3,7 +3,7 @@ import properties from 'module/state';
 /**
  * @return {undefined}
  */
-var Application = function() {
+var ChunksScene = function() {
     THREE.Scene.call(this);
     /** @type {!Array} */
     this._pickables = [];
@@ -11,7 +11,7 @@ var Application = function() {
     this.chunks = [];
     this._initChunks();
 };
-Application.inherit(THREE.Scene, {
+ChunksScene.inherit(THREE.Scene, {
     _initChunks : function() {
     /** @type {number} */
         var j = 0;
@@ -58,5 +58,5 @@ Application.inherit(THREE.Scene, {
 });
 
 /** @type {function(): undefined} */
-export default Application;
+export default ChunksScene;
 
