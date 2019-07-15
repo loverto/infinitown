@@ -15,9 +15,9 @@ Object.assign(TextureMTLLoader.prototype, {
             this.texturePath = url.substring(0, url.lastIndexOf('/') + 1);
         }
         var self = this;
-        var helpers = new THREE.FileLoader(self.manager);
+        var xhrLoader = new THREE.XHRLoader(self.manager);
         // threejs异步加载 资源
-        helpers.load(url, function(response) {
+        xhrLoader.load(url, function(response) {
             /** @type {*} */
             var value = JSON.parse(response);
             self.parse(value, callback);

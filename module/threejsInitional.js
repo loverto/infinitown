@@ -10,20 +10,20 @@ import {CompressedTextureLoaderExtern} from 'module/CompressedTextureLoaderExter
 import {DataFrameReader} from 'module/DataFrameReader';
 import {FileLoaderExtern} from 'module/FileLoaderExtern';
 var manager = new THREE.LoadingManager;
-var loader = new TextureMTLLoader(manager);
+var textureMTLLoader = new TextureMTLLoader(manager);
 var name = {};
 var target = normalize(new THREE.TextureLoader(manager), name);
 var list = normalize(new DataTextureLoaderExtern(1024, false, manager), name);
 var y = normalize(new CompressedTextureLoaderExtern(256, false, manager), name);
 var nsListById = {};
-var scope = new DataFrameReader(manager);
+var dataFrameReader = new DataFrameReader(manager);
 var schema = {};
 var c = normalize(new FileLoaderExtern(manager), schema);
 var self = {
     environmentPath : 'assets/environments',
     geometryPath : 'assets/scenes/data/',
     manager : manager,
-    sceneLoader : loader
+    sceneLoader : textureMTLLoader
 };
 
 /**
@@ -67,18 +67,18 @@ function exec(selector, name, close, callback) {
 /**
  * @param {string} url
  * @param {string} name
- * @param {!Object} type
+ * @param {!Object} loader
  * @return {?}
  */
-function load(url, name, type) {
-    return new bluebird(function(i, stepCallback) {
-        type.load(url, function(t) {
+function load(url, name, loader) {
+    return new bluebird(function(resolve, reject) {
+        loader.load(url, function(object) {
             /** @type {string} */
-            t.filename = name;
-            i(arguments.length > 1 ? _.toArray(arguments) : t);
+            object.filename = name;
+            resolve(arguments.length > 1 ? _.toArray(arguments) : object);
         }, function() {
         }, function() {
-            stepCallback(new Error('Resource was not found: ' + url));
+            reject(new Error('Resource was not found: ' + url));
         }, name);
     });
 }
@@ -100,16 +100,17 @@ Object.defineProperty(self, 'texturePath', {
     },
     set : function(dir) {
         temp = dir;
-        loader.setTexturePath(dir);
+        textureMTLLoader.setTexturePath(dir);
     }
 });
 /**
+ * 加载场景
  * @param {string} url
  * @param {string} key
  * @return {?}
  */
 self.loadScene = function(url, key) {
-    return load(url, key, loader);
+    return load(url, key, textureMTLLoader);
 };
 /**
  * @param {!Array} t
@@ -160,7 +161,7 @@ self.loadSH = function(env) {
         return new bluebird(function(e, stepCallback) {
             var r = parseUrl(self.environmentPath, id + '/irradiance.json');
             // 加载json文件
-            scope.load(r, function(n) {
+            dataFrameReader.load(r, function(n) {
                 nsListById[id] = n;
                 e(n);
             }, function() {

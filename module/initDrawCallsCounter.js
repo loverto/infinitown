@@ -228,6 +228,7 @@ init.prototype = {
         };
     }(),
     start : function() {
+        // 执行更新
         this.doUpdate();
     },
     pause : function() {

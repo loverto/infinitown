@@ -51,10 +51,10 @@ function load() {
         logCalls : Config.LOG_CALLS || false,
         maxPixelRatio : Config.MAX_PIXEL_RATIO || 2
     });
-    initialize(container, sceneCanvas, env, function(t) {
+    initialize(container, sceneCanvas, env, function(objects) {
         window.api.trigger('loaded');
         setTimeout(function() {
-            sceneCanvas.start(t);
+            sceneCanvas.start(objects);
             window.api.trigger('started');
         }, 20);
     });
