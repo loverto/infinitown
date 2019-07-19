@@ -4,6 +4,7 @@ import * as THREE from 'three';
  * @return {?}
  */
 function r(tests) {
+    // 拷贝元素，从0到26个元素
     var delta = tests.slice(0, 27);
     /** @type {number} */
     var a = 1 / (2 * Math.sqrt(Math.PI));
@@ -40,17 +41,17 @@ export function DataFrameReader(data) {
 /** @type {!Object} */
 DataFrameReader.prototype = Object.create(THREE.FileLoader.prototype);
 /**
- * @param {string} f
- * @param {!Function} m
- * @param {!Function} data
- * @param {!Function} xhr
+ * @param {string} url
+ * @param {!Function} loadCallback
+ * @param {!Function} onProgress
+ * @param {!Function} onError
  * @return {undefined}
  */
-DataFrameReader.prototype.load = function(f, m, data, xhr) {
-    THREE.FileLoader.prototype.load.call(this, f, function(dir) {
+DataFrameReader.prototype.load = function(url, loadCallback, onProgress, onError) {
+    THREE.FileLoader.prototype.load.call(this, url, function(data) {
     /** @type {*} */
-        var n = JSON.parse(dir);
+        var n = JSON.parse(data);
         var x = r(n);
-        m(x);
-    }, data, xhr);
+        loadCallback(x);
+    }, onProgress, onError);
 };

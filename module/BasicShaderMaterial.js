@@ -4,14 +4,14 @@ import shaders from 'module/shaders';
  * @param {!Function} obj
  * @return {undefined}
  */
-var Class = function(obj) {
+var BasicShaderMaterial = function(obj) {
     /** @type {!Object} */
     obj = Object.assign({
         vertexShader : shaders['basic.vs'],
         fragmentShader : shaders['basic.fs'],
         uniforms : {
             diffuse : {
-                value : new THREE.Color(16711935)
+                value : new THREE.Color(0xff00ff)
             },
             map : {
                 value : null
@@ -33,9 +33,9 @@ var Class = function(obj) {
         });
     }, this);
 };
-Class.inherit(parent, {
+BasicShaderMaterial.inherit(parent, {
     clone : function(params) {
-        var data = params || new Class;
+        var data = params || new BasicShaderMaterial;
         return parent.prototype.clone.call(this, data), data.name = this.name, data.transparent = this.transparent, _.each(this.uniforms, function(dom, name) {
             var value = dom.type;
             if ('v2' === value || 'm4' === value) {
@@ -47,4 +47,4 @@ Class.inherit(parent, {
     }
 });
 /** @type {function(!Function): undefined} */
-export {Class};
+export {BasicShaderMaterial};

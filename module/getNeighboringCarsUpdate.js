@@ -1,7 +1,7 @@
 import * as THREE  from 'three';
 import * as BufferGeometryUtils from 'three/examples/js/utils/BufferGeometryUtils'
 import state from 'module/state';
-import initCollisionPointsUpdate from 'module/initCollisionPointsUpdate';
+import InitCarPoints from 'module/initCarPoints';
 import Buffer from 'module/updateTablePositionRender';
 import Common from 'module/types';
 
@@ -196,7 +196,7 @@ getNeighboringCarsUpdate.inherit(Object, {
             var e = window.isMobile ? .2 : .35;
             if (Common.random() < e) {
                 var id = getElementByRandom(this.carObjects).clone();
-                var tab = new initCollisionPointsUpdate(this, id, index);
+                var tab = new InitCarPoints(this, id, index);
                 self.add(tab);
                 this.mobs.push(tab);
             }

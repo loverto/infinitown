@@ -10,12 +10,12 @@ export function TextureMTLLoader(data) {
 };
 Object.assign(TextureMTLLoader.prototype, {
     load : function(url, callback, data, options) {
-    // 如果纹理路径为空，则从参数中获取纹理路径
+        // 如果纹理路径为空，则从参数中获取纹理路径
         if ('' === this.texturePath) {
             this.texturePath = url.substring(0, url.lastIndexOf('/') + 1);
         }
         var self = this;
-        var xhrLoader = new THREE.XHRLoader(self.manager);
+        var xhrLoader = new THREE.FileLoader(self.manager);
         // threejs异步加载 资源
         xhrLoader.load(url, function(response) {
             /** @type {*} */
@@ -32,9 +32,9 @@ Object.assign(TextureMTLLoader.prototype, {
         this.crossOrigin = value;
     },
     parse : function(json, callback) {
-    // 获取几何图形
+        // 获取几何图形
         var geometries;
-        // 判断文件是否为二进制，如果时二进制，则设置二进制，否则转换为几何图形
+        // 判断文件是否为二进制，如果是二进制，则设置二进制，否则转换为几何图形
         geometries = json.binary ? this.parseBinaryGeometries(json.geometries) : this.parseGeometries(json.geometries);
         // 转换图片
         var images = this.parseImages(json.images, function() {
@@ -49,7 +49,16 @@ Object.assign(TextureMTLLoader.prototype, {
         var materials = this.parseMaterials(json.materials, textures);
         // 转换对象
         var object = this.parseObject(json.object, geometries, materials);
-        return json.animations && (object.animations = this.parseAnimations(json.animations)), json.cameras && (object.cameras = this.parseCameras(object, json.cameras)), void 0 !== json.images && 0 !== json.images.length || void 0 !== callback && callback(object, json), object;
+        if(json.animations){
+            (object.animations = this.parseAnimations(json.animations))
+        }
+        if(json.cameras ){
+            (object.cameras = this.parseCameras(object, json.cameras))
+        }
+        if(void 0 !== json.images && 0 !== json.images.length || void 0 !== callback ){
+            callback(object, json)
+        }
+        return object;
     },
     parseCameras : function(object, options) {
     /** @type {!Array} */
@@ -65,7 +74,7 @@ Object.assign(TextureMTLLoader.prototype, {
         return onSelectionCalls;
     },
     parseGeometries : function(json) {
-    // 转换几何图形
+        // 转换几何图形
         var geometries = {};
         // void 0 等价于undefined 压缩器为了提升性能做的改进
         if (void 0 !== json) {

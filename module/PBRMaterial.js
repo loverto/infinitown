@@ -280,13 +280,15 @@ var PBRMaterial = function(obj) {
             },
             fogColor : {
                 type : 'c',
-                value : new THREE.Color(10676479)
+                value : new THREE.Color(0xa2e8ff)
             }
         }
     }, obj);
     RawShaderMaterialExtern.call(this, obj);
     Object.keys(this.uniforms).forEach(function(name) {
         self.onPropertyChange(name, function(initSBC) {
+            console.log("PBRMaterial construct",name,initSBC)
+
             /** @type {!Object} */
             self.uniforms[name].value = initSBC;
         });
@@ -355,18 +357,18 @@ PBRMaterial.inherit(RawShaderMaterialExtern, {
  * @return {?}
  */
 PBRMaterial.create = function(material) {
-    var parameters = new PBRMaterial({
+    var pbrMaterial = new PBRMaterial({
         vertexShader : material.vertexShader,
         fragmentShader : material.fragmentShader
     });
     /** @type {!Object} */
-    parameters.createOptions = material;
-    parameters.uuid = material.uuid;
-    parameters.name = material.name;
-    parameters.transparent = optionalParameter(material.transparent, false);
-    parameters.polygonOffset = optionalParameter(material.polygonOffset, false);
-    parameters.polygonOffsetUnits = optionalParameter(material.polygonOffsetUnits, 0);
-    parameters.polygonOffsetFactor = optionalParameter(material.polygonOffsetFactor, 0);
+    pbrMaterial.createOptions = material;
+    pbrMaterial.uuid = material.uuid;
+    pbrMaterial.name = material.name;
+    pbrMaterial.transparent = optionalParameter(material.transparent, false);
+    pbrMaterial.polygonOffset = optionalParameter(material.polygonOffset, false);
+    pbrMaterial.polygonOffsetUnits = optionalParameter(material.polygonOffsetUnits, 0);
+    pbrMaterial.polygonOffsetFactor = optionalParameter(material.polygonOffsetFactor, 0);
     var whiteTexture = DataTextureUtils.CreateWhiteTexture();
     var normalTexture = DataTextureUtils.CreateNormalTexture();
     var options = material.albedoMap || whiteTexture;
@@ -380,12 +382,12 @@ PBRMaterial.create = function(material) {
     var defTexture = material.lightMap || whiteTexture;
     var reconnectTimeIncrease = material.lightMapDir || whiteTexture;
     var value = component.getSH(material.environment);
-    return material.normalMap && (parameters.defines.USE_NORMALMAP = true), material.normalMap2 && (parameters.defines.USE_NORMALMAP2 = true), material.aoMap && (parameters.defines.USE_AOMAP = true), material.aoMap2 && (parameters.defines.USE_AOMAP2 = true), material.emissiveMap && (parameters.defines.USE_EMISSIVEMAP = true), material.lightMap && (parameters.defines.USE_LIGHTMAP = true), material.lightMapDir && (parameters.defines.USE_LIGHTMAP_DIR = true), material.albedoMap && (parameters.defines.USE_ALBEDOMAP =
-        true), material.albedoMap2 && (parameters.defines.USE_ALBEDOMAP2 = true), parameters.uAlbedoPBRFactor = optionalParameter(material.albedoFactor, 1), parameters.uNormalMapFactor = optionalParameter(material.normalMapFactor, 1), parameters.uMetalnessPBRFactor = optionalParameter(material.metalFactor, 1), parameters.uGlossinessPBRFactor = optionalParameter(material.glossFactor, 1), parameters.uAOPBRFactor = optionalParameter(material.aoFactor, 1), parameters.uSpecularF0Factor = optionalParameter(material.f0Factor,
-        .5), parameters.uEnvironmentExposure = optionalParameter(material.exposure, 1), parameters.occludeSpecular = optionalParameter(material.occludeSpecular ? 1 : 0, 1), parameters.uFlipY = optionalParameter(material.flipNormals, 0), parameters.opacity = optionalParameter(material.opacity, 1), parameters.color = (new THREE.Color).setHex(void 0 !== material.color ? material.color : 16777215), parameters.side = optionalParameter(material.side, THREE.FrontSide), options.needsUpdate = true, directLoginReference.needsUpdate =
-        true, flag.needsUpdate = true, cloudDistance.needsUpdate = true, hyperParameters.needsUpdate = true, picture_right_map.needsUpdate = true, picture_below_map.needsUpdate = true, topTexture.needsUpdate = true, defTexture.needsUpdate = true, reconnectTimeIncrease.needsUpdate = true, parameters.sTextureAlbedoMap = options, parameters.sTextureAlbedoMap2 = directLoginReference, parameters.sTextureNormalMap = flag, parameters.sTextureNormalMap2 = cloudDistance, parameters.sTextureAOMap = hyperParameters,
-    parameters.sTextureAOMap2 = picture_right_map, parameters.sTexturePBRMaps = picture_below_map, parameters.sTextureEmissiveMap = topTexture, parameters.sTextureLightMap = defTexture, parameters.sTextureLightMapDir = reconnectTimeIncrease, value && (parameters.uDiffuseSPH = new Float32Array(value, 27)), parameters.uEnvironmentTransform = new THREE.Matrix4, material.alphaTest && (parameters.alphaTest = material.alphaTest, parameters.defines.ALPHATEST = true), parameters.refreshOffsetRepeat(),
-    parameters.refreshOffsetRepeatDetail(), parameters;
+    return material.normalMap && (pbrMaterial.defines.USE_NORMALMAP = true), material.normalMap2 && (pbrMaterial.defines.USE_NORMALMAP2 = true), material.aoMap && (pbrMaterial.defines.USE_AOMAP = true), material.aoMap2 && (pbrMaterial.defines.USE_AOMAP2 = true), material.emissiveMap && (pbrMaterial.defines.USE_EMISSIVEMAP = true), material.lightMap && (pbrMaterial.defines.USE_LIGHTMAP = true), material.lightMapDir && (pbrMaterial.defines.USE_LIGHTMAP_DIR = true), material.albedoMap && (pbrMaterial.defines.USE_ALBEDOMAP =
+        true), material.albedoMap2 && (pbrMaterial.defines.USE_ALBEDOMAP2 = true), pbrMaterial.uAlbedoPBRFactor = optionalParameter(material.albedoFactor, 1), pbrMaterial.uNormalMapFactor = optionalParameter(material.normalMapFactor, 1), pbrMaterial.uMetalnessPBRFactor = optionalParameter(material.metalFactor, 1), pbrMaterial.uGlossinessPBRFactor = optionalParameter(material.glossFactor, 1), pbrMaterial.uAOPBRFactor = optionalParameter(material.aoFactor, 1), pbrMaterial.uSpecularF0Factor = optionalParameter(material.f0Factor,
+        .5), pbrMaterial.uEnvironmentExposure = optionalParameter(material.exposure, 1), pbrMaterial.occludeSpecular = optionalParameter(material.occludeSpecular ? 1 : 0, 1), pbrMaterial.uFlipY = optionalParameter(material.flipNormals, 0), pbrMaterial.opacity = optionalParameter(material.opacity, 1), pbrMaterial.color = (new THREE.Color).setHex(void 0 !== material.color ? material.color : 16777215), pbrMaterial.side = optionalParameter(material.side, THREE.FrontSide), options.needsUpdate = true, directLoginReference.needsUpdate =
+        true, flag.needsUpdate = true, cloudDistance.needsUpdate = true, hyperParameters.needsUpdate = true, picture_right_map.needsUpdate = true, picture_below_map.needsUpdate = true, topTexture.needsUpdate = true, defTexture.needsUpdate = true, reconnectTimeIncrease.needsUpdate = true, pbrMaterial.sTextureAlbedoMap = options, pbrMaterial.sTextureAlbedoMap2 = directLoginReference, pbrMaterial.sTextureNormalMap = flag, pbrMaterial.sTextureNormalMap2 = cloudDistance, pbrMaterial.sTextureAOMap = hyperParameters,
+    pbrMaterial.sTextureAOMap2 = picture_right_map, pbrMaterial.sTexturePBRMaps = picture_below_map, pbrMaterial.sTextureEmissiveMap = topTexture, pbrMaterial.sTextureLightMap = defTexture, pbrMaterial.sTextureLightMapDir = reconnectTimeIncrease, value && (pbrMaterial.uDiffuseSPH = new Float32Array(value, 27)), pbrMaterial.uEnvironmentTransform = new THREE.Matrix4, material.alphaTest && (pbrMaterial.alphaTest = material.alphaTest, pbrMaterial.defines.ALPHATEST = true), pbrMaterial.refreshOffsetRepeat(),
+    pbrMaterial.refreshOffsetRepeatDetail(), pbrMaterial;
 };
 
 /** @type {function(!Function): undefined} */

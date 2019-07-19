@@ -14,6 +14,7 @@ instance.loadScene = function(name, data, options, callback) {
         var addedRenderer = (options.renderer, shape.getGeometry(name));
         // 设置二进制几何Buffer
         if (addedRenderer) {
+            console.log("设置二进制几何Buffer")
             shape.sceneLoader.setBinaryGeometryBuffer(addedRenderer);
         }
         // 加载场景

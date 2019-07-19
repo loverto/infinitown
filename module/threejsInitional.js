@@ -106,11 +106,11 @@ Object.defineProperty(self, 'texturePath', {
 /**
  * 加载场景
  * @param {string} url
- * @param {string} key
+ * @param {string} filename
  * @return {?}
  */
-self.loadScene = function(url, key) {
-    return load(url, key, textureMTLLoader);
+self.loadScene = function(url, filename) {
+    return load(url, filename, textureMTLLoader);
 };
 /**
  * @param {!Array} t
@@ -157,16 +157,16 @@ self.loadSpecularCubemaps = function(args, options) {
  * @return {?}
  */
 self.loadSH = function(env) {
-    return bluebird.all(_.map(env, function(id) {
-        return new bluebird(function(e, stepCallback) {
-            var r = parseUrl(self.environmentPath, id + '/irradiance.json');
+    return bluebird.all(_.map(env, function(e) {
+        return new bluebird(function(resolve, reject) {
+            var url = parseUrl(self.environmentPath, e + '/irradiance.json');
             // 加载json文件
-            dataFrameReader.load(r, function(n) {
-                nsListById[id] = n;
-                e(n);
+            dataFrameReader.load(url, function(data) {
+                nsListById[e] = data;
+                resolve(data);
             }, function() {
             }, function() {
-                stepCallback(new Error('Resource was not found: ' + r));
+                reject(new Error('Resource was not found: ' + url));
             });
         });
     }));

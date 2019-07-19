@@ -7,12 +7,12 @@ var RandomBaseTimeSeriesDataModel = (require('module/threejsInitional'), THREE.M
 /** @type {null} */
 var shaders = null;
 /**
- * @param {!Object} trackInfoUrl
+ * @param {!Object} inShaders
  * @return {undefined}
  */
-THREE.MaterialLoader.setShaders = function(trackInfoUrl) {
+THREE.MaterialLoader.setShaders = function(inShaders) {
     /** @type {!Object} */
-    shaders = trackInfoUrl;
+    shaders = inShaders;
 };
 /**
  * @param {!Object} options

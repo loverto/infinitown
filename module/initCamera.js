@@ -4,7 +4,7 @@ var constants = (require('module/LineSegmentsInit'), require('module/state'));
 require('module/PerspectiveCameraUpdate')
 require('module/OrthographicCameraBase')
 import {PerspectiveCameraCtor} from  'module/PerspectiveCameraCtor';
-require('module/Class')
+require('module/BasicShaderMaterial')
 import {getNeighboringCarsUpdate} from 'module/getNeighboringCarsUpdate';
 import ChunksScene from 'module/ChunksScene';
 import EventHandler from 'module/jqueryEventHandler';

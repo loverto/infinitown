@@ -8,7 +8,7 @@ var normal = new THREE.Vector3(0, 1, 0);
  * @param {!Object} transform
  * @return {undefined}
  */
-var initCollisionPointsUpdate = function(obj, data, transform) {
+var InitCarPoints = function(obj, data, transform) {
     render.call(this, obj);
     /** @type {string} */
     this.name = 'car';
@@ -41,7 +41,7 @@ var initCollisionPointsUpdate = function(obj, data, transform) {
     this.direction.set(Math.round(this.direction.x), Math.round(this.direction.y), Math.round(this.direction.z));
     this._initCollisionPoints();
 };
-initCollisionPointsUpdate.inherit(render, {
+InitCarPoints.inherit(render, {
     addRadarHelper : function() {
         var pregeom = new THREE.CircleGeometry(this.radarRadius, 32, 0, Math.PI / 2);
         var wrapper = new THREE.MeshBasicMaterial({
@@ -199,5 +199,5 @@ initCollisionPointsUpdate.inherit(render, {
 });
 
 /** @type {function(!Function, !Object, !Object): undefined} */
-export default initCollisionPointsUpdate;
+export default InitCarPoints;
 

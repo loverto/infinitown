@@ -26,7 +26,7 @@ function initialize(name, options, env, callback) {
     };
     // 加载资源
     var downloader = new Renderer(_infoMemory);
-    downloader.load().then(function(n) {
+    downloader.load().then(function(response) {
     /** @type {string} */
         threejsInitional.texturePath = 'assets/' + name + '/';
         THREE.MaterialLoader.setShaders(shadersResource);

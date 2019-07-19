@@ -151,9 +151,9 @@ var init = function(options) {
 };
 init.prototype = {
     initDrawCallsCounter : function() {
-        var $panzoom = $('<div id=\'dc\'></div>');
-        $('body').append($panzoom);
-        $panzoom.css('position', 'absolute').css('display', 'block !important').css('color', 'yellow').css('top', '60px').css('left', '20px').css('padding', '3px').css('font-size', '2em').css('background-color', 'black').css('z-index', '999999');
+        var $panzoom = $("<div id='dc'></div>");
+        $("body").append($panzoom);
+        $panzoom.css("position", "absolute").css("display", "block !important").css("color", "yellow").css("top", "60px").css("left", "20px").css("padding", "3px").css("font-size", "2em").css("background-color", "black").css("z-index", "999999");
         this.dcCounter = $panzoom[0];
     },
     render : function(text) {
