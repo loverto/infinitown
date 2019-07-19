@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 var ctor = THREE.PerspectiveCamera;
 var value = new THREE.Vector3;
 /**

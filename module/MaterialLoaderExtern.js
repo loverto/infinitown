@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 require('module/ShaderMaterialExtern')
 import PBRMaterial from 'module/PBRMaterial';
 import images from 'module/update';

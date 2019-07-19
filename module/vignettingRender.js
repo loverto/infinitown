@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 import value from 'module/threejsInitional';
 /**
  * @return {undefined}

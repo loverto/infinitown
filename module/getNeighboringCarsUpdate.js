@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 // import * as BufferGeometryUtils from 'three/examples/js/utils/BufferGeometryUtils'
 import state from 'module/state';
 import initCollisionPointsUpdate from 'module/initCollisionPointsUpdate';

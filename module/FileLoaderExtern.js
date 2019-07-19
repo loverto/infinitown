@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 /**
  * @param {string} data
  * @return {undefined}

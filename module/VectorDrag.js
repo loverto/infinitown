@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 import et from 'module/state';
 import canvas from 'module/Events';
 var ndc = new THREE.Vector2;

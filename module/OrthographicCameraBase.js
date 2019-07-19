@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 var Base = THREE.OrthographicCamera;
 /** @type {function(number): undefined} */
 var OrthographicCameraBase = (require('three-orbit-controls'), function(hValue) {

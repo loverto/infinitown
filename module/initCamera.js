@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 import initDrawCallsCounter from 'module/initDrawCallsCounter';
 var constants = (require('module/LineSegmentsInit'), require('module/state'));
 require('module/PerspectiveCameraUpdate')

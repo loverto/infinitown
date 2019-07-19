@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 /** @type {!Array} */
 var keys = ['side', 'alphaTest', 'transparent', 'depthWrite', 'shading', 'wireframe'];
 /**

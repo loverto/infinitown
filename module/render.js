@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 import state from 'module/state';
 import types from 'module/types';
 /** @type {number} */

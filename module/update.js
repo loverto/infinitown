@@ -19,6 +19,7 @@ function optionalParameter(value, defaultValue) {
  * @return {undefined}
  */
 var update = function(data) {
+    var self = this
     /** @type {!Object} */
     data = Object.assign({
         vertexShader : data.vertexShader,
@@ -48,14 +49,14 @@ var update = function(data) {
     }, data);
     t.call(this, data);
     Object.keys(this.uniforms).forEach(function(name) {
-        this.onPropertyChange(name, function(initSBC) {
+        self.onPropertyChange(name, function(initSBC) {
             /** @type {!Object} */
-            this.uniforms[name].value = initSBC;
+            self.uniforms[name].value = initSBC;
         });
     }, this);
     _.each(a, function(javascriptName, prop) {
-        this.onPropertyChange(prop, function(jsonName) {
-            this[javascriptName] = jsonName;
+        self.onPropertyChange(prop, function(jsonName) {
+            self[javascriptName] = jsonName;
         });
     }, this);
     this.extensions = {

@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 import properties from 'module/state';
 /**
  * @return {undefined}

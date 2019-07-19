@@ -5,6 +5,7 @@ import shaders from 'module/shaders';
  * @return {undefined}
  */
 var Class = function(obj) {
+    var self = this
     /** @type {!Object} */
     obj = Object.assign({
         vertexShader : shaders['basic.vs'],
@@ -26,9 +27,9 @@ var Class = function(obj) {
     }, obj);
     parent.call(this, obj);
     Object.keys(this.uniforms).forEach(function(name) {
-        this.onPropertyChange(name, function(initSBC) {
+        self.onPropertyChange(name, function(initSBC) {
             /** @type {!Object} */
-            this.uniforms[name].value = initSBC;
+            self.uniforms[name].value = initSBC;
         });
     }, this);
 };

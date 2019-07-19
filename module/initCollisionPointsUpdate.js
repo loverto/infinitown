@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 import types from 'module/types';
 import render from 'module/render';
 var normal = new THREE.Vector3(0, 1, 0);

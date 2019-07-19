@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 import state from 'module/state';
 import render from 'module/render';
 import types from 'module/types';

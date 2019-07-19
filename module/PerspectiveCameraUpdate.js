@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 var ctor = THREE.PerspectiveCamera;
 import TubularModel from 'three-orbit-controls';
 /**

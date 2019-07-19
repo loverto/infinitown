@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 import Events from 'module/Events';
 import timers from 'module/timers';
 import Stats from 'module/Stats';

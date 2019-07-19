@@ -1,4 +1,4 @@
-import * as THREE  from 'three';
+
 import RawShaderMaterialExtern from 'module/RawShaderMaterialExtern';
 import component from 'module/threejsInitional';
 import DataTextureUtils from 'module/dataTextureUtils';
