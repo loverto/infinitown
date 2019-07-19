@@ -11,8 +11,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            module: path.resolve(__dirname, '../module'),
-            three: path.resolve(__dirname, '../js/lib/three'),
+            module: path.resolve(__dirname, '../module')
         },
     },
 
@@ -37,12 +36,12 @@ module.exports = {
             { from: './assets', to: 'assets' },
             { from: './img', to: 'img' },
             { from: './textures', to: 'textures' },
-            { from: './css', to: 'css' }
+            { from: './css', to: 'css' },
+            { from: './js', to: 'js' }
         ]),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.ProvidePlugin({
             _: 'lodash',
-            THREE: 'three',
             TWEEN: '@tweenjs/tween.js',
             $: 'jquery',
             jQuery: 'jquery',

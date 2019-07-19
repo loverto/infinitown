@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+
 
 // promise 工具类
 import bluebird from 'bluebird';

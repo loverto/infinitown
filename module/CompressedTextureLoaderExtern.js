@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+
 /**
  * @param {number} t
  * @param {?} data
