@@ -36,7 +36,7 @@ function r(tests) {
  */
 export function DataFrameReader(data) {
     THREE.FileLoader.call(this);
-    this.manager = void 0 !== data ? data : THREE.DefaultLoadingManager;
+    this.manager = undefined !== data ? data : THREE.DefaultLoadingManager;
 };
 /** @type {!Object} */
 DataFrameReader.prototype = Object.create(THREE.FileLoader.prototype);

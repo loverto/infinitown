@@ -11,7 +11,7 @@ var a = {
  * @return {?}
  */
 function optionalParameter(value, defaultValue) {
-    return void 0 !== value ? value : defaultValue;
+    return undefined !== value ? value : defaultValue;
 }
 
 /**

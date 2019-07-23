@@ -5,7 +5,7 @@ import * as THREE from 'three';
  * @return {undefined}
  */
 export function LoadSceneManager(loadingManager) {
-    this.manager = void 0 !== loadingManager ? loadingManager : THREE.DefaultLoadingManager;
+    this.manager = undefined !== loadingManager ? loadingManager : THREE.DefaultLoadingManager;
     // 设置纹理路径
     this.texturePath = '';
 };
@@ -51,7 +51,7 @@ Object.assign(LoadSceneManager.prototype, {
         geometries = json.binary ? this.parseBinaryGeometries(json.geometries) : this.parseGeometries(json.geometries);
         // 转换图片
         var images = this.parseImages(json.images, function() {
-            if (void 0 !== callback) {
+            if (undefined !== callback) {
                 // 图片加载完毕后，把转换的object对象和json数据返回给调用处
                 callback(object, json);
             }
@@ -68,7 +68,7 @@ Object.assign(LoadSceneManager.prototype, {
         if(json.cameras ){
             (object.cameras = this.parseCameras(object, json.cameras))
         }
-        if(void 0 !== json.images && 0 !== json.images.length || void 0 !== callback ){
+        if(undefined !== json.images && 0 !== json.images.length || undefined !== callback ){
             callback(object, json)
         }
         return object;
@@ -97,8 +97,8 @@ Object.assign(LoadSceneManager.prototype, {
     parseGeometries : function(json) {
         // 转换几何图形
         var geometries = {};
-        // void 0 等价于undefined 压缩器为了提升性能做的改进
-        if (void 0 !== json) {
+        // undefined 等价于undefined 压缩器为了提升性能做的改进
+        if (undefined !== json) {
             // 实例化json 几何形状的加载器
             var geometryLoader = new THREE.JSONLoader;
             // 实例化Buffer几何形状的加载器
@@ -169,7 +169,7 @@ Object.assign(LoadSceneManager.prototype, {
                     continue;
                 }
                 geometry.uuid = data.uuid;
-                if (void 0 !== data.name) {
+                if (undefined !== data.name) {
                     geometry.name = data.name;
                 }
                 geometries[data.uuid] = geometry;
@@ -190,7 +190,7 @@ Object.assign(LoadSceneManager.prototype, {
      */
     parseBinaryGeometries : function(result) {
         var geometries = {};
-        if (void 0 !== result) {
+        if (undefined !== result) {
             new THREE.BufferGeometryLoader
             var i = 0;
             var length = result.length;
@@ -231,7 +231,7 @@ Object.assign(LoadSceneManager.prototype, {
                     }
                 }
                 geometry.uuid = data.uuid;
-                if (void 0 !== data.name) {
+                if (undefined !== data.name) {
                     geometry.name = data.name;
                 }
                 geometries[data.uuid] = geometry;
@@ -249,7 +249,7 @@ Object.assign(LoadSceneManager.prototype, {
     // 设置材料
         var materials = {};
 
-        if (void 0 !== json) {
+        if (undefined !== json) {
             var loader = new THREE.MaterialLoader;
             loader.setTextures(textures);
             /** @type {number} */
@@ -296,7 +296,7 @@ Object.assign(LoadSceneManager.prototype, {
         }
         var self = this;
         var images = {};
-        if (void 0 !== json && json.length > 0) {
+        if (undefined !== json && json.length > 0) {
             // 设置回调函数
             var manager = new THREE.LoadingManager(onLoad);
             var loader = new THREE.ImageLoader(manager);
@@ -327,7 +327,7 @@ Object.assign(LoadSceneManager.prototype, {
             return 'number' == typeof value ? value : (console.warn('THREE.ObjectLoader.parseTexture: Constant should be in numeric form.', value), THREE[value]);
         }
         var textures = {};
-        if (void 0 !== json) {
+        if (undefined !== json) {
             /** @type {number} */
             var i = 0;
             var jsonLength = json.length;
@@ -342,17 +342,17 @@ Object.assign(LoadSceneManager.prototype, {
                     var i = 0;
                     var l = data.images.length;
                     for (; i < l; i++) {
-                        if (void 0 === images[data.images[i]]) {
+                        if (undefined === images[data.images[i]]) {
                             console.warn('THREE.ObjectLoader: Undefined image', data.images[i]);
                         }
                         c.push(images[data.images[i]]);
                     }
                     texture = new THREE.CubeTexture(c);
                 } else {
-                    if (void 0 === data.image) {
+                    if (undefined === data.image) {
                         console.warn('THREE.ObjectLoader: No "image" specified for', data.uuid);
                     }
-                    if (void 0 === images[data.image]) {
+                    if (undefined === images[data.image]) {
                         console.warn('THREE.ObjectLoader: Undefined image', data.image);
                     }
                     texture = new THREE.Texture(images[data.image]);
@@ -363,34 +363,34 @@ Object.assign(LoadSceneManager.prototype, {
                 // 设置纹理的唯一id
                 texture.uuid = data.uuid;
                 // 如果有名称则设置名称
-                if (void 0 !== data.name) {
+                if (undefined !== data.name) {
                     texture.name = data.name;
                 }
 
-                if (void 0 !== data.mapping) {
+                if (undefined !== data.mapping) {
                     texture.mapping = parseConstant(data.mapping);
                 }
-                if (void 0 !== data.offset) {
+                if (undefined !== data.offset) {
                     texture.offset.fromArray(data.offset);
                 }
-                if (void 0 !== data.repeat) {
+                if (undefined !== data.repeat) {
                     texture.repeat.fromArray(data.repeat);
                 }
-                if (void 0 !== data.wrap) {
+                if (undefined !== data.wrap) {
                     texture.wrapS = parseConstant(data.wrap[0]);
                     texture.wrapT = parseConstant(data.wrap[1]);
                 }
                 // 如果有最小
-                if (void 0 !== data.minFilter) {
+                if (undefined !== data.minFilter) {
                     texture.minFilter = parseConstant(data.minFilter);
                 }
-                if (void 0 !== data.magFilter) {
+                if (undefined !== data.magFilter) {
                     texture.magFilter = parseConstant(data.magFilter);
                 }
-                if (void 0 !== data.anisotropy) {
+                if (undefined !== data.anisotropy) {
                     texture.anisotropy = data.anisotropy;
                 }
-                if (void 0 !== data.flipY) {
+                if (undefined !== data.flipY) {
                     texture.flipY = data.flipY;
                 }
                 textures[data.uuid] = texture;
@@ -410,15 +410,15 @@ Object.assign(LoadSceneManager.prototype, {
              * @return {?}
              */
             function getGeometry(name) {
-                return void 0 === geometries[name] && console.warn('THREE.ObjectLoader: Undefined geometry', name), geometries[name];
+                return undefined === geometries[name] && console.warn('THREE.ObjectLoader: Undefined geometry', name), geometries[name];
             }
             /**
              * @param {?} name
              * @return {?}
              */
             function getMaterial(name) {
-                if (void 0 !== name) {
-                    return void 0 === materials[name] && console.warn('THREE.ObjectLoader: Undefined material', name), materials[name];
+                if (undefined !== name) {
+                    return undefined === materials[name] && console.warn('THREE.ObjectLoader: Undefined material', name), materials[name];
                 }
             }
             var object;
@@ -428,19 +428,19 @@ Object.assign(LoadSceneManager.prototype, {
                 break;
             case 'PerspectiveCamera':
                 object = new THREE.PerspectiveCamera(data.fov, data.aspect, data.near, data.far);
-                if (void 0 !== data.focus) {
+                if (undefined !== data.focus) {
                     object.focus = data.focus;
                 }
-                if (void 0 !== data.zoom) {
+                if (undefined !== data.zoom) {
                     object.zoom = data.zoom;
                 }
-                if (void 0 !== data.filmGauge) {
+                if (undefined !== data.filmGauge) {
                     object.filmGauge = data.filmGauge;
                 }
-                if (void 0 !== data.filmOffset) {
+                if (undefined !== data.filmOffset) {
                     object.filmOffset = data.filmOffset;
                 }
-                if (void 0 !== data.view) {
+                if (undefined !== data.view) {
                     /** @type {!Object} */
                     object.view = Object.assign({}, data.view);
                 }
@@ -490,8 +490,8 @@ Object.assign(LoadSceneManager.prototype, {
             default:
                 object = new THREE.Object3D;
             }
-            if (object.uuid = data.uuid, void 0 !== data.name && (object.name = data.name), void 0 !== data.matrix ? (matrix.fromArray(data.matrix), matrix.decompose(object.position, object.quaternion, object.scale)) : (void 0 !== data.position && object.position.fromArray(data.position), void 0 !== data.rotation && object.rotation.fromArray(data.rotation), void 0 !== data.scale && object.scale.fromArray(data.scale)), void 0 !== data.castShadow && (object.castShadow = data.castShadow), void 0 !== data.receiveShadow &&
-            (object.receiveShadow = data.receiveShadow), void 0 !== data.visible && (object.visible = data.visible), void 0 !== data.userData && (object.userData = data.userData), void 0 !== data.children) {
+            if (object.uuid = data.uuid, undefined !== data.name && (object.name = data.name), undefined !== data.matrix ? (matrix.fromArray(data.matrix), matrix.decompose(object.position, object.quaternion, object.scale)) : (undefined !== data.position && object.position.fromArray(data.position), undefined !== data.rotation && object.rotation.fromArray(data.rotation), undefined !== data.scale && object.scale.fromArray(data.scale)), undefined !== data.castShadow && (object.castShadow = data.castShadow), undefined !== data.receiveShadow &&
+            (object.receiveShadow = data.receiveShadow), undefined !== data.visible && (object.visible = data.visible), undefined !== data.userData && (object.userData = data.userData), undefined !== data.children) {
                 var child;
                 for (child in data.children) {
                     object.add(this.parseObject(data.children[child], geometries, materials));
@@ -504,12 +504,12 @@ Object.assign(LoadSceneManager.prototype, {
                 for (; i < levels.length; i++) {
                     var level = levels[i];
                     child = object.getObjectByProperty('uuid', level.object);
-                    if (void 0 !== child) {
+                    if (undefined !== child) {
                         object.addLevel(child, level.distance);
                     }
                 }
             }
-            return void 0 !== data.layers && (object.layers.mask = data.layers), object;
+            return undefined !== data.layers && (object.layers.mask = data.layers), object;
         };
     }()
 });

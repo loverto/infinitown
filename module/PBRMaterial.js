@@ -1,14 +1,10 @@
 import * as THREE  from 'three';
 import RawShaderMaterialExtern from 'module/RawShaderMaterialExtern';
-import component from 'module/LoaderUtils';
-import DataTextureUtils from 'module/dataTextureUtils';
-/**
- * @param {?} value
- * @param {string} defaultValue
- * @return {?}
- */
+import loaderUtils from 'module/LoaderUtils';
+import TextureUtils from 'module/textureUtils';
+
 function optionalParameter(value, defaultValue) {
-    return void 0 !== value ? value : defaultValue;
+    return undefined !== value ? value : defaultValue;
 }
 
 var options = {
@@ -38,13 +34,13 @@ var options = {
     color : 'uColor',
     contrast : 'uContrast'
 };
+
 /**
- * @param {!Function} obj
- * @return {undefined}
+ * PBR材料
+ * @param obj
+ * @constructor
  */
 var PBRMaterial = function(obj) {
-    var self = this;
-    /** @type {!Object} */
     obj = Object.assign({
         uniforms : {
             uAOPBRFactor : {
@@ -286,92 +282,124 @@ var PBRMaterial = function(obj) {
     }, obj);
     RawShaderMaterialExtern.call(this, obj);
     Object.keys(this.uniforms).forEach(function(name) {
-        self.onPropertyChange(name, function(initSBC) {
+        this.onPropertyChange(name, function(initSBC) {
             console.log("PBRMaterial construct",name,initSBC)
 
-            /** @type {!Object} */
-            self.uniforms[name].value = initSBC;
+            this.uniforms[name].value = initSBC;
         });
     }, this);
+    // 遍历属性
     _.each(options, function(javascriptName, prop) {
-        self.onPropertyChange(prop, function(jsonName) {
-            self[javascriptName] = jsonName;
+        this.onPropertyChange(prop, function(jsonName) {
+            this[javascriptName] = jsonName;
         });
     }, this);
+    // 扩展信息
     this.extensions = {
         derivatives : true,
         shaderTextureLOD : null !== THREE.Extensions.get('EXT_shader_texture_lod')
     };
-    /** @type {boolean} */
+    // 设置pbr
     this.pbr = true;
-    /** @type {boolean} */
+    // 设置灯光
     this.lights = true;
 };
+
 PBRMaterial.inherit(RawShaderMaterialExtern, {
     _clone : function(options) {
         var data = options || new PBRMaterial;
-        return RawShaderMaterialExtern.prototype.clone.call(this, data), data.name = this.name, data.transparent = this.transparent, _.each(this.uniforms, function(dom, name) {
+        RawShaderMaterialExtern.prototype.clone.call(this, data)
+        data.name = this.name
+        data.transparent = this.transparent
+        _.each(this.uniforms, function(dom, name) {
             var value = dom.type;
             if ('v2' === value || 'm4' === value) {
                 data.uniforms[name].value.copy(dom.value);
             } else {
                 data.uniforms[name].value = dom.value;
             }
-        }, this), data;
+        }, this)
+        return data;
     },
     clone : function() {
-        var rvm3 = PBRMaterial.create(this.createOptions);
-        return rvm3.uuid = THREE.Math.generateUUID(), rvm3;
+        var pbrMaterial = PBRMaterial.create(this.createOptions);
+        pbrMaterial.uuid = THREE.Math.generateUUID()
+        return pbrMaterial;
     },
+    /**
+     * 更新环境转换
+     */
     updateEnvironmentTransform : function() {
-        var q = new THREE.Quaternion;
+        var quaternion = new THREE.Quaternion;
         var matrix = new THREE.Matrix4;
-        return function(uri2, options) {
-            uri2.getWorldQuaternion(q).inverse();
-            matrix.makeRotationY(options || 0);
-            this.uniforms.uEnvironmentTransform.value.makeRotationFromQuaternion(q).multiply(matrix);
+        return function(camera, envRotation) {
+            camera.getWorldQuaternion(quaternion).inverse();
+            matrix.makeRotationY(envRotation || 0);
+            this.uniforms.uEnvironmentTransform.value.makeRotationFromQuaternion(quaternion).multiply(matrix);
         };
     }(),
+    /**
+     * 刷新偏移重复
+     */
     refreshOffsetRepeat : function() {
         var uvScaleMap;
-        if (this.defines.USE_ALBEDOMAP ? uvScaleMap = this.sTextureAlbedoMap : this.defines.USE_NORMALMAP ? uvScaleMap = this.sTextureNormalMap : this.defines.USE_AOMAP && (uvScaleMap = this.sTextureAOMap), void 0 !== uvScaleMap) {
+        if (this.defines.USE_ALBEDOMAP ? uvScaleMap = this.sTextureAlbedoMap : this.defines.USE_NORMALMAP ? uvScaleMap = this.sTextureNormalMap : this.defines.USE_AOMAP && (uvScaleMap = this.sTextureAOMap), undefined !== uvScaleMap) {
             var offset = uvScaleMap.offset;
             var repeat = uvScaleMap.repeat;
             this.uniforms.offsetRepeat.value.set(offset.x, offset.y, repeat.x, repeat.y);
         }
     },
+    /**
+     * 刷新偏移重复细节
+     */
     refreshOffsetRepeatDetail : function() {
-        var uvScaleMap = this.sTextureNormalMap2;
-        if (void 0 !== uvScaleMap) {
-            var offset = uvScaleMap.offset;
-            var repeat = uvScaleMap.repeat;
+        var textureNormalMap2 = this.sTextureNormalMap2;
+        if (undefined !== textureNormalMap2) {
+            var offset = textureNormalMap2.offset;
+            var repeat = textureNormalMap2.repeat;
             this.uniforms.offsetRepeatDetail.value.set(offset.x, offset.y, repeat.x, repeat.y);
         }
     },
-    refreshUniforms : function(mmCoreSplitViewBlock, $state) {
-        this.updateEnvironmentTransform(mmCoreSplitViewBlock, $state);
+    /**
+     * 刷新制服
+     * @param camera
+     * @param envRotation
+     */
+    refreshUniforms : function(camera, envRotation) {
+        this.updateEnvironmentTransform(camera, envRotation);
     }
 });
+
 /**
- * @param {!Object} material
- * @return {?}
+ * pbr材料创建
+ * @param material
  */
 PBRMaterial.create = function(material) {
     var pbrMaterial = new PBRMaterial({
         vertexShader : material.vertexShader,
         fragmentShader : material.fragmentShader
     });
-    /** @type {!Object} */
+    // 创建选项
     pbrMaterial.createOptions = material;
+    // uuid
     pbrMaterial.uuid = material.uuid;
+    // 名称
     pbrMaterial.name = material.name;
+    // 设置透明度
     pbrMaterial.transparent = optionalParameter(material.transparent, false);
+    // 多边形偏移
     pbrMaterial.polygonOffset = optionalParameter(material.polygonOffset, false);
+    // 多边形偏移单位
     pbrMaterial.polygonOffsetUnits = optionalParameter(material.polygonOffsetUnits, 0);
+    // 多边形偏移系数
     pbrMaterial.polygonOffsetFactor = optionalParameter(material.polygonOffsetFactor, 0);
-    var whiteTexture = DataTextureUtils.CreateWhiteTexture();
-    var normalTexture = DataTextureUtils.CreateNormalTexture();
+    // 白色纹理
+    var whiteTexture = TextureUtils.CreateWhiteTexture();
+    // 正常纹理
+    var normalTexture = TextureUtils.CreateNormalTexture();
+    // 反照率Map 或者白色纹理
     var options = material.albedoMap || whiteTexture;
+    //
     var directLoginReference = material.albedoMap2 || whiteTexture;
     var flag = material.normalMap || normalTexture;
     var cloudDistance = material.normalMap2 || normalTexture;
@@ -381,15 +409,78 @@ PBRMaterial.create = function(material) {
     var topTexture = material.emissiveMap || whiteTexture;
     var defTexture = material.lightMap || whiteTexture;
     var reconnectTimeIncrease = material.lightMapDir || whiteTexture;
-    var value = component.getSH(material.environment);
-    return material.normalMap && (pbrMaterial.defines.USE_NORMALMAP = true), material.normalMap2 && (pbrMaterial.defines.USE_NORMALMAP2 = true), material.aoMap && (pbrMaterial.defines.USE_AOMAP = true), material.aoMap2 && (pbrMaterial.defines.USE_AOMAP2 = true), material.emissiveMap && (pbrMaterial.defines.USE_EMISSIVEMAP = true), material.lightMap && (pbrMaterial.defines.USE_LIGHTMAP = true), material.lightMapDir && (pbrMaterial.defines.USE_LIGHTMAP_DIR = true), material.albedoMap && (pbrMaterial.defines.USE_ALBEDOMAP =
-        true), material.albedoMap2 && (pbrMaterial.defines.USE_ALBEDOMAP2 = true), pbrMaterial.uAlbedoPBRFactor = optionalParameter(material.albedoFactor, 1), pbrMaterial.uNormalMapFactor = optionalParameter(material.normalMapFactor, 1), pbrMaterial.uMetalnessPBRFactor = optionalParameter(material.metalFactor, 1), pbrMaterial.uGlossinessPBRFactor = optionalParameter(material.glossFactor, 1), pbrMaterial.uAOPBRFactor = optionalParameter(material.aoFactor, 1), pbrMaterial.uSpecularF0Factor = optionalParameter(material.f0Factor,
-        .5), pbrMaterial.uEnvironmentExposure = optionalParameter(material.exposure, 1), pbrMaterial.occludeSpecular = optionalParameter(material.occludeSpecular ? 1 : 0, 1), pbrMaterial.uFlipY = optionalParameter(material.flipNormals, 0), pbrMaterial.opacity = optionalParameter(material.opacity, 1), pbrMaterial.color = (new THREE.Color).setHex(void 0 !== material.color ? material.color : 16777215), pbrMaterial.side = optionalParameter(material.side, THREE.FrontSide), options.needsUpdate = true, directLoginReference.needsUpdate =
-        true, flag.needsUpdate = true, cloudDistance.needsUpdate = true, hyperParameters.needsUpdate = true, picture_right_map.needsUpdate = true, picture_below_map.needsUpdate = true, topTexture.needsUpdate = true, defTexture.needsUpdate = true, reconnectTimeIncrease.needsUpdate = true, pbrMaterial.sTextureAlbedoMap = options, pbrMaterial.sTextureAlbedoMap2 = directLoginReference, pbrMaterial.sTextureNormalMap = flag, pbrMaterial.sTextureNormalMap2 = cloudDistance, pbrMaterial.sTextureAOMap = hyperParameters,
-    pbrMaterial.sTextureAOMap2 = picture_right_map, pbrMaterial.sTexturePBRMaps = picture_below_map, pbrMaterial.sTextureEmissiveMap = topTexture, pbrMaterial.sTextureLightMap = defTexture, pbrMaterial.sTextureLightMapDir = reconnectTimeIncrease, value && (pbrMaterial.uDiffuseSPH = new Float32Array(value, 27)), pbrMaterial.uEnvironmentTransform = new THREE.Matrix4, material.alphaTest && (pbrMaterial.alphaTest = material.alphaTest, pbrMaterial.defines.ALPHATEST = true), pbrMaterial.refreshOffsetRepeat(),
-    pbrMaterial.refreshOffsetRepeatDetail(), pbrMaterial;
+    var value = loaderUtils.getSH(material.environment);
+    if (material.normalMap) {
+        pbrMaterial.defines.USE_NORMALMAP = true
+    }
+    if (material.normalMap2) {
+        pbrMaterial.defines.USE_NORMALMAP2 = true
+    }
+    if (material.aoMap) {
+        pbrMaterial.defines.USE_AOMAP = true
+    }
+    if (material.aoMap2) {
+        pbrMaterial.defines.USE_AOMAP2 = true
+    }
+    if (material.emissiveMap) {
+        pbrMaterial.defines.USE_EMISSIVEMAP = true
+    }
+    if (material.lightMap) {
+        pbrMaterial.defines.USE_LIGHTMAP = true
+    }
+    if (material.lightMapDir) {
+        pbrMaterial.defines.USE_LIGHTMAP_DIR = true
+    }
+    if (material.albedoMap) {
+        pbrMaterial.defines.USE_ALBEDOMAP = true
+    }
+    if (material.albedoMap2) {
+        pbrMaterial.defines.USE_ALBEDOMAP2 = true
+    }
+    pbrMaterial.uAlbedoPBRFactor = optionalParameter(material.albedoFactor, 1)
+    pbrMaterial.uNormalMapFactor = optionalParameter(material.normalMapFactor, 1)
+    pbrMaterial.uMetalnessPBRFactor = optionalParameter(material.metalFactor, 1)
+    pbrMaterial.uGlossinessPBRFactor = optionalParameter(material.glossFactor, 1)
+    pbrMaterial.uAOPBRFactor = optionalParameter(material.aoFactor, 1)
+    pbrMaterial.uSpecularF0Factor = optionalParameter(material.f0Factor,.5)
+    pbrMaterial.uEnvironmentExposure = optionalParameter(material.exposure, 1)
+    pbrMaterial.occludeSpecular = optionalParameter(material.occludeSpecular ? 1 : 0, 1)
+    pbrMaterial.uFlipY = optionalParameter(material.flipNormals, 0)
+    pbrMaterial.opacity = optionalParameter(material.opacity, 1)
+    pbrMaterial.color = (new THREE.Color).setHex(undefined !== material.color ? material.color : 16777215)
+    pbrMaterial.side = optionalParameter(material.side, THREE.FrontSide)
+    options.needsUpdate = true
+    directLoginReference.needsUpdate = true
+    flag.needsUpdate = true
+    cloudDistance.needsUpdate = true
+    hyperParameters.needsUpdate = true
+    picture_right_map.needsUpdate = true
+    picture_below_map.needsUpdate = true
+    topTexture.needsUpdate = true
+    defTexture.needsUpdate = true
+    reconnectTimeIncrease.needsUpdate = true
+    pbrMaterial.sTextureAlbedoMap = options
+    pbrMaterial.sTextureAlbedoMap2 = directLoginReference
+    pbrMaterial.sTextureNormalMap = flag
+    pbrMaterial.sTextureNormalMap2 = cloudDistance
+    pbrMaterial.sTextureAOMap = hyperParameters
+    pbrMaterial.sTextureAOMap2 = picture_right_map
+    pbrMaterial.sTexturePBRMaps = picture_below_map
+    pbrMaterial.sTextureEmissiveMap = topTexture
+    pbrMaterial.sTextureLightMap = defTexture
+    pbrMaterial.sTextureLightMapDir = reconnectTimeIncrease
+    if (value) {
+        pbrMaterial.uDiffuseSPH = new Float32Array(value, 27)
+    }
+    pbrMaterial.uEnvironmentTransform = new THREE.Matrix4
+    if (material.alphaTest) {
+        pbrMaterial.alphaTest = material.alphaTest
+        pbrMaterial.defines.ALPHATEST = true
+    }
+    pbrMaterial.refreshOffsetRepeat()
+    pbrMaterial.refreshOffsetRepeatDetail()
+    return pbrMaterial;
 };
 
-/** @type {function(!Function): undefined} */
 export default PBRMaterial;
 

@@ -1,4 +1,11 @@
 var Events = {
+    /**
+     * 事件注册工具
+     * @param type
+     * @param callback
+     * @param context
+     * @returns {Events}
+     */
     on : function(type, callback, context) {
         if (!eventsApi(this, 'on', type, [callback, context]) || !callback) {
             return this;
@@ -13,6 +20,13 @@ var Events = {
             ctx : context || this
         }), this;
     },
+    /**
+     * 执行一次事件
+     * @param type
+     * @param callback
+     * @param context
+     * @returns {Events}
+     */
     once : function(type, callback, context) {
         if (!eventsApi(this, 'once', type, [callback, context]) || !callback) {
             return this;
@@ -24,6 +38,13 @@ var Events = {
         });
         return onceListener._callback = callback, this.on(type, onceListener, context);
     },
+    /**
+     * 取消事件
+     * @param name
+     * @param callback
+     * @param context
+     * @returns {Events}
+     */
     off : function(name, callback, context) {
         var listeners;
         var handler;
@@ -37,16 +58,14 @@ var Events = {
             return this;
         }
         if (!name && !callback && !context) {
-            return this._events = void 0, this;
+            return this._events = undefined, this;
         }
         names = name ? [name] : _.keys(this._events);
-        /** @type {number} */
         j = 0;
         i = names.length;
         for (; j < i; j++) {
             if (name = names[j], _ref2 = this._events[name]) {
                 if (this._events[name] = listeners = [], callback || context) {
-                    /** @type {number} */
                     _k = 0;
                     _len2 = _ref2.length;
                     for (; _k < _len2; _k++) {
@@ -63,11 +82,15 @@ var Events = {
         }
         return this;
     },
+    /**
+     * 触发事件
+     * @param type
+     * @returns {Events}
+     */
     trigger : function(type) {
         if (!this._events) {
             return this;
         }
-        /** @type {!Array<?>} */
         var args = slice.call(arguments, 1);
         if (!eventsApi(this, 'trigger', type, args)) {
             return this;
@@ -76,18 +99,23 @@ var Events = {
         var fn = this._events.all;
         return obj && check(obj, args), fn && check(fn, arguments), this;
     },
+    /**
+     * 停止监听
+     * @param obj
+     * @param name
+     * @param callback
+     * @returns {Events}
+     */
     stopListening : function(obj, name, callback) {
         var listeningTo = this._listeningTo;
         if (!listeningTo) {
             return this;
         }
-        /** @type {boolean} */
         var i = !name && !callback;
         if (!(callback || 'object' != typeof name)) {
             callback = this;
         }
         if (obj) {
-            /** @type {!Object} */
             (listeningTo = {})[obj._listenId] = obj;
         }
         var id;
@@ -101,19 +129,11 @@ var Events = {
         return this;
     }
 };
-/** @type {!RegExp} */
 var i = /\s+/;
-/** @type {!Array} */
 var prototypeOfArray = [];
-/** @type {function(this:(IArrayLike<T>|string), *=, *=): !Array<T>} */
+// 数组的切片方法
 var slice = prototypeOfArray.slice;
-/**
- * @param {!Object} obj
- * @param {string} action
- * @param {string} name
- * @param {!Array} rest
- * @return {?}
- */
+
 var eventsApi = function(obj, action, name, rest) {
     if (!name) {
         return true;
@@ -127,7 +147,6 @@ var eventsApi = function(obj, action, name, rest) {
     }
     if (i.test(name)) {
         var a = name.split(i);
-        /** @type {number} */
         var j = 0;
         var startLen = a.length;
         for (; j < startLen; j++) {
@@ -137,14 +156,9 @@ var eventsApi = function(obj, action, name, rest) {
     }
     return true;
 };
-/**
- * @param {!NodeList} f
- * @param {!Array} a
- * @return {undefined}
- */
+
 var check = function(f, a) {
     var self;
-    /** @type {number} */
     var j = -1;
     var m = f.length;
     var i = a[0];
@@ -183,16 +197,15 @@ var collection = {
     listenToOnce : 'once'
 };
 _.each(collection, function(implementation, method) {
-    /**
-     * @param {!NodeList} obj
-     * @param {?} name
-     * @param {!Object} callback
-     * @return {?}
-     */
     Events[method] = function(obj, name, callback) {
         var listeningTo = this._listeningTo || (this._listeningTo = {});
         var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
-        return listeningTo[id] = obj, callback || 'object' != typeof name || (callback = this), obj[implementation](name, callback, this), this;
+        listeningTo[id] = obj
+        if (callback || 'object' != typeof name){
+            callback = this
+        }
+        obj[implementation](name, callback, this)
+        return this;
     };
 });
 export default Events;

@@ -1,10 +1,7 @@
 import bluebird from 'bluebird';
-import threejsInitional from 'module/LoaderUtils';
+import loaderUtils from 'module/LoaderUtils';
 
-/**
- * @param {!Object} obj
- * @return {undefined}
- */
+
 var Renderer = function (obj) {
     if (obj.manager) {
         this.manager = obj.manager;
@@ -25,28 +22,25 @@ var Renderer = function (obj) {
         this.geometries = obj.geometries;
     }
 };
-/**
- * @return {?}
- */
+
 Renderer.prototype.load = function () {
     var params = {};
     if (this.cubemaps) {
-        (params.cubemap = threejsInitional.loadSpecularCubemaps(this.cubemaps))
+        (params.cubemap = loaderUtils.loadSpecularCubemaps(this.cubemaps))
     }
     if (this.panoramas) {
-        (params.panorama = threejsInitional.loadPanoramas(this.panoramas))
+        (params.panorama = loaderUtils.loadPanoramas(this.panoramas))
     }
     if (this.sh) {
-        (params.sh = threejsInitional.loadSH(this.sh))
+        (params.sh = loaderUtils.loadSH(this.sh))
     }
     if (this.textures) {
-        (params.texture = threejsInitional.loadTextures(this.textures, ''))
+        (params.texture = loaderUtils.loadTextures(this.textures, ''))
     }
     if (this.geometries) {
-        (params.geometry = threejsInitional.loadGeometries(this.geometries))
+        (params.geometry = loaderUtils.loadGeometries(this.geometries))
     }
     return bluebird.props(params);
 };
 
-/** @type {function(!Object): undefined} */
 export default Renderer;

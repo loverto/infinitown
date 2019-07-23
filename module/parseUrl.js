@@ -25,7 +25,7 @@ parseUrl.isUri = function(value) {
  * @type {function(*, *, *): string}
  */
 var replaceUndefined =  parseUrl.replaceUndefined = function(currentValue, index, arr) {
-    return void 0 === currentValue || null === currentValue ? self.isUri(arr[0]) ? '/' : uriUtils.sep : currentValue;
+    return undefined === currentValue || null === currentValue ? self.isUri(arr[0]) ? '/' : uriUtils.sep : currentValue;
 };
 
 export {parseUrl};

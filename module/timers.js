@@ -1,49 +1,53 @@
-import TimeoutError from 'module/car';
+import TimerUtils from 'module/TimerUtils';
 var timers = {
     _timers : {}
 };
+
 /**
- * @param {?} timeout
- * @return {?}
+ * 创建计时器
+ * @param timeout
  */
 timers.createTimer = function(timeout) {
-    var i = _.uniqueId('timer_');
-    var e = new TimeoutError(timeout);
-    return e.id = i, timers._timers[i] = e, e;
+    var timerId = _.uniqueId('timer_');
+    var clockUtils = new TimerUtils(timeout);
+    return clockUtils.id = timerId, timers._timers[timerId] = clockUtils, clockUtils;
 };
 /**
- * @param {!Function} dt
- * @param {!Function} n
- * @param {?} o
- * @return {?}
+ * 计时器的延迟方法
+ * @param duration
+ * @param n
+ * @param o
+ * @returns {*}
  */
-timers.delay = function(dt, n, o) {
-    var m = timers.createTimer({
-        duration : dt,
+timers.delay = function(duration, n, o) {
+    var timer = timers.createTimer({
+        duration : duration,
         onEnd : function() {
             n.call(o);
             delete timers._timers[this.id];
         }
     }).start();
-    return m;
+    return timer;
 };
 /**
- * @param {undefined} object
- * @return {undefined}
+ * 更新计时器
+ * @param object
  */
 timers.updateTimers = function(object) {
-    _.each(timers._timers, function(e) {
-        e.update(object);
+    _.each(timers._timers, function(timer) {
+        timer.update(object);
     });
 };
+
 /**
- * @return {undefined}
+ * 清理计时器
  */
 timers.clearTimers = function() {
-    _.each(timers._timers, function(options) {
-    /** @type {null} */
-        options.onEnd = null;
+    _.each(timers._timers, function(timer) {
+        // 置空结束函数
+        timer.onEnd = null;
     });
     timers._timers = {};
 };
+
 export default timers;

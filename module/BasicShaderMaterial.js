@@ -1,11 +1,7 @@
-import parent from 'module/ShaderMaterialExtern';
+import ShaderMaterialExtern from 'module/ShaderMaterialExtern';
 import shaders from 'module/shaders';
-/**
- * @param {!Function} obj
- * @return {undefined}
- */
+
 var BasicShaderMaterial = function(obj) {
-    /** @type {!Object} */
     obj = Object.assign({
         vertexShader : shaders['basic.vs'],
         fragmentShader : shaders['basic.fs'],
@@ -24,27 +20,28 @@ var BasicShaderMaterial = function(obj) {
             }
         }
     }, obj);
-    parent.call(this, obj);
-    var self = this;
+    ShaderMaterialExtern.call(this, obj);
     Object.keys(this.uniforms).forEach(function(name) {
-        self.onPropertyChange(name, function(initSBC) {
-            /** @type {!Object} */
-            self.uniforms[name].value = initSBC;
+        this.onPropertyChange(name, function(initSBC) {
+            this.uniforms[name].value = initSBC;
         });
     }, this);
 };
-BasicShaderMaterial.inherit(parent, {
+BasicShaderMaterial.inherit(ShaderMaterialExtern, {
     clone : function(params) {
         var data = params || new BasicShaderMaterial;
-        return parent.prototype.clone.call(this, data), data.name = this.name, data.transparent = this.transparent, _.each(this.uniforms, function(dom, name) {
+        ShaderMaterialExtern.prototype.clone.call(this, data)
+        data.name = this.name
+        data.transparent = this.transparent
+        _.each(this.uniforms, function(dom, name) {
             var value = dom.type;
             if ('v2' === value || 'm4' === value) {
                 data.uniforms[name].value.copy(dom.value);
             } else {
                 data.uniforms[name].value = dom.value;
             }
-        }, this), data;
+        }, this)
+        return data;
     }
 });
-/** @type {function(!Function): undefined} */
 export {BasicShaderMaterial};

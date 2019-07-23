@@ -1,24 +1,20 @@
 import canvas from 'module/Events';
 require('jquery-mousewheel')($);
+
 /**
  * 获取移动距离
- * @param {!Object} touches
- * @return {?}
+ * @param touches
+ * @returns {number}
  */
 function getDistance(touches) {
     return Math.sqrt((touches[0].clientX - touches[1].clientX) * (touches[0].clientX - touches[1].clientX) + (touches[0].clientY - touches[1].clientY) * (touches[0].clientY - touches[1].clientY));
 }
 
-/**
- * @param {!Object} obj
- * @return {undefined}
- */
+
 var init = function(obj) {
-    /** @type {boolean} */
     var e = false;
-    /** @type {number} */
     var radius = 0;
-    obj = void 0 !== obj ? obj : window;
+    obj = undefined !== obj ? obj : window;
     $(obj).on('mousedown', function(event) {
         var e = {
             x : event.pageX,
@@ -70,7 +66,6 @@ var init = function(obj) {
         };
         if (0 === event.originalEvent.touches.length) {
             if (e) {
-                /** @type {boolean} */
                 e = false;
                 this.trigger('pinchend');
             }
@@ -81,9 +76,7 @@ var init = function(obj) {
         if (e) {
             var touches = event.originalEvent.touches;
             if (2 === touches.length) {
-                /** @type {number} */
                 var y1 = getDistance(touches) - radius;
-                /** @type {number} */
                 var sql_date = Math.max(1 + y1 / 100, 0);
                 this.trigger('pinchchange', sql_date);
             }
@@ -103,5 +96,4 @@ var init = function(obj) {
 };
 init.mixin(canvas);
 
-/** @type {function(!Object): undefined} */
 export default init;

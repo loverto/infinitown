@@ -2,53 +2,39 @@ import * as THREE  from 'three';
 import Events from 'module/Events';
 import timers from 'module/timers';
 import Stats from 'module/Stats';
-/**
- * @param {?} allOrId
- * @return {undefined}
- */
+
 function update(allOrId) {
-    /** @type {number} */
     var width = window.WIDTH = window.innerWidth;
-    /** @type {number} */
     var height = window.HEIGHT = window.innerHeight;
     if (window.parent) {
-    /** @type {number} */
         width = window.parent.innerWidth;
-        /** @type {number} */
         height = window.parent.innerHeight;
     }
     this.setSize(width, height);
 }
+
 /**
- * @param {string} t
- * @return {undefined}
+ * 附加可见性事件
+ * @param event
  */
-function attachVisibilityEvent(t) {
+function attachVisibilityEvent(event) {
     var propertyName;
     var visibilityChange;
     // 获取不同浏览器上的隐藏和展示的属性和事件
     if ('undefined' != typeof document.hidden) {
-    /** @type {string} */
         propertyName = 'hidden';
-        /** @type {string} */
         visibilityChange = 'visibilitychange';
     } else {
         if ('undefined' != typeof document.mozHidden) {
-            /** @type {string} */
             propertyName = 'mozHidden';
-            /** @type {string} */
             visibilityChange = 'mozvisibilitychange';
         } else {
             if ('undefined' != typeof document.msHidden) {
-                /** @type {string} */
                 propertyName = 'msHidden';
-                /** @type {string} */
                 visibilityChange = 'msvisibilitychange';
             } else {
                 if ('undefined' != typeof document.webkitHidden) {
-                    /** @type {string} */
                     propertyName = 'webkitHidden';
-                    /** @type {string} */
                     visibilityChange = 'webkitvisibilitychange';
                 }
             }
@@ -59,43 +45,52 @@ function attachVisibilityEvent(t) {
         document.addEventListener(visibilityChange, function() {
             // 如果有属性，则掉用方法
             if (document[propertyName]) {
-                t.onLeaveTab();
+                event.onLeaveTab();
             } else {
                 // 没有该属性，50毫秒后自动解绑
-                setTimeout(t.onFocusTab.bind(t), 50);
+                setTimeout(event.onFocusTab.bind(event), 50);
             }
         }, false);
     }
 }
-/**
- * @param {?} _options
- * @return {undefined}
- */
+
 function Slatebox(_options) {
 }
 
-/**
- * @param {!Object} options
- * @return {undefined}
- */
+
 var init = function(options) {
     // 设置WebGL渲染引擎，（，，，）类似这样的写法的作用，是按顺序执行，并返回最后一个，如果不是返回的地方，那就是继续执行。
-    if (options = void 0 !== options ? options : {}, this.renderer = new THREE.WebGLRenderer({
+    if (undefined === options){
+        options = {}
+    }
+    // webGl渲染
+    this.renderer = new THREE.WebGLRenderer({
         alpha : true,
         antialias : true,
         canvas : options.canvas || document.querySelector('canvas'),
-        preserveDrawingBuffer : void 0 !== options.preserveDrawingBuffer ? options.preserveDrawingBuffer : void 0
-    }), THREE.Extensions = this.renderer.extensions, this.config = {
-        fps : void 0 !== options.fps && options.fps,
-        profiling : void 0 !== options.profiling && options.profiling,
-        logCalls : void 0 !== options.logCalls && options.logCalls
-    }, options && options.maxPixelRatio) {
-    // 物理像素分辨率与CSS像素分辨率的比值
-        var ratio = window.devicePixelRatio > options.maxPixelRatio ? options.maxPixelRatio : window.devicePixelRatio;
+        preserveDrawingBuffer : undefined !== options.preserveDrawingBuffer ? options.preserveDrawingBuffer : undefined
+    })
+    //
+    THREE.Extensions = this.renderer.extensions
+    // 配置信息
+    this.config = {
+        fps : undefined !== options.fps && options.fps,
+        profiling : undefined !== options.profiling && options.profiling,
+        logCalls : undefined !== options.logCalls && options.logCalls
+    }
+    // 比率
+    var ratio = .0
+    if (options && options.maxPixelRatio){
+        // 物理像素分辨率与CSS像素分辨率的比值
+        if (window.devicePixelRatio > options.maxPixelRatio){
+            ratio = options.maxPixelRatio
+        } else {
+            ratio = window.devicePixelRatio;
+        }
     } else {
-    /** @type {number} */
         ratio = window.devicePixelRatio;
     }
+
     if (window.isMobile) {
         ratio = ratio > 1.5 ? 1.5 : ratio;
     }
@@ -105,23 +100,20 @@ var init = function(options) {
     // 浏览器视口（viewport）高度（单位：像素），如果存在垂直滚动条则包括它。
     this.setSize(options.width || window.innerWidth, options.height || window.innerHeight);
     // 是否自动清理
-    if (void 0 !== options.autoClear) {
+    if (undefined !== options.autoClear) {
     // 定义渲染器是否应在渲染帧之前自动清除其输出。
         this.renderer.autoClear = options.autoClear;
     }
-    if (void 0 !== options.clearColor) {
+    if (undefined !== options.clearColor) {
         this.renderer.setClearColor(options.clearColor);
     }
-    if (!(void 0 !== options.supportsTextureLod && options.supportsTextureLod !== true)) {
+    if (!(undefined !== options.supportsTextureLod && options.supportsTextureLod !== true)) {
         THREE.Extensions.get('EXT_shader_texture_lod');
     }
     // 创建时钟用来记录时间,传递参数true,设置自动开始记录.默认值为true
     this.clock = new THREE.Clock;
-    /** @type {boolean} */
     this.paused = false;
-    /** @type {!Array} */
     this.scenes = [];
-    /** @type {null} */
     this.scene = null;
     // 重置窗口绑定事件，update 是啥
     window.onresize = update.bind(this);
@@ -129,15 +121,12 @@ var init = function(options) {
     window.addEventListener('keyup', Slatebox.bind(this));
     // 绑定鼠标悬浮事件
     this.renderer.domElement.addEventListener('mousemove', function(event) {
-    /** @type {number} */
         window.mouseX = event.pageX / WIDTH * 2 - 1;
-        /** @type {number} */
         window.mouseY = 1 - event.pageY / HEIGHT * 2;
     });
     // 如果配置fps 则创建状态信息，并显示fps信息在界面上
     if (this.config.fps) {
         this.fpsCounter = new Stats;
-        /** @type {!Element} */
         this.counter = document.createElement('div');
         document.querySelectorAll('body')[0].appendChild(this.counter);
         this.counter.setAttribute('style', 'position:absolute;top:20px;left:100px;color:#ff00ff;display:block !important;z-index:999999;');
@@ -150,14 +139,20 @@ var init = function(options) {
     }
 };
 init.prototype = {
+    /**
+     * 初始化绘制调用计算
+     */
     initDrawCallsCounter : function() {
         var $panzoom = $("<div id='dc'></div>");
         $("body").append($panzoom);
         $panzoom.css("position", "absolute").css("display", "block !important").css("color", "yellow").css("top", "60px").css("left", "20px").css("padding", "3px").css("font-size", "2em").css("background-color", "black").css("z-index", "999999");
         this.dcCounter = $panzoom[0];
     },
+    /**
+     * 渲染
+     * @param text
+     */
     render : function(text) {
-    /** @type {number} */
         var totalPlayers = 0;
         var mapFragmentAndProps = function() {
             if (this.config.logCalls) {
@@ -170,10 +165,18 @@ init.prototype = {
             this.dcCounter.textContent = totalPlayers + ' DC';
         }
     },
+    /**
+     * 渲染场景
+     * @param scene
+     * @param camera
+     */
     renderScene : function(scene, camera) {
-        debugger
         this.renderer.render(scene, camera);
     },
+    /**
+     * 更新
+     * @param target
+     */
     update : function(target) {
         if (this.camera) {
             this.camera.updateMatrixWorld(true);
@@ -187,24 +190,43 @@ init.prototype = {
             }
         }, this);
     },
+    /**
+     * 更新自定义材料
+     * @param model
+     * @param name
+     */
     updateCustomMaterials : function(model, name) {
-        _.each(model.materials, function(handler) {
-            if (handler.pbr) {
-                handler.refreshUniforms(name || this.camera, this.envRotation);
+        _.each(model.materials, function(material) {
+            if (material.pbr) {
+                material.refreshUniforms(name || this.camera, this.envRotation);
             }
         }, this);
     },
+    /**
+     * 执行更新
+     */
     doUpdate : function() {
         var data = {
             delta : 0,
             elapsed : 0
         };
         return function() {
-            if (data.delta = this.clock.getDelta(), data.elapsed = this.clock.getElapsedTime(), !this.paused) {
+            // 延迟
+            data.delta = this.clock.getDelta()
+            // 获取过时时间
+            data.elapsed = this.clock.getElapsedTime()
+            if (!this.paused) {
+                // 请求动画帧
                 this.requestAnimationFrame(this.doUpdate.bind(this));
-                /** @type {number} */
-                var t = void 0 !== window.performance && void 0 !== window.performance.now ? window.performance.now() : Date.now();
-                TWEEN.update(t);
+                var now = 0
+                // 获取当前时间戳
+                if (undefined !== window.performance && undefined !== window.performance.now){
+                    now = window.performance.now()
+                } else {
+                    now = Date.now();
+                }
+
+                TWEEN.update(now);
                 timers.updateTimers(data);
                 if (this.config.profiling) {
                     console.time('update');
@@ -215,74 +237,94 @@ init.prototype = {
                 }
                 this.render(data);
                 if (!this.started) {
-                    /** @type {boolean} */
                     this.started = true;
                 }
                 if (this.config.fps) {
                     this.fpsCounter.update(data, function(pctg) {
-                        /** @type {string} */
                         this.counter.textContent = pctg + ' FPS';
                     }.bind(this));
                 }
             }
         };
     }(),
+    /**
+     * 开始
+     */
     start : function() {
         // 执行更新
         this.doUpdate();
     },
+    /**
+     * 暂停
+     */
     pause : function() {
         if (!this.paused) {
             this.clock.stop();
-            /** @type {boolean} */
             this.paused = true;
             if (this.config.fps) {
                 this.counter.textContent += ' (paused)';
             }
         }
     },
+    /**
+     * 恢复
+     */
     resume : function() {
         if (this.paused) {
             this.clock.start();
-            /** @type {boolean} */
             this.paused = false;
             if (this.started) {
                 this.doUpdate();
             }
         }
     },
+    /**
+     * 在离开标签上
+     */
     onLeaveTab : function() {
         if (!this.paused) {
             this.pause();
-            /** @type {boolean} */
             this.shouldResume = true;
         }
     },
+    /**
+     * 在获取焦点上
+     */
     onFocusTab : function() {
         if (this.shouldResume) {
             this.resume();
-            /** @type {boolean} */
             this.shouldResume = false;
         }
     },
+    /**
+     * 设置宽高比
+     * @param aspect 方面
+     */
     setAspectRatio : function(aspect) {
         if (this.camera) {
-            /** @type {number} */
             this.camera.aspect = aspect;
             this.camera.updateProjectionMatrix();
         }
     },
+    /**
+     * 设置大小
+     * @param width
+     * @param height
+     */
     setSize : function(width, height) {
         if (this.started) {
             this.setAspectRatio(width / height);
         }
         this.renderer.setSize(width, height);
     },
+    /**
+     * 请求动画帧
+     * @param callback
+     */
     requestAnimationFrame : function(callback) {
         requestAnimationFrame(callback);
     }
 };
 init.mixin(Events);
 
-/** @type {function(!Object): undefined} */
 export default init;

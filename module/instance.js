@@ -1,27 +1,30 @@
 import * as THREE from 'three';
 import bluebird from 'bluebird';
 import 'module/MaterialLoaderExtern';
-import shape from 'module/LoaderUtils';
-require('module/PBRMaterial')
-require('module/LoadSceneManager')
+import loaderUtils from 'module/LoaderUtils';
+import PBRMaterial from 'module/PBRMaterial'
+import LoadSceneManager from 'module/LoadSceneManager'
 var instance = {};
+
 /**
- * @param {string} name
- * @param {string} data 数据或资源路径
- * @param {!Object} options
- * @param {string} callback
- * @return {?}
+ * 加载场景
+ * @param name
+ * @param data 数据或资源路径
+ * @param options
+ * @param callback
+ * @returns {Promise}
  */
 instance.loadScene = function(name, data, options, callback) {
     return new bluebird(function(resolve, reject) {
-        var addedRenderer = (options.renderer, shape.getGeometry(name));
+        options.renderer
+        var binaryGeometryBuffer = loaderUtils.getGeometry(name);
         // 设置二进制几何Buffer
-        if (addedRenderer) {
+        if (binaryGeometryBuffer) {
             console.log("设置二进制几何Buffer")
-            shape.sceneLoader.setBinaryGeometryBuffer(addedRenderer);
+            loaderUtils.sceneLoader.setBinaryGeometryBuffer(binaryGeometryBuffer);
         }
         // 加载场景
-        shape.loadScene(data + name + (callback || '.json')).spread(function(objects, json) {
+        loaderUtils.loadScene(data + name + (callback || '.json')).spread(function(objects, json) {
             // 声明相机
             var camera;
             // 置空物料信息
@@ -32,7 +35,6 @@ instance.loadScene = function(name, data, options, callback) {
             }
             // 设置相机的面为当前计算机可视区域的宽/除以可视区域的高
             if (camera) {
-                /** @type {number} */
                 camera.aspect = window.innerWidth / window.innerHeight;
                 // 更新投影矩阵
                 camera.updateProjectionMatrix();
@@ -46,9 +48,11 @@ instance.loadScene = function(name, data, options, callback) {
             // 网格辅助线
             var grid = new THREE.GridHelper(size, step);
             objects.add(grid);
-            var s = new THREE.AxisHelper(5);
-            objects.add(s);
+            // 辅助线
+            var axesHelper = new THREE.AxesHelper(5);
+            objects.add(axesHelper);
             objects.dirLights = [];
+            // 横过
             objects.traverse(function(camera) {
                 if (camera instanceof THREE.DirectionalLight) {
                     camera.position.set(0, 0, 5);
@@ -59,6 +63,7 @@ instance.loadScene = function(name, data, options, callback) {
                     objects.dirLights.push(camera);
                 }
             });
+            // 动画Mixer
             var mixer = new THREE.AnimationMixer(objects);
             var i = 0;
             for (; i < objects.animations.length; i++) {
@@ -72,7 +77,6 @@ instance.loadScene = function(name, data, options, callback) {
             });
             objects.traverse(function(box1) {
                 if ('Line' === box1.name) {
-                    /** @type {number} */
                     box1.material.linewidth = 10;
                     box1.material.color.setRGB(1, 0, 1);
                 }
@@ -90,7 +94,6 @@ instance.loadScene = function(name, data, options, callback) {
                 if (node.material) {
                     if (node.material.materials) {
                         node.material.materials.forEach(function(b) {
-                            /** @type {number} */
                             objects.materials[b.uuid] = b;
                         });
                     } else {

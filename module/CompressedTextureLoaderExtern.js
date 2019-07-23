@@ -30,7 +30,7 @@ function findErrorByList(t, data, array) {
  * @return {undefined}
  */
 export function CompressedTextureLoaderExtern (options, value, manager) {
-    this.manager = void 0 !== manager ? manager : THREE.DefaultLoadingManager;
+    this.manager = undefined !== manager ? manager : THREE.DefaultLoadingManager;
     /** @type {number} */
     this._size = options;
     /** @type {boolean} */

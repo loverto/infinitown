@@ -1,29 +1,25 @@
 import * as THREE  from 'three';
-import value from 'module/LoaderUtils';
-/**
- * @return {undefined}
- */
+import LoaderUtils from 'module/LoaderUtils';
+
 var vignettingRender = function() {
-    this._quad = new THREE.Mesh(new THREE.PlaneBufferGeometry(2, 2), null);
-    /** @type {boolean} */
-    this._quad.frustumCulled = false;
+    this.mesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(2, 2), null);
+    this.mesh.frustumCulled = false;
     // 新建正交相机
-    this._camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    this._scene = new THREE.Scene;
-    this._scene.add(this._quad);
+    this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    this.scene = new THREE.Scene;
+    this.scene.add(this.mesh);
     // 设置基础的材质
-    this._quad.material = new THREE.MeshBasicMaterial({
-        map : value.getTexture('textures/vignetting.png'),
+    this.mesh.material = new THREE.MeshBasicMaterial({
+        map : LoaderUtils.getTexture('textures/vignetting.png'),
         transparent : true,
         opacity : .25
     });
 };
 vignettingRender.inherit(Object, {
     render : function(renderer) {
-        renderer.render(this._scene, this._camera);
+        renderer.render(this.scene, this.camera);
     }
 });
 
-/** @type {function(): undefined} */
 export default vignettingRender;
 

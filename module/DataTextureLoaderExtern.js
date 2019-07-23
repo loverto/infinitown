@@ -30,7 +30,7 @@ function normalize(t, data, obj) {
  * @return {undefined}
  */
 export function DataTextureLoaderExtern(value, options, manager) {
-    this.manager = void 0 !== manager ? manager : THREE.DefaultLoadingManager;
+    this.manager = undefined !== manager ? manager : THREE.DefaultLoadingManager;
     /** @type {number} */
     this._size = value;
     /** @type {!Object} */

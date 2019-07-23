@@ -8,7 +8,7 @@ var types = {
         };
     }(),
     roundVector : function(center, size) {
-        if (void 0 === size || 0 === size) {
+        if (undefined === size || 0 === size) {
             return center.round(), center;
         }
         /** @type {number} */

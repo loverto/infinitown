@@ -1,46 +1,34 @@
 import * as THREE  from 'three';
-import et from 'module/state';
-import canvas from 'module/Events';
+import constant from 'module/state';
+import Events from 'module/Events';
 var ndc = new THREE.Vector2;
-/**
- * @param {!Function} inputManager
- * @param {!Object} scene
- * @param {!Object} camera
- * @return {undefined}
- */
+
 var VectorDrag = function(inputManager, scene, camera) {
-    /** @type {boolean} */
     this._panning = false;
     this._startCoords = new THREE.Vector2;
     this._lastOffset = new THREE.Vector2;
     this._offset = new THREE.Vector2;
-    this._speed = new THREE.Vector3(et.PAN_SPEED, 0, et.PAN_SPEED);
+    this._speed = new THREE.Vector3(constant.PAN_SPEED, 0, constant.PAN_SPEED);
     this._sceneOffset = new THREE.Vector3;
     this._worldOffset = new THREE.Vector3;
-    /** @type {!Function} */
     this.inputManager = inputManager;
-    /** @type {!Object} */
     this._scene = scene;
     this.inputManager.on('startdrag', this._onStartDrag, this);
     this.inputManager.on('enddrag', this._onEndDrag, this);
     this.inputManager.on('drag', this._onDrag, this);
-    /** @type {!Object} */
     this._camera = camera;
     this._raycaster = new THREE.Raycaster;
-    /** @type {boolean} */
     this.enabled = true;
 };
 VectorDrag.inherit(Object, {
     _onStartDrag : function(e) {
         if (this.enabled) {
-            /** @type {boolean} */
             this._panning = true;
             this._startCoords.set(e.x, e.y);
         }
     },
     _onEndDrag : function(e) {
         if (this.enabled) {
-            /** @type {boolean} */
             this._panning = false;
             this._lastOffset.copy(this._offset);
         }
@@ -55,12 +43,12 @@ VectorDrag.inherit(Object, {
         };
     }(),
     raycast : function() {
-        this._raycaster.setFromCamera(ndc, this._camera);
-        var intersectors = this._raycaster.intersectObjects(this._scene.getPickables());
+        this._raycaster.setFromCamera(ndc, this.camera);
+        var intersectors = this._raycaster.intersectObjects(this.scene.getPickables());
         if (intersectors.length > 0) {
             var settings = intersectors[0].object;
-            this._sceneOffset.x += settings.centeredX * et.CHUNK_SIZE;
-            this._sceneOffset.z += settings.centeredY * et.CHUNK_SIZE;
+            this._sceneOffset.x += settings.centeredX * constant.CHUNK_SIZE;
+            this._sceneOffset.z += settings.centeredY * constant.CHUNK_SIZE;
             if (!(0 === settings.centeredX && 0 === settings.centeredY)) {
                 this.trigger('move', settings.centeredX, settings.centeredY);
             }
@@ -76,12 +64,11 @@ VectorDrag.inherit(Object, {
             offset.rotateAround(angle, -Math.PI / 4);
             this._worldOffset.set(offset.x, 0, offset.y).multiply(this._speed);
             point.lerp(this._worldOffset, .05);
-            this._scene.position.addVectors(this._sceneOffset, point);
+            this.scene.position.addVectors(this._sceneOffset, point);
         };
     }()
 });
-VectorDrag.mixin(canvas);
+VectorDrag.mixin(Events);
 
-/** @type {function(!Function, !Object, !Object): undefined} */
 export default VectorDrag;
 

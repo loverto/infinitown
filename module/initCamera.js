@@ -1,19 +1,17 @@
 import * as THREE  from 'three';
 import initDrawCallsCounter from 'module/initDrawCallsCounter';
-var constants = (require('module/LineSegmentsInit'), require('module/state'));
-require('module/PerspectiveCameraUpdate')
-require('module/OrthographicCameraBase')
+import LineSegmentsInit from 'module/LineSegmentsInit'
+import constants from 'module/state';
+import {PerspectiveCameraUpdate} from 'module/PerspectiveCameraUpdate'
+import OrthographicCameraBase from 'module/OrthographicCameraBase'
 import {PerspectiveCameraCtor} from  'module/PerspectiveCameraCtor';
-require('module/BasicShaderMaterial')
+import  {BasicShaderMaterial} from 'module/BasicShaderMaterial'
 import {getNeighboringCarsUpdate} from 'module/getNeighboringCarsUpdate';
 import ChunksScene from 'module/ChunksScene';
 import EventHandler from 'module/jqueryEventHandler';
 import VectorDrag from 'module/VectorDrag';
 import vignettingRender from 'module/vignettingRender';
-/**
- * @param {!Function} data
- * @return {undefined}
- */
+
 var InitCamera = function(data) {
     initDrawCallsCounter.call(this, data);
     // 初始化相机
@@ -26,6 +24,10 @@ var InitCamera = function(data) {
     this.scene = new THREE.Scene;
 };
 InitCamera.inherit(initDrawCallsCounter, {
+    /**
+     * 开始
+     * @param objects
+     */
     start : function(objects) {
         // 开始处理加载的数据
         var blocksChildren = objects.getObjectByName('blocks').children;
@@ -65,68 +67,71 @@ InitCamera.inherit(initDrawCallsCounter, {
             this.camera.updateHeight(value);
         }, this);
         this.inputManager.on('pinchstart', function() {
-            /** @type {number} */
             this._lastPinchScale = 1;
-            /** @type {boolean} */
             this.controls.enabled = false;
         }, this);
         this.inputManager.on('pinchend', function() {
-            /** @type {boolean} */
             this.controls.enabled = true;
         }, this);
         this.inputManager.on('pinchchange', function(uv3v) {
-            /** @type {number} */
             var v1y = 10;
-            /** @type {number} */
             var value = (uv3v - this._lastPinchScale) * v1y;
             this.camera.updateHeight(value);
-            /** @type {number} */
             this._lastPinchScale = uv3v;
         }, this);
         initDrawCallsCounter.prototype.start.call(this);
     },
+    /**
+     * 初始化光线
+     */
     initDirLight : function() {
         var light = new THREE.DirectionalLight(16774618, 1.25);
         light.position.set(100, 150, -40);
         this.chunkScene.add(light);
         this.chunkScene.add(light.target);
         this.dirLight = light;
-        /** @type {boolean} */
         light.castShadow = true;
-        /** @type {number} */
         light.shadow.radius = 1;
-        /** @type {number} */
         light.shadow.bias = -.001;
         light.shadow.mapSize.width = constants.SHADOWMAP_RESOLUTION;
         light.shadow.mapSize.height = constants.SHADOWMAP_RESOLUTION;
-        /** @type {number} */
         light.shadow.camera.near = 50;
-        /** @type {number} */
         light.shadow.camera.far = 300;
         this._resizeShadowMapFrustum(window.innerWidth, window.innerHeight);
-        /** @type {boolean} */
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     },
+    /**
+     * 初始化插图
+     */
     initVignetting : function() {
         this.vignetting = new vignettingRender;
     },
-    setSize : function(size, val) {
-        initDrawCallsCounter.prototype.setSize.call(this, size, val);
+    /**
+     * 设置大小
+     * @param width
+     * @param height
+     */
+    setSize : function(width, height) {
+        initDrawCallsCounter.prototype.setSize.call(this, width, height);
         if (this.dirLight) {
-            this._resizeShadowMapFrustum(size, val);
+            this._resizeShadowMapFrustum(width, height);
         }
     },
+    /**
+     * 初始化相机
+     */
     initCamera : function() {
-    /** @type {number} */
         var psisq = 120;
         Math.tan(constants.CAMERA_ANGLE) * Math.sqrt(2 * Math.pow(psisq, 2));
         this.camera = new PerspectiveCameraCtor(30, window.innerWidth / window.innerHeight, 10, 400);
         this.camera.position.set(80, 140, 80);
         this.camera.lookAt(new THREE.Vector3);
-        /** @type {number} */
         this.camera.position.y = 200;
     },
+    /**
+     * 刷新块场景
+     */
     refreshChunkScene : function() {
         this.chunkScene.forEachChunk(function(results, columnGap, a) {
             var body = this.gridCoords.x + columnGap;
@@ -136,14 +141,21 @@ InitCamera.inherit(initDrawCallsCounter, {
             results.add(v.node);
         }.bind(this));
     },
+    /**
+     * 更新
+     * @param val
+     */
     update : function(val) {
         this.controls.update();
         this.table.update(val);
         this.camera.update();
         initDrawCallsCounter.prototype.update.call(this, val);
     },
+    /**
+     * 渲染
+     * @param text
+     */
     render : function(text) {
-    /** @type {number} */
         var totalPlayers = 0;
         var mapFragmentAndProps = function() {
             if (this.config.logCalls) {
@@ -161,25 +173,23 @@ InitCamera.inherit(initDrawCallsCounter, {
             this.dcCounter.textContent = totalPlayers + ' DC';
         }
     },
-    _resizeShadowMapFrustum : function(count, steps) {
-    /** @type {number} */
+    /**
+     * 刷新阴影
+     * @param width
+     * @param height
+     * @private
+     */
+    _resizeShadowMapFrustum : function(width, height) {
         var start = 1.25;
-        /** @type {number} */
-        var childStartView2 = Math.max(count / steps, start);
-        /** @type {number} */
+        var childStartView2 = Math.max(width / height, start);
         var halfHeight = 75 * childStartView2;
-        /** @type {number} */
         this.dirLight.shadow.camera.left = .9 * -halfHeight;
-        /** @type {number} */
         this.dirLight.shadow.camera.right = 1.3 * halfHeight;
-        /** @type {number} */
         this.dirLight.shadow.camera.top = halfHeight;
-        /** @type {number} */
         this.dirLight.shadow.camera.bottom = -halfHeight;
         this.dirLight.shadow.camera.updateProjectionMatrix();
     }
 });
 
-/** @type {function(!Function): undefined} */
 export default InitCamera;
 

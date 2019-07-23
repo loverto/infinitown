@@ -7,34 +7,28 @@ import Common from 'module/types';
 
 /**
  * 随机获取数组中的元素
- * @param {!Object} options
- * @return {?}
+ * @param options
+ * @returns {*}
  */
 function getElementByRandom(options) {
     return options[Math.floor(Common.random() * options.length)];
 }
 
 /**
- * @param {!Function} blocksObjects
- * @param {!Object} lanesObjects
- * @param {number} intersectionsObjects
- * @param {?} carsObjects
- * @param {?} cloudsObjects
- * @return {undefined}
+ * 获得邻近汽车更新
+ * @param blocksObjects 块数据
+ * @param lanesObjects 车到数据
+ * @param intersectionsObjects 十字路口数据
+ * @param carsObjects 车数据
+ * @param cloudsObjects 云数据
  */
 var getNeighboringCarsUpdate = function(blocksObjects, lanesObjects, intersectionsObjects, carsObjects, cloudsObjects) {
-    /** @type {boolean} */
     this._containsStadium = false;
-    /** @type {!Function} */
     this.blocks = blocksObjects;
-    /** @type {!Array} */
     this.lanes = [];
-    /** @type {number} */
     this.intersections = intersectionsObjects;
     this.carObjects = carsObjects;
-    /** @type {!Array} */
     this.mobs = [];
-    /** @type {!Array} */
     this.chunks = [];
     this.cloudObjects = cloudsObjects;
     lanesObjects.forEach(function(item) {
@@ -58,27 +52,37 @@ var getNeighboringCarsUpdate = function(blocksObjects, lanesObjects, intersectio
 };
 getNeighboringCarsUpdate.inherit(Object, {
     getChunkData : function(x, y) {
-        return x = x % state.TABLE_SIZE, y = y % state.TABLE_SIZE, x < 0 && (x = state.TABLE_SIZE + x), y < 0 && (y = state.TABLE_SIZE + y), void 0 !== this.chunks[x] && (void 0 !== this.chunks[x][y] && this.chunks[x][y]);
+        x = x % state.TABLE_SIZE
+        y = y % state.TABLE_SIZE
+        x < 0 && (x = state.TABLE_SIZE + x)
+        y < 0 && (y = state.TABLE_SIZE + y)
+        if (undefined !== this.chunks[x]){
+            if (undefined !== this.chunks[x][y]) {
+                return this.chunks[x][y];
+            }
+        }
     },
     getNeighboringCars : function() {
     // 获取相邻的车
-    /** @type {!Array} */
         var neighCars = [];
 
         return function(s) {
-            return neighCars.length = 0, s.parent.traverse(function(sub) {
+            neighCars.length = 0
+            s.parent.traverse(function(sub) {
                 // 把周围的车获取到，并存储在数组中
                 if ('car' === sub.name && sub !== s) {
                     neighCars.push(sub);
                 }
-            }), this._forEachNeighboringChunk(s.parent.tableX, s.parent.tableY, function(spUtils) {
+            })
+            this._forEachNeighboringChunk(s.parent.tableX, s.parent.tableY, function(spUtils) {
                 // 遍历相邻的块
                 spUtils.traverse(function(e) {
                     if ('car' === e.name) {
                         neighCars.push(e);
                     }
                 });
-            }), neighCars;
+            })
+            return neighCars;
         };
     }(),
     update : function(target) {
@@ -89,7 +93,6 @@ getNeighboringCarsUpdate.inherit(Object, {
     _forEachNeighboringChunk : function() {
         // 遍历相邻的分块
         var menu = new THREE.Vector2;
-        /** @type {!Array} */
         var pipelets = [new THREE.Vector2(-1, -1), new THREE.Vector2(1, 0), new THREE.Vector2(1, 0), new THREE.Vector2(0, 1), new THREE.Vector2(0, 1), new THREE.Vector2(-1, 0), new THREE.Vector2(-1, 0), new THREE.Vector2(0, -1)];
         return function(x, y , callback) {
             menu.set(x, y);
@@ -104,18 +107,18 @@ getNeighboringCarsUpdate.inherit(Object, {
         };
     }(),
     _getNeighboringBlocks : function() {
-    /** @type {!Array} */
         var parkNames = [];
         // 根据坐标遍历四周的相邻分块
         return function(x, y) {
-            return parkNames.length = 0, this._forEachNeighboringChunk(x, y, function(dep) {
+            parkNames.length = 0
+            this._forEachNeighboringChunk(x, y, function(dep) {
                 parkNames.push(dep.block.name);
-            }), parkNames;
+            })
+            return parkNames;
         };
     }(),
     _getRandomBlockAt : function(pieceX, pieceY) {
         var block;
-        /** @type {number} */
         var i = 0;
         // 获取相邻的块
         var piece = this._getNeighboringBlocks(pieceX, pieceY);
@@ -127,7 +130,6 @@ getNeighboringCarsUpdate.inherit(Object, {
                     i++;
                     continue;
                 }
-                /** @type {boolean} */
                 this._containsStadium = true;
                 block = randomBlock;
                 break;
@@ -209,38 +211,30 @@ getNeighboringCarsUpdate.inherit(Object, {
             randomChunkObject3.add(b);
             this.mobs.push(b);
         }
-        return randomChunkObject3.traverse(function(object) {
+        randomChunkObject3.traverse(function(object) {
             if (object instanceof THREE.Mesh && object.material && object.material.pbr) {
-                /** @type {boolean} */
                 object.material.defines.USE_FOG = true;
                 if (object instanceof Buffer == false) {
-                    /** @type {boolean} */
                     object.receiveShadow = true;
-                    /** @type {boolean} */
                     object.material.defines.USE_SHADOWMAP = true;
-                    /** @type {boolean} */
                     object.material.defines[state.SHADOWMAP_TYPE] = true;
                 }
             }
-        }), randomChunkObject3;
+        })
+        return randomChunkObject3;
     },
     _generate : function() {
-    /** @type {number} */
         var i = 0;
         // 生成一个9x9的格子
         for (; i < state.TABLE_SIZE; i++) {
-            /** @type {number} */
             var x = 0;
             for (; x < state.TABLE_SIZE; x++) {
-                if (void 0 === this.chunks[x]) {
-                    /** @type {!Array} */
+                if (undefined === this.chunks[x]) {
                     this.chunks[x] = [];
                 }
                 // 获取随机的分块，根据当前的坐标
                 var node = this._getRandomChunk(x, i);
-                /** @type {number} */
                 node.tableX = x;
-                /** @type {number} */
                 node.tableY = i;
                 this.chunks[x][i] = {
                     node : node
@@ -250,6 +244,5 @@ getNeighboringCarsUpdate.inherit(Object, {
     }
 });
 
-/** @type {function(!Function, !Object, number, ?, ?): undefined} */
 export {getNeighboringCarsUpdate};
 
