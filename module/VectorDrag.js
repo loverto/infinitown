@@ -44,7 +44,7 @@ VectorDrag.inherit(Object, {
     }(),
     raycast : function() {
         this._raycaster.setFromCamera(ndc, this.camera);
-        var intersectors = this._raycaster.intersectObjects(this.scene.getPickables());
+        var intersectors = this._raycaster.intersectObjects(this._scene.getPickables());
         if (intersectors.length > 0) {
             var settings = intersectors[0].object;
             this._sceneOffset.x += settings.centeredX * constant.CHUNK_SIZE;
@@ -64,7 +64,7 @@ VectorDrag.inherit(Object, {
             offset.rotateAround(angle, -Math.PI / 4);
             this._worldOffset.set(offset.x, 0, offset.y).multiply(this._speed);
             point.lerp(this._worldOffset, .05);
-            this.scene.position.addVectors(this._sceneOffset, point);
+            this._scene.position.addVectors(this._sceneOffset, point);
         };
     }()
 });

@@ -40,11 +40,12 @@ Function.prototype.inherit = function(target, obj) {
  * @param name
  */
 Function.prototype.mixin = function(name) {
+    var self = this;
     _.each(name, function(fn, methodName) {
-        if (undefined === this.prototype[methodName]) {
+        if (undefined === self.prototype[methodName]) {
             self.prototype[methodName] = fn;
         }
-    },this);
+    });
 };
 window.WIDTH = window.innerWidth;
 window.HEIGHT = window.innerHeight;

@@ -41,6 +41,7 @@ var options = {
  * @constructor
  */
 var PBRMaterial = function(obj) {
+    var self = this;
     obj = Object.assign({
         uniforms : {
             uAOPBRFactor : {
@@ -290,8 +291,8 @@ var PBRMaterial = function(obj) {
     }, this);
     // 遍历属性
     _.each(options, function(javascriptName, prop) {
-        this.onPropertyChange(prop, function(jsonName) {
-            this[javascriptName] = jsonName;
+        self.onPropertyChange(prop, function(jsonName) {
+            self[javascriptName] = jsonName;
         });
     }, this);
     // 扩展信息

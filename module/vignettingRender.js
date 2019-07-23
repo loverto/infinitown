@@ -6,8 +6,8 @@ var vignettingRender = function() {
     this.mesh.frustumCulled = false;
     // 新建正交相机
     this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    this.scene = new THREE.Scene;
-    this.scene.add(this.mesh);
+    this._scene = new THREE.Scene;
+    this._scene.add(this.mesh);
     // 设置基础的材质
     this.mesh.material = new THREE.MeshBasicMaterial({
         map : LoaderUtils.getTexture('textures/vignetting.png'),
@@ -17,7 +17,7 @@ var vignettingRender = function() {
 };
 vignettingRender.inherit(Object, {
     render : function(renderer) {
-        renderer.render(this.scene, this.camera);
+        renderer.render(this._scene, this.camera);
     }
 });
 
