@@ -1,7 +1,10 @@
+import * as THREE from 'three';
 import bluebird from 'bluebird';
 import 'module/MaterialLoaderExtern';
 import shape from 'module/LoaderUtils';
-var instance = (require('module/PBRMaterial'), require('module/LoadSceneManager'), {});
+require('module/PBRMaterial')
+require('module/LoadSceneManager')
+var instance = {};
 /**
  * @param {string} name
  * @param {string} data 数据或资源路径
@@ -38,15 +41,13 @@ instance.loadScene = function(name, data, options, callback) {
                 camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, .01, 2E3);
                 camera.position.set(-3.5, 2, 3);
             }
-            /** @type {number} */
             var size = 100;
-            /** @type {number} */
             var step = 10;
+            // 网格辅助线
             var grid = new THREE.GridHelper(size, step);
             objects.add(grid);
             var s = new THREE.AxisHelper(5);
             objects.add(s);
-            /** @type {!Array} */
             objects.dirLights = [];
             objects.traverse(function(camera) {
                 if (camera instanceof THREE.DirectionalLight) {
@@ -59,7 +60,6 @@ instance.loadScene = function(name, data, options, callback) {
                 }
             });
             var mixer = new THREE.AnimationMixer(objects);
-            /** @type {number} */
             var i = 0;
             for (; i < objects.animations.length; i++) {
                 mixer.clipAction(objects.animations[i]).play();
