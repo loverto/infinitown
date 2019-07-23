@@ -3,7 +3,7 @@ require('module/ShaderMaterialExtern')
 import PBRMaterial from 'module/PBRMaterial';
 import images from 'module/update';
 /** @type {function(!Object): ?} */
-var RandomBaseTimeSeriesDataModel = (require('module/threejsInitional'), THREE.MaterialLoader.prototype.parse);
+var RandomBaseTimeSeriesDataModel = (require('module/LoaderUtils'), THREE.MaterialLoader.prototype.parse);
 /** @type {null} */
 var shaders = null;
 /**

@@ -1,6 +1,6 @@
 import * as THREE  from 'three';
 import RawShaderMaterialExtern from 'module/RawShaderMaterialExtern';
-import component from 'module/threejsInitional';
+import component from 'module/LoaderUtils';
 import DataTextureUtils from 'module/dataTextureUtils';
 /**
  * @param {?} value

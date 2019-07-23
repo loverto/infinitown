@@ -15,8 +15,8 @@ var types = {
         var scale = Math.pow(10, size);
         return center.x = Math.round(center.x * scale) / scale, center.y = Math.round(center.y * scale) / scale, center.z = Math.round(center.z * scale) / scale, center;
     },
-    getTablePosition : function(origin, scale, radius, first) {
-        return first.x = seg.CHUNK_SIZE * scale + origin.x, first.z = seg.CHUNK_SIZE * radius + origin.z, first;
+    getTablePosition : function(position, tableX, tableY, tablePosition) {
+        return tablePosition.x = seg.CHUNK_SIZE * tableX + position.x, tablePosition.z = seg.CHUNK_SIZE * tableY + position.z, tablePosition;
     }
 };
 export default types;

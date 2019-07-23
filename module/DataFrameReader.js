@@ -49,7 +49,6 @@ DataFrameReader.prototype = Object.create(THREE.FileLoader.prototype);
  */
 DataFrameReader.prototype.load = function(url, loadCallback, onProgress, onError) {
     THREE.FileLoader.prototype.load.call(this, url, function(data) {
-    /** @type {*} */
         var n = JSON.parse(data);
         var x = r(n);
         loadCallback(x);

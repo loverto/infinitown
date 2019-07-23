@@ -1,7 +1,7 @@
 import bluebird from 'bluebird';
 import 'module/MaterialLoaderExtern';
-import shape from 'module/threejsInitional';
-var instance = (require('module/PBRMaterial'), require('module/TextureMTLLoader'), {});
+import shape from 'module/LoaderUtils';
+var instance = (require('module/PBRMaterial'), require('module/LoadSceneManager'), {});
 /**
  * @param {string} name
  * @param {string} data 数据或资源路径

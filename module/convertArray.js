@@ -1,20 +1,25 @@
 /**
- * @param {!Array} value
- * @return {?}
+ * 判断是否为对象
+ * @param value
+ * @returns {boolean}
  */
 function isObject(value) {
     return '[object Object]' === Object.prototype.toString.call(value);
 }
+
 /**
- * @param {!Array} value
- * @return {?}
+ * 判断是否为参数列表
+ * @param value
+ * @returns {boolean}
  */
 function isArgumentsArrays(value) {
     return '[object Arguments]' === Object.prototype.toString.call(value);
 }
+
 /**
- * @param {!Array} cache
- * @return {?}
+ * 对象转数组
+ * @param cache
+ * @returns {*[]}
  */
 function objectToArray(cache) {
     return Object.keys(cache).map(function(colorSpace) {
@@ -23,9 +28,9 @@ function objectToArray(cache) {
 }
 
 /**
- * @param {!Array} value
- * @param {!Object} result
- * @return {?}
+ * 转换参数列表为数组
+ * @param value
+ * @param result
  */
 export default function(value, result) {
     return value || (value = []), isArgumentsArrays(value) && (value = [].splice.call(value, 0)), isObject(value) && result && (value = objectToArray(value)), Array.isArray(value) ? value : [value];

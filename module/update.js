@@ -1,5 +1,5 @@
 import t from 'module/ShaderMaterialExtern';
-import value from 'module/threejsInitional';
+import value from 'module/LoaderUtils';
 var a = {
     normalMapFactor : 'uNormalMapFactor',
     normalMap : 'sTextureNormalMap',

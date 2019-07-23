@@ -1,14 +1,15 @@
 import * as THREE from 'three';
 /**
- * @param {string} data
+ * 加载场景管理
+ * @param {string} loadingManager
  * @return {undefined}
  */
-export function TextureMTLLoader(data) {
-    this.manager = void 0 !== data ? data : THREE.DefaultLoadingManager;
-    /** @type {string} */
+export function LoadSceneManager(loadingManager) {
+    this.manager = void 0 !== loadingManager ? loadingManager : THREE.DefaultLoadingManager;
+    // 设置纹理路径
     this.texturePath = '';
 };
-Object.assign(TextureMTLLoader.prototype, {
+Object.assign(LoadSceneManager.prototype, {
     load : function(url, callback, data, options) {
         // 如果纹理路径为空，则从参数中获取纹理路径
         if ('' === this.texturePath) {
@@ -23,14 +24,26 @@ Object.assign(TextureMTLLoader.prototype, {
             self.parse(value, callback);
         }, data, options);
     },
+    /**
+     * 设置纹理路径
+     * @param path
+     */
     setTexturePath : function(path) {
-    /** @type {string} */
         this.texturePath = path;
     },
+    /**
+     * 设置跨域
+     * @param value
+     */
     setCrossOrigin : function(value) {
-    /** @type {!Object} */
         this.crossOrigin = value;
     },
+    /**
+     * 转换
+     * @param json
+     * @param callback
+     * @returns {*}
+     */
     parse : function(json, callback) {
         // 获取几何图形
         var geometries;
@@ -60,10 +73,14 @@ Object.assign(TextureMTLLoader.prototype, {
         }
         return object;
     },
+    /**
+     * 转换相机
+     * @param object
+     * @param options
+     * @returns {!Array}
+     */
     parseCameras : function(object, options) {
-    /** @type {!Array} */
         var onSelectionCalls = [];
-        /** @type {number} */
         var index = 0;
         for (; index < options.length; index++) {
             var e = object.getObjectByProperty('uuid', options[index]);
@@ -73,6 +90,10 @@ Object.assign(TextureMTLLoader.prototype, {
         }
         return onSelectionCalls;
     },
+    /**
+     * 转换几何体
+     * @param json
+     */
     parseGeometries : function(json) {
         // 转换几何图形
         var geometries = {};
@@ -156,15 +177,22 @@ Object.assign(TextureMTLLoader.prototype, {
         }
         return geometries;
     },
+    /**
+     * 设置二进制集合体缓存
+     * @param addedRenderer
+     */
     setBinaryGeometryBuffer : function(addedRenderer) {
-    /** @type {!Object} */
         this.geometryBuffer = addedRenderer;
     },
+    /**
+     *  转换二进制集合体
+     * @param result
+     */
     parseBinaryGeometries : function(result) {
         var geometries = {};
         if (void 0 !== result) {
-            /** @type {number} */
-            var i = (new THREE.BufferGeometryLoader, 0);
+            new THREE.BufferGeometryLoader
+            var i = 0;
             var length = result.length;
             for (; i < length; i++) {
                 var geometry = new THREE.BufferGeometry;
@@ -212,6 +240,11 @@ Object.assign(TextureMTLLoader.prototype, {
         }
         return geometries;
     },
+    /**
+     * 转换材料
+     * @param json
+     * @param textures
+     */
     parseMaterials : function(json, textures) {
     // 设置材料
         var materials = {};
@@ -231,17 +264,25 @@ Object.assign(TextureMTLLoader.prototype, {
         }
         return materials;
     },
+    /**
+     * 转换动画效果
+     * @param json
+     * @returns {!Array}
+     */
     parseAnimations : function(json) {
-    /** @type {!Array} */
-        var t_chksum = [];
-        /** @type {number} */
+        var animations = [];
         var i = 0;
         for (; i < json.length; i++) {
-            var r = THREE.AnimationClip.parse(json[i]);
-            t_chksum.push(r);
+            var animation = THREE.AnimationClip.parse(json[i]);
+            animations.push(animation);
         }
-        return t_chksum;
+        return animations;
     },
+    /**
+     *  转换图片
+     * @param json
+     * @param onLoad
+     */
     parseImages : function(json, onLoad) {
     /**
          * 加载图片
@@ -272,6 +313,11 @@ Object.assign(TextureMTLLoader.prototype, {
         }
         return images;
     },
+    /**
+     * 转换纹理
+     * @param json
+     * @param images
+     */
     parseTextures : function(json, images) {
     /**
          * @param {(Object|string)} value
@@ -352,6 +398,9 @@ Object.assign(TextureMTLLoader.prototype, {
         }
         return textures;
     },
+    /**
+     * 转换对象
+     */
     parseObject : function() {
     // 声明矩阵
         var matrix = new THREE.Matrix4;

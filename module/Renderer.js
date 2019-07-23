@@ -1,5 +1,5 @@
 import bluebird from 'bluebird';
-import threejsInitional from 'module/threejsInitional';
+import threejsInitional from 'module/LoaderUtils';
 
 /**
  * @param {!Object} obj

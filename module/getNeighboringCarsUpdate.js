@@ -37,22 +37,20 @@ var getNeighboringCarsUpdate = function(blocksObjects, lanesObjects, intersectio
     /** @type {!Array} */
     this.chunks = [];
     this.cloudObjects = cloudsObjects;
-    lanesObjects.forEach(function(t) {
-        switch(t.name) {
+    lanesObjects.forEach(function(item) {
+        switch(item.name) {
             // 类型为1的路加十个
         case 'Road_Lane_01_fixed':
-            /** @type {number} */
             var e = 0;
             for (; e < 10; e++) {
-                this.lanes.push(t);
+                this.lanes.push(item);
             }
             break;
             //类型为3的加5个
         case 'Road_Lane_03_fixed':
-            /** @type {number} */
             e = 0;
             for (; e < 5; e++) {
-                this.lanes.push(t);
+                this.lanes.push(item);
             }
         }
     }, this);
@@ -145,68 +143,73 @@ getNeighboringCarsUpdate.inherit(Object, {
     _getRandomChunk : function(x, y) {
         var matrix = new THREE.Matrix4;
         var matrixWorldInverse = (new THREE.Matrix4).makeRotationY(Math.PI / 2);
-        var self = new THREE.Object3D;
-        /** @type {string} */
-        self.name = 'chunk';
+        var randomChunkObject3 = new THREE.Object3D;
+        // 设置默认名称
+        randomChunkObject3.name = 'chunk';
         // 获取随机的块
         var block = this._getRandomBlockAt(x, y);
-        /** @type {number} */
         var defaultYPos = Math.round(4 * Common.random()) * (Math.PI / 2);
-        /** @type {number} */
         block.rotation.y = defaultYPos;
         block.position.set(0, 0, 0);
-        self.add(block);
-        self.block = block;
-        /** @type {!Array} */
-        var d = [];
-        var result = getElementByRandom(this.lanes).clone();
-        result.position.set(-30, 0, 10);
-        self.add(result);
-        d.push(result);
-        var object = getElementByRandom(this.lanes).clone();
-        object.position.set(-30, 0, -10);
+        randomChunkObject3.add(block);
+        randomChunkObject3.block = block;
+        // 随机车道信息，用来存储获取的随机四个车道
+        var randomLanes = [];
+        // 随机取第一个车道
+        var randomFirstLane = getElementByRandom(this.lanes).clone();
+        randomFirstLane.position.set(-30, 0, 10);
+        randomChunkObject3.add(randomFirstLane);
+        randomLanes.push(randomFirstLane);
+        // 随即取第二个车道
+        var randomSecondLane = getElementByRandom(this.lanes).clone();
+        randomSecondLane.position.set(-30, 0, -10);
         matrix.makeTranslation(0, 0, -20);
-        object.geometry = object.geometry.clone();
-        result.geometry = result.geometry.clone();
-        object.geometry.applyMatrix(matrix);
-        d.push(object);
-        var mesh = getElementByRandom(this.lanes).clone();
-        mesh.position.set(-10, 0, -30);
-        /** @type {number} */
-        mesh.rotation.y = Math.PI / 2;
-        d.push(mesh);
+        randomSecondLane.geometry = randomSecondLane.geometry.clone();
+        randomFirstLane.geometry = randomFirstLane.geometry.clone();
+        randomSecondLane.geometry.applyMatrix(matrix);
+        randomLanes.push(randomSecondLane);
+        // 随机取第三个车道
+        var randomThirdLane = getElementByRandom(this.lanes).clone();
+        randomThirdLane.position.set(-10, 0, -30);
+        randomThirdLane.rotation.y = Math.PI / 2;
+        randomLanes.push(randomThirdLane);
         matrix.makeTranslation(20, 0, -40);
-        mesh.geometry = mesh.geometry.clone();
-        mesh.geometry.applyMatrix(matrixWorldInverse);
-        mesh.geometry.applyMatrix(matrix);
-        var o = getElementByRandom(this.lanes).clone();
-        o.geometry = o.geometry.clone();
-        o.position.set(10, 0, -30);
-        /** @type {number} */
-        o.rotation.y = Math.PI / 2;
+        randomThirdLane.geometry = randomThirdLane.geometry.clone();
+        randomThirdLane.geometry.applyMatrix(matrixWorldInverse);
+        randomThirdLane.geometry.applyMatrix(matrix);
+        // 随机取第四个车道
+        var randomFourthLane = getElementByRandom(this.lanes).clone();
+        randomFourthLane.geometry = randomFourthLane.geometry.clone();
+        randomFourthLane.position.set(10, 0, -30);
+        randomFourthLane.rotation.y = Math.PI / 2;
         matrix.makeTranslation(40, 0, -40);
-        o.geometry.applyMatrix(matrixWorldInverse);
-        o.geometry.applyMatrix(matrix);
-        d.push(o);
-        var g = THREE.BufferGeometryUtils.mergeBufferGeometries([result.geometry,object.geometry, mesh.geometry, o.geometry])
-        result.geometry = g;
-        var r = getElementByRandom(this.intersections).clone();
-        if (r.position.set(-30, 0, 30), self.add(r), d.forEach(function(index) {
-            /** @type {number} */
+        randomFourthLane.geometry.applyMatrix(matrixWorldInverse);
+        randomFourthLane.geometry.applyMatrix(matrix);
+        randomLanes.push(randomFourthLane);
+        var g = THREE.BufferGeometryUtils.mergeBufferGeometries([randomFirstLane.geometry,randomSecondLane.geometry, randomThirdLane.geometry, randomFourthLane.geometry])
+        randomFirstLane.geometry = g;
+        // 随机获取一个十字路口
+        var randomFirstIntersection = getElementByRandom(this.intersections).clone();
+        randomFirstIntersection.position.set(-30, 0, 30)
+        randomChunkObject3.add(randomFirstIntersection)
+        randomLanes.forEach(function(randomLane) {
+            // 随即因子，移动设备上设置的小一点，pc设备上设置的大一点，可以有效地优化移动端性能
             var e = window.isMobile ? .2 : .35;
             if (Common.random() < e) {
-                var id = getElementByRandom(this.carObjects).clone();
-                var tab = new InitCarPoints(this, id, index);
-                self.add(tab);
+                // 在随机生成的道路上，随机生成一个车
+                var randomFirstCar = getElementByRandom(this.carObjects).clone();
+                var tab = new InitCarPoints(this, randomFirstCar, randomLane);
+                randomChunkObject3.add(tab);
                 this.mobs.push(tab);
             }
-        }, this), Common.random() > .65) {
-            var hex = getElementByRandom(this.cloudObjects).clone();
-            var b = new Buffer(this, hex);
-            self.add(b);
+        }, this)
+        if (Common.random() > .65) {
+            var randomFirstCloud = getElementByRandom(this.cloudObjects).clone();
+            var b = new Buffer(this, randomFirstCloud);
+            randomChunkObject3.add(b);
             this.mobs.push(b);
         }
-        return self.traverse(function(object) {
+        return randomChunkObject3.traverse(function(object) {
             if (object instanceof THREE.Mesh && object.material && object.material.pbr) {
                 /** @type {boolean} */
                 object.material.defines.USE_FOG = true;
@@ -219,7 +222,7 @@ getNeighboringCarsUpdate.inherit(Object, {
                     object.material.defines[state.SHADOWMAP_TYPE] = true;
                 }
             }
-        }), self;
+        }), randomChunkObject3;
     },
     _generate : function() {
     /** @type {number} */

@@ -1,5 +1,5 @@
 import * as THREE  from 'three';
-import value from 'module/threejsInitional';
+import value from 'module/LoaderUtils';
 /**
  * @return {undefined}
  */

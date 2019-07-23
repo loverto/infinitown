@@ -1,8 +1,7 @@
 import 'module/BaseUtils';
-require('es6-promise').polyfill();
 import Events from 'module/Events';
 import Renderer from 'module/Renderer';
-import threejsInitional from 'module/threejsInitional';
+import loaderUtils from 'module/LoaderUtils';
 import instance from 'module/instance';
 import Scene from 'module/initCamera';
 import Config from 'module/state';
@@ -12,23 +11,22 @@ $('canvas');
 var sceneCanvas;
 
 /**
- * @param {string} name
- * @param {!Object} options
- * @param {string} env
- * @param {!Function} callback
- * @return {undefined}
+ * 初始化方法
+ * @param name
+ * @param options
+ * @param env
+ * @param callback
  */
 function initialize(name, options, env, callback) {
-    var _infoMemory = {
+    var configOptions = {
         geometries : [name],
         textures : texturesResources,
         sh : [env]
     };
     // 加载资源
-    var downloader = new Renderer(_infoMemory);
+    var downloader = new Renderer(configOptions);
     downloader.load().then(function(response) {
-    /** @type {string} */
-        threejsInitional.texturePath = 'assets/' + name + '/';
+        loaderUtils.texturePath = 'assets/' + name + '/';
         THREE.MaterialLoader.setShaders(shadersResource);
         // 加载场景
         instance.loadScene(name, 'assets/scenes/', options).then(callback);
@@ -39,9 +37,7 @@ function initialize(name, options, env, callback) {
  * @return {undefined}
  */
 function load() {
-    /** @type {string} */
     var container = 'main';
-    /** @type {string} */
     var env = 'envProbe';
     let canvas = document.querySelector('canvas');
     sceneCanvas = new Scene({
@@ -63,16 +59,9 @@ function load() {
     });
 }
 
-/**
- * @param {?} status
- * @param {number} e
- * @param {?} i
- * @return {undefined}
- */
-threejsInitional.manager.onProgress = function(status, e, i) {
-    /** @type {number} */
+
+loaderUtils.manager.onProgress = function(status, e, i) {
     var patternLen = 57;
-    /** @type {number} */
     var modifiedEventData = Math.ceil(e / patternLen * 100);
     window.api.trigger('loadingprogress', modifiedEventData);
 };
@@ -80,9 +69,7 @@ threejsInitional.manager.onProgress = function(status, e, i) {
 if (window.parent === window) {
     load();
 }
-/**
- * @return {undefined}
- */
+
 var utils = function() {
 };
 utils.inherit(Object, {

@@ -3,17 +3,29 @@ import normalize from 'module/normalize';
 import convertArray from 'module/convertArray';
 import self from 'valid-url';
 
-/** @type {function(): ?} */
+/**
+ * url转换
+ * @returns {*}
+ */
 var parseUrl = function() {
-    var array = convertArray(arguments).map(s);
+    // 转换参数列表为参数数组
+    var array = convertArray(arguments).map(replaceUndefined);
     return self.isUri(array[0]) ? normalize.apply(normalize, array) : uriUtils.join.apply(uriUtils, array);
 };
-
-/** @type {function(!Array, ?, !Object): ?} */
-var s = (parseUrl.isUrl = function(value) {
+/**
+ * 判断是否是url
+ * @param value
+ * @returns {*|!Uint8Array|!Array|boolean}
+ */
+parseUrl.isUri = function(value) {
     return self.isUri(value) || 'http://' === value || 'https://' === value || 'ftp://' === value;
-}, parseUrl.replaceUndefined = function(currentValue, index, arr) {
+}
+/**
+ * 替换未定义的值
+ * @type {function(*, *, *): string}
+ */
+var replaceUndefined =  parseUrl.replaceUndefined = function(currentValue, index, arr) {
     return void 0 === currentValue || null === currentValue ? self.isUri(arr[0]) ? '/' : uriUtils.sep : currentValue;
-});
+};
 
 export {parseUrl};

@@ -1,6 +1,7 @@
 /**
- * @param {string} name
- * @return {?}
+ * Uri 规范化
+ * @param name
+ * @returns {string}
  */
 function normalize(name) {
     return name.replace(/[\/]+/g, '/').replace(/\/\?/g, '?').replace(/\/#/g, '#').replace(/:\//g, '://');
