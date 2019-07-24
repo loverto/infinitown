@@ -115,6 +115,7 @@ var init = function(options) {
     this.paused = false;
     this.scenes = [];
     this.scene = null;
+    // bind()方法创建一个新的函数，在bind()被调用时，这个新函数的this被bind的第一个参数指定，其余的参数将作为新函数的参数供调用时使用。
     // 重置窗口绑定事件，update 是啥
     window.onresize = update.bind(this);
     // 绑定键盘按下事件
@@ -178,6 +179,7 @@ init.prototype = {
      * @param target
      */
     update : function(target) {
+        var self = this
         if (this.camera) {
             this.camera.updateMatrixWorld(true);
             this.camera.matrixWorldInverse.getInverse(this.camera.matrixWorld);
@@ -186,9 +188,9 @@ init.prototype = {
             this.updateCustomMaterials(camera);
             if (camera.update) {
                 camera.updateMatrixWorld(true);
-                camera.update(this.renderer, target);
+                camera.update(self.renderer, target);
             }
-        }, this);
+        });
     },
     /**
      * 更新自定义材料
@@ -196,11 +198,12 @@ init.prototype = {
      * @param name
      */
     updateCustomMaterials : function(model, name) {
+        var self = this
         _.each(model.materials, function(material) {
             if (material.pbr) {
-                material.refreshUniforms(name || this.camera, this.envRotation);
+                material.refreshUniforms(name || self.camera, self.envRotation);
             }
-        }, this);
+        });
     },
     /**
      * 执行更新

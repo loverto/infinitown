@@ -9,12 +9,13 @@ var keys = ['side', 'alphaTest', 'transparent', 'depthWrite', 'shading', 'wirefr
 var RawShaderMaterialExtern = function(obj) {
     obj = obj || {};
     THREE.RawShaderMaterial.call(this, obj);
+    var self = this;
     _.each(keys, function(property) {
         var method = obj[property];
         if (undefined !== method) {
-            this[property] = method;
+            self[property] = method;
         }
-    }, this);
+    });
 };
 RawShaderMaterialExtern.inherit(THREE.RawShaderMaterial, {
     /**

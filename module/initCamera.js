@@ -1,11 +1,11 @@
 import * as THREE  from 'three';
 import initDrawCallsCounter from 'module/initDrawCallsCounter';
-import LineSegmentsInit from 'module/LineSegmentsInit'
+import 'module/LineSegmentsInit'
 import constants from 'module/state';
-import {PerspectiveCameraUpdate} from 'module/PerspectiveCameraUpdate'
-import OrthographicCameraBase from 'module/OrthographicCameraBase'
+import 'module/PerspectiveCameraUpdate'
+import 'module/OrthographicCameraBase'
 import {PerspectiveCameraCtor} from  'module/PerspectiveCameraCtor';
-import  {BasicShaderMaterial} from 'module/BasicShaderMaterial'
+import 'module/BasicShaderMaterial'
 import {getNeighboringCarsUpdate} from 'module/getNeighboringCarsUpdate';
 import ChunksScene from 'module/ChunksScene';
 import EventHandler from 'module/jqueryEventHandler';

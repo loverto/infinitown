@@ -294,7 +294,7 @@ var PBRMaterial = function(obj) {
         self.onPropertyChange(prop, function(jsonName) {
             self[javascriptName] = jsonName;
         });
-    }, this);
+    });
     // 扩展信息
     this.extensions = {
         derivatives : true,

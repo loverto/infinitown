@@ -4,12 +4,13 @@ var keys = ['side', 'alphaTest', 'transparent', 'depthWrite', 'shading', 'wirefr
 var ShaderMaterialExtern = function(obj) {
     obj = obj || {};
     THREE.ShaderMaterial.call(this, obj);
+    var self = this
     _.each(keys, function(property) {
         var method = obj[property];
         if (undefined !== method) {
-            this[property] = method;
+            self[property] = method;
         }
-    }, this);
+    });
 };
 ShaderMaterialExtern.inherit(THREE.ShaderMaterial, {
     onPropertyChange : function(e, prop) {

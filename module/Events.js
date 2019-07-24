@@ -196,6 +196,7 @@ var collection = {
     listenTo : 'on',
     listenToOnce : 'once'
 };
+// var self = this
 _.each(collection, function(implementation, method) {
     Events[method] = function(obj, name, callback) {
         var listeningTo = this._listeningTo || (this._listeningTo = {});

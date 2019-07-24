@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import bluebird from 'bluebird';
 import 'module/MaterialLoaderExtern';
 import loaderUtils from 'module/LoaderUtils';
-import PBRMaterial from 'module/PBRMaterial'
-import LoadSceneManager from 'module/LoadSceneManager'
+import  'module/PBRMaterial'
+import 'module/LoadSceneManager'
 var instance = {};
 
 /**

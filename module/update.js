@@ -53,11 +53,12 @@ var update = function(data) {
             this.uniforms[name].value = initSBC;
         });
     }, this);
+    var self = this
     _.each(a, function(javascriptName, prop) {
-        this.onPropertyChange(prop, function(jsonName) {
-            this[javascriptName] = jsonName;
+        self.onPropertyChange(prop, function(jsonName) {
+            self[javascriptName] = jsonName;
         });
-    }, this);
+    });
     this.extensions = {
         derivatives : true
     };
@@ -65,14 +66,18 @@ var update = function(data) {
 update.inherit(t, {
     clone : function(params) {
         var data = params || new update;
-        return t.prototype.clone.call(this, data), data.name = this.name, data.transparent = this.transparent, _.each(this.uniforms, function(dom, name) {
+        t.prototype.clone.call(this, data)
+        data.name = this.name
+        data.transparent = this.transparent
+        _.each(this.uniforms, function(dom, name) {
             var value = dom.type;
             if ('v2' === value || 'm4' === value) {
                 data.uniforms[name].value.copy(dom.value);
             } else {
                 data.uniforms[name].value = dom.value;
             }
-        }, this), data;
+        }, this)
+        return data;
     }
 });
 /**

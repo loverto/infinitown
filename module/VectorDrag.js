@@ -43,7 +43,7 @@ VectorDrag.inherit(Object, {
         };
     }(),
     raycast : function() {
-        this._raycaster.setFromCamera(ndc, this.camera);
+        this._raycaster.setFromCamera(ndc, this._camera);
         var intersectors = this._raycaster.intersectObjects(this._scene.getPickables());
         if (intersectors.length > 0) {
             var settings = intersectors[0].object;
