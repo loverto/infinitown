@@ -3,9 +3,10 @@ import 'module/ShaderMaterialExtern'
 import PBRMaterial from 'module/PBRMaterial';
 import images from 'module/update';
 import 'module/LoaderUtils'
+// 获取MateriaLoader的原型用于扩展
 var RandomBaseTimeSeriesDataModel = THREE.MaterialLoader.prototype.parse;
 var shaders = null;
-
+// 重写设置顶点的资源
 THREE.MaterialLoader.setShaders = function(inShaders) {
     shaders = inShaders;
 };
@@ -20,7 +21,7 @@ THREE.MaterialLoader.prototype.parse = function(options) {
             uuid : options.uuid,
             name : options.name,
             normalMap : json.normalMap,
-            matcapMap : THREE.ImageUtils.loadTexture('textures/matcap.jpg'),
+            matcapMap : THREE.TextureLoader.load('textures/matcap.jpg'),
             normalMapFactor : 1
         });
     }
