@@ -6,13 +6,18 @@ import 'module/PerspectiveCameraUpdate'
 import 'module/OrthographicCameraBase'
 import {PerspectiveCameraCtor} from  'module/PerspectiveCameraCtor';
 import 'module/BasicShaderMaterial'
-import {getNeighboringCarsUpdate} from 'module/getNeighboringCarsUpdate';
+import {Table} from 'module/table';
 import ChunksScene from 'module/ChunksScene';
 import EventHandler from 'module/jqueryEventHandler';
 import VectorDrag from 'module/VectorDrag';
 import vignettingRender from 'module/vignettingRender';
 
-var InitCamera = function(data) {
+/**
+ * 场景管理
+ * @param data
+ * @constructor
+ */
+var SceneManager = function(data) {
     initDrawCallsCounter.call(this, data);
     // 初始化相机
     this.initCamera();
@@ -23,7 +28,7 @@ var InitCamera = function(data) {
     // 场景
     this.scene = new THREE.Scene;
 };
-InitCamera.inherit(initDrawCallsCounter, {
+SceneManager.inherit(initDrawCallsCounter, {
     /**
      * 开始
      * @param objects
@@ -35,7 +40,9 @@ InitCamera.inherit(initDrawCallsCounter, {
         var intersectionsChildren = objects.getObjectByName('intersections').children;
         var carsChildren = objects.getObjectByName('cars').children;
         var cloudsChildren = objects.getObjectByName('clouds').children;
-        this.table = new getNeighboringCarsUpdate(blocksChildren, lanesChildren, intersectionsChildren, carsChildren, cloudsChildren);
+        // 获得邻近汽车更新
+        this.table = new Table(blocksChildren, lanesChildren, intersectionsChildren, carsChildren, cloudsChildren);
+        // 大块场景
         this.chunkScene = new ChunksScene;
         //添加场景
         this.scene.add(this.chunkScene);
@@ -53,52 +60,75 @@ InitCamera.inherit(initDrawCallsCounter, {
         this.controls.on('move', function(eastPx, vertSpeed) {
             this.gridCoords.x += eastPx;
             this.gridCoords.y += vertSpeed;
+            // 如果移动场景的话就刷新大块场景
             this.refreshChunkScene();
         }, this);
         // 刷新分块场景
         this.refreshChunkScene();
+        // 注册开始拖动开始事件，如果拖动的话，给body添加拖动样式
         this.inputManager.on('startdrag', function() {
             $('body').addClass('grabbing');
         });
+        // 注册开始拖动结束事件，如果拖动的话，给body移除拖动样式
         this.inputManager.on('enddrag', function() {
             $('body').removeClass('grabbing');
         });
+        // 注册鼠标滚动事件，如果滚动的话的话，调整相机的高度
         this.inputManager.on('mousewheel', function(value) {
             this.camera.updateHeight(value);
         }, this);
+        // 注册开始捏事件，如果捏的话，
         this.inputManager.on('pinchstart', function() {
             this._lastPinchScale = 1;
             this.controls.enabled = false;
         }, this);
+        // 注册结束捏事件，如果捏的话，
         this.inputManager.on('pinchend', function() {
             this.controls.enabled = true;
         }, this);
+        // 注册捏之后的事件，如果捏之后的话，调整相机高度
         this.inputManager.on('pinchchange', function(uv3v) {
             var v1y = 10;
             var value = (uv3v - this._lastPinchScale) * v1y;
             this.camera.updateHeight(value);
             this._lastPinchScale = uv3v;
         }, this);
+        // 调用父类的开始方法
         initDrawCallsCounter.prototype.start.call(this);
     },
     /**
      * 初始化光线
      */
     initDirLight : function() {
-        var light = new THREE.DirectionalLight(16774618, 1.25);
+        // '#fff5da' 白色光
+        //创建定向光，颜色为白色,光的强度为1.25
+        var light = new THREE.DirectionalLight(0xfff5da, 1.25);
+        // 设置光源位置，
         light.position.set(100, 150, -40);
+        // 大块场景 添加上定向光源
         this.chunkScene.add(light);
+        // 大块场景添加定向光源的目标
         this.chunkScene.add(light.target);
+        // 定向光源赋值
         this.dirLight = light;
+        // 光源开启影子
         light.castShadow = true;
+        // 影子的半径
         light.shadow.radius = 1;
+        // 影子偏差
         light.shadow.bias = -.001;
+        // 影子在地图上解析的宽度
         light.shadow.mapSize.width = constants.SHADOWMAP_RESOLUTION;
+        // 影子在地图上解析的高度
         light.shadow.mapSize.height = constants.SHADOWMAP_RESOLUTION;
+        // 影子离相机最近50
         light.shadow.camera.near = 50;
+        // 影子离相机最远300
         light.shadow.camera.far = 300;
         this._resizeShadowMapFrustum(window.innerWidth, window.innerHeight);
+        // webgl 开启地图影子
         this.renderer.shadowMap.enabled = true;
+        // webgl开启地图影子的类型
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     },
     /**
@@ -124,9 +154,13 @@ InitCamera.inherit(initDrawCallsCounter, {
     initCamera : function() {
         var psisq = 120;
         Math.tan(constants.CAMERA_ANGLE) * Math.sqrt(2 * Math.pow(psisq, 2));
+        // 初始化透视相机
         this.camera = new PerspectiveCameraCtor(30, window.innerWidth / window.innerHeight, 10, 400);
+        // 设定相机位置
         this.camera.position.set(80, 140, 80);
+        // 给相机
         this.camera.lookAt(new THREE.Vector3);
+        //单独设置相机y轴位置
         this.camera.position.y = 200;
     },
     /**
@@ -194,5 +228,5 @@ InitCamera.inherit(initDrawCallsCounter, {
     }
 });
 
-export default InitCamera;
+export default SceneManager;
 

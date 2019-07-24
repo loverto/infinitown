@@ -4,7 +4,7 @@ import Events from 'module/Events';
 import Renderer from 'module/Renderer';
 import threejsInitional from 'module/LoaderUtils';
 import instance from 'module/instance';
-import Scene from 'module/initCamera';
+import Scene from 'module/sceneManager';
 import Config from 'module/state';
 import shadersResource from 'module/shaders';
 import texturesResources from 'module/textures';

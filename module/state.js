@@ -2,7 +2,7 @@ var state = {
     /**
      * FPS
      */
-    FPS : false,
+    FPS : true,
     /**
      * 日志调用
      */
@@ -20,7 +20,7 @@ var state = {
      */
     MAX_PIXEL_RATIO : 1.25,
     /**
-     * SHADOWMAP解决方案
+     * 地图上影子的解析度
      */
     SHADOWMAP_RESOLUTION : window.isMobile ? 1024 : 2048,
     /**

@@ -91,13 +91,17 @@ var Events = {
         if (!this._events) {
             return this;
         }
+        // 从数组中截取第一个之后的
+        // slice() 方法返回一个新的数组对象，这一对象是一个由 begin 和 end 决定的原数组的浅拷贝（包括 begin，不包括end）。原始数组不会被改变。
         var args = slice.call(arguments, 1);
         if (!eventsApi(this, 'trigger', type, args)) {
             return this;
         }
         var obj = this._events[type];
         var fn = this._events.all;
-        return obj && check(obj, args), fn && check(fn, arguments), this;
+        obj && check(obj, args)
+        fn && check(fn, arguments)
+        return this;
     },
     /**
      * 停止监听
@@ -134,6 +138,14 @@ var prototypeOfArray = [];
 // 数组的切片方法
 var slice = prototypeOfArray.slice;
 
+/**
+ *
+ * @param obj
+ * @param action
+ * @param name
+ * @param rest
+ * @returns {boolean}
+ */
 var eventsApi = function(obj, action, name, rest) {
     if (!name) {
         return true;
@@ -141,6 +153,7 @@ var eventsApi = function(obj, action, name, rest) {
     if ('object' == typeof name) {
         var template;
         for (template in name) {
+            //apply() 方法调用一个具有给定this值的函数，以及作为一个数组（或类似数组对象）提供的参数。
             obj[action].apply(obj, [template, name[template]].concat(rest));
         }
         return false;

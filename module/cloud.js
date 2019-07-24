@@ -5,7 +5,12 @@ import types from 'module/types';
 var ratio = .05;
 var planetsSpeed = 2;
 
-var updateTablePositionRender = function(name, obj) {
+/**
+ * 云
+ * @param name
+ * @param obj
+ */
+var Cloud = function(name, obj) {
     render.call(this, name);
     this.add(obj);
     this.position.set(types.random() * state.CHUNK_SIZE - state.CHUNK_SIZE / 2, 60, types.random() * state.CHUNK_SIZE - state.CHUNK_SIZE / 2);
@@ -17,7 +22,7 @@ var updateTablePositionRender = function(name, obj) {
     this.rotation.y = .25;
     this.direction = new THREE.Vector3(-1, 0, .3);
 };
-updateTablePositionRender.inherit(render, {
+Cloud.inherit(render, {
     update : function() {
         var value = new THREE.Vector3;
         return function(event) {
@@ -30,5 +35,5 @@ updateTablePositionRender.inherit(render, {
     }()
 });
 
-export default updateTablePositionRender;
+export default Cloud;
 

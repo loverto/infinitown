@@ -10,7 +10,7 @@ var normal = new THREE.Vector3(0, 1, 0);
  * @param randomLane
  * @constructor
  */
-var InitCarPoints = function(randomChunk, randomCar, randomLane) {
+var Car = function(randomChunk, randomCar, randomLane) {
     render.call(this, randomChunk);
     // 给车模型默认命名
     this.name = 'car';
@@ -50,7 +50,7 @@ var InitCarPoints = function(randomChunk, randomCar, randomLane) {
     this.direction.set(Math.round(this.direction.x), Math.round(this.direction.y), Math.round(this.direction.z));
     this._initCollisionPoints();
 };
-InitCarPoints.inherit(render, {
+Car.inherit(render, {
     /**
      * 添加雷达工具
      */
@@ -253,5 +253,5 @@ InitCarPoints.inherit(render, {
     }
 });
 
-export default InitCarPoints;
+export default Car;
 
