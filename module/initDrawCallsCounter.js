@@ -70,7 +70,7 @@ var init = function(options) {
         canvas : options.canvas || document.querySelector('canvas'),
         preserveDrawingBuffer : undefined !== options.preserveDrawingBuffer ? options.preserveDrawingBuffer : undefined
     })
-    //
+    // 用来存储Three中Webgl的extensions
     THREE.Extensions = this.renderer.extensions
     // 配置信息
     this.config = {

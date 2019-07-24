@@ -162,8 +162,11 @@ InitCamera.inherit(initDrawCallsCounter, {
                 totalPlayers = totalPlayers + this.renderer.info.render.calls;
             }
         }.bind(this);
+        // 清空
         this.renderer.clear();
+        // 渲染场景
         this.renderScene(this.scene, this.camera);
+        //
         mapFragmentAndProps();
         if (this.vignetting) {
             this.vignetting.render(this.renderer);

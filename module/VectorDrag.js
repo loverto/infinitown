@@ -42,6 +42,9 @@ VectorDrag.inherit(Object, {
             }
         };
     }(),
+    /**
+     * 光线投射相机
+     */
     raycast : function() {
         this._raycaster.setFromCamera(ndc, this._camera);
         var intersectors = this._raycaster.intersectObjects(this._scene.getPickables());

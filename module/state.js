@@ -6,7 +6,7 @@ var state = {
     /**
      * 日志调用
      */
-    LOG_CALLS : false,
+    LOG_CALLS : true,
     /**
      * 随机种子
      */
