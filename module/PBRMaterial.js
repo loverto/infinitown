@@ -284,8 +284,6 @@ var PBRMaterial = function(obj) {
     RawShaderMaterialExtern.call(this, obj);
     Object.keys(this.uniforms).forEach(function(name) {
         this.onPropertyChange(name, function(initSBC) {
-            console.log("PBRMaterial construct",name,initSBC)
-
             this.uniforms[name].value = initSBC;
         });
     }, this);
