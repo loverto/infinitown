@@ -1,25 +1,17 @@
-import t from 'module/ShaderMaterialExtern';
-import value from 'module/LoaderUtils';
+import * as THREE  from 'three';
+import ShaderMaterialExtern from 'module/ShaderMaterialExtern';
+import LoaderUtils from 'module/LoaderUtils';
 var a = {
     normalMapFactor : 'uNormalMapFactor',
     normalMap : 'sTextureNormalMap',
     matcapMap : 'sTextureAOMap'
 };
-/**
- * @param {?} value
- * @param {string} defaultValue
- * @return {?}
- */
+
 function optionalParameter(value, defaultValue) {
     return undefined !== value ? value : defaultValue;
 }
 
-/**
- * @param {!Function} data
- * @return {undefined}
- */
-var update = function(data) {
-    /** @type {!Object} */
+var MatcapMaterial = function(data) {
     data = Object.assign({
         vertexShader : data.vertexShader,
         fragmentShader : data.fragmentShader,
@@ -46,10 +38,9 @@ var update = function(data) {
             }
         }
     }, data);
-    t.call(this, data);
+    ShaderMaterialExtern.call(this, data);
     Object.keys(this.uniforms).forEach(function(name) {
         this.onPropertyChange(name, function(initSBC) {
-            /** @type {!Object} */
             this.uniforms[name].value = initSBC;
         });
     }, this);
@@ -63,10 +54,11 @@ var update = function(data) {
         derivatives : true
     };
 };
-update.inherit(t, {
+
+MatcapMaterial.inherit(ShaderMaterialExtern, {
     clone : function(params) {
-        var data = params || new update;
-        t.prototype.clone.call(this, data)
+        var data = params || new MatcapMaterial;
+        ShaderMaterialExtern.prototype.clone.call(this, data)
         data.name = this.name
         data.transparent = this.transparent
         _.each(this.uniforms, function(dom, name) {
@@ -80,23 +72,27 @@ update.inherit(t, {
         return data;
     }
 });
-/**
- * @param {!Object} material
- * @return {?}
- */
-update.create = function(material) {
-    var source = new update;
+
+MatcapMaterial.create = function(material) {
+    var source = new MatcapMaterial;
     source.uuid = material.uuid;
     source.name = material.name;
     source.transparent = optionalParameter(material.transparent, false);
     source.polygonOffset = optionalParameter(material.polygonOffset, false);
     source.polygonOffsetUnits = optionalParameter(material.polygonOffsetUnits, 0);
     source.polygonOffsetFactor = optionalParameter(material.polygonOffsetFactor, 0);
-    var pm = (value.getTexture('white.png'), material.normalMap);
+    LoaderUtils.getTexture('white.png')
+    var pm = material.normalMap;
     var color = material.matcapMap;
-    return source.uNormalMapFactor = optionalParameter(material.normalMapFactor, 1), source.uFlipY = optionalParameter(material.flipNormals, 0), source.side = optionalParameter(material.side, THREE.FrontSide), pm.needsUpdate = true, color.needsUpdate = true, source.sTextureNormalMap = pm, source.sTextureMatcapMap = color, source;
+    source.uNormalMapFactor = optionalParameter(material.normalMapFactor, 1)
+    source.uFlipY = optionalParameter(material.flipNormals, 0)
+    source.side = optionalParameter(material.side, THREE.FrontSide)
+    pm.needsUpdate = true
+    color.needsUpdate = true
+    source.sTextureNormalMap = pm
+    source.sTextureMatcapMap = color
+    return source;
 };
 
-/** @type {function(!Function): undefined} */
-export default update;
+export default MatcapMaterial;
 

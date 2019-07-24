@@ -241,11 +241,11 @@ BaseSceneManager.prototype = {
                 TWEEN.update(now);
                 timers.updateTimers(data);
                 if (this.config.profiling) {
-                    console.time('update');
+                    console.time('matcapMaterial.js');
                 }
                 this.update(data);
                 if (this.config.profiling) {
-                    console.timeEnd('update');
+                    console.timeEnd('matcapMaterial.js');
                 }
                 this.render(data);
                 if (!this.started) {

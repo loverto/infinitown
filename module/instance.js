@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import bluebird from 'bluebird';
 import 'module/MaterialLoaderExtern';
 import loaderUtils from 'module/LoaderUtils';
-import  'module/PBRMaterial'
+import 'module/PBRMaterial'
 import 'module/LoadSceneManager'
 var instance = {};
 
@@ -16,7 +16,7 @@ var instance = {};
  */
 instance.loadScene = function(name, data, options, callback) {
     return new bluebird(function(resolve, reject) {
-        options.renderer
+        // options.renderer
         var binaryGeometryBuffer = loaderUtils.getGeometry(name);
         // 设置二进制几何Buffer
         if (binaryGeometryBuffer) {

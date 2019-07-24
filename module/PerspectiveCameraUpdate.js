@@ -21,7 +21,7 @@ var PerspectiveCameraUpdate = function(data) {
 };
 PerspectiveCameraUpdate.inherit(ctor, {
     update : function() {
-        this.controls.update();
+        this.controls.MatcapMaterial();
     }
 });
 

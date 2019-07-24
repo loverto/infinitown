@@ -48,7 +48,7 @@ function load() {
     sceneCanvas = new Scene({
         canvas : canvas,
         autoClear : false,
-        profiling : true,
+        profiling : false,
         fps : Config.FPS || false,
         logCalls : Config.LOG_CALLS || false,
         maxPixelRatio : Config.MAX_PIXEL_RATIO || 2

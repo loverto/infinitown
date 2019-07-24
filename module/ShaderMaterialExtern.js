@@ -1,6 +1,11 @@
 import * as THREE  from 'three';
 var keys = ['side', 'alphaTest', 'transparent', 'depthWrite', 'shading', 'wireframe'];
 
+/**
+ *
+ * @param obj
+ * @constructor
+ */
 var ShaderMaterialExtern = function(obj) {
     obj = obj || {};
     THREE.ShaderMaterial.call(this, obj);

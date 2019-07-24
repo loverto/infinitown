@@ -290,9 +290,9 @@ var PBRMaterial = function(obj) {
         });
     }, this);
     // 遍历属性
-    _.each(options, function(javascriptName, prop) {
-        self.onPropertyChange(prop, function(jsonName) {
-            self[javascriptName] = jsonName;
+    _.each(options, function(value, key) {
+        self.onPropertyChange(key, function(jsonName) {
+            self[value] = jsonName;
         });
     });
     // 扩展信息
@@ -312,18 +312,20 @@ PBRMaterial.inherit(RawShaderMaterialExtern, {
         RawShaderMaterialExtern.prototype.clone.call(this, data)
         data.name = this.name
         data.transparent = this.transparent
-        _.each(this.uniforms, function(dom, name) {
-            var value = dom.type;
-            if ('v2' === value || 'm4' === value) {
-                data.uniforms[name].value.copy(dom.value);
+        _.each(this.uniforms, function(value, key) {
+            var type = value.type;
+            if ('v2' === type || 'm4' === type) {
+                data.uniforms[key].value.copy(value.value);
             } else {
-                data.uniforms[name].value = dom.value;
+                data.uniforms[key].value = value.value;
             }
         }, this)
         return data;
     },
     clone : function() {
+        // 创建pbr材料
         var pbrMaterial = PBRMaterial.create(this.createOptions);
+        // 创建uuid
         pbrMaterial.uuid = THREE.Math.generateUUID()
         return pbrMaterial;
     },
@@ -423,7 +425,8 @@ PBRMaterial.create = function(material) {
     var topTexture = material.emissiveMap || whiteTexture;
     var defTexture = material.lightMap || whiteTexture;
     var reconnectTimeIncrease = material.lightMapDir || whiteTexture;
-    var value = loaderUtils.getSH(material.environment);
+    var sh = loaderUtils.getSH(material.environment);
+
     if (material.normalMap) {
         pbrMaterial.defines.USE_NORMALMAP = true
     }
@@ -485,8 +488,8 @@ PBRMaterial.create = function(material) {
     pbrMaterial.sTextureEmissiveMap = topTexture
     pbrMaterial.sTextureLightMap = defTexture
     pbrMaterial.sTextureLightMapDir = reconnectTimeIncrease
-    if (value) {
-        pbrMaterial.uDiffuseSPH = new Float32Array(value, 27)
+    if (sh) {
+        pbrMaterial.uDiffuseSPH = new Float32Array(sh, 27)
     }
     pbrMaterial.uEnvironmentTransform = new THREE.Matrix4
     if (material.alphaTest) {
