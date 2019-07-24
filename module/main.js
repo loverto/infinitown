@@ -1,7 +1,7 @@
 import 'module/BaseUtils';
 require('module/es6-promise').polyfill();
 import Events from 'module/Events';
-import Renderer from 'module/Renderer';
+import LoaderManager from 'module/LoaderManager';
 import threejsInitional from 'module/LoaderUtils';
 import instance from 'module/instance';
 import Scene from 'module/sceneManager';
@@ -25,7 +25,7 @@ function initialize(name, options, env, callback) {
         sh : [env]
     };
     // 加载资源
-    var downloader = new Renderer(_infoMemory);
+    var downloader = new LoaderManager(_infoMemory);
     downloader.load().then(function(n) {
     /** @type {string} */
         threejsInitional.texturePath = 'assets/' + name + '/';

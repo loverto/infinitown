@@ -19,7 +19,6 @@ Object.assign(LoadSceneManager.prototype, {
         var xhrLoader = new THREE.FileLoader(self.manager);
         // threejs异步加载 资源
         xhrLoader.load(url, function(response) {
-            /** @type {*} */
             var value = JSON.parse(response);
             self.parse(value, callback);
         }, data, options);
@@ -103,7 +102,6 @@ Object.assign(LoadSceneManager.prototype, {
             var geometryLoader = new THREE.JSONLoader;
             // 实例化Buffer几何形状的加载器
             var primParser = new THREE.BufferGeometryLoader;
-            /** @type {number} */
             var i = 0;
             var jsonLength = json.length;
             // 遍历各种类型的threejs的几何模型
@@ -205,23 +203,18 @@ Object.assign(LoadSceneManager.prototype, {
                         var n = tex[1] + 1;
                         var len = this.geometryBuffer.slice(c, n);
                         if ('index' === key) {
-                            /** @type {!Uint32Array} */
                             var indices = new Uint32Array(len);
                             geometry.setIndex(new THREE.BufferAttribute(indices, 1));
                         } else {
                             var size;
-                            /** @type {!Float32Array} */
                             indices = new Float32Array(len);
                             if ('uv' === key || 'uv2' === key) {
-                                /** @type {number} */
                                 size = 2;
                             } else {
                                 if ('position' === key || 'normal' === key || 'color' === key) {
-                                    /** @type {number} */
                                     size = 3;
                                 } else {
                                     if ('tangent' === key) {
-                                        /** @type {number} */
                                         size = 4;
                                     }
                                 }
@@ -252,7 +245,6 @@ Object.assign(LoadSceneManager.prototype, {
         if (undefined !== json) {
             var loader = new THREE.MaterialLoader;
             loader.setTextures(textures);
-            /** @type {number} */
             var i = 0;
             var jsonLength = json.length;
             for (; i < jsonLength; i++) {
@@ -302,7 +294,6 @@ Object.assign(LoadSceneManager.prototype, {
             var loader = new THREE.ImageLoader(manager);
             // 设置跨域加载图片
             loader.setCrossOrigin(this.crossOrigin);
-            /** @type {number} */
             var i = 0;
             var jsonLength = json.length;
             for (; i < jsonLength; i++) {
@@ -328,7 +319,6 @@ Object.assign(LoadSceneManager.prototype, {
         }
         var textures = {};
         if (undefined !== json) {
-            /** @type {number} */
             var i = 0;
             var jsonLength = json.length;
             for (; i < jsonLength; i++) {
@@ -336,9 +326,7 @@ Object.assign(LoadSceneManager.prototype, {
                 var data = json[i];
                 // 判断是否时多个图片，如果时多个图片，则创建cubeTexture纹理
                 if (data.images) {
-                    /** @type {!Array} */
                     var c = [];
-                    /** @type {number} */
                     var i = 0;
                     var l = data.images.length;
                     for (; i < l; i++) {
@@ -357,7 +345,6 @@ Object.assign(LoadSceneManager.prototype, {
                     }
                     texture = new THREE.Texture(images[data.image]);
                 }
-                /** @type {boolean} */
                 // 设置纹理自动更新
                 texture.needsUpdate = true;
                 // 设置纹理的唯一id
@@ -441,7 +428,6 @@ Object.assign(LoadSceneManager.prototype, {
                     object.filmOffset = data.filmOffset;
                 }
                 if (undefined !== data.view) {
-                    /** @type {!Object} */
                     object.view = Object.assign({}, data.view);
                 }
                 break;
@@ -499,7 +485,6 @@ Object.assign(LoadSceneManager.prototype, {
             }
             if ('LOD' === data.type) {
                 var levels = data.levels;
-                /** @type {number} */
                 var i = 0;
                 for (; i < levels.length; i++) {
                     var level = levels[i];

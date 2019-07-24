@@ -1,5 +1,5 @@
 import * as THREE  from 'three';
-import initDrawCallsCounter from 'module/initDrawCallsCounter';
+import BaseSceneManager from 'module/BaseSceneManager';
 import 'module/LineSegmentsInit'
 import constants from 'module/state';
 import 'module/PerspectiveCameraUpdate'
@@ -18,7 +18,7 @@ import vignettingRender from 'module/vignettingRender';
  * @constructor
  */
 var SceneManager = function(data) {
-    initDrawCallsCounter.call(this, data);
+    BaseSceneManager.call(this, data);
     // 初始化相机
     this.initCamera();
     // 绘制坐标系
@@ -28,7 +28,7 @@ var SceneManager = function(data) {
     // 场景
     this.scene = new THREE.Scene;
 };
-SceneManager.inherit(initDrawCallsCounter, {
+SceneManager.inherit(BaseSceneManager, {
     /**
      * 开始
      * @param objects
@@ -94,7 +94,7 @@ SceneManager.inherit(initDrawCallsCounter, {
             this._lastPinchScale = uv3v;
         }, this);
         // 调用父类的开始方法
-        initDrawCallsCounter.prototype.start.call(this);
+        BaseSceneManager.prototype.start.call(this);
     },
     /**
      * 初始化光线
@@ -143,7 +143,7 @@ SceneManager.inherit(initDrawCallsCounter, {
      * @param height
      */
     setSize : function(width, height) {
-        initDrawCallsCounter.prototype.setSize.call(this, width, height);
+        BaseSceneManager.prototype.setSize.call(this, width, height);
         if (this.dirLight) {
             this._resizeShadowMapFrustum(width, height);
         }
@@ -167,23 +167,23 @@ SceneManager.inherit(initDrawCallsCounter, {
      * 刷新块场景
      */
     refreshChunkScene : function() {
-        this.chunkScene.forEachChunk(function(results, columnGap, a) {
-            var body = this.gridCoords.x + columnGap;
-            var val = this.gridCoords.y + a;
-            var v = this.table.getChunkData(body, val);
-            results.remove(results.getObjectByName('chunk'));
-            results.add(v.node);
+        this.chunkScene.forEachChunk(function(chunk, chunkCenteredX, chunkCenteredY) {
+            var coordX = this.gridCoords.x + chunkCenteredX;
+            var coordY = this.gridCoords.y + chunkCenteredY;
+            var chunkData = this.table.getChunkData(coordX, coordY);
+            chunk.remove(chunk.getObjectByName('chunk'));
+            chunk.add(chunkData.node);
         }.bind(this));
     },
     /**
      * 更新
-     * @param val
+     * @param data
      */
-    update : function(val) {
+    update : function(data) {
         this.controls.update();
-        this.table.update(val);
+        this.table.update(data);
         this.camera.update();
-        initDrawCallsCounter.prototype.update.call(this, val);
+        BaseSceneManager.prototype.update.call(this, data);
     },
     /**
      * 渲染
@@ -198,7 +198,7 @@ SceneManager.inherit(initDrawCallsCounter, {
         }.bind(this);
         // 清空
         this.renderer.clear();
-        // 渲染场景
+        // 调用父类BaseSceneManager中的渲染场景函数
         this.renderScene(this.scene, this.camera);
         //
         mapFragmentAndProps();

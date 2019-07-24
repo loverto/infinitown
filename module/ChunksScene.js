@@ -23,35 +23,46 @@ ChunksScene.inherit(THREE.Scene, {
         }
     },
     _createChunkAt : function(x, time) {
-        var settings = new THREE.Object3D;
-        var pregeom = new THREE.PlaneGeometry(properties.CHUNK_SIZE, properties.CHUNK_SIZE, 1, 1);
-        var wheelAxisMat = new THREE.MeshBasicMaterial;
-        var data = new THREE.Mesh(pregeom, wheelAxisMat);
+        var chunk = new THREE.Object3D;
+        // 平面几何
+        var geometry = new THREE.PlaneGeometry(properties.CHUNK_SIZE, properties.CHUNK_SIZE, 1, 1);
+        // 网格基础材料
+        var material = new THREE.MeshBasicMaterial;
+        // 创建网格
+        var data = new THREE.Mesh(geometry, material);
         var left = (properties.CHUNK_COUNT - 1) / 2 * -properties.CHUNK_SIZE;
         var i = left;
+        // 设置旋转轴x
         data.rotation.x = -Math.PI / 2
+        // 设置中央点X
         data.centeredX = x - Math.floor(properties.CHUNK_COUNT / 2)
+        // 设置中央点Y
         data.centeredY = time - Math.floor(properties.CHUNK_COUNT / 2)
+        // 设置材料不可见
         data.material.visible = false
         this._pickables.push(data)
-        settings.position.x = left + x * properties.CHUNK_SIZE
-        settings.position.z = i + time * properties.CHUNK_SIZE
-        settings.centeredX = data.centeredX
-        settings.centeredY = data.centeredY
-        settings.material = data.material
-        settings.add(data)
-        return settings;
+        chunk.position.x = left + x * properties.CHUNK_SIZE
+        chunk.position.z = i + time * properties.CHUNK_SIZE
+        chunk.centeredX = data.centeredX
+        chunk.centeredY = data.centeredY
+        chunk.material = data.material
+        chunk.add(data)
+        return chunk;
     },
     getPickables : function() {
         return this._pickables;
     },
-    forEachChunk : function(func) {
+    /**
+     * 遍历大块
+     * @param callback
+     */
+    forEachChunk : function(callback) {
         var i = 0;
         for (; i < properties.CHUNK_COUNT; i++) {
             var j = 0;
             for (; j < properties.CHUNK_COUNT; j++) {
-                var value = this.chunks[i][j];
-                func(value, value.centeredX, value.centeredY);
+                var chunk = this.chunks[i][j];
+                callback(chunk, chunk.centeredX, chunk.centeredY);
             }
         }
     }

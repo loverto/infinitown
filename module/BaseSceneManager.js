@@ -58,7 +58,7 @@ function Slatebox(_options) {
 }
 
 
-var init = function(options) {
+var BaseSceneManager = function(options) {
     // 设置WebGL渲染引擎，（，，，）类似这样的写法的作用，是按顺序执行，并返回最后一个，如果不是返回的地方，那就是继续执行。
     if (undefined === options){
         options = {}
@@ -139,7 +139,7 @@ var init = function(options) {
         this.initDrawCallsCounter();
     }
 };
-init.prototype = {
+BaseSceneManager.prototype = {
     /**
      * 初始化绘制调用计算
      */
@@ -160,6 +160,7 @@ init.prototype = {
                 totalPlayers = totalPlayers + this.renderer.info.render.calls;
             }
         }.bind(this);
+        // 渲染场景
         this.renderScene(this.scene, this.camera);
         mapFragmentAndProps();
         if (this.config.logCalls) {
@@ -176,32 +177,41 @@ init.prototype = {
     },
     /**
      * 更新
-     * @param target
+     * @param data
      */
-    update : function(target) {
+    update : function(data) {
         var self = this
+        // 如果又相机
         if (this.camera) {
+            // 更新相机的世界矩阵
             this.camera.updateMatrixWorld(true);
+            //
             this.camera.matrixWorldInverse.getInverse(this.camera.matrixWorld);
         }
-        _.each(this.scenes, function(camera) {
-            this.updateCustomMaterials(camera);
-            if (camera.update) {
-                camera.updateMatrixWorld(true);
-                camera.update(self.renderer, target);
+        // 遍历场景
+        _.each(this.scenes, function(scene) {
+            // 更新自定义材料
+            this.updateCustomMaterials(scene);
+            // 如果场景可以更新
+            if (scene.update) {
+                // 更新场景的世界矩阵
+                scene.updateMatrixWorld(true);
+                // 更新
+                scene.update(self.renderer, data);
             }
         });
     },
     /**
      * 更新自定义材料
-     * @param model
-     * @param name
+     * @param scene
+     * @param camera
      */
-    updateCustomMaterials : function(model, name) {
+    updateCustomMaterials : function(scene, camera) {
         var self = this
-        _.each(model.materials, function(material) {
+        _.each(scene.materials, function(material) {
+            // 如果是自定义材质，调用自定义材质的刷新方法
             if (material.pbr) {
-                material.refreshUniforms(name || self.camera, self.envRotation);
+                material.refreshUniforms(camera || self.camera, self.envRotation);
             }
         });
     },
@@ -228,7 +238,6 @@ init.prototype = {
                 } else {
                     now = Date.now();
                 }
-
                 TWEEN.update(now);
                 timers.updateTimers(data);
                 if (this.config.profiling) {
@@ -328,6 +337,6 @@ init.prototype = {
         requestAnimationFrame(callback);
     }
 };
-init.mixin(Events);
+BaseSceneManager.mixin(Events);
 
-export default init;
+export default BaseSceneManager;

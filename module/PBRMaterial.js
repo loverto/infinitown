@@ -331,11 +331,16 @@ PBRMaterial.inherit(RawShaderMaterialExtern, {
      * 更新环境转换
      */
     updateEnvironmentTransform : function() {
+        // 四元
         var quaternion = new THREE.Quaternion;
+        // 矩阵
         var matrix = new THREE.Matrix4;
         return function(camera, envRotation) {
+            // 获取相机
             camera.getWorldQuaternion(quaternion).inverse();
+            // 旋转轴Y
             matrix.makeRotationY(envRotation || 0);
+            //
             this.uniforms.uEnvironmentTransform.value.makeRotationFromQuaternion(quaternion).multiply(matrix);
         };
     }(),
@@ -344,7 +349,14 @@ PBRMaterial.inherit(RawShaderMaterialExtern, {
      */
     refreshOffsetRepeat : function() {
         var uvScaleMap;
-        if (this.defines.USE_ALBEDOMAP ? uvScaleMap = this.sTextureAlbedoMap : this.defines.USE_NORMALMAP ? uvScaleMap = this.sTextureNormalMap : this.defines.USE_AOMAP && (uvScaleMap = this.sTextureAOMap), undefined !== uvScaleMap) {
+        if (this.defines.USE_ALBEDOMAP){
+            uvScaleMap = this.sTextureAlbedoMap
+        } else if (this.defines.USE_NORMALMAP){
+            uvScaleMap = this.sTextureNormalMap
+        } else if (this.defines.USE_AOMAP){
+            uvScaleMap = this.sTextureAOMap
+        }
+        if ( undefined !== uvScaleMap) {
             var offset = uvScaleMap.offset;
             var repeat = uvScaleMap.repeat;
             this.uniforms.offsetRepeat.value.set(offset.x, offset.y, repeat.x, repeat.y);
@@ -367,6 +379,7 @@ PBRMaterial.inherit(RawShaderMaterialExtern, {
      * @param envRotation
      */
     refreshUniforms : function(camera, envRotation) {
+        // 更新环境旋转
         this.updateEnvironmentTransform(camera, envRotation);
     }
 });
@@ -447,8 +460,10 @@ PBRMaterial.create = function(material) {
     pbrMaterial.uEnvironmentExposure = optionalParameter(material.exposure, 1)
     pbrMaterial.occludeSpecular = optionalParameter(material.occludeSpecular ? 1 : 0, 1)
     pbrMaterial.uFlipY = optionalParameter(material.flipNormals, 0)
+    // 不透明度
     pbrMaterial.opacity = optionalParameter(material.opacity, 1)
-    pbrMaterial.color = (new THREE.Color).setHex(undefined !== material.color ? material.color : 16777215)
+    // '#ffffff' 白色
+    pbrMaterial.color = (new THREE.Color).setHex(undefined !== material.color ? material.color : 0xffffff)
     pbrMaterial.side = optionalParameter(material.side, THREE.FrontSide)
     options.needsUpdate = true
     directLoginReference.needsUpdate = true

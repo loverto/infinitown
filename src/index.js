@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import 'module/BaseUtils';
 import Events from 'module/Events';
-import Renderer from 'module/Renderer';
+import LoaderManager from 'module/LoaderManager';
 import loaderUtils from 'module/LoaderUtils';
 import instance from 'module/instance';
 import Scene from 'module/sceneManager';
@@ -19,15 +19,19 @@ var sceneCanvas;
  * @param callback
  */
 function initialize(name, options, env, callback) {
+    // 配置信息
     var configOptions = {
         geometries : [name],
         textures : texturesResources,
         sh : [env]
     };
     // 加载资源
-    var downloader = new Renderer(configOptions);
-    downloader.load().then(function(response) {
+    var loaderManager = new LoaderManager(configOptions);
+    // 通过promise控制静态资源和几何体还有纹理贴片第一部加载
+    loaderManager.load().then(function(response) {
+        // 设置纹理的相对路径
         loaderUtils.texturePath = 'assets/' + name + '/';
+        // 给材料加载器添加着色顶点
         THREE.MaterialLoader.setShaders(shadersResource);
         // 加载场景
         instance.loadScene(name, 'assets/scenes/', options).then(callback);
@@ -44,6 +48,7 @@ function load() {
     sceneCanvas = new Scene({
         canvas : canvas,
         autoClear : false,
+        profiling : true,
         fps : Config.FPS || false,
         logCalls : Config.LOG_CALLS || false,
         maxPixelRatio : Config.MAX_PIXEL_RATIO || 2
