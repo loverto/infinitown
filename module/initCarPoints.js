@@ -2,11 +2,13 @@ import * as THREE  from 'three';
 import types from 'module/types';
 import render from 'module/render';
 var normal = new THREE.Vector3(0, 1, 0);
+
 /**
- * @param {!Function} randomChunk
- * @param {!Object} randomCar
- * @param {!Object} randomLane
- * @return {undefined}
+ * 初始化车的位置
+ * @param randomChunk
+ * @param randomCar
+ * @param randomLane
+ * @constructor
  */
 var InitCarPoints = function(randomChunk, randomCar, randomLane) {
     render.call(this, randomChunk);

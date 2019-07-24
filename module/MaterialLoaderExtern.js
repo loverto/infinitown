@@ -1,23 +1,15 @@
 import * as THREE  from 'three';
-require('module/ShaderMaterialExtern')
+import 'module/ShaderMaterialExtern'
 import PBRMaterial from 'module/PBRMaterial';
 import images from 'module/update';
-/** @type {function(!Object): ?} */
-var RandomBaseTimeSeriesDataModel = (require('module/LoaderUtils'), THREE.MaterialLoader.prototype.parse);
-/** @type {null} */
+import 'module/LoaderUtils'
+var RandomBaseTimeSeriesDataModel = THREE.MaterialLoader.prototype.parse;
 var shaders = null;
-/**
- * @param {!Object} inShaders
- * @return {undefined}
- */
+
 THREE.MaterialLoader.setShaders = function(inShaders) {
-    /** @type {!Object} */
     shaders = inShaders;
 };
-/**
- * @param {!Object} options
- * @return {?}
- */
+
 THREE.MaterialLoader.prototype.parse = function(options) {
     var col = options.color;
     options.color = undefined;

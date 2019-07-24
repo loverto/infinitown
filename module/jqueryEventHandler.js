@@ -1,4 +1,4 @@
-import canvas from 'module/Events';
+import Events from 'module/Events';
 require('jquery-mousewheel')($);
 
 /**
@@ -94,6 +94,6 @@ var init = function(obj) {
         this.trigger('mousewheel', dy);
     }.bind(this));
 };
-init.mixin(canvas);
+init.mixin(Events);
 
 export default init;

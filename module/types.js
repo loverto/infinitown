@@ -11,7 +11,6 @@ var types = {
         if (undefined === size || 0 === size) {
             return center.round(), center;
         }
-        /** @type {number} */
         var scale = Math.pow(10, size);
         return center.x = Math.round(center.x * scale) / scale, center.y = Math.round(center.y * scale) / scale, center.z = Math.round(center.z * scale) / scale, center;
     },

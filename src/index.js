@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import 'module/BaseUtils';
 import Events from 'module/Events';
 import Renderer from 'module/Renderer';

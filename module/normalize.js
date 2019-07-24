@@ -11,7 +11,6 @@ function normalize(name) {
  * @return {?}
  */
 export default function() {
-    /** @type {string} */
     var joined = [].slice.call(arguments, 0).join('/');
     return normalize(joined);
 };
