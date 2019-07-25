@@ -279,9 +279,9 @@ Table.inherit(Object, {
         randomChunkObject3.traverse(function(object3D) {
             // 如果3d对象属于mesh 并且3d对象有材料，且材料是pbr，那么进行处理
             if (object3D instanceof THREE.Mesh && object3D.material && object3D.material.pbr) {
-                // 启动材料的Fog
+                // 启动材料的定义的使用雾的变量
                 object3D.material.defines.USE_FOG = true;
-                // 如果对象不属于updateTablePositionRender 对象
+                // 如果对象不属于Cloud的对象
                 if (object3D instanceof Cloud == false) {
                     // 设置接受影子
                     object3D.receiveShadow = true;

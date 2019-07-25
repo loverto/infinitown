@@ -48,15 +48,15 @@ var state = {
      */
     PAN_SPEED : window.isMobile ? .4 : .1,
     /**
-     *
+     * 雾最近的距离
      */
     FOG_NEAR : 225,
     /**
-     *
+     * 雾最远的距离
      */
     FOG_FAR : 325,
     /**
-     * 青蓝色
+     * 雾的颜色，青蓝色
      */
     FOG_COLOR : 0xa2e8ff
 };

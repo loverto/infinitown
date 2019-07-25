@@ -48,7 +48,7 @@ RawShaderMaterialExtern.inherit(THREE.RawShaderMaterial, {
         material.wireframe = this.wireframe
         // 设置线框宽度
         material.wireframeLinewidth = this.wireframeLinewidth
-        // 牙
+        // 雾
         material.fog = this.fog
         // 灯光
         material.lights = this.lights
