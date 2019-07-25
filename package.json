@@ -27,6 +27,7 @@
     "jquery": "^3.4.1",
     "jquery-mousewheel": "^3.1.13",
     "lodash": "^4.17.14",
+    "seedrandom": "^3.0.1",
     "three-orbit-controls": "^82.1.0",
     "valid-url": "^1.0.9"
   },

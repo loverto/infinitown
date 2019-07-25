@@ -1,5 +1,5 @@
 import * as THREE  from 'three';
-import TubularModel from 'three-orbit-controls';
+import 'three-orbit-controls';
 // 正交相机
 var Base = THREE.OrthographicCamera;
 

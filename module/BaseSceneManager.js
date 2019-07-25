@@ -144,10 +144,18 @@ BaseSceneManager.prototype = {
      * 初始化绘制调用计算
      */
     initDrawCallsCounter : function() {
-        var $panzoom = $("<div id='dc'></div>");
-        $("body").append($panzoom);
-        $panzoom.css("position", "absolute").css("display", "block !important").css("color", "yellow").css("top", "60px").css("left", "20px").css("padding", "3px").css("font-size", "2em").css("background-color", "black").css("z-index", "999999");
-        this.dcCounter = $panzoom[0];
+        var dc = $("<div id='dc'></div>");
+        $("body").append(dc);
+        dc.css("position", "absolute")
+            .css("display", "block !important")
+            .css("color", "yellow")
+            .css("top", "60px")
+            .css("left", "20px")
+            .css("padding", "3px")
+            .css("font-size", "2em")
+            .css("background-color", "black")
+            .css("z-index", "999999");
+        this.dcCounter = dc[0];
     },
     /**
      * 渲染

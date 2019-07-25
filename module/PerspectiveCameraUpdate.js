@@ -1,7 +1,7 @@
 import * as THREE  from 'three';
 // 透视相机
 var ctor = THREE.PerspectiveCamera;
-import TubularModel from 'three-orbit-controls';
+import ThreeOribitControls from 'three-orbit-controls';
 
 /**
  * 透视相机
@@ -15,13 +15,13 @@ var PerspectiveCameraUpdate = function(data) {
     //
     this.fov = 50;
     this.near = 1;
-    this.far = 1E3;
+    this.far = 1000;
     this.updateProjectionMatrix();
-    this.controls = new TubularModel(this, data || document.body);
+    this.controls = new ThreeOribitControls(this, data || document.body);
 };
 PerspectiveCameraUpdate.inherit(ctor, {
     update : function() {
-        this.controls.MatcapMaterial();
+        this.controls.update();
     }
 });
 

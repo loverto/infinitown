@@ -72,9 +72,9 @@ Car.inherit(BaseMoveTableModel, {
     },
     /**
      * 检测所有的车
-     * @param _data
+     * @param cars
      */
-    detectCars : function(_data) {
+    detectCars : function(cars) {
         // 加减速度的频率
         var _speed = .0075;
         // 是否检测到有车
@@ -83,8 +83,8 @@ Car.inherit(BaseMoveTableModel, {
         this.detectedCar = null;
         // for循环的初始下标
         var dataIndex = 0;
-        for (; dataIndex < _data.length; dataIndex++) {
-            var i = this.detectCar(_data[dataIndex]);
+        for (; dataIndex < cars.length; dataIndex++) {
+            var i = this.detectCar(cars[dataIndex]);
             if (i) {
                 // 检测到有车
                 isNotDetectCars = false;

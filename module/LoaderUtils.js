@@ -7,7 +7,7 @@ import {parseUrl} from 'module/parseUrl';
 import {LoadSceneManager} from 'module/LoadSceneManager';
 import {DataTextureLoaderExtern} from 'module/DataTextureLoaderExtern';
 import {CompressedTextureLoaderExtern} from 'module/CompressedTextureLoaderExtern';
-import {DataFrameReader} from 'module/DataFrameReader';
+import {FileLoaderUtils} from 'module/FileLoaderUtils';
 import {FileLoaderExtern} from 'module/FileLoaderExtern';
 // 加载管理
 var loadingManager = new THREE.LoadingManager;
@@ -23,7 +23,7 @@ var compressedTextureLoaderExternNoralize = normalize(new CompressedTextureLoade
 // sh 的
 var shs = {};
 // 数据帧渲染
-var dataFrameReader = new DataFrameReader(loadingManager);
+var dataFrameReader = new FileLoaderUtils(loadingManager);
 var geometriesCache = {};
 // 标准化文件加载器
 var geometries = normalize(new FileLoaderExtern(loadingManager), geometriesCache);
