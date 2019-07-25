@@ -2,7 +2,7 @@ import * as THREE  from 'three';
 var keys = ['side', 'alphaTest', 'transparent', 'depthWrite', 'shading', 'wireframe'];
 
 /**
- *
+ * 着色器材料扩展
  * @param obj
  * @constructor
  */

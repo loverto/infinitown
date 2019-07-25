@@ -191,9 +191,9 @@ Car.inherit(BaseMoveTableModel, {
             // 更新车在表格中的位置
             this._updateTablePosition();
             // 获取相邻的车辆
-            var fakeMutation = this.table.getNeighboringCars(this);
+            var neighboringCars = this.table.getNeighboringCars(this);
             // 检测车
-            this.detectCars(fakeMutation);
+            this.detectCars(neighboringCars);
         };
     }(),
     /**

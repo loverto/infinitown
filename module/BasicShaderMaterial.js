@@ -1,6 +1,11 @@
 import ShaderMaterialExtern from 'module/ShaderMaterialExtern';
 import shaders from 'module/shaders';
 
+/**
+ * 基本着色器材质
+ * @param obj
+ * @constructor
+ */
 var BasicShaderMaterial = function(obj) {
     obj = Object.assign({
         vertexShader : shaders['basic.vs'],
@@ -28,17 +33,24 @@ var BasicShaderMaterial = function(obj) {
     }, this);
 };
 BasicShaderMaterial.inherit(ShaderMaterialExtern, {
+    /**
+     * 克隆
+     * @param params
+     * @returns {*|BasicShaderMaterial}
+     */
     clone : function(params) {
         var data = params || new BasicShaderMaterial;
         ShaderMaterialExtern.prototype.clone.call(this, data)
+        // 设置名字哦
         data.name = this.name
+        // 设置透明度
         data.transparent = this.transparent
-        _.each(this.uniforms, function(dom, name) {
-            var value = dom.type;
-            if ('v2' === value || 'm4' === value) {
-                data.uniforms[name].value.copy(dom.value);
+        _.each(this.uniforms, function(value, key) {
+            var type = value.type;
+            if ('v2' === type || 'm4' === type) {
+                data.uniforms[key].value.copy(value.value);
             } else {
-                data.uniforms[name].value = dom.value;
+                data.uniforms[key].value = value.value;
             }
         }, this)
         return data;
