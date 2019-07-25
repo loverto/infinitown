@@ -33,7 +33,14 @@ function objectToArray(cache) {
  * @param result
  */
 export default function(value, result) {
-    return value || (value = []), isArgumentsArrays(value) && (value = [].splice.call(value, 0)), isObject(value) && result && (value = objectToArray(value)), Array.isArray(value) ? value : [value];
+    value || (value = [])
+    if (isArgumentsArrays(value)) {
+        value = [].splice.call(value, 0)
+    }
+    if (isObject(value)&& result) {
+        value = objectToArray(value)
+    }
+    return Array.isArray(value) ? value : [value];
 };
 
 

@@ -1,6 +1,6 @@
 import * as THREE  from 'three';
 import types from 'module/types';
-import render from 'module/render';
+import BaseMoveTableModel from 'module/baseMoveTableModel';
 var normal = new THREE.Vector3(0, 1, 0);
 
 /**
@@ -11,7 +11,7 @@ var normal = new THREE.Vector3(0, 1, 0);
  * @constructor
  */
 var Car = function(randomChunk, randomCar, randomLane) {
-    render.call(this, randomChunk);
+    BaseMoveTableModel.call(this, randomChunk);
     // 给车模型默认命名
     this.name = 'car';
     // 车的最大速度
@@ -50,7 +50,7 @@ var Car = function(randomChunk, randomCar, randomLane) {
     this.direction.set(Math.round(this.direction.x), Math.round(this.direction.y), Math.round(this.direction.z));
     this._initCollisionPoints();
 };
-Car.inherit(render, {
+Car.inherit(BaseMoveTableModel, {
     /**
      * 添加雷达工具
      */
@@ -182,12 +182,13 @@ Car.inherit(render, {
     update : function() {
         var directionTmp = new THREE.Vector3;
         return function() {
-            // 多尺度
+            // 给移动方向上加速度
             directionTmp.copy(this.direction).multiplyScalar(this.speed);
-            // 位置加上方向
+            // 位置加上移动方向
             this.position.add(directionTmp);
-            // 周围的变量
+            // 向量获取2位小数点
             types.roundVector(this.position, 2);
+            // 更新车在表格中的位置
             this._updateTablePosition();
             // 获取相邻的车辆
             var fakeMutation = this.table.getNeighboringCars(this);

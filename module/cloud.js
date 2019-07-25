@@ -1,6 +1,6 @@
 import * as THREE  from 'three';
 import state from 'module/state';
-import render from 'module/render';
+import BaseMoveTableModel from 'module/baseMoveTableModel';
 import types from 'module/types';
 var ratio = .05;
 var planetsSpeed = 2;
@@ -11,7 +11,7 @@ var planetsSpeed = 2;
  * @param obj
  */
 var Cloud = function(name, obj) {
-    render.call(this, name);
+    BaseMoveTableModel.call(this, name);
     this.add(obj);
     this.position.set(types.random() * state.CHUNK_SIZE - state.CHUNK_SIZE / 2, 60, types.random() * state.CHUNK_SIZE - state.CHUNK_SIZE / 2);
     this.delay = 5 * types.random();
@@ -22,7 +22,7 @@ var Cloud = function(name, obj) {
     this.rotation.y = .25;
     this.direction = new THREE.Vector3(-1, 0, .3);
 };
-Cloud.inherit(render, {
+Cloud.inherit(BaseMoveTableModel, {
     update : function() {
         var value = new THREE.Vector3;
         return function(event) {

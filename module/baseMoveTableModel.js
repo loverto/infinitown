@@ -9,7 +9,7 @@ var distance = THREE.Math.euclideanModulo;
  * @param {string} data
  * @return {undefined}
  */
-var render = function(data) {
+var BaseMoveTableModel = function(data) {
     THREE.Object3D.call(this);
     // 前一个块的值
     this.previousChunk = null;
@@ -22,9 +22,9 @@ var render = function(data) {
     // 最后的位置
     this.lastPosition = new THREE.Vector3;
 };
-render.inherit(THREE.Object3D, {
+BaseMoveTableModel.inherit(THREE.Object3D, {
     /**
-     *  更新表格位置
+     *  更新移动物体在表格中的位置
      * @private
      */
     _updateTablePosition : function() {
@@ -46,7 +46,17 @@ render.inherit(THREE.Object3D, {
         var name = Math.floor(distance(this.tablePosition.z + 40, MIN_BUFFER_ROWS) / state.CHUNK_SIZE);
         var context = this.parent;
         var dom = this.table.chunks[i][name].node;
-        if (Math.abs(t) < 500 && Math.abs(t) > 20 && console.log('warp on X', t, context.tableX, dom.tableX), Math.abs(e) < 500 && Math.abs(e) > 20 && console.log('warp on Z', e, context.tableY, dom.tableY), this.previousChunk !== context && context !== dom, this.lastPosition.copy(this.position), dom !== context) {
+        if (Math.abs(t) < 500 && Math.abs(t) > 20) {
+            console.log('warp on X', t, context.tableX, dom.tableX)
+        }
+        if(Math.abs(e) < 500 && Math.abs(e) > 20){
+            console.log('warp on Z', e, context.tableY, dom.tableY)
+        }
+        if ( this.previousChunk !== context){
+            context !== dom
+        }
+        this.lastPosition.copy(this.position)
+        if (dom !== context) {
             dom.add(this);
             var min_x = distance(this.position.x + 40, state.CHUNK_SIZE) - 40;
             var _depth = distance(this.position.z + 40, state.CHUNK_SIZE) - 40;
@@ -57,5 +67,5 @@ render.inherit(THREE.Object3D, {
     }
 });
 
-export default render;
+export default BaseMoveTableModel;
 

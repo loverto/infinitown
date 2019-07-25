@@ -44,7 +44,7 @@ var state = {
      */
     CAMERA_ANGLE : .5,
     /**
-     * 速度
+     * 平移速度
      */
     PAN_SPEED : window.isMobile ? .4 : .1,
     /**

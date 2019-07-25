@@ -180,8 +180,11 @@ SceneManager.inherit(BaseSceneManager, {
      * @param data
      */
     update : function(data) {
+        // 更新控制事件
         this.controls.update();
+        // 更新场景布局中的可移动内容
         this.table.update(data);
+        // 更新相机
         this.camera.update();
         BaseSceneManager.prototype.update.call(this, data);
     },

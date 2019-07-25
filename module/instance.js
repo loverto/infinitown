@@ -69,6 +69,7 @@ instance.loadScene = function(name, data, options, callback) {
             for (; i < objects.animations.length; i++) {
                 mixer.clipAction(objects.animations[i]).play();
             }
+            // 遍历给定的AST树。
             objects.traverse(function(options) {
                 var material = options.material;
                 if (material && material.aoMap) {

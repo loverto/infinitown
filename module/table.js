@@ -2,7 +2,7 @@ import * as THREE  from 'three';
 import 'three/examples/js/utils/BufferGeometryUtils'
 import state from 'module/state';
 import Car from 'module/car';
-import Buffer from 'module/cloud';
+import Cloud from 'module/cloud';
 import Common from 'module/types';
 
 /**
@@ -109,11 +109,12 @@ Table.inherit(Object, {
     }(),
     /**
      * 更新
-     * @param target
+     * @param data 延时参数等等
      */
-    update : function(target) {
-        this.mobs.forEach(function(e) {
-            e.update(target);
+    update : function(data) {
+        // 遍历可移动内容
+        this.mobs.forEach(function(object) {
+            object.update(data);
         });
     },
     /**
@@ -270,7 +271,7 @@ Table.inherit(Object, {
         }, this)
         if (Common.random() > .65) {
             var randomFirstCloud = getElementByRandom(this.cloudObjects).clone();
-            var b = new Buffer(this, randomFirstCloud);
+            var b = new Cloud(this, randomFirstCloud);
             randomChunkObject3.add(b);
             this.mobs.push(b);
         }
@@ -281,7 +282,7 @@ Table.inherit(Object, {
                 // 启动材料的Fog
                 object3D.material.defines.USE_FOG = true;
                 // 如果对象不属于updateTablePositionRender 对象
-                if (object3D instanceof Buffer == false) {
+                if (object3D instanceof Cloud == false) {
                     // 设置接受影子
                     object3D.receiveShadow = true;
                     // 启动材料影子

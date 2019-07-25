@@ -181,7 +181,7 @@ BaseSceneManager.prototype = {
      */
     update : function(data) {
         var self = this
-        // 如果又相机
+        // 如果有相机
         if (this.camera) {
             // 更新相机的世界矩阵
             this.camera.updateMatrixWorld(true);
@@ -228,6 +228,7 @@ BaseSceneManager.prototype = {
             data.delta = this.clock.getDelta()
             // 获取过时时间
             data.elapsed = this.clock.getElapsedTime()
+            // 非暂停的情况下
             if (!this.paused) {
                 // 请求动画帧
                 this.requestAnimationFrame(this.doUpdate.bind(this));
@@ -239,13 +240,16 @@ BaseSceneManager.prototype = {
                     now = Date.now();
                 }
                 TWEEN.update(now);
+                // 更新计时器
                 timers.updateTimers(data);
+                //如果性能分析开启，打印场景更新的执行时间
                 if (this.config.profiling) {
-                    console.time('matcapMaterial.js');
+                    console.time('update');
                 }
                 this.update(data);
+                //如果性能分析开启，打印场景更新的执行时间
                 if (this.config.profiling) {
-                    console.timeEnd('matcapMaterial.js');
+                    console.timeEnd('update');
                 }
                 this.render(data);
                 if (!this.started) {
