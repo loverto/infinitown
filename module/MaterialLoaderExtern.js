@@ -89,8 +89,8 @@ THREE.MaterialLoader.prototype.parse = function(options) {
     }
     if ('SkyboxMaterial' === options.customType) {
         var shader = THREE.ShaderLib.cube;
-        json.vertexShader = shaders['skybox.vs'];
-        json.fragmentShader = shaders['skybox.fs'];
+        json.vertexShader = shaders['skyboxvs'];
+        json.fragmentShader = shaders['skyboxfs'];
         json.uniforms = THREE.UniformsUtils.clone(shader.uniforms);
         json.uniforms.tCube.value = this.getTexture(options.cubemap);
     }

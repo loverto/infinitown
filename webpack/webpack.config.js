@@ -69,6 +69,10 @@ module.exports = {
                 loaders: ['eslint-loader', 'babel-loader'],
                 enforce: "pre",
                 include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, 'module')], // 指定检查的目录
+            },
+            {
+                test: /\.glsl$/,
+                loader: 'raw-loader'
             }
         ]
     },
