@@ -6,8 +6,9 @@ var MIN_BUFFER_ROWS = state.CHUNK_SIZE * state.TABLE_SIZE;
 // 欧几里得距离算法的工具
 var distance = THREE.Math.euclideanModulo;
 /**
- * @param {string} data
- * @return {undefined}
+ * 可以移动的3d对象，该如何移动
+ * @param data
+ * @constructor
  */
 var BaseMoveTableModel = function(data) {
     THREE.Object3D.call(this);
