@@ -26,27 +26,35 @@ uniform vec4 offsetRepeat;
 uniform vec4 offsetRepeatDetail;
 
 // varying vec3 FragPosition;
+// 改变vec3 FragPosition;
 varying vec3 FragNormal;
 varying vec4 FragTangent;
 varying vec4 FragEyeVector;
 varying vec2 vUv;
 
 // Optimization just for this experiment
+// 仅针对此实验进行优化
 varying vec3 vEyeLightDir;
 varying float vDotNL;
 varying vec3 vComputeGGXResult;
 
 #if NUM_DIR_LIGHTS > 0
 #define G1V(dotNV, k) (1.0/(dotNV*(1.0-k)+k))
-
+// 自定义数据结构 定向光
 struct DirectionalLight {
+    // 方向
     vec3 direction;
+    //颜色
     vec3 color;
-
+    // 影子
     int shadow;
+    //
     float shadowBias;
+    // 影子半径
     float shadowRadius;
+    // 影子地图上的大小
     vec2 shadowMapSize;
+    // 强度
     float intensity;
 };
 
@@ -149,6 +157,7 @@ void main() {
 
     #if NUM_DIR_LIGHTS > 0
 
+    // 在VS中预先计算太阳，因为我们没有标准贴图
     // Precompute sun in VS because we have no normal map
 
     DirectionalLight dirLight;

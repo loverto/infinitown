@@ -3,7 +3,7 @@
 
   uniform sampler2D map;
 #endif
-// 扩散
+// 扩散，漫射
 uniform vec3 diffuse;
 // 不透明度
 uniform float opacity;
