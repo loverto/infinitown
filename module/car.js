@@ -28,10 +28,10 @@ var Car = function(randomChunk, randomCar, randomLane) {
     // 网格数据
     this.mesh = randomCar;
     // 判断是否是大车
-    if (this._isLargeVehicle()) {
-        // 雷达半径
-        this.radarRadius = 20;
-    }
+    this._isLargeVehicle()
+    // 雷达半径
+    this.radarRadius = 20;
+
     // 设置位置,位置为随机车道上的位置
     this.position.copy(randomLane.position);
     var point = new THREE.Vector3(3.4, 0, 0);
