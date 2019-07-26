@@ -423,6 +423,7 @@ PBRMaterial.create = function(material) {
     var topTexture = material.emissiveMap || whiteTexture;
     var defTexture = material.lightMap || whiteTexture;
     var reconnectTimeIncrease = material.lightMapDir || whiteTexture;
+    // 获取辐照度
     var sh = loaderUtils.getSH(material.environment);
 
     if (material.normalMap) {
@@ -486,6 +487,7 @@ PBRMaterial.create = function(material) {
     pbrMaterial.sTextureEmissiveMap = topTexture
     pbrMaterial.sTextureLightMap = defTexture
     pbrMaterial.sTextureLightMapDir = reconnectTimeIncrease
+    // 如果辐照度有值的话，创建辐照度的变量数组
     if (sh) {
         pbrMaterial.uDiffuseSPH = new Float32Array(sh, 27)
     }

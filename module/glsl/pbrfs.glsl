@@ -412,7 +412,7 @@ mat3 environmentTransformPBR(const in mat4 tr) {
     mat3 m = mat3(x, y, z);
     return m;
 }
-
+// 评估漫反射球谐波
 vec3 evaluateDiffuseSphericalHarmonics(const in vec3 s[9], const in mat3 envTrans, const in vec3 N) {
     vec3 n = envTrans * N;
     // https://github.com/cedricpinson/envtools/blob/master/Cubemap.cpp#L523
@@ -444,7 +444,7 @@ vec3 integrateBRDFApprox(const in vec3 specular, const in float roughness, const
     vec2 AB = vec2(-1.04, 1.04) * a004 + r.zw;
     return specular * AB.x + AB.y;
 }
-
+// 计算IBL漫射UE4
 vec3 computeIBLDiffuseUE4(const in vec3 normal, const in vec3 albedo, const in mat3 envTrans, const in vec3 sphHarm[9]) {
     return albedo * evaluateDiffuseSphericalHarmonics(sphHarm, envTrans, normal);
 }
@@ -1050,6 +1050,7 @@ void main() {
     float channelAOPBR = mix(1.0, ao, uAOPBRFactor);
 
     // Diffuse
+    // 光的漫射/环境光
     vec3 diffuse = computeIBLDiffuseUE4(geoNormal, materialDiffusePBR, transform, uDiffuseSPH);
 
     // Specular

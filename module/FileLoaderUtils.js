@@ -1,9 +1,15 @@
 import * as THREE from 'three';
 
+/**
+ * 处理光的漫反射/环境光
+ * @param jsonData
+ * @returns {number[]}
+ */
 function coordinateTransformation(jsonData) {
     debugger
     // 拷贝元素，从0到26个元素
     var data = jsonData.slice(0, 27);
+    // 我猜应该是9个系数
     var a = 1 / (2 * Math.sqrt(Math.PI));
     var e = -(.5 * Math.sqrt(3 / Math.PI));
     var i = -e;
@@ -29,6 +35,7 @@ FileLoaderUtils.prototype.load = function(url, loadCallback, onProgress, onError
     THREE.FileLoader.prototype.load.call(this, url, function(data) {
         var jsonData = JSON.parse(data);
         var x = coordinateTransformation(jsonData);
+        debugger
         loadCallback(x);
     }, onProgress, onError);
 };
