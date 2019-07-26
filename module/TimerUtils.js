@@ -89,7 +89,8 @@ timerUtils.inherit(Object, {
             // 过去时间
             this.elapsedTime += 1000 * prop.delta
             // 如果过去时间超过持续时间，并且调用结束回调函数
-            if(this.elapsedTime > this.duration && this.endCallback()){
+            if(this.elapsedTime > this.duration){
+                this.endCallback()
                 this.ended = true
             }
            return this

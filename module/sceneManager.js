@@ -9,7 +9,7 @@ import 'module/BasicShaderMaterial'
 import {Table} from 'module/table';
 import ChunksScene from 'module/ChunksScene';
 import EventHandler from 'module/jqueryEventHandler';
-import VectorDrag from 'module/VectorDrag';
+import DragControls from 'module/DragControls';
 import vignettingRender from 'module/vignettingRender';
 
 /**
@@ -49,7 +49,7 @@ SceneManager.inherit(BaseSceneManager, {
         // 给canvas 注册操作事件
         this.inputManager = new EventHandler(document.querySelector('canvas'));
         // 场景控制
-        this.controls = new VectorDrag(this.inputManager, this.chunkScene, this.camera);
+        this.controls = new DragControls(this.inputManager, this.chunkScene, this.camera);
         // 渲染器清空颜色
         this.renderer.setClearColor(constants.FOG_COLOR);
         // 初始化 定向光

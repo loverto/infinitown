@@ -315,7 +315,11 @@ Object.assign(LoadSceneManager.prototype, {
          * @return {?}
          */
         function parseConstant(value) {
-            return 'number' == typeof value ? value : (console.warn('THREE.ObjectLoader.parseTexture: Constant should be in numeric form.', value), THREE[value]);
+            if ('number' != typeof value) {
+                console.warn('THREE.ObjectLoader.parseTexture: Constant should be in numeric form.', value)
+                value = THREE[value]
+            }
+            return value;
         }
         var textures = {};
         if (undefined !== json) {
@@ -392,20 +396,20 @@ Object.assign(LoadSceneManager.prototype, {
     // 声明矩阵
         var matrix = new THREE.Matrix4;
         return function(data, geometries, materials) {
-            /**
-             * @param {undefined} name
-             * @return {?}
-             */
+
             function getGeometry(name) {
-                return undefined === geometries[name] && console.warn('THREE.ObjectLoader: Undefined geometry', name), geometries[name];
+                if (undefined === geometries[name]){
+                    console.warn('THREE.ObjectLoader: Undefined geometry', name)
+                }
+                return geometries[name];
             }
-            /**
-             * @param {?} name
-             * @return {?}
-             */
+
             function getMaterial(name) {
                 if (undefined !== name) {
-                    return undefined === materials[name] && console.warn('THREE.ObjectLoader: Undefined material', name), materials[name];
+                    if (undefined === materials[name]) {
+                        console.warn('THREE.ObjectLoader: Undefined material', name)
+                    }
+                    return materials[name];
                 }
             }
             var object;
@@ -476,8 +480,39 @@ Object.assign(LoadSceneManager.prototype, {
             default:
                 object = new THREE.Object3D;
             }
-            if (object.uuid = data.uuid, undefined !== data.name && (object.name = data.name), undefined !== data.matrix ? (matrix.fromArray(data.matrix), matrix.decompose(object.position, object.quaternion, object.scale)) : (undefined !== data.position && object.position.fromArray(data.position), undefined !== data.rotation && object.rotation.fromArray(data.rotation), undefined !== data.scale && object.scale.fromArray(data.scale)), undefined !== data.castShadow && (object.castShadow = data.castShadow), undefined !== data.receiveShadow &&
-            (object.receiveShadow = data.receiveShadow), undefined !== data.visible && (object.visible = data.visible), undefined !== data.userData && (object.userData = data.userData), undefined !== data.children) {
+            object.uuid = data.uuid
+            if (undefined !== data.name)  {
+                object.name = data.name
+            }
+            if (undefined !== data.matrix){
+                matrix.fromArray(data.matrix)
+                matrix.decompose(object.position, object.quaternion, object.scale)
+            } else {
+                if (undefined !== data.position){
+                    object.position.fromArray(data.position)
+                }
+                if (undefined !== data.rotation ){
+                    object.rotation.fromArray(data.rotation)
+                }
+                if (undefined !== data.scale){
+                    object.scale.fromArray(data.scale)
+                }
+            }
+            if ( undefined !== data.castShadow) {
+                object.castShadow = data.castShadow
+            }
+            if(undefined !== data.receiveShadow){
+                object.receiveShadow = data.receiveShadow
+            }
+
+            if (undefined !== data.visible) {
+                (object.visible = data.visible)
+            }
+            if (undefined !== data.userData) {
+                (object.userData = data.userData)
+            }
+
+            if (undefined !== data.children) {
                 var child;
                 for (child in data.children) {
                     object.add(this.parseObject(data.children[child], geometries, materials));
@@ -494,7 +529,10 @@ Object.assign(LoadSceneManager.prototype, {
                     }
                 }
             }
-            return undefined !== data.layers && (object.layers.mask = data.layers), object;
+            if (undefined !== data.layers){
+                (object.layers.mask = data.layers)
+            }
+            return object;
         };
     }()
 });

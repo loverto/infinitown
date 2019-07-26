@@ -1,7 +1,7 @@
 import * as THREE  from 'three';
 import Events from 'module/Events';
 import timers from 'module/timers';
-import Stats from 'module/Stats';
+import FpsCounter from 'module/FpsCounter';
 
 function update(allOrId) {
     var width = window.WIDTH = window.innerWidth;
@@ -127,7 +127,7 @@ var BaseSceneManager = function(options) {
     });
     // 如果配置fps 则创建状态信息，并显示fps信息在界面上
     if (this.config.fps) {
-        this.fpsCounter = new Stats;
+        this.fpsCounter = new FpsCounter;
         this.counter = document.createElement('div');
         document.querySelectorAll('body')[0].appendChild(this.counter);
         this.counter.setAttribute('style', 'position:absolute;top:20px;left:100px;color:#ff00ff;display:block !important;z-index:999999;');
@@ -263,9 +263,10 @@ BaseSceneManager.prototype = {
                 if (!this.started) {
                     this.started = true;
                 }
+                // 如果fps 开启，则显示fps计数
                 if (this.config.fps) {
-                    this.fpsCounter.update(data, function(pctg) {
-                        this.counter.textContent = pctg + ' FPS';
+                    this.fpsCounter.update(data, function(fpsNumber) {
+                        this.counter.textContent = fpsNumber + ' FPS';
                     }.bind(this));
                 }
             }

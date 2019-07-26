@@ -1,4 +1,4 @@
-import * as  uriUtils from 'module/uriUtils';
+import * as  path from 'path';
 import normalize from 'module/normalize';
 import convertArray from 'module/convertArray';
 import self from 'valid-url';
@@ -10,7 +10,7 @@ import self from 'valid-url';
 var parseUrl = function() {
     // 转换参数列表为参数数组
     var array = convertArray(arguments).map(replaceUndefined);
-    return self.isUri(array[0]) ? normalize.apply(normalize, array) : uriUtils.join.apply(uriUtils, array);
+    return self.isUri(array[0]) ? normalize.apply(normalize, array) : path.join.apply(path, array);
 };
 /**
  * 判断是否是url
@@ -25,7 +25,7 @@ parseUrl.isUri = function(value) {
  * @type {function(*, *, *): string}
  */
 var replaceUndefined =  parseUrl.replaceUndefined = function(currentValue, index, arr) {
-    return undefined === currentValue || null === currentValue ? self.isUri(arr[0]) ? '/' : uriUtils.sep : currentValue;
+    return undefined === currentValue || null === currentValue ? self.isUri(arr[0]) ? '/' : path.sep : currentValue;
 };
 
 export {parseUrl};

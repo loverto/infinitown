@@ -3,7 +3,14 @@ import constant from 'module/state';
 import Events from 'module/Events';
 var ndc = new THREE.Vector2;
 
-var VectorDrag = function(inputManager, scene, camera) {
+/**
+ * 拖动控件
+ * @param inputManager
+ * @param scene
+ * @param camera
+ * @constructor
+ */
+var DragControls = function(inputManager, scene, camera) {
     // 是否平移
     this._panning = false;
     // 开始坐标
@@ -35,7 +42,7 @@ var VectorDrag = function(inputManager, scene, camera) {
     // 是否启动
     this.enabled = true;
 };
-VectorDrag.inherit(Object, {
+DragControls.inherit(Object, {
     /**
      * 开始拖动事件
      * @param e
@@ -119,7 +126,7 @@ VectorDrag.inherit(Object, {
         };
     }()
 });
-VectorDrag.mixin(Events);
+DragControls.mixin(Events);
 
-export default VectorDrag;
+export default DragControls;
 
