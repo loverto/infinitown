@@ -88,19 +88,23 @@ Table.inherit(Object, {
     // 获取相邻的车
         var neighCars = [];
 
-        return function(s) {
+        return function(car) {
             neighCars.length = 0
-            s.parent.traverse(function(sub) {
+            // 在scene graph（场景图）中，一个对象的父级对象。 一个对象最多仅能有一个父级对象。
+            // 遍历当前车所在的块中是不是有相邻的车
+            car.parent.traverse(function(carTraverse) {
                 // 把周围的车获取到，并存储在数组中
-                if ('car' === sub.name && sub !== s) {
-                    neighCars.push(sub);
+                // 是car并且不是自己，这样的车是相邻的车
+                if ('car' === carTraverse.name && carTraverse !== car) {
+                    neighCars.push(carTraverse);
                 }
             })
-            this._forEachNeighboringChunk(s.parent.tableX, s.parent.tableY, function(spUtils) {
+            // 遍历相邻的块中的车跟当前块中的车是否相邻
+            this._forEachNeighboringChunk(car.parent.tableX, car.parent.tableY, function(chunk) {
                 // 遍历相邻的块
-                spUtils.traverse(function(e) {
-                    if ('car' === e.name) {
-                        neighCars.push(e);
+                chunk.traverse(function(carTraverse) {
+                    if ('car' === carTraverse.name) {
+                        neighCars.push(carTraverse);
                     }
                 });
             })
@@ -121,18 +125,21 @@ Table.inherit(Object, {
      * 遍历每个相邻块
      */
     _forEachNeighboringChunk : function() {
-        // 遍历相邻的分块
-        var menu = new THREE.Vector2;
+        // 创建初始坐标
+        var initCoordTmp = new THREE.Vector2;
         // 初始化区块的矩阵坐标
-        var pipelets = [new THREE.Vector2(-1, -1), new THREE.Vector2(1, 0), new THREE.Vector2(1, 0), new THREE.Vector2(0, 1), new THREE.Vector2(0, 1), new THREE.Vector2(-1, 0), new THREE.Vector2(-1, 0), new THREE.Vector2(0, -1)];
+        var chunkCoords = [new THREE.Vector2(-1, -1), new THREE.Vector2(1, 0), new THREE.Vector2(1, 0), new THREE.Vector2(0, 1), new THREE.Vector2(0, 1), new THREE.Vector2(-1, 0), new THREE.Vector2(-1, 0), new THREE.Vector2(0, -1)];
         return function(x, y , callback) {
-            menu.set(x, y);
-            pipelets.forEach(function(vector2) {
-                menu.add(vector2);
-                // 获取分块中的数据
-                var each1 = this.getChunkData(menu.x, menu.y);
-                if (each1) {
-                    callback(each1.node);
+            // 初始坐标赋值，值为传入的坐标
+            initCoordTmp.set(x, y);
+            // 遍历坐标
+            chunkCoords.forEach(function(coord) {
+                // 坐标相加
+                initCoordTmp.add(coord);
+                // 获取分块中的数据，根据计算之后的坐标取chunk
+                var chunk = this.getChunkData(initCoordTmp.x, initCoordTmp.y);
+                if (chunk) {
+                    callback(chunk.node);
                 }
             }, this);
         };
@@ -141,28 +148,30 @@ Table.inherit(Object, {
      * 获取相邻的大厦建筑
      */
     _getNeighboringBlocks : function() {
-        var parkNames = [];
+        // 建筑物
+        var blocks = [];
         // 根据坐标遍历四周的相邻大厦建筑
         return function(x, y) {
-            parkNames.length = 0
-            this._forEachNeighboringChunk(x, y, function(dep) {
-                parkNames.push(dep.block.name);
+            blocks.length = 0
+            this._forEachNeighboringChunk(x, y, function(chunk) {
+                // 存入建筑物名称
+                blocks.push(chunk.block.name);
             })
-            return parkNames;
+            return blocks;
         };
     }(),
     /**
      * 获取随机大厦
-     * @param pieceX
-     * @param pieceY
+     * @param x
+     * @param y
      * @returns {*}
      * @private
      */
-    _getRandomBlockAt : function(pieceX, pieceY) {
+    _getRandomBlockAt : function(x, y) {
         var block;
         var i = 0;
         // 获取相邻的块
-        var piece = this._getNeighboringBlocks(pieceX, pieceY);
+        var blocks = this._getNeighboringBlocks(x, y);
         for (; i < 100;) {
             var randomBlock = getElementByRandom(this.blocks).clone();
             var name = randomBlock.name;
@@ -178,7 +187,8 @@ Table.inherit(Object, {
                 block = randomBlock;
                 break;
             }
-            if (piece.indexOf(name) === -1) {
+            // 判断相邻块中不存在当前名字
+            if (blocks.indexOf(name) === -1) {
                 block = randomBlock;
                 break;
             }
@@ -271,9 +281,9 @@ Table.inherit(Object, {
         }, this)
         if (Common.random() > .65) {
             var randomFirstCloud = getElementByRandom(this.cloudObjects).clone();
-            var b = new Cloud(this, randomFirstCloud);
-            randomChunkObject3.add(b);
-            this.mobs.push(b);
+            var cloud = new Cloud(this, randomFirstCloud);
+            randomChunkObject3.add(cloud);
+            this.mobs.push(cloud);
         }
         // 遍历3d对象
         randomChunkObject3.traverse(function(object3D) {
@@ -300,8 +310,8 @@ Table.inherit(Object, {
      */
     _generate : function() {
         // 根据配置信息生成一个9x9的格子
-        var i = 0;
-        for (; i < state.TABLE_SIZE; i++) {
+        var y = 0;
+        for (; y < state.TABLE_SIZE; y++) {
             var x = 0;
             for (; x < state.TABLE_SIZE; x++) {
                 if (undefined === this.chunks[x]) {
@@ -309,10 +319,10 @@ Table.inherit(Object, {
                 }
                 // 获取随机的分块，根据当前的坐标
                 // 根据坐标获取大块
-                var node = this._getRandomChunk(x, i);
+                var node = this._getRandomChunk(x, y);
                 node.tableX = x;
-                node.tableY = i;
-                this.chunks[x][i] = {
+                node.tableY = y;
+                this.chunks[x][y] = {
                     node : node
                 };
             }

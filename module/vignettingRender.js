@@ -1,8 +1,13 @@
 import * as THREE  from 'three';
 import LoaderUtils from 'module/LoaderUtils';
 
+/**
+ * 处理光晕
+ */
 var vignettingRender = function() {
+    // 平面缓冲几何
     this.mesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(2, 2), null);
+    //截锥体剔除
     this.mesh.frustumCulled = false;
     // 新建正交相机
     this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -16,7 +21,12 @@ var vignettingRender = function() {
     });
 };
 vignettingRender.inherit(Object, {
+    /**
+     * 渲染光晕
+     * @param renderer
+     */
     render : function(renderer) {
+        // 渲染场景的相机是正交相机，场景内容是一个中间透明，四个脚是黑色的光晕图
         renderer.render(this._scene, this.camera);
     }
 });

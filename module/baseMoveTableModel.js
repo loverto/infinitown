@@ -42,12 +42,12 @@ BaseMoveTableModel.inherit(THREE.Object3D, {
         // 把当前表格的位置信息赋值给最后表格
         this.lastTablePosition.copy(this.tablePosition);
         // 计算x坐标与最小缓存行的距离
-        var i = Math.floor(distance(this.tablePosition.x + 40, MIN_BUFFER_ROWS) / state.CHUNK_SIZE);
+        var xd = Math.floor(distance(this.tablePosition.x + 40, MIN_BUFFER_ROWS) / state.CHUNK_SIZE);
         // 计算z坐标与最小缓存行的距离
-        var name = Math.floor(distance(this.tablePosition.z + 40, MIN_BUFFER_ROWS) / state.CHUNK_SIZE);
+        var zd = Math.floor(distance(this.tablePosition.z + 40, MIN_BUFFER_ROWS) / state.CHUNK_SIZE);
         var context = this.parent;
         // 一个具体的chunk
-        var node = this.table.chunks[i][name].node;
+        var node = this.table.chunks[xd][zd].node;
         if (Math.abs(x) < 500 && Math.abs(x) > 20) {
             console.log('warp on X', x, context.tableX, node.tableX)
         }
@@ -63,10 +63,10 @@ BaseMoveTableModel.inherit(THREE.Object3D, {
         // 当前块不能是父块
         if (node !== context) {
             node.add(this);
-            var min_x = distance(this.position.x + 40, state.CHUNK_SIZE) - 40;
-            var _depth = distance(this.position.z + 40, state.CHUNK_SIZE) - 40;
-            this.position.x = min_x;
-            this.position.z = _depth;
+            var xd = distance(this.position.x + 40, state.CHUNK_SIZE) - 40;
+            var zd = distance(this.position.z + 40, state.CHUNK_SIZE) - 40;
+            this.position.x = xd;
+            this.position.z = zd;
         }
         this.previousChunk = context;
     }

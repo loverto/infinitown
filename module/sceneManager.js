@@ -135,6 +135,7 @@ SceneManager.inherit(BaseSceneManager, {
      * 初始化插图
      */
     initVignetting : function() {
+        // 光晕
         this.vignetting = new vignettingRender;
     },
     /**
@@ -194,7 +195,9 @@ SceneManager.inherit(BaseSceneManager, {
      */
     render : function(text) {
         var totalPlayers = 0;
+        // 地图的片段和属性
         var mapFragmentAndProps = function() {
+            // 如果调用开启，则累加渲染的调用者
             if (this.config.logCalls) {
                 totalPlayers = totalPlayers + this.renderer.info.render.calls;
             }
@@ -205,6 +208,7 @@ SceneManager.inherit(BaseSceneManager, {
         this.renderScene(this.scene, this.camera);
         //
         mapFragmentAndProps();
+        // 如果光晕对象存在的话，则渲染光晕
         if (this.vignetting) {
             this.vignetting.render(this.renderer);
             mapFragmentAndProps();

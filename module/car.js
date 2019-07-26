@@ -84,15 +84,16 @@ Car.inherit(BaseMoveTableModel, {
         // for循环的初始下标
         var dataIndex = 0;
         for (; dataIndex < cars.length; dataIndex++) {
-            var i = this.detectCar(cars[dataIndex]);
-            if (i) {
+            // 如果检测到车，返回即将碰撞的车，即被检测的车
+            var car = this.detectCar(cars[dataIndex]);
+            if (car) {
                 // 检测到有车
                 isNotDetectCars = false;
-                this.detectedCar = i;
+                this.detectedCar = car;
                 break;
             }
         }
-        // 如果没有检测到有车
+        // 如果没有检测到车
         if (isNotDetectCars) {
             // 如果速度小于最大速度，则慢慢的增加速度
             if (this.speed < this.maxSpeed) {
@@ -132,6 +133,7 @@ Car.inherit(BaseMoveTableModel, {
         var v2 = new THREE.Vector3;
         var tablePositionTmp = new THREE.Vector3;
         var tablePositionLastTmp = new THREE.Vector3;
+        // 用来临时存储碰撞点的矩阵
         var materixTmp = new THREE.Vector3;
         return function(carObject) {
             // 如果检测到的车方法就是当前的方法
@@ -155,17 +157,23 @@ Car.inherit(BaseMoveTableModel, {
             // 获取表格位置
             types.getTablePosition(this.position, this.parent.tableX, this.parent.tableY, tablePositionTmp);
             var i = 0;
-            // 遍历车的碰撞点
+            // 遍历车的碰撞点，碰撞点里有两个值，最大值和最小值
             for (; i < carObject.collisionPoints.length; i++) {
                 var pos = carObject.collisionPoints[i];
+                // 复制其中任意一个点，并应用车的矩阵
                 materixTmp.copy(pos).applyMatrix4(carObject.matrix);
+                // 根据这个点判断在，获取当前点在地图中的位置坐标
                 types.getTablePosition(materixTmp, carObject.parent.tableX, carObject.parent.tableY, tablePositionLastTmp);
-                // 获取两个表格间距
+                // 然后计算table地图中的距离，即计算两个点间的距离
                 var length = tablePositionTmp.distanceTo(tablePositionLastTmp);
                 // 如果距离小于等于雷达半径
                 if (length <= this.radarRadius) {
+                    // v2 为最后点位置和当前位置的差
                     v2.subVectors(tablePositionLastTmp, tablePositionTmp).normalize();
+                    // 计算该vector和所传入v的点积
+                    // 用来计算碰撞的相交范围
                     var delta = directionTmp.dot(v2);
+                    // 如果相交的值大于0.5 则
                     if (delta > .5) {
                         // 设置碰撞
                         isCollision = true;
@@ -182,7 +190,7 @@ Car.inherit(BaseMoveTableModel, {
     update : function() {
         var directionTmp = new THREE.Vector3;
         return function() {
-            // 给移动方向上加速度
+            // 给移动方向上加速度，将该向量与所传入的标量s进行相乘。
             directionTmp.copy(this.direction).multiplyScalar(this.speed);
             // 位置加上移动方向
             this.position.add(directionTmp);
