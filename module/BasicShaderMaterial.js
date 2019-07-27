@@ -1,4 +1,4 @@
-import ShaderMaterialExtern from 'module/ShaderMaterialExtern';
+import BaseShaderMaterial from 'module/BaseShaderMaterial';
 import shaders from 'module/shaders';
 
 /**
@@ -25,14 +25,14 @@ var BasicShaderMaterial = function(obj) {
             }
         }
     }, obj);
-    ShaderMaterialExtern.call(this, obj);
+    BaseShaderMaterial.call(this, obj);
     Object.keys(this.uniforms).forEach(function(name) {
         this.onPropertyChange(name, function(initSBC) {
             this.uniforms[name].value = initSBC;
         });
     }, this);
 };
-BasicShaderMaterial.inherit(ShaderMaterialExtern, {
+BasicShaderMaterial.inherit(BaseShaderMaterial, {
     /**
      * 克隆
      * @param params
@@ -40,7 +40,7 @@ BasicShaderMaterial.inherit(ShaderMaterialExtern, {
      */
     clone : function(params) {
         var data = params || new BasicShaderMaterial;
-        ShaderMaterialExtern.prototype.clone.call(this, data)
+        BaseShaderMaterial.prototype.clone.call(this, data)
         // 设置名字哦
         data.name = this.name
         // 设置透明度

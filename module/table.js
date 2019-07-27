@@ -330,5 +330,5 @@ Table.inherit(Object, {
     }
 });
 
-export {Table};
+export default Table;
 

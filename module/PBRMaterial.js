@@ -1,5 +1,5 @@
 import * as THREE  from 'three';
-import RawShaderMaterialExtern from 'module/RawShaderMaterialExtern';
+import BaseRawShaderMaterial from 'module/BaseRawShaderMaterial';
 import loaderUtils from 'module/LoaderUtils';
 import TextureUtils from 'module/textureUtils';
 
@@ -281,7 +281,7 @@ var PBRMaterial = function(obj) {
             }
         }
     }, obj);
-    RawShaderMaterialExtern.call(this, obj);
+    BaseRawShaderMaterial.call(this, obj);
     Object.keys(this.uniforms).forEach(function(name) {
         this.onPropertyChange(name, function(initSBC) {
             this.uniforms[name].value = initSBC;
@@ -304,10 +304,10 @@ var PBRMaterial = function(obj) {
     this.lights = true;
 };
 
-PBRMaterial.inherit(RawShaderMaterialExtern, {
+PBRMaterial.inherit(BaseRawShaderMaterial, {
     _clone : function(options) {
         var data = options || new PBRMaterial;
-        RawShaderMaterialExtern.prototype.clone.call(this, data)
+        BaseRawShaderMaterial.prototype.clone.call(this, data)
         data.name = this.name
         data.transparent = this.transparent
         _.each(this.uniforms, function(value, key) {

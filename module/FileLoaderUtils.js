@@ -27,7 +27,7 @@ function sphericalHarmonicsCoefficients(jsonData) {
     });
 }
 
-export function FileLoaderUtils(data) {
+function FileLoaderUtils(data) {
     THREE.FileLoader.call(this);
     this.manager = undefined !== data ? data : THREE.DefaultLoadingManager;
 };
@@ -41,3 +41,4 @@ FileLoaderUtils.prototype.load = function(url, loadCallback, onProgress, onError
         loadCallback(x);
     }, onProgress, onError);
 };
+export default FileLoaderUtils

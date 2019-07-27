@@ -3,12 +3,12 @@ import * as THREE from 'three';
 // promise 工具类
 import bluebird from 'bluebird';
 
-import {parseUrl} from 'module/parseUrl';
-import {LoadSceneManager} from 'module/LoadSceneManager';
-import {DataTextureLoaderExtern} from 'module/DataTextureLoaderExtern';
-import {CompressedTextureLoaderExtern} from 'module/CompressedTextureLoaderExtern';
-import {FileLoaderUtils} from 'module/FileLoaderUtils';
-import {FileLoaderExtern} from 'module/FileLoaderExtern';
+import parseUrl from 'module/parseUrl';
+import LoadSceneManager from 'module/LoadSceneManager';
+import BaseDataTextureLoader from 'module/BaseDataTextureLoader';
+import AbstrctCompressedTextureLoader from 'module/AbstrctCompressedTextureLoader';
+import FileLoaderUtils from 'module/FileLoaderUtils';
+import BaseFileLoader from 'module/BaseFileLoader';
 // 加载管理
 var loadingManager = new THREE.LoadingManager;
 // 场景加载管理
@@ -17,17 +17,17 @@ var cacheResult = {};
 // 标准化纹理加载器
 var textureLoaderNoralize = normalize(new THREE.TextureLoader(loadingManager), cacheResult);
 // 标准化数据纹理加载器
-var dataTextureLoaderExternNoralize = normalize(new DataTextureLoaderExtern(1024, false, loadingManager), cacheResult);
+var dataTextureLoaderExternNoralize = normalize(new BaseDataTextureLoader(1024, false, loadingManager), cacheResult);
 // 标准化压缩纹理加载器
-var compressedTextureLoaderExternNoralize = normalize(new CompressedTextureLoaderExtern(256, false, loadingManager), cacheResult);
+var compressedTextureLoaderExternNoralize = normalize(new AbstrctCompressedTextureLoader(256, false, loadingManager), cacheResult);
 // sh 的
 var shs = {};
 // 数据帧渲染
 var dataFrameReader = new FileLoaderUtils(loadingManager);
 var geometriesCache = {};
 // 标准化文件加载器
-var geometries = normalize(new FileLoaderExtern(loadingManager), geometriesCache);
-var self = {
+var geometries = normalize(new BaseFileLoader(loadingManager), geometriesCache);
+var LoaderUtils = {
     environmentPath : 'assets/environments',
     geometryPath : 'assets/scenes/data/',
     manager : loadingManager,
@@ -134,7 +134,7 @@ function fn(resourcesArray, uri, normalizeLoader) {
 
 // 定义纹理路径
 var temp = '';
-Object.defineProperty(self, 'texturePath', {
+Object.defineProperty(LoaderUtils, 'texturePath', {
     get : function() {
         return temp;
     },
@@ -150,7 +150,7 @@ Object.defineProperty(self, 'texturePath', {
  * @param filename 文件名称
  * @returns {Promise}
  */
-self.loadScene = function(url, filename) {
+LoaderUtils.loadScene = function(url, filename) {
     return load(url, filename, loadSceneManager);
 };
 
@@ -160,7 +160,7 @@ self.loadScene = function(url, filename) {
  * @param uri 服务器路径 示例 http:// | ftp://| https://
  * @returns {Promise<(any)[]>}
  */
-self.loadOBJs = function(resourceArray, url) {
+LoaderUtils.loadOBJs = function(resourceArray, url) {
     return fn(resourceArray, url, objLoader);
 };
 /**
@@ -169,8 +169,8 @@ self.loadOBJs = function(resourceArray, url) {
  * @param uri 服务器路径 示例 http:// | ftp://| https://
  * @returns {?}
  */
-self.loadTextures = function(texturesArrays, uri) {
-    return fn(texturesArrays, uri || self.texturePath, textureLoaderNoralize);
+LoaderUtils.loadTextures = function(texturesArrays, uri) {
+    return fn(texturesArrays, uri || LoaderUtils.texturePath, textureLoaderNoralize);
 };
 
 /**
@@ -179,7 +179,7 @@ self.loadTextures = function(texturesArrays, uri) {
  * @param uri 服务器路径 示例 http:// | ftp://| https://
  * @returns {Promise<(any)[]>}
  */
-self.loadBRDFs = function(brdfsArray, uri) {
+LoaderUtils.loadBRDFs = function(brdfsArray, uri) {
     return fn(brdfsArray, uri, brdfLoader);
 };
 
@@ -189,8 +189,8 @@ self.loadBRDFs = function(brdfsArray, uri) {
  * @param uri 服务器路径 示例 http:// | ftp://| https://
  * @returns {Promise<(any)[]>}
  */
-self.loadPanoramas = function(panoramasArray, uri) {
-    return fn(panoramasArray, uri || self.environmentPath, dataTextureLoaderExternNoralize);
+LoaderUtils.loadPanoramas = function(panoramasArray, uri) {
+    return fn(panoramasArray, uri || LoaderUtils.environmentPath, dataTextureLoaderExternNoralize);
 };
 
 /**
@@ -199,8 +199,8 @@ self.loadPanoramas = function(panoramasArray, uri) {
  * @param uri 服务器路径 示例 http:// | ftp://| https://
  * @returns {Promise<(any)[]>}
  */
-self.loadSpecularCubemaps = function(specularCubemapsArray, uri) {
-    return fn(specularCubemapsArray, uri || self.environmentPath, compressedTextureLoaderExternNoralize);
+LoaderUtils.loadSpecularCubemaps = function(specularCubemapsArray, uri) {
+    return fn(specularCubemapsArray, uri || LoaderUtils.environmentPath, compressedTextureLoaderExternNoralize);
 };
 
 /**
@@ -208,11 +208,11 @@ self.loadSpecularCubemaps = function(specularCubemapsArray, uri) {
  * @param env
  * @returns {Promise<[any, any, any, any, any, any, any, any, any, any]>}
  */
-self.loadSH = function(env) {
+LoaderUtils.loadSH = function(env) {
     return bluebird.all(_.map(env, function(item) {
         return new bluebird(function(resolve, reject) {
             // 辐照度
-            var url = parseUrl(self.environmentPath, item + '/irradiance.json');
+            var url = parseUrl(LoaderUtils.environmentPath, item + '/irradiance.json');
             // 加载json文件
             dataFrameReader.load(url, function(data) {
                 shs[item] = data;
@@ -230,10 +230,10 @@ self.loadSH = function(env) {
  * @param geometriesArray 几何体数组
  * @param uri  服务器路径 示例 http:// | ftp://| https://
  */
-self.loadGeometries = function(geometriesArray, uri) {
+LoaderUtils.loadGeometries = function(geometriesArray, uri) {
     return geometriesArray = _.map(geometriesArray, function(item) {
         return item + '.bin';
-    }), fn(geometriesArray, uri || self.geometryPath, geometries);
+    }), fn(geometriesArray, uri || LoaderUtils.geometryPath, geometries);
 };
 
 /**
@@ -241,7 +241,7 @@ self.loadGeometries = function(geometriesArray, uri) {
  * @param key
  * @returns {*}
  */
-self.getTexture = function(key) {
+LoaderUtils.getTexture = function(key) {
     return textureLoaderNoralize.get(key);
 };
 
@@ -250,7 +250,7 @@ self.getTexture = function(key) {
  * @param t
  * @returns {*}
  */
-self.getBRDF = function(t) {
+LoaderUtils.getBRDF = function(t) {
     return brdfLoader.get(t);
 };
 
@@ -259,7 +259,7 @@ self.getBRDF = function(t) {
  * @param prefix
  * @returns {*}
  */
-self.getPanorama = function(prefix) {
+LoaderUtils.getPanorama = function(prefix) {
     return dataTextureLoaderExternNoralize.get(prefix + '/panorama.bin');
 };
 
@@ -268,7 +268,7 @@ self.getPanorama = function(prefix) {
  * @param prefix
  * @returns {*}
  */
-self.getCubemap = function(prefix) {
+LoaderUtils.getCubemap = function(prefix) {
     return compressedTextureLoaderExternNoralize.get(prefix + '/cubemap.bin');
 };
 
@@ -277,7 +277,7 @@ self.getCubemap = function(prefix) {
  * @param notebookID
  * @returns {*}
  */
-self.getSH = function(notebookID) {
+LoaderUtils.getSH = function(notebookID) {
     return shs[notebookID];
 };
 
@@ -286,7 +286,7 @@ self.getSH = function(notebookID) {
  * @param name
  * @returns {*}
  */
-self.getGeometry = function(name) {
+LoaderUtils.getGeometry = function(name) {
     return geometries.get(name + '.bin');
 };
-export default self;
+export default LoaderUtils;

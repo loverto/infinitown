@@ -1,20 +1,13 @@
 import * as THREE  from 'three';
-import 'module/ShaderMaterialExtern'
+import 'module/BaseShaderMaterial'
 import PBRMaterial from 'module/PBRMaterial';
 import MatcapMaterial from 'module/matcapMaterial';
 import 'module/LoaderUtils'
+import shaders from 'module/shaders';
 
 // 获取MateriaLoader的原型用于扩展
 var THREEMateriaLoaderparse = THREE.MaterialLoader.prototype.parse;
-var shaders = null;
-// 重写设置顶点的资源
-/**
- * 重写设置顶点的资源
- * @param inShaders
- */
-THREE.MaterialLoader.setShaders = function(inShaders) {
-    shaders = inShaders;
-};
+
 /**
  * 重写MaterialLoader的parse方法
  * @param options
@@ -41,21 +34,21 @@ THREE.MaterialLoader.prototype.parse = function(options) {
     // PBR材料
     if (options.customType && 'PBRMaterial' === options.customType) {
         // 金属光泽图
-        var metalGlossMap = options.metalGlossMap ? this.getTexture(options.metalGlossMap) : null;
+        var metalGlossMap = options.metalGlossMap ? this.textures[options.metalGlossMap] : null;
         // 反照率地图2
-        var albedoMap2 = options.map2 ? this.getTexture(options.map2) : null;
+        var albedoMap2 = options.map2 ? this.textures[options.map2] : null;
         // 法线贴图2
-        var normalMap2 = options.normalMap2 ? this.getTexture(options.normalMap2) : null;
+        var normalMap2 = options.normalMap2 ? this.textures[options.normalMap2] : null;
         // 来图2
-        var aoMap2 = options.aoMap2 ? this.getTexture(options.aoMap2) : null;
+        var aoMap2 = options.aoMap2 ? this.textures[options.aoMap2] : null;
         // 光地图M.
-        var lightMapM = options.lightMapM ? this.getTexture(options.lightMapM) : null;
+        var lightMapM = options.lightMapM ? this.textures[options.lightMapM] : null;
         // 地图定向光
-        var lightMapDir = options.lightMapDir ? this.getTexture(options.lightMapDir) : null;
+        var lightMapDir = options.lightMapDir ? this.textures[options.lightMapDir] : null;
         // 材料 发射的 Map 行
-        var materialEmissiveMapRow = options.emissiveMap ? this.getTexture(options.emissiveMap) : null;
+        var materialEmissiveMapRow = options.emissiveMap ? this.textures[options.emissiveMap] : null;
         // 打包地图
-        var packedMap = options.packedPBRMap ? this.getTexture(options.packedPBRMap) : null;
+        var packedMap = options.packedPBRMap ? this.textures[options.packedPBRMap] : null;
         // 根据指定的参数创建
         return PBRMaterial.create({
             vertexShader : shaders['pbr.vs'],
@@ -89,10 +82,10 @@ THREE.MaterialLoader.prototype.parse = function(options) {
     }
     if ('SkyboxMaterial' === options.customType) {
         var shader = THREE.ShaderLib.cube;
-        json.vertexShader = shaders['skyboxvs'];
-        json.fragmentShader = shaders['skyboxfs'];
+        json.vertexShader = shaders['skybox.vs'];
+        json.fragmentShader = shaders['skybox.fs'];
         json.uniforms = THREE.UniformsUtils.clone(shader.uniforms);
-        json.uniforms.tCube.value = this.getTexture(options.cubemap);
+        json.uniforms.tCube.value = this.textures[options.cubemap];
     }
     return json;
 };

@@ -6,7 +6,6 @@ import loaderUtils from 'module/LoaderUtils';
 import instance from 'module/instance';
 import Scene from 'module/sceneManager';
 import Config from 'module/state';
-import shadersResource from 'module/shaders';
 import texturesResources from 'module/textures';
 $('canvas');
 var sceneCanvas;
@@ -14,11 +13,11 @@ var sceneCanvas;
 /**
  * 初始化方法
  * @param name
- * @param options
+ * @param scene
  * @param env
  * @param callback
  */
-function initialize(name, options, env, callback) {
+function initialize(name, scene, env, callback) {
     // 配置信息
     var configOptions = {
         geometries : [name],
@@ -31,10 +30,8 @@ function initialize(name, options, env, callback) {
     loaderManager.load().then(function(response) {
         // 设置纹理的相对路径
         loaderUtils.texturePath = 'assets/' + name + '/';
-        // 给材料加载器添加着色顶点
-        THREE.MaterialLoader.setShaders(shadersResource);
         // 加载场景
-        instance.loadScene(name, 'assets/scenes/', options).then(callback);
+        instance.loadScene(name, 'assets/scenes/', scene).then(callback);
     });
 }
 /**

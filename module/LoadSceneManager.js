@@ -4,7 +4,7 @@ import * as THREE from 'three';
  * @param {string} loadingManager
  * @return {undefined}
  */
-export function LoadSceneManager(loadingManager) {
+function LoadSceneManager(loadingManager) {
     this.manager = undefined !== loadingManager ? loadingManager : THREE.DefaultLoadingManager;
     // 设置纹理路径
     this.texturePath = '';
@@ -536,3 +536,5 @@ Object.assign(LoadSceneManager.prototype, {
         };
     }()
 });
+
+export default LoadSceneManager

@@ -14,14 +14,14 @@ function findErrorByList(t, data, array) {
     }
 }
 
-export function CompressedTextureLoaderExtern (options, value, manager) {
+function AbstrctCompressedTextureLoader (options, value, manager) {
     this.manager = undefined !== manager ? manager : THREE.DefaultLoadingManager;
     this._size = options;
     this._interleaved = value;
 };
-CompressedTextureLoaderExtern.prototype = Object.create(THREE.CompressedTextureLoader.prototype);
+AbstrctCompressedTextureLoader.prototype = Object.create(THREE.CompressedTextureLoader.prototype);
 
-CompressedTextureLoaderExtern.prototype._parser = function(buffer) {
+AbstrctCompressedTextureLoader.prototype._parser = function(buffer) {
     var e = [];
     var order = Math.log2(this._size);
     var dataOffset = 0;
@@ -66,3 +66,5 @@ CompressedTextureLoaderExtern.prototype._parser = function(buffer) {
 Math.log2 = Math.log2 || function(score) {
     return Math.log(score) * Math.LOG2E;
 };
+
+export default AbstrctCompressedTextureLoader;

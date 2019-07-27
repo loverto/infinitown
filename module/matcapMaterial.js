@@ -1,5 +1,5 @@
 import * as THREE  from 'three';
-import ShaderMaterialExtern from 'module/ShaderMaterialExtern';
+import BaseShaderMaterial from 'module/BaseShaderMaterial';
 import LoaderUtils from 'module/LoaderUtils';
 var a = {
     normalMapFactor : 'uNormalMapFactor',
@@ -38,7 +38,7 @@ var MatcapMaterial = function(data) {
             }
         }
     }, data);
-    ShaderMaterialExtern.call(this, data);
+    BaseShaderMaterial.call(this, data);
     Object.keys(this.uniforms).forEach(function(name) {
         this.onPropertyChange(name, function(initSBC) {
             this.uniforms[name].value = initSBC;
@@ -55,10 +55,10 @@ var MatcapMaterial = function(data) {
     };
 };
 
-MatcapMaterial.inherit(ShaderMaterialExtern, {
+MatcapMaterial.inherit(BaseShaderMaterial, {
     clone : function(params) {
         var data = params || new MatcapMaterial;
-        ShaderMaterialExtern.prototype.clone.call(this, data)
+        BaseShaderMaterial.prototype.clone.call(this, data)
         data.name = this.name
         data.transparent = this.transparent
         _.each(this.uniforms, function(dom, name) {

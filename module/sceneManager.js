@@ -4,9 +4,9 @@ import 'module/LineSegmentsInit'
 import constants from 'module/state';
 import 'module/PerspectiveCameraUpdate'
 import 'module/OrthographicCameraBase'
-import {PerspectiveCameraCtor} from  'module/PerspectiveCameraCtor';
+import PerspectiveCameraCtor from  'module/PerspectiveCameraCtor';
 import 'module/BasicShaderMaterial'
-import {Table} from 'module/table';
+import Table from 'module/table';
 import ChunksScene from 'module/ChunksScene';
 import EventHandler from 'module/jqueryEventHandler';
 import DragControls from 'module/DragControls';

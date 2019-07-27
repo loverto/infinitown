@@ -30,5 +30,5 @@ PerspectiveCameraCtor.inherit(ctor, {
     }
 });
 
-export {PerspectiveCameraCtor};
+export default PerspectiveCameraCtor;
 

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import bluebird from 'bluebird';
-import 'module/MaterialLoaderExtern';
+import 'module/BaseMaterialLoader';
 import loaderUtils from 'module/LoaderUtils';
 import 'module/PBRMaterial'
 import 'module/LoadSceneManager'
@@ -10,11 +10,11 @@ var instance = {};
  * 加载场景
  * @param name
  * @param data 数据或资源路径
- * @param options
+ * @param scene 场景
  * @param callback
  * @returns {Promise}
  */
-instance.loadScene = function(name, data, options, callback) {
+instance.loadScene = function(name, data, scene, callback) {
     return new bluebird(function(resolve, reject) {
         // options.renderer
         var binaryGeometryBuffer = loaderUtils.getGeometry(name);
@@ -24,14 +24,14 @@ instance.loadScene = function(name, data, options, callback) {
             loaderUtils.sceneLoader.setBinaryGeometryBuffer(binaryGeometryBuffer);
         }
         // 加载场景
-        loaderUtils.loadScene(data + name + (callback || '.json')).spread(function(objects, json) {
+        loaderUtils.loadScene(data + name + (callback || '.json')).spread(function(sceneParm, json) {
             // 声明相机
             var camera;
             // 置空物料信息
-            objects.materials = {};
+            sceneParm.materials = {};
             // 如果有相机，则获取相机
-            if (objects.cameras && objects.cameras.length > 0) {
-                camera = objects.cameras[0];
+            if (sceneParm.cameras && sceneParm.cameras.length > 0) {
+                camera = sceneParm.cameras[0];
             }
             // 设置相机的面为当前计算机可视区域的宽/除以可视区域的高
             if (camera) {
@@ -47,62 +47,62 @@ instance.loadScene = function(name, data, options, callback) {
             var step = 10;
             // 网格辅助线
             var grid = new THREE.GridHelper(size, step);
-            objects.add(grid);
+            sceneParm.add(grid);
             // 辅助线
             var axesHelper = new THREE.AxesHelper(5);
-            objects.add(axesHelper);
-            objects.dirLights = [];
+            sceneParm.add(axesHelper);
+            sceneParm.dirLights = [];
             // 横过
-            objects.traverse(function(camera) {
+            sceneParm.traverse(function(camera) {
                 if (camera instanceof THREE.DirectionalLight) {
                     camera.position.set(0, 0, 5);
                     camera.quaternion.normalize();
                     camera.position.applyQuaternion(camera.quaternion);
                     camera.quaternion.set(0, 0, 0, 0);
                     camera.scale.set(1, 1, 1);
-                    objects.dirLights.push(camera);
+                    sceneParm.dirLights.push(camera);
                 }
             });
             // 动画Mixer
-            var mixer = new THREE.AnimationMixer(objects);
+            var mixer = new THREE.AnimationMixer(sceneParm);
             var i = 0;
-            for (; i < objects.animations.length; i++) {
-                mixer.clipAction(objects.animations[i]).play();
+            for (; i < sceneParm.animations.length; i++) {
+                mixer.clipAction(sceneParm.animations[i]).play();
             }
             // 遍历给定的AST树。
-            objects.traverse(function(options) {
+            sceneParm.traverse(function(options) {
                 var material = options.material;
                 if (material && material.aoMap) {
                     !material.map;
                 }
             });
-            objects.traverse(function(box1) {
+            sceneParm.traverse(function(box1) {
                 if ('Line' === box1.name) {
                     box1.material.linewidth = 10;
                     box1.material.color.setRGB(1, 0, 1);
                 }
             });
-            objects.traverse(function(node) {
+            sceneParm.traverse(function(node) {
                 if (node instanceof THREE.SpotLight) {
                     var p = new THREE.Vector3(0, 0, -1);
                     var sprite = new THREE.Object3D;
                     node.updateMatrixWorld();
                     node.localToWorld(p);
                     sprite.position.copy(p);
-                    objects.add(sprite);
+                    sceneParm.add(sprite);
                     node.target = sprite;
                 }
                 if (node.material) {
                     if (node.material.materials) {
                         node.material.materials.forEach(function(b) {
-                            objects.materials[b.uuid] = b;
+                            sceneParm.materials[b.uuid] = b;
                         });
                     } else {
-                        objects.materials[node.material.uuid] = node.material;
+                        sceneParm.materials[node.material.uuid] = node.material;
                     }
                 }
             });
-            resolve(objects);
+            resolve(sceneParm);
         });
     });
 };

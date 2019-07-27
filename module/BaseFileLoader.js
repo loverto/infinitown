@@ -1,9 +1,11 @@
 import * as THREE  from 'three';
 
-export function FileLoaderExtern(data) {
+function BaseFileLoader(data) {
     THREE.FileLoader.call(this);
     this.setResponseType('arraybuffer');
     this.manager = undefined !== data ? data : THREE.DefaultLoadingManager;
 };
 
-FileLoaderExtern.prototype = Object.create(THREE.FileLoader.prototype);
+BaseFileLoader.prototype = Object.create(THREE.FileLoader.prototype);
+
+export default BaseFileLoader

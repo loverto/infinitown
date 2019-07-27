@@ -14,14 +14,14 @@ function normalize(size, uInt8Array, data) {
     }
 }
 
-export function DataTextureLoaderExtern(size, options, manager) {
+function BaseDataTextureLoader(size, options, manager) {
     this.manager = undefined !== manager ? manager : THREE.DefaultLoadingManager;
     this._size = size;
     this._interleaving = options;
 };
-DataTextureLoaderExtern.prototype = Object.create(THREE.DataTextureLoader.prototype);
+BaseDataTextureLoader.prototype = Object.create(THREE.DataTextureLoader.prototype);
 
-DataTextureLoaderExtern.prototype._parser = function(length) {
+BaseDataTextureLoader.prototype._parser = function(length) {
     var data;
     var size = this._size;
     if (this._interleaving) {
@@ -46,3 +46,5 @@ DataTextureLoaderExtern.prototype._parser = function(length) {
         type : THREE.UnsignedByteType
     };
 };
+
+export default BaseDataTextureLoader;
