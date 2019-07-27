@@ -1,15 +1,17 @@
 import * as THREE from 'three';
 
 /**
- * 处理光的漫反射/环境光
+ * 处理光的漫反射/环境光,球谐函数系数
  * @param jsonData
  * @returns {number[]}
  */
-function coordinateTransformation(jsonData) {
+function sphericalHarmonicsCoefficients(jsonData) {
     debugger
-    // 拷贝元素，从0到26个元素
+    // 拷贝元素，从0到26个元素,球谐波离线预计算的系数因子
     var data = jsonData.slice(0, 27);
     // 我猜应该是9个系数
+    // 通过预先计算出的常数来优化漫反射
+    // 伴随勒让德多项式 常量
     var a = 1 / (2 * Math.sqrt(Math.PI));
     var e = -(.5 * Math.sqrt(3 / Math.PI));
     var i = -e;
@@ -34,7 +36,7 @@ FileLoaderUtils.prototype = Object.create(THREE.FileLoader.prototype);
 FileLoaderUtils.prototype.load = function(url, loadCallback, onProgress, onError) {
     THREE.FileLoader.prototype.load.call(this, url, function(data) {
         var jsonData = JSON.parse(data);
-        var x = coordinateTransformation(jsonData);
+        var x = sphericalHarmonicsCoefficients(jsonData);
         debugger
         loadCallback(x);
     }, onProgress, onError);

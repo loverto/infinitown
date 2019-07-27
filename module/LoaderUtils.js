@@ -273,7 +273,7 @@ self.getCubemap = function(prefix) {
 };
 
 /**
- * 根据key 获取SH
+ * 根据key 获取SH Spherical Harmonics，球面谐波
  * @param notebookID
  * @returns {*}
  */

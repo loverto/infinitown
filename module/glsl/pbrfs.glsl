@@ -319,6 +319,7 @@ float textureAlpha(const in sampler2D texture, const in vec2 uv) {
 
 float adjustSpecular(const in float specular, const in vec3 normal) {
     // Based on The Order : 1886 SIGGRAPH course notes implementation (page 21 notes)
+    // 基于订单：1886 SIGGRAPH课程注释实施（第21页注释）
     float normalLen = length(normal);
     if (normalLen < 1.0) {
         float normalLen2 = normalLen * normalLen;
