@@ -1,5 +1,5 @@
 import * as THREE  from 'three';
-import properties from 'module/state';
+import properties from 'module/GlobalConfig';
 
 var ChunksScene = function() {
     THREE.Scene.call(this);

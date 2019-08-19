@@ -1,12 +1,12 @@
 import * as THREE  from 'three';
 import BaseSceneManager from 'module/BaseSceneManager';
 import 'module/LineSegmentsInit'
-import constants from 'module/state';
+import constants from 'module/GlobalConfig';
 import 'module/PerspectiveCameraUpdate'
 import 'module/OrthographicCameraBase'
 import PerspectiveCameraCtor from  'module/PerspectiveCameraCtor';
 import 'module/BasicShaderMaterial'
-import Table from 'module/table';
+import Table from 'module/Table';
 import ChunksScene from 'module/ChunksScene';
 import EventHandler from 'module/jqueryEventHandler';
 import DragControls from 'module/DragControls';

@@ -1,6 +1,6 @@
 import seedrandom from 'seedrandom'
-import seg from 'module/state';
-var types = {
+import seg from 'module/GlobalConfig';
+var utils = {
     /**
      * 生成随机数
      */
@@ -46,4 +46,4 @@ var types = {
         return tablePosition;
     }
 };
-export default types;
+export default utils;

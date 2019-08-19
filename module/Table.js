@@ -1,9 +1,9 @@
 import * as THREE  from 'three';
 import 'three/examples/js/utils/BufferGeometryUtils'
-import state from 'module/state';
-import Car from 'module/car';
-import Cloud from 'module/cloud';
-import Common from 'module/types';
+import globalConfig from 'module/GlobalConfig';
+import Car from 'module/Car';
+import Cloud from 'module/Cloud';
+import Common from 'module/Utils';
 
 /**
  * 随机获取数组中的元素
@@ -68,13 +68,13 @@ Table.inherit(Object, {
      */
     getChunkData : function(x, y) {
         // 与坐标x取余
-        x = x % state.TABLE_SIZE
+        x = x % globalConfig.TABLE_SIZE
         // 与坐标y取余
-        y = y % state.TABLE_SIZE
+        y = y % globalConfig.TABLE_SIZE
         // 如果小于0 则x的值为表格值加x
-        x < 0 && (x = state.TABLE_SIZE + x)
+        x < 0 && (x = globalConfig.TABLE_SIZE + x)
         // 如果小于0 则y的值为表格值加y
-        y < 0 && (y = state.TABLE_SIZE + y)
+        y < 0 && (y = globalConfig.TABLE_SIZE + y)
         if (undefined !== this.chunks[x]){
             if (undefined !== this.chunks[x][y]) {
                 return this.chunks[x][y];
@@ -298,7 +298,7 @@ Table.inherit(Object, {
                     // 启动材料影子
                     object3D.material.defines.USE_SHADOWMAP = true;
                     // 设置材料影子类型
-                    object3D.material.defines[state.SHADOWMAP_TYPE] = true;
+                    object3D.material.defines[globalConfig.SHADOWMAP_TYPE] = true;
                 }
             }
         })
@@ -311,9 +311,9 @@ Table.inherit(Object, {
     _generate : function() {
         // 根据配置信息生成一个9x9的格子
         var y = 0;
-        for (; y < state.TABLE_SIZE; y++) {
+        for (; y < globalConfig.TABLE_SIZE; y++) {
             var x = 0;
-            for (; x < state.TABLE_SIZE; x++) {
+            for (; x < globalConfig.TABLE_SIZE; x++) {
                 if (undefined === this.chunks[x]) {
                     this.chunks[x] = [];
                 }

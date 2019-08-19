@@ -1,6 +1,6 @@
 import * as  path from 'path';
 import normalize from 'module/normalize';
-import convertArray from 'module/convertArray';
+import convertArray from 'module/ConvertArray';
 import validUrl from 'valid-url';
 
 /**

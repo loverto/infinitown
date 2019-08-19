@@ -1,4 +1,4 @@
-var state = {
+var globalConfig = {
     /**
      * FPS
      */
@@ -60,5 +60,5 @@ var state = {
      */
     FOG_COLOR : 0xa2e8ff
 };
-export default state;
+export default globalConfig;
 

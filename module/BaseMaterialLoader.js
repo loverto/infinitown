@@ -1,7 +1,7 @@
 import * as THREE  from 'three';
 import 'module/BaseShaderMaterial'
 import PBRMaterial from 'module/PBRMaterial';
-import MatcapMaterial from 'module/matcapMaterial';
+import MatcapMaterial from 'module/MatcapMaterial';
 import 'module/LoaderUtils'
 import shaders from 'module/shaders';
 

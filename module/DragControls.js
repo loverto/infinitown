@@ -1,5 +1,5 @@
 import * as THREE  from 'three';
-import constant from 'module/state';
+import constant from 'module/GlobalConfig';
 import Events from 'module/Events';
 var ndc = new THREE.Vector2;
 
