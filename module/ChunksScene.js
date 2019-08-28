@@ -1,14 +1,15 @@
 import * as THREE  from 'three';
 import properties from 'module/GlobalConfig';
+import {Scene} from "three";
 
-var ChunksScene = function() {
-    THREE.Scene.call(this);
-    this._pickables = [];
-    this.chunks = [];
-    this._initChunks();
-};
-ChunksScene.inherit(THREE.Scene, {
-    _initChunks : function() {
+class ChunksScene extends Scene{
+    constructor() {
+        super();
+        this._pickables = [];
+        this.chunks = [];
+        this._initChunks();
+    }
+    _initChunks() {
         var j = 0;
         for (; j < properties.CHUNK_COUNT; j++) {
             var i = 0;
@@ -21,8 +22,8 @@ ChunksScene.inherit(THREE.Scene, {
                 this.add(id);
             }
         }
-    },
-    _createChunkAt : function(x, time) {
+    }
+    _createChunkAt(x, time) {
         var chunk = new THREE.Object3D;
         // 平面几何
         var geometry = new THREE.PlaneGeometry(properties.CHUNK_SIZE, properties.CHUNK_SIZE, 1, 1);
@@ -48,15 +49,15 @@ ChunksScene.inherit(THREE.Scene, {
         chunk.material = data.material
         chunk.add(data)
         return chunk;
-    },
-    getPickables : function() {
+    }
+    getPickables() {
         return this._pickables;
-    },
+    }
     /**
      * 遍历大块
      * @param callback
      */
-    forEachChunk : function(callback) {
+    forEachChunk(callback) {
         var i = 0;
         for (; i < properties.CHUNK_COUNT; i++) {
             var j = 0;
@@ -66,7 +67,8 @@ ChunksScene.inherit(THREE.Scene, {
             }
         }
     }
-});
+}
+
 
 export default ChunksScene;
 

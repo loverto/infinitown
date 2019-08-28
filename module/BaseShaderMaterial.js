@@ -1,24 +1,26 @@
-import * as THREE  from 'three';
-var keys = ['side', 'alphaTest', 'transparent', 'depthWrite', 'shading', 'wireframe'];
+import {ShaderMaterial} from "three";
 
-/**
- * 着色器材料扩展
- * @param obj
- * @constructor
- */
-var BaseShaderMaterial = function(obj) {
-    obj = obj || {};
-    THREE.ShaderMaterial.call(this, obj);
-    var self = this
-    _.each(keys, function(property) {
-        var method = obj[property];
-        if (undefined !== method) {
-            self[property] = method;
-        }
-    });
-};
-BaseShaderMaterial.inherit(THREE.ShaderMaterial, {
-    onPropertyChange : function(e, prop) {
+const keys = ['side', 'alphaTest', 'transparent', 'depthWrite', 'shading', 'wireframe'];
+
+class BaseShaderMaterial extends ShaderMaterial{
+    /**
+     * 着色器材料扩展
+     * @param obj
+     * @constructor
+     */
+    constructor(obj) {
+        obj = obj || {};
+        super(obj);
+        const self = this;
+        _.each(keys, function(property) {
+            const method = obj[property];
+            if (undefined !== method) {
+                self[property] = method;
+            }
+        });
+    }
+
+    onPropertyChange(e, prop) {
         Object.defineProperty(this, e, {
             get : function() {
                 return this['_' + e];
@@ -28,10 +30,11 @@ BaseShaderMaterial.inherit(THREE.ShaderMaterial, {
                 prop.call(this, result);
             }
         });
-    },
-    clone : function(to) {
-        var material = to || new BaseShaderMaterial;
-        THREE.Material.prototype.clone.call(this, material)
+    }
+
+    clone(to) {
+        const material = to || new BaseShaderMaterial;
+        super.clone(material)
         material.shading = this.shading
         material.wireframe = this.wireframe
         material.wireframeLinewidth = this.wireframeLinewidth
@@ -43,6 +46,6 @@ BaseShaderMaterial.inherit(THREE.ShaderMaterial, {
         material.morphNormals = this.morphNormals
         return material;
     }
-});
+}
 
 export default BaseShaderMaterial;

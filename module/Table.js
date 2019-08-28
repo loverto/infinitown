@@ -14,59 +14,133 @@ function getElementByRandom(options) {
     return options[Math.floor(Common.random() * options.length)];
 }
 
-/**
- * 获得邻近汽车更新
- * @param blocksObjects 块数据
- * @param lanesObjects 车到数据
- * @param intersectionsObjects 十字路口数据
- * @param carsObjects 车数据
- * @param cloudsObjects 云数据
- */
-var Table = function(blocksObjects, lanesObjects, intersectionsObjects, carsObjects, cloudsObjects) {
-    // 是否包含体育场
-    this._containsStadium = false;
-    //
-    this.blocks = blocksObjects;
-    // 车道
-    this.lanes = [];
-    // 十字路口
-    this.intersections = intersectionsObjects;
-    // 车
-    this.carObjects = carsObjects;
-    // 可以移动的对象，比如车和云
-    this.mobs = [];
-    // 大块的信息
-    this.chunks = [];
-    // 云
-    this.cloudObjects = cloudsObjects;
-    // 遍历车道，根据类型不同来初始化不同的数据
-    lanesObjects.forEach(function(lane) {
-        switch(lane.name) {
-            // 类型为1的路加十个
-        case 'Road_Lane_01_fixed':
-            var e = 0;
-            for (; e < 10; e++) {
-                this.lanes.push(lane);
+class Table extends Object{
+
+    /**
+     * 获得邻近汽车更新
+     * @param blocksObjects 块数据
+     * @param lanesObjects 车到数据
+     * @param intersectionsObjects 十字路口数据
+     * @param carsObjects 车数据
+     * @param cloudsObjects 云数据
+     */
+    constructor(blocksObjects, lanesObjects, intersectionsObjects, carsObjects, cloudsObjects) {
+        super();
+        // 是否包含体育场
+        this._containsStadium = false;
+        //
+        this.blocks = blocksObjects;
+        // 车道
+        this.lanes = [];
+        // 十字路口
+        this.intersections = intersectionsObjects;
+        // 车
+        this.carObjects = carsObjects;
+        // 可以移动的对象，比如车和云
+        this.mobs = [];
+        // 大块的信息
+        this.chunks = [];
+        // 云
+        this.cloudObjects = cloudsObjects;
+        // 遍历车道，根据类型不同来初始化不同的数据
+        lanesObjects.forEach(function(lane) {
+            switch(lane.name) {
+                // 类型为1的路加十个
+                case 'Road_Lane_01_fixed':
+                    var e = 0;
+                    for (; e < 10; e++) {
+                        this.lanes.push(lane);
+                    }
+                    break;
+                //类型为3的加5个
+                case 'Road_Lane_03_fixed':
+                    e = 0;
+                    for (; e < 5; e++) {
+                        this.lanes.push(lane);
+                    }
             }
-            break;
-            //类型为3的加5个
-        case 'Road_Lane_03_fixed':
-            e = 0;
-            for (; e < 5; e++) {
-                this.lanes.push(lane);
-            }
-        }
-    }, this);
-    this._generate();
-};
-Table.inherit(Object, {
+        }, this);
+        /**
+         * 获取相邻的大厦建筑
+         */
+        this._getNeighboringBlocks = function() {
+            // 建筑物
+            var blocks = [];
+            // 根据坐标遍历四周的相邻大厦建筑
+            return function(x, y) {
+                blocks.length = 0
+                this._forEachNeighboringChunk(x, y, function(chunk) {
+                    // 存入建筑物名称
+                    blocks.push(chunk.block.name);
+                })
+                return blocks;
+            };
+        }()
+
+        /**
+         * 获取相邻的车
+         */
+        this.getNeighboringCars = function() {
+            // 获取相邻的车
+            var neighCars = [];
+
+            return function(car) {
+                neighCars.length = 0
+                // 在scene graph（场景图）中，一个对象的父级对象。 一个对象最多仅能有一个父级对象。
+                // 遍历当前车所在的块中是不是有相邻的车
+                car.parent.traverse(function(carTraverse) {
+                    // 把周围的车获取到，并存储在数组中
+                    // 是car并且不是自己，这样的车是相邻的车
+                    if ('car' === carTraverse.name && carTraverse !== car) {
+                        neighCars.push(carTraverse);
+                    }
+                })
+                // 遍历相邻的块中的车跟当前块中的车是否相邻
+                this._forEachNeighboringChunk(car.parent.tableX, car.parent.tableY, function(chunk) {
+                    // 遍历相邻的块
+                    chunk.traverse(function(carTraverse) {
+                        if ('car' === carTraverse.name) {
+                            neighCars.push(carTraverse);
+                        }
+                    });
+                })
+                return neighCars;
+            };
+        }()
+        /**
+         * 遍历每个相邻块
+         */
+        this._forEachNeighboringChunk = function() {
+            // 创建初始坐标
+            var initCoordTmp = new THREE.Vector2;
+            // 初始化区块的矩阵坐标
+            var chunkCoords = [new THREE.Vector2(-1, -1), new THREE.Vector2(1, 0), new THREE.Vector2(1, 0), new THREE.Vector2(0, 1), new THREE.Vector2(0, 1), new THREE.Vector2(-1, 0), new THREE.Vector2(-1, 0), new THREE.Vector2(0, -1)];
+            return function(x, y , callback) {
+                // 初始坐标赋值，值为传入的坐标
+                initCoordTmp.set(x, y);
+                // 遍历坐标
+                chunkCoords.forEach(function(coord) {
+                    // 坐标相加
+                    initCoordTmp.add(coord);
+                    // 获取分块中的数据，根据计算之后的坐标取chunk
+                    var chunk = this.getChunkData(initCoordTmp.x, initCoordTmp.y);
+                    if (chunk) {
+                        callback(chunk.node);
+                    }
+                }, this);
+            };
+        }()
+        this._generate();
+
+    }
+
     /**
      * 获取大块的数据
      * @param x
      * @param y
      * @returns {*}
      */
-    getChunkData : function(x, y) {
+    getChunkData(x, y) {
         // 与坐标x取余
         x = x % globalConfig.TABLE_SIZE
         // 与坐标y取余
@@ -80,86 +154,20 @@ Table.inherit(Object, {
                 return this.chunks[x][y];
             }
         }
-    },
-    /**
-     * 获取相邻的车
-     */
-    getNeighboringCars : function() {
-    // 获取相邻的车
-        var neighCars = [];
+    }
 
-        return function(car) {
-            neighCars.length = 0
-            // 在scene graph（场景图）中，一个对象的父级对象。 一个对象最多仅能有一个父级对象。
-            // 遍历当前车所在的块中是不是有相邻的车
-            car.parent.traverse(function(carTraverse) {
-                // 把周围的车获取到，并存储在数组中
-                // 是car并且不是自己，这样的车是相邻的车
-                if ('car' === carTraverse.name && carTraverse !== car) {
-                    neighCars.push(carTraverse);
-                }
-            })
-            // 遍历相邻的块中的车跟当前块中的车是否相邻
-            this._forEachNeighboringChunk(car.parent.tableX, car.parent.tableY, function(chunk) {
-                // 遍历相邻的块
-                chunk.traverse(function(carTraverse) {
-                    if ('car' === carTraverse.name) {
-                        neighCars.push(carTraverse);
-                    }
-                });
-            })
-            return neighCars;
-        };
-    }(),
     /**
      * 更新
      * @param data 延时参数等等
      */
-    update : function(data) {
+    update(data) {
         // 遍历可移动内容
         this.mobs.forEach(function(object) {
             object.update(data);
         });
-    },
-    /**
-     * 遍历每个相邻块
-     */
-    _forEachNeighboringChunk : function() {
-        // 创建初始坐标
-        var initCoordTmp = new THREE.Vector2;
-        // 初始化区块的矩阵坐标
-        var chunkCoords = [new THREE.Vector2(-1, -1), new THREE.Vector2(1, 0), new THREE.Vector2(1, 0), new THREE.Vector2(0, 1), new THREE.Vector2(0, 1), new THREE.Vector2(-1, 0), new THREE.Vector2(-1, 0), new THREE.Vector2(0, -1)];
-        return function(x, y , callback) {
-            // 初始坐标赋值，值为传入的坐标
-            initCoordTmp.set(x, y);
-            // 遍历坐标
-            chunkCoords.forEach(function(coord) {
-                // 坐标相加
-                initCoordTmp.add(coord);
-                // 获取分块中的数据，根据计算之后的坐标取chunk
-                var chunk = this.getChunkData(initCoordTmp.x, initCoordTmp.y);
-                if (chunk) {
-                    callback(chunk.node);
-                }
-            }, this);
-        };
-    }(),
-    /**
-     * 获取相邻的大厦建筑
-     */
-    _getNeighboringBlocks : function() {
-        // 建筑物
-        var blocks = [];
-        // 根据坐标遍历四周的相邻大厦建筑
-        return function(x, y) {
-            blocks.length = 0
-            this._forEachNeighboringChunk(x, y, function(chunk) {
-                // 存入建筑物名称
-                blocks.push(chunk.block.name);
-            })
-            return blocks;
-        };
-    }(),
+    }
+
+
     /**
      * 获取随机大厦
      * @param x
@@ -167,7 +175,7 @@ Table.inherit(Object, {
      * @returns {*}
      * @private
      */
-    _getRandomBlockAt : function(x, y) {
+    _getRandomBlockAt(x, y) {
         var block;
         var i = 0;
         // 获取相邻的块
@@ -195,7 +203,7 @@ Table.inherit(Object, {
             i++;
         }
         return block;
-    },
+    }
     /**
      * 获取随机大块
      * @param x
@@ -203,7 +211,7 @@ Table.inherit(Object, {
      * @returns {Object3D}
      * @private
      */
-    _getRandomChunk : function(x, y) {
+    _getRandomChunk(x, y) {
         // 创建矩阵
         var matrix = new THREE.Matrix4;
         // 矩阵世界反向
@@ -303,12 +311,12 @@ Table.inherit(Object, {
             }
         })
         return randomChunkObject3;
-    },
+    }
     /**
      * 生成
      * @private
      */
-    _generate : function() {
+    _generate() {
         // 根据配置信息生成一个9x9的格子
         var y = 0;
         for (; y < globalConfig.TABLE_SIZE; y++) {
@@ -328,7 +336,7 @@ Table.inherit(Object, {
             }
         }
     }
-});
+}
 
 export default Table;
 

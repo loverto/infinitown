@@ -73,16 +73,15 @@ if (window.parent === window) {
     load();
 }
 
-var utils = function() {
-};
-utils.inherit(Object, {
-    pause : function() {
+class utils extends Events{
+    static pause() {
         sceneCanvas.pause();
-    },
-    resume : function() {
+    }
+    static resume() {
         sceneCanvas.resume();
-    },
-    load : load
-});
-utils.mixin(Events);
+    }
+
+};
+
+utils.load = load
 window.api = new utils;

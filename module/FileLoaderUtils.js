@@ -1,4 +1,5 @@
-import * as THREE from 'three';
+import {FileLoader} from "three";
+import {DefaultLoadingManager} from "three";
 
 /**
  * 处理光的漫反射/环境光,球谐函数系数
@@ -26,19 +27,18 @@ function sphericalHarmonicsCoefficients(jsonData) {
         return position * data[i];
     });
 }
+class FileLoaderUtils extends FileLoader{
+    constructor(data){
+        super();
+        this.manager = undefined !== data ? data : DefaultLoadingManager;
+    }
+    load(url, loadCallback, onProgress, onError) {
+        super.load(url, function(data) {
+            const jsonData = JSON.parse(data);
+            const x = sphericalHarmonicsCoefficients(jsonData);
+            loadCallback(x);
+        }, onProgress, onError);
+    }
+}
 
-function FileLoaderUtils(data) {
-    THREE.FileLoader.call(this);
-    this.manager = undefined !== data ? data : THREE.DefaultLoadingManager;
-};
-FileLoaderUtils.prototype = Object.create(THREE.FileLoader.prototype);
-
-FileLoaderUtils.prototype.load = function(url, loadCallback, onProgress, onError) {
-    THREE.FileLoader.prototype.load.call(this, url, function(data) {
-        var jsonData = JSON.parse(data);
-        var x = sphericalHarmonicsCoefficients(jsonData);
-        debugger
-        loadCallback(x);
-    }, onProgress, onError);
-};
 export default FileLoaderUtils

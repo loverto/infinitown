@@ -1,4 +1,4 @@
-var Events = {
+class Events{
     /**
      * 事件注册工具
      * @param type
@@ -6,7 +6,7 @@ var Events = {
      * @param context
      * @returns {Events}
      */
-    on : function(type, callback, context) {
+    on(type, callback, context) {
         if (!eventsApi(this, 'on', type, [callback, context]) || !callback) {
             return this;
         }
@@ -19,7 +19,7 @@ var Events = {
             context : context,
             ctx : context || this
         }), this;
-    },
+    }
     /**
      * 执行一次事件
      * @param type
@@ -27,7 +27,7 @@ var Events = {
      * @param context
      * @returns {Events}
      */
-    once : function(type, callback, context) {
+    once(type, callback, context) {
         if (!eventsApi(this, 'once', type, [callback, context]) || !callback) {
             return this;
         }
@@ -37,7 +37,7 @@ var Events = {
             callback.apply(this, arguments);
         });
         return onceListener._callback = callback, this.on(type, onceListener, context);
-    },
+    }
     /**
      * 取消事件
      * @param name
@@ -45,7 +45,7 @@ var Events = {
      * @param context
      * @returns {Events}
      */
-    off : function(name, callback, context) {
+    off(name, callback, context) {
         var listeners;
         var handler;
         var _ref2;
@@ -81,13 +81,13 @@ var Events = {
             }
         }
         return this;
-    },
+    }
     /**
      * 触发事件
      * @param type
      * @returns {Events}
      */
-    trigger : function(type) {
+    trigger(type) {
         if (!this._events) {
             return this;
         }
@@ -102,7 +102,7 @@ var Events = {
         obj && check(obj, args)
         fn && check(fn, arguments)
         return this;
-    },
+    }
     /**
      * 停止监听
      * @param obj
@@ -110,7 +110,7 @@ var Events = {
      * @param callback
      * @returns {Events}
      */
-    stopListening : function(obj, name, callback) {
+    stopListening(obj, name, callback) {
         var listeningTo = this._listeningTo;
         if (!listeningTo) {
             return this;
@@ -132,7 +132,9 @@ var Events = {
         }
         return this;
     }
-};
+}
+
+
 var i = /\s+/;
 var prototypeOfArray = [];
 // 数组的切片方法

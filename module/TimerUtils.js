@@ -1,32 +1,34 @@
-/**
- * 时间工具
- * @param options
- */
-var timerUtils = function(options) {
-    options = _.extend({}, {
-        duration : 1000,
-        repeat : false,
-        onStart : function() {
-        },
-        onEnd : function() {
-        }
-    }, options);
-    // 持续时间
-    this.duration = options.duration;
-    // 重复
-    this.repeat = options.repeat;
-    // 开始回调函数
-    this.startCallback = options.onStart;
-    // 结束的回调函数
-    this.endCallback = options.onEnd;
-    // 重置
-    this.reset();
-};
-timerUtils.inherit(Object, {
+class timerUtils extends Object{
+    /**
+     * 时间工具
+     * @param options
+     */
+    constructor(options) {
+        super();
+        options = _.extend({}, {
+            duration : 1000,
+            repeat : false,
+            onStart() {
+            },
+            onEnd() {
+            }
+        }, options);
+        // 持续时间
+        this.duration = options.duration;
+        // 重复
+        this.repeat = options.repeat;
+        // 开始回调函数
+        this.startCallback = options.onStart;
+        // 结束的回调函数
+        this.endCallback = options.onEnd;
+        // 重置
+        this.reset();
+    }
+
     /**
      * 重置
      */
-    reset : function() {
+    reset() {
         // 已经开始
         this.started = false
         // 已经暂停
@@ -36,12 +38,12 @@ timerUtils.inherit(Object, {
         // 已用时间
         this.elapsedTime = 0
         return this;
-    },
+    }
     /**
      * 开始
      * @returns {Object}
      */
-    start : function() {
+    start() {
         if (this.started || this.ended) {
             return this;
         } else {
@@ -51,38 +53,38 @@ timerUtils.inherit(Object, {
             this.startCallback()
             return this
         }
-    },
+    }
     /**
      * 结束
      * @returns {Object}
      */
-    stop : function() {
+    stop() {
         if (this.started){
             this.reset()
         } else {
             return this;
         }
-    },
+    }
     /**
      * 暂停
      */
-    pause : function() {
+    pause() {
         this.paused = true
         return this;
-    },
+    }
     /**
      * 恢复
      */
-    resume : function() {
+    resume() {
         this.paused = false
         return this;
-    },
+    }
     /**
      * 更新
      * @param prop
      * @returns {Object}
      */
-    update : function(prop) {
+    update(prop) {
         if(!this.started || this.paused || this.ended ){
             return this
         } else {
@@ -93,10 +95,10 @@ timerUtils.inherit(Object, {
                 this.endCallback()
                 this.ended = true
             }
-           return this
+            return this
         }
     }
-});
+}
 
 export default timerUtils;
 

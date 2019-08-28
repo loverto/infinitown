@@ -1,29 +1,32 @@
-import * as THREE  from 'three';
+import {RawShaderMaterial} from "three";
+import {Material} from "three";
 
-var keys = ['side', 'alphaTest', 'transparent', 'depthWrite', 'shading', 'wireframe'];
-/**
- * 原始着色器扩展
- * @param obj
- * @constructor
- */
-var BaseRawShaderMaterial = function(obj) {
-    obj = obj || {};
-    THREE.RawShaderMaterial.call(this, obj);
-    var self = this;
-    _.each(keys, function(property) {
-        var method = obj[property];
-        if (undefined !== method) {
-            self[property] = method;
-        }
-    });
-};
-BaseRawShaderMaterial.inherit(THREE.RawShaderMaterial, {
+const keys = ['side', 'alphaTest', 'transparent', 'depthWrite', 'shading', 'wireframe'];
+
+class BaseRawShaderMaterial extends RawShaderMaterial{
+    /**
+     * 原始着色器扩展
+     * @param obj
+     * @constructor
+     */
+    constructor(obj) {
+        obj = obj || {};
+        super(obj);
+        const self = this;
+        _.each(keys, function(property) {
+            const method = obj[property];
+            if (undefined !== method) {
+                self[property] = method;
+            }
+        });
+    }
+
     /**
      * 属性改变
      * @param e
      * @param prop
      */
-    onPropertyChange : function(e, prop) {
+    onPropertyChange(e, prop) {
         Object.defineProperty(this, e, {
             get : function() {
                 return this['_' + e];
@@ -33,15 +36,16 @@ BaseRawShaderMaterial.inherit(THREE.RawShaderMaterial, {
                 prop.call(this, result);
             }
         });
-    },
+    }
+
     /**
      * 克隆
      * @param materialTmp
      * @returns {*|Material}
      */
-    clone : function(materialTmp) {
-        var material = materialTmp || new Material;
-        THREE.RawShaderMaterial.prototype.clone.call(this, material)
+    clone(materialTmp) {
+        const material = materialTmp || new Material();
+        super.clone(material)
         // 设置阴影
         material.shading = this.shading
         // 设置线框
@@ -62,7 +66,7 @@ BaseRawShaderMaterial.inherit(THREE.RawShaderMaterial, {
         material.morphNormals = this.morphNormals
         return material;
     }
-});
+}
 
 export default BaseRawShaderMaterial;
 

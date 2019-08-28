@@ -1,46 +1,47 @@
 import BaseShaderMaterial from 'module/BaseShaderMaterial';
 import shaders from 'module/shaders';
 
-/**
- * 基本着色器材质
- * @param obj
- * @constructor
- */
-var BasicShaderMaterial = function(obj) {
-    obj = Object.assign({
-        vertexShader : shaders['basic.vs'],
-        fragmentShader : shaders['basic.fs'],
-        uniforms : {
-            diffuse : {
-                value : new THREE.Color(0xff00ff)
-            },
-            map : {
-                value : null
-            },
-            offsetRepeat : {
-                value : new THREE.Vector4(0, 0, 1, 1)
-            },
-            opacity : {
-                value : 1
+class BasicShaderMaterial extends BaseShaderMaterial{
+    /**
+     * 基本着色器材质
+     * @param obj
+     * @constructor
+     */
+    constructor(obj) {
+        obj = Object.assign({
+            vertexShader : shaders['basic.vs'],
+            fragmentShader : shaders['basic.fs'],
+            uniforms : {
+                diffuse : {
+                    value : new THREE.Color(0xff00ff)
+                },
+                map : {
+                    value : null
+                },
+                offsetRepeat : {
+                    value : new THREE.Vector4(0, 0, 1, 1)
+                },
+                opacity : {
+                    value : 1
+                }
             }
-        }
-    }, obj);
-    BaseShaderMaterial.call(this, obj);
-    Object.keys(this.uniforms).forEach(function(name) {
-        this.onPropertyChange(name, function(initSBC) {
-            this.uniforms[name].value = initSBC;
-        });
-    }, this);
-};
-BasicShaderMaterial.inherit(BaseShaderMaterial, {
+        }, obj);
+        super(obj);
+        Object.keys(this.uniforms).forEach(function(name) {
+            this.onPropertyChange(name, function(initSBC) {
+                this.uniforms[name].value = initSBC;
+            });
+        }, this);
+    }
+
     /**
      * 克隆
      * @param params
      * @returns {*|BasicShaderMaterial}
      */
-    clone : function(params) {
+    clone(params) {
         var data = params || new BasicShaderMaterial;
-        BaseShaderMaterial.prototype.clone.call(this, data)
+        super.clone(data)
         // 设置名字哦
         data.name = this.name
         // 设置透明度
@@ -55,5 +56,7 @@ BasicShaderMaterial.inherit(BaseShaderMaterial, {
         }, this)
         return data;
     }
-});
+}
+
+
 export {BasicShaderMaterial};

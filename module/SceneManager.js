@@ -12,28 +12,29 @@ import EventHandler from 'module/jqueryEventHandler';
 import DragControls from 'module/DragControls';
 import vignettingRender from 'module/vignettingRender';
 
-/**
- * 场景管理
- * @param data
- * @constructor
- */
-var SceneManager = function(data) {
-    BaseSceneManager.call(this, data);
-    // 初始化相机
-    this.initCamera();
-    // 绘制坐标系
-    this.gridCoords = new THREE.Vector2;
-    // 相机偏差
-    this.cameraOffset = new THREE.Vector2;
-    // 场景
-    this.scene = new THREE.Scene;
-};
-SceneManager.inherit(BaseSceneManager, {
+class SceneManager extends BaseSceneManager{
+    /**
+     * 场景管理
+     * @param data
+     * @constructor
+     */
+    constructor(data) {
+        super(data);
+        // 初始化相机
+        this.initCamera();
+        // 绘制坐标系
+        this.gridCoords = new THREE.Vector2;
+        // 相机偏差
+        this.cameraOffset = new THREE.Vector2;
+        // 场景
+        this.scene = new THREE.Scene;
+    }
+
     /**
      * 开始
      * @param objects
      */
-    start : function(objects) {
+    start(objects) {
         // 开始处理加载的数据
         var blocksChildren = objects.getObjectByName('blocks').children;
         var lanesChildren = objects.getObjectByName('lanes').children;
@@ -94,12 +95,12 @@ SceneManager.inherit(BaseSceneManager, {
             this._lastPinchScale = uv3v;
         }, this);
         // 调用父类的开始方法
-        BaseSceneManager.prototype.start.call(this);
-    },
+        super.start();
+    }
     /**
      * 初始化光线
      */
-    initDirLight : function() {
+    initDirLight() {
         // '#fff5da' 白色光
         //创建定向光，颜色为白色,光的强度为1.25
         var light = new THREE.DirectionalLight(0xfff5da, 1.25);
@@ -130,29 +131,29 @@ SceneManager.inherit(BaseSceneManager, {
         this.renderer.shadowMap.enabled = true;
         // webgl开启地图影子的类型
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    },
+    }
     /**
      * 初始化插图
      */
-    initVignetting : function() {
+    initVignetting() {
         // 光晕
         this.vignetting = new vignettingRender;
-    },
+    }
     /**
      * 设置大小
      * @param width
      * @param height
      */
-    setSize : function(width, height) {
-        BaseSceneManager.prototype.setSize.call(this, width, height);
+    setSize(width, height) {
+        super.setSize(width, height);
         if (this.dirLight) {
             this._resizeShadowMapFrustum(width, height);
         }
-    },
+    }
     /**
      * 初始化相机
      */
-    initCamera : function() {
+    initCamera() {
         var psisq = 120;
         Math.tan(constants.CAMERA_ANGLE) * Math.sqrt(2 * Math.pow(psisq, 2));
         // 初始化透视相机
@@ -163,11 +164,11 @@ SceneManager.inherit(BaseSceneManager, {
         this.camera.lookAt(new THREE.Vector3);
         //单独设置相机y轴位置
         this.camera.position.y = 200;
-    },
+    }
     /**
      * 刷新块场景
      */
-    refreshChunkScene : function() {
+    refreshChunkScene() {
         this.chunkScene.forEachChunk(function(chunk, chunkCenteredX, chunkCenteredY) {
             var coordX = this.gridCoords.x + chunkCenteredX;
             var coordY = this.gridCoords.y + chunkCenteredY;
@@ -175,25 +176,25 @@ SceneManager.inherit(BaseSceneManager, {
             chunk.remove(chunk.getObjectByName('chunk'));
             chunk.add(chunkData.node);
         }.bind(this));
-    },
+    }
     /**
      * 更新
      * @param data
      */
-    update : function(data) {
+    update(data) {
         // 更新控制事件
         this.controls.update();
         // 更新场景布局中的可移动内容
         this.table.update(data);
         // 更新相机
         this.camera.update();
-        BaseSceneManager.prototype.update.call(this, data);
-    },
+        super.update(data);
+    }
     /**
      * 渲染
      * @param text
      */
-    render : function(text) {
+    render(text) {
         var totalPlayers = 0;
         // 地图的片段和属性
         var mapFragmentAndProps = function() {
@@ -216,14 +217,14 @@ SceneManager.inherit(BaseSceneManager, {
         if (this.config.logCalls) {
             this.dcCounter.textContent = totalPlayers + ' DC';
         }
-    },
+    }
     /**
      * 刷新阴影
      * @param width
      * @param height
      * @private
      */
-    _resizeShadowMapFrustum : function(width, height) {
+    _resizeShadowMapFrustum(width, height) {
         var start = 1.25;
         var childStartView2 = Math.max(width / height, start);
         var halfHeight = 75 * childStartView2;
@@ -233,7 +234,7 @@ SceneManager.inherit(BaseSceneManager, {
         this.dirLight.shadow.camera.bottom = -halfHeight;
         this.dirLight.shadow.camera.updateProjectionMatrix();
     }
-});
+}
 
 export default SceneManager;
 

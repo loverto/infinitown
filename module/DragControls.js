@@ -3,52 +3,89 @@ import constant from 'module/GlobalConfig';
 import Events from 'module/Events';
 var ndc = new THREE.Vector2;
 
-/**
- * 拖动控件
- * @param inputManager
- * @param scene
- * @param camera
- * @constructor
- */
-var DragControls = function(inputManager, scene, camera) {
-    // 是否平移
-    this._panning = false;
-    // 开始坐标
-    this._startCoords = new THREE.Vector2;
-    // 最后一个偏移
-    this._lastOffset = new THREE.Vector2;
-    // 偏差
-    this._offset = new THREE.Vector2;
-    // 平移速度
-    this._speed = new THREE.Vector3(constant.PAN_SPEED, 0, constant.PAN_SPEED);
-    // 场景偏移
-    this._sceneOffset = new THREE.Vector3;
-    // 世界偏移
-    this._worldOffset = new THREE.Vector3;
-    // 事件控制
-    this.inputManager = inputManager;
-    // 场景
-    this._scene = scene;
-    // 注册开始拖动事件
-    this.inputManager.on('startdrag', this._onStartDrag, this);
-    // 注册拖动结束事件
-    this.inputManager.on('enddrag', this._onEndDrag, this);
-    // 注册拖事件
-    this.inputManager.on('drag', this._onDrag, this);
-    // 相机
-    this._camera = camera;
-    // 光线投射相机
-    this._raycaster = new THREE.Raycaster;
-    // 是否启动
-    this.enabled = true;
-};
-DragControls.inherit(Object, {
+
+class DragControls extends Events{
+    /**
+     * 拖动控件
+     * @param inputManager
+     * @param scene
+     * @param camera
+     * @constructor
+     */
+    constructor(inputManager, scene, camera) {
+        super();
+        // 是否平移
+        this._panning = false;
+        // 开始坐标
+        this._startCoords = new THREE.Vector2;
+        // 最后一个偏移
+        this._lastOffset = new THREE.Vector2;
+        // 偏差
+        this._offset = new THREE.Vector2;
+        // 平移速度
+        this._speed = new THREE.Vector3(constant.PAN_SPEED, 0, constant.PAN_SPEED);
+        // 场景偏移
+        this._sceneOffset = new THREE.Vector3;
+        // 世界偏移
+        this._worldOffset = new THREE.Vector3;
+        // 事件控制
+        this.inputManager = inputManager;
+        // 场景
+        this._scene = scene;
+        // 注册开始拖动事件
+        this.inputManager.on('startdrag', this._onStartDrag, this);
+        // 注册拖动结束事件
+        this.inputManager.on('enddrag', this._onEndDrag, this);
+        // 注册拖事件
+        this.inputManager.on('drag', this._onDrag, this);
+        // 相机
+        this._camera = camera;
+        // 光线投射相机
+        this._raycaster = new THREE.Raycaster;
+        // 是否启动
+        this.enabled = true;
+        /**
+         * 更新
+         */
+        this.update = function() {
+            var offset = new THREE.Vector2;
+            var angle = new THREE.Vector2;
+            var point = new THREE.Vector3;
+            return function() {
+                // 执行光线投射相机
+                this.raycast();
+                // 获取移动偏差
+                offset.copy(this._offset);
+                // 设置旋转角
+                offset.rotateAround(angle, -Math.PI / 4);
+                // 设置世界offset
+                this._worldOffset.set(offset.x, 0, offset.y).multiply(this._speed);
+                point.lerp(this._worldOffset, .05);
+                // 场景位置添加向量
+                this._scene.position.addVectors(this._sceneOffset, point);
+            };
+        }()
+        /**
+         * 开始拖动
+         */
+        this._onDrag = function(e) {
+            var vector = new THREE.Vector2;
+            return function(planeOrigin) {
+                // 如果当前在拖动可用，并且平移已经开启，给offset赋值
+                if (this.enabled && this._panning) {
+                    vector.subVectors(planeOrigin, this._startCoords);
+                    this._offset.addVectors(this._lastOffset, vector);
+                }
+            };
+        }()
+    }
+
     /**
      * 开始拖动事件
      * @param e
      * @private
      */
-    _onStartDrag : function(e) {
+    _onStartDrag(e) {
         // 如果启用状态，获取开始坐标，并且设置
         if (this.enabled) {
             // 平移开始
@@ -56,13 +93,13 @@ DragControls.inherit(Object, {
             // 设置当前的坐标位置
             this._startCoords.set(e.x, e.y);
         }
-    },
+    }
     /**
      * 结束拖动事件
      * @param e
      * @private
      */
-    _onEndDrag : function(e) {
+    _onEndDrag(e) {
         // 如果当前块可用
         if (this.enabled) {
             // 结束平移
@@ -70,24 +107,12 @@ DragControls.inherit(Object, {
             // 把offset的值赋值给lastOffset
             this._lastOffset.copy(this._offset);
         }
-    },
-    /**
-     * 开始拖动
-     */
-    _onDrag : function(e) {
-        var vector = new THREE.Vector2;
-        return function(planeOrigin) {
-            // 如果当前在拖动可用，并且平移已经开启，给offset赋值
-            if (this.enabled && this._panning) {
-                vector.subVectors(planeOrigin, this._startCoords);
-                this._offset.addVectors(this._lastOffset, vector);
-            }
-        };
-    }(),
+    }
+
     /**
      * 光线投射相机
      */
-    raycast : function() {
+    raycast() {
         this._raycaster.setFromCamera(ndc, this._camera);
         // 获取交叉对象
         var intersectObjects = this._raycaster.intersectObjects(this._scene.getPickables());
@@ -103,30 +128,9 @@ DragControls.inherit(Object, {
                 this.trigger('move', object.centeredX, object.centeredY);
             }
         }
-    },
-    /**
-     * 更新
-     */
-    update : function() {
-        var offset = new THREE.Vector2;
-        var angle = new THREE.Vector2;
-        var point = new THREE.Vector3;
-        return function() {
-            // 执行光线投射相机
-            this.raycast();
-            // 获取移动偏差
-            offset.copy(this._offset);
-            // 设置旋转角
-            offset.rotateAround(angle, -Math.PI / 4);
-            // 设置世界offset
-            this._worldOffset.set(offset.x, 0, offset.y).multiply(this._speed);
-            point.lerp(this._worldOffset, .05);
-            // 场景位置添加向量
-            this._scene.position.addVectors(this._sceneOffset, point);
-        };
-    }()
-});
-DragControls.mixin(Events);
+    }
+
+}
 
 export default DragControls;
 
