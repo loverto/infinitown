@@ -14,7 +14,7 @@ function getDistance(touches) {
  *
  * @param obj 注册事件对象，正常情况下为canvas对象，如果没有的话就把事件注册给window对象
  */
-class init extends Events{
+class EventHandler extends Events{
     constructor(obj) {
         super();
         var e = false;
@@ -124,4 +124,4 @@ class init extends Events{
     }
 }
 
-export default init;
+export default EventHandler;

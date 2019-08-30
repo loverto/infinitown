@@ -1,5 +1,5 @@
 import seedrandom from 'seedrandom'
-import seg from 'module/GlobalConfig';
+import GlobalConfig from 'module/GlobalConfig';
 class utils {
 
     /**
@@ -32,8 +32,8 @@ class utils {
      * @returns {*}
      */
     static getTablePosition(position, tableX, tableY, tablePosition) {
-        tablePosition.x = seg.CHUNK_SIZE * tableX + position.x
-        tablePosition.z = seg.CHUNK_SIZE * tableY + position.z
+        tablePosition.x = GlobalConfig.CHUNK_SIZE * tableX + position.x
+        tablePosition.z = GlobalConfig.CHUNK_SIZE * tableY + position.z
         return tablePosition;
     }
 }
@@ -43,9 +43,9 @@ class utils {
  */
 utils.random = function() {
     // 根据指定的随机数种子生成随机数
-    var random = seedrandom(seg.RANDOM_SEED);
+    var random = seedrandom(GlobalConfig.RANDOM_SEED);
     return function() {
-        return seg.RANDOM_SEED_ENABLED ? random() : Math.random();
+        return GlobalConfig.RANDOM_SEED_ENABLED ? random() : Math.random();
     };
 }()
 

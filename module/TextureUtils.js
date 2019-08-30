@@ -10,7 +10,7 @@ class TextureUtils {
      * @returns {DataTexture}
      * @constructor
      */
-    static CreateWhiteTexture = function(width, height) {
+    static CreateWhiteTexture(width, height) {
         var dataTexture = TextureUtils.CreateDataTexture(width, height);
         var i = 0;
         for (; i < dataTexture.image.data.length; i++) {
@@ -26,7 +26,7 @@ class TextureUtils {
      * @returns {DataTexture}
      * @constructor
      */
-    static CreateBlackTexture = function(width, height) {
+    static CreateBlackTexture(width, height) {
         var dataTexture = TextureUtils.CreateDataTexture(width, height);
         var i = 0;
         for (; i < dataTexture.image.data.length; i++) {
@@ -41,7 +41,7 @@ class TextureUtils {
      * @returns {DataTexture}
      * @constructor
      */
-    static CreateNormalTexture = function(width, height) {
+    static CreateNormalTexture(width, height) {
         var dataTexture = TextureUtils.CreateDataTexture(width, height);
         var i = 0;
         for (; i < dataTexture.image.data.length; i = i + 3) {
@@ -58,7 +58,7 @@ class TextureUtils {
      * @param height 高
      * @constructor
      */
-    static CreateDataTexture = function(width, height) {
+    static CreateDataTexture(width, height) {
         if (undefined === width) {
             width = 4;
         }

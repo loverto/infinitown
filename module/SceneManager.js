@@ -8,7 +8,7 @@ import PerspectiveCameraCtor from  'module/PerspectiveCameraCtor';
 import 'module/BasicShaderMaterial'
 import Table from 'module/Table';
 import ChunksScene from 'module/ChunksScene';
-import EventHandler from 'module/jqueryEventHandler';
+import EventHandler from 'module/EventHandler';
 import DragControls from 'module/DragControls';
 import vignettingRender from 'module/vignettingRender';
 

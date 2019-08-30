@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import BaseRawShaderMaterial from 'module/BaseRawShaderMaterial';
 import loaderUtils from 'module/LoaderUtils';
-import TextureUtils from 'module/textureUtils';
+import TextureUtils from 'module/TextureUtils';
 import {Vector2} from "three";
 import {Matrix4} from "three";
 import {Vector4} from "three";
