@@ -1,4 +1,4 @@
-import Events from 'module/Events';
+import Events from 'module/event/Events';
 require('jquery-mousewheel')($);
 
 /**

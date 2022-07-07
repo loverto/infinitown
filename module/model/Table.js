@@ -1,9 +1,9 @@
 import * as THREE  from 'three';
 import 'three/examples/js/utils/BufferGeometryUtils'
-import globalConfig from 'module/GlobalConfig';
-import Car from 'module/Car';
-import Cloud from 'module/Cloud';
-import Common from 'module/Utils';
+import globalConfig from 'module/config/GlobalConfig';
+import Car from 'module/model/Car';
+import Cloud from 'module/model/Cloud';
+import Utils from 'module/utils/Utils';
 
 /**
  * 随机获取数组中的元素
@@ -11,7 +11,7 @@ import Common from 'module/Utils';
  * @returns {*}
  */
 function getElementByRandom(options) {
-    return options[Math.floor(Common.random() * options.length)];
+    return options[Math.floor(Utils.random() * options.length)];
 }
 
 class Table extends Object{
@@ -19,7 +19,7 @@ class Table extends Object{
     /**
      * 获得邻近汽车更新
      * @param blocksObjects 块数据
-     * @param lanesObjects 车到数据
+     * @param lanesObjects 车道路数据
      * @param intersectionsObjects 十字路口数据
      * @param carsObjects 车数据
      * @param cloudsObjects 云数据
@@ -222,7 +222,7 @@ class Table extends Object{
         randomChunkObject3.name = 'chunk';
         // 获取随机的大厦建筑
         var block = this._getRandomBlockAt(x, y);
-        var defaultYPos = Math.round(4 * Common.random()) * (Math.PI / 2);
+        var defaultYPos = Math.round(4 * Utils.random()) * (Math.PI / 2);
         // 设置建筑转动轴
         block.rotation.y = defaultYPos;
         // 设置建筑位置
@@ -274,9 +274,9 @@ class Table extends Object{
         randomChunkObject3.add(randomFirstIntersection)
         // 遍历随机生成的车道，根据情况在车道上生成车辆
         randomLanes.forEach(function(randomLane) {
-            // 随即因子，移动设备上设置的小一点，pc设备上设置的大一点，可以有效地优化移动端性能
+            // 随机因子，移动设备上设置的小一点，pc设备上设置的大一点，可以有效地优化移动端性能
             var e = window.isMobile ? .2 : .35;
-            if (Common.random() < e) {
+            if (Utils.random() < e) {
                 // 在随机生成的道路上，随机生成一个车
                 var randomFirstCar = getElementByRandom(this.carObjects).clone();
                 // 生成车
@@ -287,7 +287,7 @@ class Table extends Object{
                 this.mobs.push(car);
             }
         }, this)
-        if (Common.random() > .65) {
+        if (Utils.random() > .65) {
             var randomFirstCloud = getElementByRandom(this.cloudObjects).clone();
             var cloud = new Cloud(this, randomFirstCloud);
             randomChunkObject3.add(cloud);

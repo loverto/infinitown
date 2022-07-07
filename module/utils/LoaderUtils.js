@@ -1,12 +1,12 @@
 // promise 工具类
 import bluebird from 'bluebird';
 
-import parseUrl from 'module/parseUrl';
-import LoadSceneManager from 'module/LoadSceneManager';
-import BaseDataTextureLoader from 'module/BaseDataTextureLoader';
-import AbstrctCompressedTextureLoader from 'module/AbstrctCompressedTextureLoader';
-import FileLoaderUtils from 'module/FileLoaderUtils';
-import BaseFileLoader from 'module/BaseFileLoader';
+import parseUrl from 'module/utils/parseUrl';
+import LoadSceneManager from 'module/scene/LoadSceneManager';
+import BaseDataTextureLoader from 'module/loader/BaseDataTextureLoader';
+import AbstrctCompressedTextureLoader from 'module/loader/AbstrctCompressedTextureLoader';
+import FileLoaderUtils from 'module/utils/FileLoaderUtils';
+import BaseFileLoader from 'module/loader/BaseFileLoader';
 import {LoadingManager} from "three";
 import {TextureLoader} from "three";
 // 加载管理

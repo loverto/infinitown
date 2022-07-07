@@ -1,9 +1,9 @@
 import * as THREE  from 'three';
-import 'module/BaseShaderMaterial'
-import PBRMaterial from 'module/PBRMaterial';
-import MatcapMaterial from 'module/MatcapMaterial';
-import 'module/LoaderUtils'
-import shaders from 'module/shaders';
+import 'module/material/BaseShaderMaterial'
+import PBRMaterial from 'module/material/PBRMaterial';
+import MatcapMaterial from 'module/material/MatcapMaterial';
+import 'module/utils/LoaderUtils'
+import shaders from 'module/render/shaders';
 
 // 获取MateriaLoader的原型用于扩展
 var THREEMateriaLoaderparse = THREE.MaterialLoader.prototype.parse;

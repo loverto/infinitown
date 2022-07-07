@@ -1,6 +1,6 @@
 import * as THREE  from 'three';
-import globalConfig from 'module/GlobalConfig';
-import utils from 'module/Utils';
+import globalConfig from 'module/config/GlobalConfig';
+import Utils from 'module/utils/Utils';
 import {Object3D} from "three";
 // 最小的缓存的行数60x9=540
 var MIN_BUFFER_ROWS = globalConfig.CHUNK_SIZE * globalConfig.TABLE_SIZE;
@@ -33,7 +33,7 @@ class BaseMoveTableModel extends  Object3D{
      */
     _updateTablePosition() {
         // 获取表格位置的值
-        utils.getTablePosition(this.position, this.parent.tableX, this.parent.tableY, this.tablePosition);
+        Utils.getTablePosition(this.position, this.parent.tableX, this.parent.tableY, this.tablePosition);
         // 如果表格最后位置为空，则用当前的表格位置给其赋值
         if (0 === this.lastTablePosition.length()) {
             this.lastTablePosition.copy(this.tablePosition);

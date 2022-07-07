@@ -1,21 +1,24 @@
 import * as THREE  from 'three';
-import BaseSceneManager from 'module/BaseSceneManager';
+import BaseSceneManager from 'module/material/BaseSceneManager';
 import 'module/LineSegmentsInit'
-import constants from 'module/GlobalConfig';
-import 'module/PerspectiveCameraUpdate'
-import 'module/OrthographicCameraBase'
-import PerspectiveCameraCtor from  'module/PerspectiveCameraCtor';
-import 'module/BasicShaderMaterial'
-import Table from 'module/Table';
-import ChunksScene from 'module/ChunksScene';
-import EventHandler from 'module/EventHandler';
-import DragControls from 'module/DragControls';
-import vignettingRender from 'module/vignettingRender';
+import GlobalConfig from 'module/config/GlobalConfig';
+import 'module/camera/PerspectiveCameraUpdate'
+import 'module/camera/OrthographicCameraBase'
+import PerspectiveCameraCtor from 'module/camera/PerspectiveCameraCtor';
+import 'module/material/BasicShaderMaterial'
+import Table from 'module/model/Table';
+import ChunksScene from 'module/scene/ChunksScene';
+import EventHandler from 'module/event/EventHandler';
+import DragControls from 'module/event/DragControls';
+import VignettingRender from 'module/render/VignettingRender';
 
+/**
+ * 场景管理器
+ */
 class SceneManager extends BaseSceneManager{
     /**
      * 场景管理
-     * @param data
+     * @param data 数据
      * @constructor
      */
     constructor(data) {
@@ -52,7 +55,7 @@ class SceneManager extends BaseSceneManager{
         // 场景控制
         this.controls = new DragControls(this.inputManager, this.chunkScene, this.camera);
         // 渲染器清空颜色
-        this.renderer.setClearColor(constants.FOG_COLOR);
+        this.renderer.setClearColor(GlobalConfig.FOG_COLOR);
         // 初始化 定向光
         this.initDirLight();
         // 设置光晕
@@ -119,9 +122,9 @@ class SceneManager extends BaseSceneManager{
         // 影子偏差
         light.shadow.bias = -.001;
         // 影子在地图上解析的宽度
-        light.shadow.mapSize.width = constants.SHADOWMAP_RESOLUTION;
+        light.shadow.mapSize.width = GlobalConfig.SHADOWMAP_RESOLUTION;
         // 影子在地图上解析的高度
-        light.shadow.mapSize.height = constants.SHADOWMAP_RESOLUTION;
+        light.shadow.mapSize.height = GlobalConfig.SHADOWMAP_RESOLUTION;
         // 影子离相机最近50
         light.shadow.camera.near = 50;
         // 影子离相机最远300
@@ -133,11 +136,11 @@ class SceneManager extends BaseSceneManager{
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     }
     /**
-     * 初始化插图
+     * 初始化光晕
      */
     initVignetting() {
         // 光晕
-        this.vignetting = new vignettingRender;
+        this.vignetting = new VignettingRender;
     }
     /**
      * 设置大小
@@ -155,7 +158,7 @@ class SceneManager extends BaseSceneManager{
      */
     initCamera() {
         var psisq = 120;
-        Math.tan(constants.CAMERA_ANGLE) * Math.sqrt(2 * Math.pow(psisq, 2));
+        Math.tan(GlobalConfig.CAMERA_ANGLE) * Math.sqrt(2 * Math.pow(psisq, 2));
         // 初始化透视相机
         this.camera = new PerspectiveCameraCtor(30, window.innerWidth / window.innerHeight, 10, 400);
         // 设定相机位置

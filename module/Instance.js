@@ -1,11 +1,11 @@
 import * as THREE from 'three';
 import bluebird from 'bluebird';
-import 'module/BaseMaterialLoader';
-import loaderUtils from 'module/LoaderUtils';
-import 'module/PBRMaterial'
-import 'module/LoadSceneManager'
+import 'module/loader/BaseMaterialLoader';
+import loaderUtils from 'module/utils/LoaderUtils';
+import 'module/material/PBRMaterial'
+import 'module/scene/LoadSceneManager'
 
-class instance{
+class Instance {
 
     /**
      * 加载场景
@@ -110,5 +110,5 @@ class instance{
 }
 
 
-export default instance;
+export default Instance;
 

@@ -1,6 +1,6 @@
 import * as THREE  from 'three';
-import utils from 'module/Utils';
-import BaseMoveTableModel from 'module/BaseMoveTableModel';
+import Utils from 'module/utils/Utils';
+import BaseMoveTableModel from 'module/model/BaseMoveTableModel';
 var normal = new THREE.Vector3(0, 1, 0);
 
 class Car extends BaseMoveTableModel{
@@ -40,7 +40,7 @@ class Car extends BaseMoveTableModel{
         // 设置点信息的轴角度，y为车的角度
         point.applyAxisAngle(normal, randomCar.rotation.y);
         // 如果随机数大于0.5 则直接在位置中添加点
-        if (utils.random() > .5) {
+        if (Utils.random() > .5) {
             this.position.add(point);
         } else {
             randomCar.rotation.y += Math.PI;
@@ -80,7 +80,7 @@ class Car extends BaseMoveTableModel{
                 // 应用轴角度
                 directionTmp.applyAxisAngle(normal, -Math.PI / 4);
                 // 获取表格位置
-                utils.getTablePosition(this.position, this.parent.tableX, this.parent.tableY, tablePositionTmp);
+                Utils.getTablePosition(this.position, this.parent.tableX, this.parent.tableY, tablePositionTmp);
                 var i = 0;
                 // 遍历车的碰撞点，碰撞点里有两个值，最大值和最小值
                 for (; i < carObject.collisionPoints.length; i++) {
@@ -88,7 +88,7 @@ class Car extends BaseMoveTableModel{
                     // 复制其中任意一个点，并应用车的矩阵
                     materixTmp.copy(pos).applyMatrix4(carObject.matrix);
                     // 根据这个点判断在，获取当前点在地图中的位置坐标
-                    utils.getTablePosition(materixTmp, carObject.parent.tableX, carObject.parent.tableY, tablePositionLastTmp);
+                    Utils.getTablePosition(materixTmp, carObject.parent.tableX, carObject.parent.tableY, tablePositionLastTmp);
                     // 然后计算table地图中的距离，即计算两个点间的距离
                     var length = tablePositionTmp.distanceTo(tablePositionLastTmp);
                     // 如果距离小于等于雷达半径
@@ -120,7 +120,7 @@ class Car extends BaseMoveTableModel{
                 // 位置加上移动方向
                 this.position.add(directionTmp);
                 // 向量获取2位小数点
-                utils.roundVector(this.position, 2);
+                Utils.roundVector(this.position, 2);
                 // 更新车在表格中的位置
                 this._updateTablePosition();
                 // 获取相邻的车辆

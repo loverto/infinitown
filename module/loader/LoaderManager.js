@@ -1,5 +1,5 @@
 import bluebird from 'bluebird';
-import loaderUtils from 'module/LoaderUtils';
+import loaderUtils from 'module/utils/LoaderUtils';
 
 class LoaderManager {
     /**

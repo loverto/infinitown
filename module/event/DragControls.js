@@ -1,6 +1,6 @@
 import * as THREE  from 'three';
-import constant from 'module/GlobalConfig';
-import Events from 'module/Events';
+import constant from 'module/config/GlobalConfig';
+import Events from 'module/event/Events';
 var ndc = new THREE.Vector2;
 
 
@@ -65,19 +65,19 @@ class DragControls extends Events{
                 this._scene.position.addVectors(this._sceneOffset, point);
             };
         }()
-        /**
-         * 开始拖动
-         */
-        this._onDrag = function(e) {
-            var vector = new THREE.Vector2;
-            return function(planeOrigin) {
-                // 如果当前在拖动可用，并且平移已经开启，给offset赋值
-                if (this.enabled && this._panning) {
-                    vector.subVectors(planeOrigin, this._startCoords);
-                    this._offset.addVectors(this._lastOffset, vector);
-                }
-            };
-        }()
+
+    }
+
+    /**
+     * 开始拖动
+     */
+    _onDrag(e) {
+        const vector = new THREE.Vector2;
+        // 如果当前在拖动可用，并且平移已经开启，给offset赋值
+        if (this.enabled && this._panning) {
+            vector.subVectors(e, this._startCoords);
+            this._offset.addVectors(this._lastOffset, vector);
+        }
     }
 
     /**

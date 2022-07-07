@@ -1,7 +1,7 @@
 import * as THREE  from 'three';
-import globalConfig from 'module/GlobalConfig';
-import BaseMoveTableModel from 'module/BaseMoveTableModel';
-import utils from 'module/Utils';
+import globalConfig from 'module/config/GlobalConfig';
+import BaseMoveTableModel from 'module/model/BaseMoveTableModel';
+import Utils from 'module/utils/Utils';
 var ratio = .05;
 var planetsSpeed = 2;
 
@@ -15,11 +15,11 @@ class Cloud extends BaseMoveTableModel{
         super(name);
         this.add(obj);
         // 设置云的位置，位置随机生成（范围要在块的区域内）
-        this.position.set(utils.random() * globalConfig.CHUNK_SIZE - globalConfig.CHUNK_SIZE / 2, 60, utils.random() * globalConfig.CHUNK_SIZE - globalConfig.CHUNK_SIZE / 2);
+        this.position.set(Utils.random() * globalConfig.CHUNK_SIZE - globalConfig.CHUNK_SIZE / 2, 60, Utils.random() * globalConfig.CHUNK_SIZE - globalConfig.CHUNK_SIZE / 2);
         // 设置延时，随机值
-        this.delay = 5 * utils.random();
+        this.delay = 5 * Utils.random();
         // 速度变化，随机值
-        this.speedModifier = .25 * utils.random() + 1;
+        this.speedModifier = .25 * Utils.random() + 1;
         // 移动速度
         this.moveSpeed = .05 * this.speedModifier;
         // 最大标量

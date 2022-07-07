@@ -1,7 +1,10 @@
 import * as THREE  from 'three';
-import LoaderUtils from 'module/LoaderUtils';
+import LoaderUtils from 'module/utils/LoaderUtils';
 
-class vignettingRender extends Object{
+/**
+ * 光晕材质
+ */
+class VignettingRender extends Object{
     /**
      * 处理光晕
      */
@@ -33,5 +36,5 @@ class vignettingRender extends Object{
     }
 }
 
-export default vignettingRender;
+export default VignettingRender;
 

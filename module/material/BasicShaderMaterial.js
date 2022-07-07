@@ -1,5 +1,5 @@
-import BaseShaderMaterial from 'module/BaseShaderMaterial';
-import shaders from 'module/shaders';
+import BaseShaderMaterial from 'module/material/BaseShaderMaterial';
+import shaders from 'module/render/shaders';
 
 class BasicShaderMaterial extends BaseShaderMaterial{
     /**

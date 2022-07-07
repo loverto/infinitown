@@ -1,4 +1,4 @@
-import TimerUtils from 'module/TimerUtils';
+import TimerUtils from 'module/utils/TimerUtils';
 
 
 class timers {

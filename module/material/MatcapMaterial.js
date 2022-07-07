@@ -1,6 +1,6 @@
 import * as THREE  from 'three';
-import BaseShaderMaterial from 'module/BaseShaderMaterial';
-import LoaderUtils from 'module/LoaderUtils';
+import BaseShaderMaterial from 'module/material/BaseShaderMaterial';
+import LoaderUtils from 'module/utils/LoaderUtils';
 var a = {
     normalMapFactor : 'uNormalMapFactor',
     normalMap : 'sTextureNormalMap',

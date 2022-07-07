@@ -2,14 +2,17 @@ import '@tweenjs/tween.js';
 window._ = require('lodash');
 /**
  * 线性插值
- * @param minIn
- * @param maxIn
- * @returns {number}
+ * @param minIn 开始值
+ * @param maxIn 结束值
+ * @returns {number} 返回插值值
  */
 Number.prototype.lerp = function(minIn, maxIn) {
     return this + (minIn - this) * maxIn;
 };
-// 给String 扩展endsWith方法
+
+/**
+ * 利用prototype 的方式给String 扩展endsWith方法
+ */
 if (!String.prototype.endsWith) {
 
     String.prototype.endsWith = function(value, offset) {

@@ -1,17 +1,9 @@
 import * as THREE  from 'three';
-import Events from 'module/Events';
+import Events from 'module/event/Events';
 import timers from 'module/timers';
-import FpsCounter from 'module/FpsCounter';
+import FpsCounter from 'module/utils/FpsCounter';
 
-function update(allOrId) {
-    var width = window.WIDTH = window.innerWidth;
-    var height = window.HEIGHT = window.innerHeight;
-    if (window.parent) {
-        width = window.parent.innerWidth;
-        height = window.parent.innerHeight;
-    }
-    this.setSize(width, height);
-}
+
 
 /**
  * 附加可见性事件
@@ -117,8 +109,8 @@ class BaseSceneManager extends Events {
         this.scenes = [];
         this.scene = null;
         // bind()方法创建一个新的函数，在bind()被调用时，这个新函数的this被bind的第一个参数指定，其余的参数将作为新函数的参数供调用时使用。
-        // 重置窗口绑定事件，update 是啥
-        window.onresize = update.bind(this);
+        // 重置窗口绑定事件，resize 为重置窗口的具体事件方法
+        window.onresize = this.resize.bind(this);
         // 绑定键盘按下事件
         window.addEventListener('keyup', Slatebox.bind(this));
         // 绑定鼠标悬浮事件
@@ -208,6 +200,17 @@ class BaseSceneManager extends Events {
             .css("z-index", "999999");
         this.dcCounter = dc[0];
     }
+
+    resize(e) {
+        var width = window.WIDTH = window.innerWidth;
+        var height = window.HEIGHT = window.innerHeight;
+        if (window.parent) {
+            width = window.parent.innerWidth;
+            height = window.parent.innerHeight;
+        }
+        this.setSize(width, height);
+    }
+
     /**
      * 渲染
      * @param text
@@ -290,7 +293,10 @@ class BaseSceneManager extends Events {
             this.clock.stop();
             this.paused = true;
             if (this.config.fps) {
-                this.counter.textContent += ' (paused)';
+                // 如果textContent 中已经包含 paused，则不再添加
+                if (!this.counter.textContent.includes('paused')) {
+                    this.counter.textContent += ' (paused)';
+                }
             }
         }
     }

@@ -1,6 +1,6 @@
 import seedrandom from 'seedrandom'
-import GlobalConfig from 'module/GlobalConfig';
-class utils {
+import GlobalConfig from 'module/config/GlobalConfig';
+class Utils {
 
     /**
      * 矢量数据保留指定位数的小数点
@@ -41,7 +41,7 @@ class utils {
 /**
  * 生成随机数
  */
-utils.random = function() {
+Utils.random = function() {
     // 根据指定的随机数种子生成随机数
     var random = seedrandom(GlobalConfig.RANDOM_SEED);
     return function() {
@@ -49,4 +49,4 @@ utils.random = function() {
     };
 }()
 
-export default utils;
+export default Utils;
