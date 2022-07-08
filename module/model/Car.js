@@ -1,6 +1,7 @@
 import * as THREE  from 'three';
 import Utils from 'module/utils/Utils';
 import BaseMoveTableModel from 'module/model/BaseMoveTableModel';
+import GlobalConfig from "../config/GlobalConfig";
 var normal = new THREE.Vector3(0, 1, 0);
 
 class Car extends BaseMoveTableModel{
@@ -35,7 +36,7 @@ class Car extends BaseMoveTableModel{
 
         // 设置位置,位置为随机车道上的位置
         this.position.copy(randomLane.position);
-        var point = new THREE.Vector3(3.4, 0, 0);
+        const point = new THREE.Vector3(3.4, 0, 0);
         randomCar.rotation.copy(randomLane.rotation);
         // 设置点信息的轴角度，y为车的角度
         point.applyAxisAngle(normal, randomCar.rotation.y);
@@ -129,20 +130,24 @@ class Car extends BaseMoveTableModel{
                 this.detectCars(neighboringCars);
             };
         }()
+        // 如果调试模式下开启汽车碰撞检测雷达
+        if (GlobalConfig.DEBUG){
+            this.addRadarHelper()
+        }
     }
 
     /**
      * 添加雷达工具
      */
     addRadarHelper() {
-        // 设置雷达扫描区域
+        // 设置雷达扫描区域,构造一个扇形
         var circleGeometry = new THREE.CircleGeometry(this.radarRadius, 32, 0, Math.PI / 2);
         // 设置基础的材料颜色
         var meshBasicMaterial = new THREE.MeshBasicMaterial({
             color : 0xff00ff
         });
         // 设置Mesh
-        var mesh = new THREE.Mesh(circleGeometry, meshBasicMaterial);
+        const mesh = new THREE.Mesh(circleGeometry, meshBasicMaterial);
         mesh.rotation.order = 'YXZ';
         mesh.position.y = 1;
         mesh.rotation.x = -Math.PI / 2;
@@ -175,7 +180,7 @@ class Car extends BaseMoveTableModel{
         }
         // 如果没有检测到车
         if (isNotDetectCars) {
-            // 如果速度小于最大速度，则慢慢的增加速度
+            // 如果速度小于最大速度，则慢慢地增加速度
             if (this.speed < this.maxSpeed) {
                 this.speed += _speed;
                 // 如果速度值大于最大值，则取最大值

@@ -5,15 +5,6 @@ import Car from 'module/model/Car';
 import Cloud from 'module/model/Cloud';
 import Utils from 'module/utils/Utils';
 
-/**
- * 随机获取数组中的元素
- * @param options
- * @returns {*}
- */
-function getElementByRandom(options) {
-    return options[Math.floor(Utils.random() * options.length)];
-}
-
 class Table extends Object{
 
     /**
@@ -112,9 +103,9 @@ class Table extends Object{
          */
         this._forEachNeighboringChunk = function() {
             // 创建初始坐标
-            var initCoordTmp = new THREE.Vector2;
+            const initCoordTmp = new THREE.Vector2;
             // 初始化区块的矩阵坐标
-            var chunkCoords = [new THREE.Vector2(-1, -1), new THREE.Vector2(1, 0), new THREE.Vector2(1, 0), new THREE.Vector2(0, 1), new THREE.Vector2(0, 1), new THREE.Vector2(-1, 0), new THREE.Vector2(-1, 0), new THREE.Vector2(0, -1)];
+            const chunkCoords = [new THREE.Vector2(-1, -1), new THREE.Vector2(1, 0), new THREE.Vector2(1, 0), new THREE.Vector2(0, 1), new THREE.Vector2(0, 1), new THREE.Vector2(-1, 0), new THREE.Vector2(-1, 0), new THREE.Vector2(0, -1)];
             return function(x, y , callback) {
                 // 初始坐标赋值，值为传入的坐标
                 initCoordTmp.set(x, y);
@@ -123,7 +114,7 @@ class Table extends Object{
                     // 坐标相加
                     initCoordTmp.add(coord);
                     // 获取分块中的数据，根据计算之后的坐标取chunk
-                    var chunk = this.getChunkData(initCoordTmp.x, initCoordTmp.y);
+                    const chunk = this.getChunkData(initCoordTmp.x, initCoordTmp.y);
                     if (chunk) {
                         callback(chunk.node);
                     }
@@ -133,6 +124,18 @@ class Table extends Object{
         this._generate();
 
     }
+
+
+    /**
+     * 随机获取数组中的元素
+     * @param options
+     * @returns {*}
+     */
+    getElementByRandom(options) {
+        return options[Math.floor(Utils.random() * options.length)];
+    }
+
+
 
     /**
      * 获取大块的数据
@@ -181,7 +184,7 @@ class Table extends Object{
         // 获取相邻的块
         var blocks = this._getNeighboringBlocks(x, y);
         for (; i < 100;) {
-            var randomBlock = getElementByRandom(this.blocks).clone();
+            var randomBlock = this.getElementByRandom(this.blocks).clone();
             var name = randomBlock.name;
             // 足球场，是体育馆
             if ('block_8_merged' === name) {
@@ -234,14 +237,14 @@ class Table extends Object{
         // 随机车道信息，用来存储获取的随机四个车道
         var randomLanes = [];
         // 随机取第一个车道
-        var randomFirstLane = getElementByRandom(this.lanes).clone();
+        var randomFirstLane = this.getElementByRandom(this.lanes).clone();
         // 设置车道位置
         randomFirstLane.position.set(-30, 0, 10);
         // 添加车道1信息
         randomChunkObject3.add(randomFirstLane);
         randomLanes.push(randomFirstLane);
         // 随即取第二个车道
-        var randomSecondLane = getElementByRandom(this.lanes).clone();
+        var randomSecondLane = this.getElementByRandom(this.lanes).clone();
         randomSecondLane.position.set(-30, 0, -10);
         matrix.makeTranslation(0, 0, -20);
         randomSecondLane.geometry = randomSecondLane.geometry.clone();
@@ -249,7 +252,7 @@ class Table extends Object{
         randomSecondLane.geometry.applyMatrix(matrix);
         randomLanes.push(randomSecondLane);
         // 随机取第三个车道
-        var randomThirdLane = getElementByRandom(this.lanes).clone();
+        var randomThirdLane = this.getElementByRandom(this.lanes).clone();
         randomThirdLane.position.set(-10, 0, -30);
         randomThirdLane.rotation.y = Math.PI / 2;
         randomLanes.push(randomThirdLane);
@@ -258,7 +261,7 @@ class Table extends Object{
         randomThirdLane.geometry.applyMatrix(matrixWorldInverse);
         randomThirdLane.geometry.applyMatrix(matrix);
         // 随机取第四个车道
-        var randomFourthLane = getElementByRandom(this.lanes).clone();
+        var randomFourthLane = this.getElementByRandom(this.lanes).clone();
         randomFourthLane.geometry = randomFourthLane.geometry.clone();
         randomFourthLane.position.set(10, 0, -30);
         randomFourthLane.rotation.y = Math.PI / 2;
@@ -269,7 +272,7 @@ class Table extends Object{
         var g = THREE.BufferGeometryUtils.mergeBufferGeometries([randomFirstLane.geometry,randomSecondLane.geometry, randomThirdLane.geometry, randomFourthLane.geometry])
         randomFirstLane.geometry = g;
         // 随机获取一个十字路口
-        var randomFirstIntersection = getElementByRandom(this.intersections).clone();
+        var randomFirstIntersection = this.getElementByRandom(this.intersections).clone();
         randomFirstIntersection.position.set(-30, 0, 30)
         randomChunkObject3.add(randomFirstIntersection)
         // 遍历随机生成的车道，根据情况在车道上生成车辆
@@ -278,7 +281,7 @@ class Table extends Object{
             var e = window.isMobile ? .2 : .35;
             if (Utils.random() < e) {
                 // 在随机生成的道路上，随机生成一个车
-                var randomFirstCar = getElementByRandom(this.carObjects).clone();
+                var randomFirstCar = this.getElementByRandom(this.carObjects).clone();
                 // 生成车
                 var car = new Car(this, randomFirstCar, randomLane);
                 // 添加车的对象
@@ -288,7 +291,7 @@ class Table extends Object{
             }
         }, this)
         if (Utils.random() > .65) {
-            var randomFirstCloud = getElementByRandom(this.cloudObjects).clone();
+            var randomFirstCloud = this.getElementByRandom(this.cloudObjects).clone();
             var cloud = new Cloud(this, randomFirstCloud);
             randomChunkObject3.add(cloud);
             this.mobs.push(cloud);

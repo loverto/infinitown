@@ -42,12 +42,15 @@ class LoaderManager {
         if (this.panoramas) {
             (params.panorama = loaderUtils.loadPanoramas(this.panoramas))
         }
+        // 环境辐照信息
         if (this.sh) {
             (params.sh = loaderUtils.loadSH(this.sh))
         }
+        //
         if (this.textures) {
             (params.texture = loaderUtils.loadTextures(this.textures, ''))
         }
+        //
         if (this.geometries) {
             (params.geometry = loaderUtils.loadGeometries(this.geometries))
         }

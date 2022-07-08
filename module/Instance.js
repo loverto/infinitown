@@ -53,15 +53,15 @@ class Instance {
                 var axesHelper = new THREE.AxesHelper(5);
                 sceneParam.add(axesHelper);
                 sceneParam.dirLights = [];
-                // 横过
-                sceneParam.traverse(function(camera) {
-                    if (camera instanceof THREE.DirectionalLight) {
-                        camera.position.set(0, 0, 5);
-                        camera.quaternion.normalize();
-                        camera.position.applyQuaternion(camera.quaternion);
-                        camera.quaternion.set(0, 0, 0, 0);
-                        camera.scale.set(1, 1, 1);
-                        sceneParam.dirLights.push(camera);
+                // 遍历场景参数中的灯光，统一定向光光源
+                sceneParam.traverse(function(object3D) {
+                    if (object3D instanceof THREE.DirectionalLight) {
+                        object3D.position.set(0, 0, 5);
+                        object3D.quaternion.normalize();
+                        object3D.position.applyQuaternion(object3D.quaternion);
+                        object3D.quaternion.set(0, 0, 0, 0);
+                        object3D.scale.set(1, 1, 1);
+                        sceneParam.dirLights.push(object3D);
                     }
                 });
                 // 动画Mixer
@@ -70,36 +70,39 @@ class Instance {
                 for (; i < sceneParam.animations.length; i++) {
                     mixer.clipAction(sceneParam.animations[i]).play();
                 }
-                // 遍历给定的AST树。
+                // 遍历场景参数,。
                 sceneParam.traverse(function(options) {
                     var material = options.material;
                     if (material && material.aoMap) {
                         !material.map;
                     }
                 });
-                sceneParam.traverse(function(box1) {
-                    if ('Line' === box1.name) {
-                        box1.material.linewidth = 10;
-                        box1.material.color.setRGB(1, 0, 1);
+                // 遍历场景参数中的线性元素， 统一设置材料宽度和颜色
+                sceneParam.traverse(function(line) {
+                    if ('Line' === line.name) {
+                        line.material.linewidth = 10;
+                        // 设置为黑色
+                        line.material.color.setRGB(1, 0, 1);
                     }
                 });
-                sceneParam.traverse(function(node) {
-                    if (node instanceof THREE.SpotLight) {
+                // 遍历场景参数中的聚光灯，如果是聚光灯，则设置聚光灯的位置；并给场景参数赋值材料信息
+                sceneParam.traverse(function(object3D) {
+                    if (object3D instanceof THREE.SpotLight) {
                         var p = new THREE.Vector3(0, 0, -1);
                         var sprite = new THREE.Object3D;
-                        node.updateMatrixWorld();
-                        node.localToWorld(p);
+                        object3D.updateMatrixWorld();
+                        object3D.localToWorld(p);
                         sprite.position.copy(p);
                         sceneParam.add(sprite);
-                        node.target = sprite;
+                        object3D.target = sprite;
                     }
-                    if (node.material) {
-                        if (node.material.materials) {
-                            node.material.materials.forEach(function(b) {
+                    if (object3D.material) {
+                        if (object3D.material.materials) {
+                            object3D.material.materials.forEach(function(b) {
                                 sceneParam.materials[b.uuid] = b;
                             });
                         } else {
-                            sceneParam.materials[node.material.uuid] = node.material;
+                            sceneParam.materials[object3D.material.uuid] = object3D.material;
                         }
                     }
                 });

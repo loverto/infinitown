@@ -64,6 +64,10 @@ GlobalConfig.FOG_FAR = 325
  * 雾的颜色，青蓝色
  */
 GlobalConfig.FOG_COLOR = 0xa2e8ff
+/**
+ * 是否调试
+ */
+GlobalConfig.DEBUG = false
 
 export default GlobalConfig;
 

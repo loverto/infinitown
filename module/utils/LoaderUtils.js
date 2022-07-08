@@ -1,9 +1,9 @@
 // promise 工具类
 import bluebird from 'bluebird';
 
-import parseUrl from 'module/utils/parseUrl';
+import urlUtils from 'module/utils/UrlUtils';
 import LoadSceneManager from 'module/scene/LoadSceneManager';
-import BaseDataTextureLoader from 'module/loader/BaseDataTextureLoader';
+import BasePanoramasLoader from 'module/loader/BasePanoramasLoader';
 import AbstrctCompressedTextureLoader from 'module/loader/AbstrctCompressedTextureLoader';
 import FileLoaderUtils from 'module/utils/FileLoaderUtils';
 import BaseFileLoader from 'module/loader/BaseFileLoader';
@@ -16,8 +16,8 @@ var loadSceneManager = new LoadSceneManager(loadingManager);
 var cacheResult = {};
 // 标准化纹理加载器
 var textureLoaderNoralize = normalize(new TextureLoader(loadingManager), cacheResult);
-// 标准化数据纹理加载器
-var dataTextureLoaderExternNoralize = normalize(new BaseDataTextureLoader(1024, false, loadingManager), cacheResult);
+// 标准化全景加载器
+var panoramasLoaderExternNoralize = normalize(new BasePanoramasLoader(1024, false, loadingManager), cacheResult);
 // 标准化压缩纹理加载器
 var compressedTextureLoaderExternNoralize = normalize(new AbstrctCompressedTextureLoader(256, false, loadingManager), cacheResult);
 // sh 的
@@ -90,7 +90,7 @@ function exec(resources, uri, normalizeLoader, load) {
     _.isArray(resources) || (resources = [resources])
     return  bluebird.all(_.map(resources, function(uriResource) {
         if (load) {
-            return load(parseUrl(uri, uriResource), uriResource, normalizeLoader);
+            return load(urlUtils(uri, uriResource), uriResource, normalizeLoader);
         }
     }));
 }
@@ -201,7 +201,7 @@ class LoaderUtils{
      * @returns {Promise<(any)[]>}
      */
     static loadPanoramas(panoramasArray, uri) {
-        return fn(panoramasArray, uri || LoaderUtils.environmentPath, dataTextureLoaderExternNoralize);
+        return fn(panoramasArray, uri || LoaderUtils.environmentPath, panoramasLoaderExternNoralize);
     }
 
     /**
@@ -216,15 +216,15 @@ class LoaderUtils{
 
 
     /**
-     * 加载Sh
+     * 加载环境辐照信息 Sh
      * @param env
      * @returns {Promise<[any, any, any, any, any, any, any, any, any, any]>}
      */
     static loadSH(env) {
         return bluebird.all(_.map(env, function(item) {
             return new bluebird(function(resolve, reject) {
-                // 辐照度
-                var url = parseUrl(LoaderUtils.environmentPath, item + '/irradiance.json');
+                // 环境辐照度
+                var url = urlUtils(LoaderUtils.environmentPath, item + '/irradiance.json');
                 // 加载json文件
                 dataFrameReader.load(url, function(data) {
                     shs[item] = data;
@@ -278,7 +278,7 @@ class LoaderUtils{
      * @returns {*}
      */
     static getPanorama(prefix) {
-        return dataTextureLoaderExternNoralize.get(prefix + '/panorama.bin');
+        return panoramasLoaderExternNoralize.get(prefix + '/panorama.bin');
     }
 
 

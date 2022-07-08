@@ -55,7 +55,9 @@ class InfinitownManager extends Events{
      * @return {undefined}
      */
     load() {
+
         const container = 'main';
+        // 环境辐射信息
         const env = 'envProbe';
         let canvas = document.querySelector('canvas');
         // 初始化场景
