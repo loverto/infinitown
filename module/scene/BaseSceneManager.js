@@ -1,6 +1,6 @@
 import * as THREE  from 'three';
 import Events from 'module/event/Events';
-import timers from 'module/timers';
+import Timers from 'module/Timers';
 import FpsCounter from 'module/utils/FpsCounter';
 
 
@@ -46,9 +46,21 @@ function attachVisibilityEvent(event) {
     }
 }
 
+/**
+ * 事件管理器
+ * @param _options
+ * @constructor
+ */
 function Slatebox(_options) {
 }
 
+/**
+ * 场景管理器
+ * @type {{}}
+ * @private
+ * @constructor Scene
+ * @param options {Object} 配置参数
+ */
 class BaseSceneManager extends Events {
     constructor(options) {
         super();
@@ -158,7 +170,7 @@ class BaseSceneManager extends Events {
                     }
                     TWEEN.update(now);
                     // 更新计时器
-                    timers.updateTimers(data);
+                    Timers.updateTimers(data);
                     //如果性能分析开启，打印场景更新的执行时间
                     if (this.config.profiling) {
                         console.time('update');
