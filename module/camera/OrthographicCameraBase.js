@@ -1,7 +1,13 @@
 import 'three-orbit-controls';
 import {OrthographicCamera} from "three";
 
-// 正交相机
+/**
+ * 正交相机
+ * @param obj {Object} 参数
+ * @constructor {OrthographicCamera} 正交相机
+ * @extends {OrthographicCamera} 正交相机
+ *
+ */
 class OrthographicCameraBase extends OrthographicCamera{
     constructor(hValue) {
 
